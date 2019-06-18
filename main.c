@@ -17,44 +17,47 @@ int main()
   int i = 0;
   int arr[9][9];
 
+int indexOf(int array[], int ele) {
+  for(int x= 0; x < 9; x++){
+      if(array[x] == ele){
+        return 1;
+      }
+  }
+  return 0;
+}
+
   for(int x= 0; x < 9; x++){
     for(int y =0; y< 9; y++){
-    arr[x][y] = rand() % 10;
+      int ele = rand() % 10;
+      if(indexOf(arr[x], ele)> 0){
+        y--;
+      } else{
+        arr[x][y] = ele;
+      }
     }
   }
 
   int x = 0;
   int y = 0;
-	int c;
 
-    printf("1\n");
     i = 0;
     system("clear");
     printf("%s+---+---+---+---+---+---+---+---+---+\n", KRED);
-    for (i; i < 9; i++)
-    {
-
-
-    for (int j=0; j < 9; j++) {
-          // test(i-1,0); printf("| %d ", arr[i][j]); test(8-i, 1);// 0
-          if(j % 3 == 0){
-          printf("%s| ", KRED ,arr[i][j]);
-
-          } else
-          {
-          printf("%s| ", KWHT ,arr[i][j]);
-            
-          }
-          
-          printf("%s%d ", KWHT ,arr[i][j]);
-    }
-    printf("%s|\n", KRED);
-    if((i+1) % 3 == 0){
-    printf("%s+---+---+---+---+---+---+---+---+---+\n", KRED);
-
-    } else{
-    printf("%s+---+---+---+---+---+---+---+---+---+\n", KWHT);
-    }
+    for (i; i < 9; i++) {
+      for (int j=0; j < 9; j++) {
+            if(j % 3 == 0){
+              printf("%s| ", KRED ,arr[i][j]);
+            } else {
+              printf("%s| ", KWHT ,arr[i][j]);
+            }
+            printf("%s%d ", KWHT ,arr[i][j]);
+      }
+      printf("%s|\n", KRED);
+      if((i+1) % 3 == 0){
+        printf("%s+---+---+---+---+---+---+---+---+---+\n", KRED);
+      } else{
+        printf("%s+---+---+---+---+---+---+---+---+---+\n", KWHT);
+      }
     }
     sleep(1);
   return 0;
