@@ -16,8 +16,6 @@ int indexOf(int array[], int ele);
 void generateGameData(int array[][9]);
 void renderCourt(int arr[][9]);
 
-int check = 1;
-
 int main() {
   srand(time(NULL));
   int arr[9][9];
@@ -29,7 +27,7 @@ int main() {
 
 int indexOf(int array[], int ele) {
   for (int x = 0; x < 9; x++) {
-    if (array[x] == ele) {
+    if (array[x] == ele && ele != 0) {
       return x;
     }
   }
@@ -37,25 +35,28 @@ int indexOf(int array[], int ele) {
 }
 
 void generateGameData(int a[][9]) {
-
   for (int x = 0; x < 9; x++) {
     for (int y = 0; y < 9; y++) {
       int ele = 1 + rand() % 9;
-      int elementsInSomeRow[x];
-      if (indexOf(a[x], ele) >= 0 && check) { // element darf nur einmal in rows vorkommen.
+
+      if (indexOf(a[x], ele) >= 0) { // element darf nur einmal in rows vorkommen.
         y--;
         continue;
       }
+
+      int elementsInSomeRow[x];
       for (int l = 0; l < x + 1; l++) {
         elementsInSomeRow[l] = a[l][y];
       }
+
       if (indexOf(elementsInSomeRow, ele) >= 0) { // element darf nur einmal in columns vorkommen.
-        // printf("duplicat at %d,%d \n", x + 1, y + 1);
-        check = 0;
-        y--;
-        continue;
+        for (int l = 0; l < 9; l++) {
+          a[x][l] = 0;
+        }
+        x--;
+        break;
       }
-      check = 1;
+
       a[x][y] = ele;
     }
   }
