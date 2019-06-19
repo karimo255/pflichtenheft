@@ -12,20 +12,42 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
-int indexOf(int array[], int ele);
+int isElementInArray(int array[], int ele);
+void resetArray(int array[]);
 void generateGameData(int array[][9]);
 void renderCourt(int arr[][9]);
+int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele);
+int generateRandomNumber();
+
+int c = 0;
+int x = 0;
+int y = 5;
 
 int main() {
   srand(time(NULL));
-  int arr[9][9];
+  int arr[9][9] = { 0 };
 
   generateGameData(arr);
-  renderCourt(arr);
+  while (1)
+  {
+    sleep(1);
+    renderCourt(arr);
+  }
+  
   return 0;
 }
 
-int indexOf(int array[], int ele) {
+int generateRandomNumber(){
+  return 1 + rand() % 9;
+}
+
+void resetArray(int array[]){
+  for (int l = 0; l < 9; l++) {
+    array[l] = 0;
+  }
+}
+
+int isElementInArray(int array[], int ele) {
   for (int x = 0; x < 9; x++) {
     if (array[x] == ele && ele != 0) {
       return x;
@@ -34,49 +56,66 @@ int indexOf(int array[], int ele) {
   return -1;
 }
 
+int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
+{
+	for (int row = 0; row < 3; row++)
+		for (int col = 0; col < 3; col++){
+
+			if (arr[row + box_start_row][col + box_start_col] == ele && ele != 0) 
+			{
+				return 1;
+			}
+    }
+	return -1;
+}
+
 void generateGameData(int a[][9]) {
   for (int x = 0; x < 9; x++) {
     for (int y = 0; y < 9; y++) {
-      int ele = 1 + rand() % 9;
-
-      if (indexOf(a[x], ele) >= 0) { // element darf nur einmal in rows vorkommen.
+      int number = generateRandomNumber();
+      if (isElementInArray(a[x], number) >= 0 ) { // number darf nur einmal in row vorkommen.
         y--;
         continue;
       }
 
-      int elementsInSomeRow[x];
+      int elementsInSomeColumn[x];
       for (int l = 0; l < x + 1; l++) {
-        elementsInSomeRow[l] = a[l][y];
+        elementsInSomeColumn[l] = a[l][y];
       }
-
-      if (indexOf(elementsInSomeRow, ele) >= 0) { // element darf nur einmal in columns vorkommen.
-        for (int l = 0; l < 9; l++) {
-          a[x][l] = 0;
-        }
+      // number darf nur einmal in column und box vorkommen.
+      if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x-x%3, y-y%3, number) >= 0) { 
+        resetArray(a[x]);
         x--;
         break;
       }
 
-      a[x][y] = ele;
+      a[x][y] = number;
     }
   }
 }
 
 void renderCourt(int arr[][9]) {
-  int x = 0;
-  int y = 0;
-
-  int i = 0;
   system("clear");
   printf("%s+---+---+---+---+---+---+---+---+---+\n", KRED);
-  for (i; i < 9; i++) {
+  for (int i = 0; i < 9; i++) {
     for (int j = 0; j < 9; j++) {
+      c++;
       if (j % 3 == 0) {
         printf("%s| ", KRED);
       } else {
         printf("%s| ", KWHT);
       }
-      printf("%s%d ", KWHT, arr[i][j]);
+
+      if (i==x && j == y) {
+        if (c % 2 == 0){
+          printf("%s%d ", KWHT, arr[i][j]);
+        } else {
+          printf("%s| ", KWHT);
+        }
+      } else {
+        printf("%s%d ", KWHT, arr[i][j]);
+      }
+
     }
     printf("%s|\n", KRED);
     if ((i + 1) % 3 == 0) {
