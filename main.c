@@ -22,6 +22,7 @@ int generateRandomNumber();
 int c = 0;
 int x = 0;
 int y = 5;
+int tt = 0;
 
 int main() {
   srand(time(NULL));
@@ -30,8 +31,8 @@ int main() {
   generateGameData(arr);
   while (1)
   {
-    sleep(1);
     renderCourt(arr);
+    sleep(1);
   }
   
   return 0;
@@ -68,7 +69,7 @@ int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
     }
 	return -1;
 }
-
+int elementsInSomeColumn[9] = {0};
 void generateGameData(int a[][9]) {
   for (int x = 0; x < 9; x++) {
     for (int y = 0; y < 9; y++) {
@@ -78,10 +79,11 @@ void generateGameData(int a[][9]) {
         continue;
       }
 
-      int elementsInSomeColumn[x];
-      for (int l = 0; l < x + 1; l++) {
+      resetArray(elementsInSomeColumn);
+      for (int l = 0; l < sizeof(elementsInSomeColumn); l++) {
         elementsInSomeColumn[l] = a[l][y];
       }
+
       // number darf nur einmal in column und box vorkommen.
       if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x-x%3, y-y%3, number) >= 0) { 
         resetArray(a[x]);
