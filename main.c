@@ -68,11 +68,15 @@ void renderMenu();
 int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele);
 int generateRandomNumber();
 void handleUserInput();
+int solve(int arr[][9]);
+void resetGameData(int arr[][9]);
 
 int x = 0;
 int y = 0;
 int arr[9][9] = { 0 };
 int exitTheGame = 0;
+
+int elementsInSomeColumn[9] = {0};
 
 enum POSITIONS{
   MENU,
@@ -184,7 +188,11 @@ void handleUserInput(){
           break;
 
         case 's':
-          printf("solve\n");
+          if(solve(arr) > 0){
+          printf("solved\n");
+          } else{
+          printf("not solved\n");
+          }
           break;
 
         case 'b':
@@ -206,6 +214,13 @@ int generateRandomNumber(){
 void resetArray(int array[]){
   for (int l = 0; l < 9; l++) {
     array[l] = 0;
+  }
+}
+void resetGameData(int array[][9]){
+  for (int x = 0; x < 9; x++) {
+    for (int y = 0; y < 9; y++) {
+      array[x][y] = 0;
+    }
   }
 }
 
@@ -230,7 +245,6 @@ int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
     }
 	return -1;
 }
-int elementsInSomeColumn[9] = {0};
 void generateGameData(int a[][9]) {
   for (int x = 0; x < 9; x++) {
     for (int y = 0; y < 9; y++) {
@@ -255,6 +269,33 @@ void generateGameData(int a[][9]) {
       a[x][y] = number;
     }
   }
+}
+
+int solve(int a[][9]){
+  for (int x = 0; x < 9; x++) {
+    for (int y = 0; y < 9; y++) {
+      int number = a[x][y];
+      a[x][y] = 0;
+      if (isElementInArray(a[x], number) >= 0 ) { // number darf nur einmal in row vorkommen.
+        a[x][y]= number;
+        return 0;
+      }
+
+      resetArray(elementsInSomeColumn);
+      for (int l = 0; l < sizeof(elementsInSomeColumn); l++) {
+        elementsInSomeColumn[l] = a[l][y];
+      }
+
+      // number darf nur einmal in column und box vorkommen.
+      if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x-x%3, y-y%3, number) >= 0) {
+        a[x][y]= number; 
+        return 0;
+      }
+      a[x][y]= number;
+    }
+  }
+  resetGameData(arr);
+  return 1;
 }
 
 void renderCourt(int arr[][9]) {
