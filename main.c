@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include<unistd.h>
+#include<ctype.h>
 
 #ifdef __unix__
 #include <termios.h>
@@ -61,7 +62,8 @@ void resetArray(int array[]);
 void generateGameData(int array[][9]);
 void renderCourt(int arr[][9]);
 void renderInfoBox();
-void renderGameNavigator();
+void renderGameMenu();
+void navigateTo(int pos);
 void renderMenu();
 int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele);
 int generateRandomNumber();
@@ -70,28 +72,51 @@ void handleUserInput();
 int x = 0;
 int y = 0;
 int arr[9][9] = { 0 };
+int exitTheGame = 0;
+
+enum POSITIONS{
+  MENU,
+  INGAME,
+  DETAILS
+};
+
+int currentPosition = INGAME;
 
 int main() {
   srand(time(NULL));
-
   generateGameData(arr);
-  while (1)
+
+  while (!exitTheGame)
   {
     system("clear");
-    renderInfoBox();
-    renderCourt(arr);
-    renderGameNavigator();
+    switch (currentPosition)
+    {
+    case MENU:
+      renderMenu();
+      break;
+    
+    case INGAME:
+      renderInfoBox();
+      renderCourt(arr);
+      renderGameMenu();
+      break;
+
+    case DETAILS:
+      renderMenu();
+      break;
+
+    }
     handleUserInput();
  }
   
   return 0;
 }
+void renderMenu(){
+  printf("menu\n");
+}
 
-void handleUserInput(){
-  int userInput;
-      if (( userInput = getch() ) == '\033') { // if the first value is esc
-    getch(); // skip the [
-    switch(getch()) { // the real value
+void navigateTo(int pos){
+    switch(pos) { // the real value
         case 'A':
             // code for arrow up
             x--;
@@ -114,10 +139,64 @@ void handleUserInput(){
     if (x < 0){ x = 0;}
     if (y > 8){ y = 8;}
     if (y < 0){ y = 0;}
+}
+void handleUserInput(){
+  int userInput;
+  int pos;
+
+      if (( userInput = getch() ) == '\033') { // if the first value is esc
+    getch(); // skip the [
+    navigateTo(getch());
+
 }  else {
-printf("%c \n", userInput);
+    switch (currentPosition)
+    {
+    case MENU:
+        if(isalpha(userInput)){
+        switch (userInput){
+        case 's':
+          currentPosition = INGAME;
+          break;
+
+        case 'b':
+          printf("Bestlist\n");
+          break;
+
+        case 'q':
+          exitTheGame = 1;
+          break;
+
+        default:
+          break;
+        }
+      }
+
+      break;
+    
+    case INGAME:
+      if(isdigit(userInput)){
+        // printf("%d", userInput - '0');
+        arr[x][y] = userInput - '0';
+      } else if(isalpha(userInput)){
+        switch (userInput){
+        case 'h':
+          printf("Give a hint\n");
+          break;
+
+        case 's':
+          printf("solve\n");
+          break;
+
+        case 'b':
+          currentPosition = MENU;
+          break;
+
+        default:
+          break;
+        }
+      }
     }
- 
+    }
 }
 
 int generateRandomNumber(){
@@ -212,10 +291,10 @@ void renderCourt(int arr[][9]) {
     printf("%s-------------------------------------\n\n", KCYN);
   }
 
-  void renderGameNavigator(){
+  void renderGameMenu(){
     printf("%s Movement        Commands\n\n", KCYN);
     printf("%s %c%c%c - Right       h - Give a hint\n\n", KWHT, '\xE2', '\x86', '\x92' );
     printf("%s %c%c%c - Left        s - Solve \n\n", KWHT, '\xE2', '\x86', '\x90' );
-    printf("%s %c%c%c - Top         q - Quit\n\n", KWHT, '\xE2', '\x86', '\x91' );
+    printf("%s %c%c%c - Top         b - Back\n\n", KWHT, '\xE2', '\x86', '\x91' );
     printf("%s %c%c%c - Down \n\n", KWHT, '\xE2', '\x86', '\x93' );
   }
