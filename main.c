@@ -77,13 +77,14 @@ int x = 0;
 int y = 0;
 int arr[9][9] = { 0 };
 int exitTheGame = 0;
+int isGameActive = 0;
 
 int elementsInSomeColumn[9] = {0};
 
 enum POSITIONS{
-  MENU,
-  INGAME,
-  DETAILS
+  MENU=0,
+  INGAME=1,
+  DETAILS=2
 };
 
 enum DIFFICULTY {
@@ -92,16 +93,17 @@ enum DIFFICULTY {
   HARD=7
 };
 
-int currentPosition = INGAME;
+int currentPosition = MENU;
 
 int main() {
+  printf("%d ====>", currentPosition);
   srand(time(NULL));
   generateGameData(arr);
   deleteNumbers(arr,EASY);
 
   while (!exitTheGame)
   {
-    system("clear");
+    // system("clear");
     switch (currentPosition)
     {
     case MENU:
@@ -115,17 +117,27 @@ int main() {
       break;
 
     case DETAILS:
-      renderMenu();
+      // renderMenu();
       break;
-
     }
+    sleep(1);
     handleUserInput();
  }
   
   return 0;
 }
 void renderMenu(){
-  printf("menu\n");
+  printf("------------ menu -------------\n");
+  if(isGameActive){
+    printf("| r - Spiel Fortsetzen        |\n");
+  } else
+  {
+    printf("| s - Spiel Starten           |\n");
+  }
+  
+  printf("| b - BestenListe             |\n");
+  printf("| x - Beenden                 |\n");
+  printf("-------------------------------\n");
 }
 
 int generateNumberByInterval(int x, int y) {
@@ -184,6 +196,7 @@ void handleUserInput(){
     navigateTo(getch());
 
 }  else {
+    printf("current %d \n", currentPosition);
     switch (currentPosition)
     {
     case MENU:
@@ -199,9 +212,6 @@ void handleUserInput(){
 
         case 'q':
           exitTheGame = 1;
-          break;
-
-        default:
           break;
         }
       }
@@ -228,9 +238,6 @@ void handleUserInput(){
 
         case 'b':
           currentPosition = MENU;
-          break;
-
-        default:
           break;
         }
       }
@@ -333,6 +340,7 @@ void renderCourt(int arr[][9]) {
   printf("%s+---+---+---+---+---+---+---+---+---+\n", KRED);
   for (int i = 0; i < 9; i++) {
     for (int j = 0; j < 9; j++) {
+      int number = arr[i][j];
       if (j % 3 == 0) {
         printf("%s| ", KRED);
       } else {
@@ -340,10 +348,16 @@ void renderCourt(int arr[][9]) {
       }
 
       if (i==x && j == y) {
-          printf("%s%d ", KBLU, arr[i][j]);
+          if(number > 0){
+            printf("%s%d ", KBLU, number);
+          } else
+          {
+            printf("%s| ", KBLU);
+          }
+          
       } else {
         if(arr[i][j] > 0){
-          printf("%s%d ", KWHT, arr[i][j]);
+          printf("%s%d ", KWHT, number);
         } else
         {
          printf("%s  ", KWHT);
