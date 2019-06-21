@@ -60,6 +60,7 @@ int getch(void) {
 int isElementInArray(int array[], int ele);
 void resetArray(int array[]);
 void generateGameData(int array[][9]);
+void deleteNumbers(int array[][9], int difficulty);
 void renderCourt(int arr[][9]);
 void renderInfoBox();
 void renderGameMenu();
@@ -70,6 +71,7 @@ int generateRandomNumber();
 void handleUserInput();
 int solve(int arr[][9]);
 void resetGameData(int arr[][9]);
+int generateNumberByInterval(int x, int y);
 
 int x = 0;
 int y = 0;
@@ -84,11 +86,18 @@ enum POSITIONS{
   DETAILS
 };
 
+enum DIFFICULTY {
+  EASY=4,
+  MEDIUM=6,
+  HARD=7
+};
+
 int currentPosition = INGAME;
 
 int main() {
   srand(time(NULL));
   generateGameData(arr);
+  deleteNumbers(arr,EASY);
 
   while (!exitTheGame)
   {
@@ -118,6 +127,28 @@ int main() {
 void renderMenu(){
   printf("menu\n");
 }
+
+int generateNumberByInterval(int x, int y) {
+  return x + rand() % (y - x +1);
+}
+
+void deleteNumbers(int array[][9], int difficulty) {
+  for (int x = 1; x <= 3; x++)
+  {
+    for (int y = 1; y <= 3; y++)
+    {
+      int tmp = difficulty;
+      while (tmp > 0)
+      {
+        int r = generateNumberByInterval(3 * (x -1), 3 * x -1);
+        int c = generateNumberByInterval(3 * (y -1), 3 * y -1);
+          array[r][c]= 0;
+          tmp--;
+      }
+    }
+  }
+}
+
 
 void navigateTo(int pos){
     switch(pos) { // the real value
@@ -276,7 +307,7 @@ int solve(int a[][9]){
     for (int y = 0; y < 9; y++) {
       int number = a[x][y];
       a[x][y] = 0;
-      if (isElementInArray(a[x], number) >= 0 ) { // number darf nur einmal in row vorkommen.
+      if (isElementInArray(a[x], number) >= 0 || number == 0 ) { // number darf nur einmal in row vorkommen.
         a[x][y]= number;
         return 0;
       }
@@ -311,7 +342,13 @@ void renderCourt(int arr[][9]) {
       if (i==x && j == y) {
           printf("%s%d ", KBLU, arr[i][j]);
       } else {
-        printf("%s%d ", KWHT, arr[i][j]);
+        if(arr[i][j] > 0){
+          printf("%s%d ", KWHT, arr[i][j]);
+        } else
+        {
+         printf("%s  ", KWHT);
+        }
+        
       }
 
     }
