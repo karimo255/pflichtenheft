@@ -618,9 +618,9 @@ void renderInfoBox()
     break;
   }
   printf("%s-----------------------------------------\n", KCYN);
-  printf("%s| %sUser: %s      %s| %sBestscore: %d      %s|\n", KCYN, KWHT, "Otto", KCYN, KWHT, 257, KCYN);
+  printf("%s| %sUser: %s      %s| %sBestscore: %d       %s|\n", KCYN, KWHT, "Otto", KCYN, KWHT, 257, KCYN);
   printf("%s| %sTime: %s     %s| %sDifficulty: %s%s  |\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, KCYN);
-  printf("%s| %sRemaining: %d    %s|                     |\n", KCYN, KWHT, 5, KCYN);
+  printf("%s| %sRemaining: %d    %s|                      |\n", KCYN, KWHT, 5, KCYN);
   printf("%s-----------------------------------------\n\n", KCYN);
 }
 
