@@ -63,15 +63,16 @@ int getch(void)
 int isElementInArray(int array[], int ele);
 void resetArray(int array[]);
 void generateGameData(int array[][9]);
-void deleteNumbers(int array[][9], int difficulty);
+void deleteCells(int array[][9], int difficulty);
 void navigateTo(int pos);
 int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele);
 int generateRandomNumber();
 void handleUserInput();
-int solve(int arr[][9]);
+int solveGame(int arr[][9]);
 void resetGameData(int arr[][9]);
 int generateNumberByInterval(int x, int y);
 int getGameStatus(int array[][9]);
+void solveCell(int array[][9], int x, int y);
 
 void renderMenu();
 void renderDetails();
@@ -79,6 +80,12 @@ void renderCourt(int arr[][9]);
 void renderInfoBox();
 void renderGameMenu();
 void renderDifficultyDialog();
+
+struct cellKoordinaten
+{
+  int x;
+  int y;
+};
 
 int x = 0;
 int y = 0;
@@ -88,6 +95,8 @@ int currentPosition;
 int difficulty;
 char gameMessage[200] = "";
 int arr[9][9] = {0};
+int deletedCells[9][9] = {0};
+int userCells[9][9] = {0};
 int elementsInSomeColumn[9] = {0};
 
 enum DIFFICULTY
@@ -139,10 +148,7 @@ void renderDifficultyDialog()
 
 int main()
 {
-  printf("current position ====> %d \n", currentPosition);
   srand(time(NULL));
-  // generateGameData(arr);
-  // deleteNumbers(arr, difficulty);
 
   currentPosition = MENU;
   difficulty = EASY;
@@ -157,16 +163,19 @@ int main()
       break;
 
     case INGAME:
-     if(isGameActive == 0){
-      resetGameData(arr);
-      generateGameData(arr);
-      deleteNumbers(arr, difficulty);
-      isGameActive = 1;
-     }
+      if (isGameActive == 0)
+      {
+        resetGameData(arr);
+        resetGameData(deletedCells);
+        resetGameData(userCells);
+        generateGameData(arr);
+        deleteCells(arr, difficulty);
+        isGameActive = 1;
+      }
 
-    renderInfoBox();
-    renderCourt(arr);
-    renderGameMenu();
+      renderInfoBox();
+      renderCourt(arr);
+      renderGameMenu();
       sprintf(gameMessage, "%s", "");
       break;
 
@@ -178,10 +187,9 @@ int main()
       renderDetails();
       break;
     }
-    // sleep(1);
+
     handleUserInput();
   }
-
   return 0;
 }
 
@@ -214,7 +222,7 @@ int generateNumberByInterval(int x, int y)
   return x + rand() % (y - x + 1);
 }
 
-void deleteNumbers(int array[][9], int difficulty)
+void deleteCells(int array[][9], int difficulty)
 {
   for (int x = 1; x <= 3; x++)
   {
@@ -225,7 +233,12 @@ void deleteNumbers(int array[][9], int difficulty)
       {
         int r = generateNumberByInterval(3 * (x - 1), 3 * x - 1);
         int c = generateNumberByInterval(3 * (y - 1), 3 * y - 1);
-        array[r][c] = 0;
+        if (array[r][c] > 0)
+        { // not already deleted
+          deletedCells[r][c] = array[r][c];
+          userCells[r][c] = 1;
+          array[r][c] = 0;
+        }
         tmp--;
       }
     }
@@ -283,7 +296,6 @@ void handleUserInput()
   }
   else
   {
-    printf("current %d \n", userInput == 10);
     switch (currentPosition)
     {
 
@@ -339,7 +351,6 @@ void handleUserInput()
 
         case 'b':
           currentPosition = DETAILS;
-          printf("Bestlist\n");
           break;
 
         case 'q':
@@ -352,15 +363,17 @@ void handleUserInput()
     case INGAME:
       if (isdigit(userInput))
       {
-        // printf("%d", userInput - '0');
-        arr[x][y] = userInput - '0';
+        if (userCells[x][y] == 1)
+        {
+          arr[x][y] = userInput - '0';
+        }
       }
       else if (isalpha(userInput))
       {
         switch (userInput)
         {
         case 'h':
-          printf("Give a hint\n");
+          solveCell(arr, x, y);
           break;
         case 's':
           if (getGameStatus(arr) == NOT_FILLED)
@@ -369,7 +382,7 @@ void handleUserInput()
             break;
           }
 
-          if (solve(arr) == 1)
+          if (solveGame(arr) == 1)
           {
             sprintf(gameMessage, "%s", "Geloest");
           }
@@ -485,7 +498,15 @@ void generateGameData(int a[][9])
   }
 }
 
-int solve(int a[][9])
+void solveCell(int array[][9], int x, int y)
+{
+  if (deletedCells[x][y] > 0)
+  {
+    array[x][y] = deletedCells[x][y];
+  }
+}
+
+int solveGame(int a[][9])
 {
   for (int x = 0; x < 9; x++)
   {
@@ -512,7 +533,7 @@ int solve(int a[][9])
         ;
         return 0;
       }
-      // a[x][y] = number;
+      a[x][y] = number;
     }
   }
   resetGameData(arr);
@@ -551,7 +572,14 @@ void renderCourt(int arr[][9])
       {
         if (arr[i][j] > 0)
         {
-          printf("%s%d ", KWHT, number);
+          if (userCells[i][j] == 1)
+          {
+            printf("%s%d ", KCYN, number);
+          }
+          else
+          {
+            printf("%s%d ", KWHT, number);
+          }
         }
         else
         {
