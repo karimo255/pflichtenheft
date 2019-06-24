@@ -3,9 +3,9 @@
 //
 #include <stdio.h>
 #include <string.h>
-#include "../headers/view.h"
-#include "../headers/shared.h"
-#include "../headers/game.h"
+#include "../../headers/core/view.h"
+#include "../../headers/shared/shared.h"
+#include "../../headers/core/game.h"
 
 int deletedCells[9][9];
 int userCells[9][9];

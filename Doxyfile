@@ -9,8 +9,6 @@ CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English
 
-EXAMPLE_PATH           = ./headers
-
 
 # Brief Template for internal documentation
 #INTERNAL_DOCS          = YES
@@ -103,7 +101,7 @@ WARN_LOGFILE           =
 
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
-RECURSIVE              = NO
+RECURSIVE              = YES
 EXCLUDE                = ffuzzy_config.h
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =

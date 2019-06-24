@@ -6,9 +6,9 @@
 #include <string.h>
 
 
-#include "./headers/view.h"
-#include "headers/game.h"
-#include "headers/shared.h"
+#include "headers/core/view.h"
+#include "headers/core/game.h"
+#include "headers/shared/shared.h"
 
 int arr[9][9];
 int deletedCells[9][9];

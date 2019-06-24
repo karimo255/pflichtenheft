@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>sudoku: headers/game.h File Reference</title>
+<title>sudoku: headers/core/game.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,7 +60,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7f57b1e41c5acd0e859ae5f3a2b075a9.html">headers</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7f57b1e41c5acd0e859ae5f3a2b075a9.html">headers</a></li><li class="navelem"><a class="el" href="dir_c55509eeb63bcbc47aa921b127ea82fb.html">core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -88,16 +88,16 @@ Functions</h2></td></tr>
 <tr class="separator:a4405f6bbd7260e9a9d3e9a6ed716a4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a191f1d8ed731d9d201455a58c7911b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a191f1d8ed731d9d201455a58c7911b23">navigateTo</a> (int direction)</td></tr>
 <tr class="separator:a191f1d8ed731d9d201455a58c7911b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8459a6b3182b6eb0e8ed1c81a2b973"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0d8459a6b3182b6eb0e8ed1c81a2b973">isElementInBox</a> (int <a class="el" href="game_8h.html#a8368a4448e8c390ecd721a4beea89df6">arr</a>[][9], int box_start_row, int box_start_col, int ele)</td></tr>
-<tr class="separator:a0d8459a6b3182b6eb0e8ed1c81a2b973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493e89dabc2b2199c976f1e24a94717c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a493e89dabc2b2199c976f1e24a94717c">isElementInBox</a> (int array[][9], int box_start_row, int box_start_col, int number)</td></tr>
+<tr class="separator:a493e89dabc2b2199c976f1e24a94717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fb6ddc78d0d0c1f79b3c67f7238f12b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a9fb6ddc78d0d0c1f79b3c67f7238f12b">generateRandomNumber</a> ()</td></tr>
 <tr class="separator:a9fb6ddc78d0d0c1f79b3c67f7238f12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a121bcaed11755558e8ceab907b976667"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a121bcaed11755558e8ceab907b976667">handleUserInput</a> ()</td></tr>
 <tr class="separator:a121bcaed11755558e8ceab907b976667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a074782337c81bc943a548e51cf96c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0a074782337c81bc943a548e51cf96c9">solveGame</a> (int <a class="el" href="game_8h.html#a8368a4448e8c390ecd721a4beea89df6">arr</a>[][9])</td></tr>
-<tr class="separator:a0a074782337c81bc943a548e51cf96c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b4f1cb0f5b80325102032caccc5ad5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5b4f1cb0f5b80325102032caccc5ad5c">resetGameData</a> (int <a class="el" href="game_8h.html#a8368a4448e8c390ecd721a4beea89df6">arr</a>[][9])</td></tr>
-<tr class="separator:a5b4f1cb0f5b80325102032caccc5ad5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be2fc2ea9b7366d1b8a55b32b0a4678"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0be2fc2ea9b7366d1b8a55b32b0a4678">solveGame</a> (int array[][9])</td></tr>
+<tr class="separator:a0be2fc2ea9b7366d1b8a55b32b0a4678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a99d723999c92f94ed93e8f660383e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac1a99d723999c92f94ed93e8f660383e">resetGameData</a> (int array[][9])</td></tr>
+<tr class="separator:ac1a99d723999c92f94ed93e8f660383e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1c277eb5626eba3bd802e1bfda2a85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac1c277eb5626eba3bd802e1bfda2a85b">generateNumberByInterval</a> (int <a class="el" href="game_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, int <a class="el" href="game_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>)</td></tr>
 <tr class="separator:ac1c277eb5626eba3bd802e1bfda2a85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f0fc7a20da8a9b27d9399244abf5342"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a3f0fc7a20da8a9b27d9399244abf5342">getGridStatus</a> (int array[][9])</td></tr>
@@ -265,6 +265,12 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a integer which indicates if the grid if filled complete.</dd></dl>
 <p>Checks if the grid if filled complete. </p>
 
@@ -316,7 +322,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>int array to search. </td></tr>
-    <tr><td class="paramname">ele</td><td>is the integer to search for. </td></tr>
+    <tr><td class="paramname">number</td><td>is the integer to search for. </td></tr>
   </table>
   </dd>
 </dl>
@@ -325,8 +331,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0d8459a6b3182b6eb0e8ed1c81a2b973"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d8459a6b3182b6eb0e8ed1c81a2b973">&#9670;&nbsp;</a></span>isElementInBox()</h2>
+<a id="a493e89dabc2b2199c976f1e24a94717c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493e89dabc2b2199c976f1e24a94717c">&#9670;&nbsp;</a></span>isElementInBox()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +341,7 @@ Variables</h2></td></tr>
           <td class="memname">int isElementInBox </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>arr</em>[][9], </td>
+          <td class="paramname"><em>array</em>[][9], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -353,7 +359,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ele</em>&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -364,9 +370,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">array</td><td>which holds the game data. </td></tr>
+    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
     <tr><td class="paramname">box_start_row</td><td>Where does the row start from. </td></tr>
     <tr><td class="paramname">box_start_col</td><td>Where does the column start from. </td></tr>
+    <tr><td class="paramname">number</td><td>is the integer to search for. </td></tr>
   </table>
   </dd>
 </dl>
@@ -425,8 +432,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a5b4f1cb0f5b80325102032caccc5ad5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b4f1cb0f5b80325102032caccc5ad5c">&#9670;&nbsp;</a></span>resetGameData()</h2>
+<a id="ac1a99d723999c92f94ed93e8f660383e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a99d723999c92f94ed93e8f660383e">&#9670;&nbsp;</a></span>resetGameData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -435,14 +442,14 @@ Variables</h2></td></tr>
           <td class="memname">void resetGameData </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>arr</em>[][9]</td><td>)</td>
+          <td class="paramname"><em>array</em>[][9]</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>which holds the game data.</td></tr>
+    <tr><td class="paramname">array[][]</td><td>which holds the game data.</td></tr>
   </table>
   </dd>
 </dl>
@@ -483,9 +490,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">array</td><td>which holds the game data. </td></tr>
-    <tr><td class="paramname">x-coordinate</td><td>of the cell to solve. </td></tr>
-    <tr><td class="paramname">y-coordinate</td><td>of the cell to solve.</td></tr>
+    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
+    <tr><td class="paramname">x</td><td>is the x-coordinate of the cell to solve. </td></tr>
+    <tr><td class="paramname">y</td><td>ist the y-coordinate of the cell to solve.</td></tr>
   </table>
   </dd>
 </dl>
@@ -493,8 +500,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0a074782337c81bc943a548e51cf96c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a074782337c81bc943a548e51cf96c9">&#9670;&nbsp;</a></span>solveGame()</h2>
+<a id="a0be2fc2ea9b7366d1b8a55b32b0a4678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be2fc2ea9b7366d1b8a55b32b0a4678">&#9670;&nbsp;</a></span>solveGame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -503,14 +510,14 @@ Variables</h2></td></tr>
           <td class="memname">int solveGame </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>arr</em>[][9]</td><td>)</td>
+          <td class="paramname"><em>array</em>[][9]</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>which holds the game data. </td></tr>
+    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
   </table>
   </dd>
 </dl>
@@ -666,7 +673,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 24 2019 23:08:22 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 25 2019 00:49:21 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -66,7 +66,7 @@ void renderDifficultyDialog();
  *
  * It return the length of integer number (for optimal printing)
  */
-int lenHelper(int x);
+int lenHelper(int input);
 
 /**
 * \brief Get count of not filled cells

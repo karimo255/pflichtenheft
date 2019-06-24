@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lenhelper',['lenHelper',['../view_8h.html#ad2c0a26f13336ab33ea507265abaa24f',1,'view.h']]]
+  ['lenhelper',['lenHelper',['../view_8h.html#a7e4bdfffa41d8f5d318eca3e71040d65',1,'view.h']]]
 ];

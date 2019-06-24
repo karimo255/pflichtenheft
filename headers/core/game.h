@@ -31,7 +31,7 @@ extern int userCells[9][9];
 
 /**
  * @param array int array to search.
- * @param ele is the integer to search for.
+ * @param number is the integer to search for.
  * @return Returns the index of the number if number is found in the array, -1 otherwise.
  *
  * Checks if a number exists in an array.
@@ -72,14 +72,15 @@ void deleteCells(int array[][9], int difficulty);
 void navigateTo(int direction);
 
 /**
- * @param array which holds the game data.
+ * @param array[][] which holds the game data.
  * @param box_start_row Where does the row start from.
  * @param box_start_col Where does the column start from.
+ * @param number is the integer to search for.
  * @return Returns the x-coordinate of the number if number is found in the array, -1 otherwise.
  *
  * Checks if a number exists in an array
  */
-int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele);
+int isElementInBox(int array[][9], int box_start_row, int box_start_col, int number);
 
 /**
  * @return randomly generated number between 0-9
@@ -95,17 +96,17 @@ void handleUserInput();
 
 /**
  *
- * @param arr which holds the game data.
+ * @param array[][] which holds the game data.
  * @return Return 1 if the game successfully solved, otherwise 0.
  */
-int solveGame(int arr[][9]);
+int solveGame(int array[][9]);
 
 /**
- * @param arr which holds the game data.
+ * @param array[][] which holds the game data.
  *
  * Sets the value of array items to zero.
  */
-void resetGameData(int arr[][9]);
+void resetGameData(int array[][9]);
 
 /**
  * @return Returns randomly generated number by interval
@@ -115,6 +116,7 @@ void resetGameData(int arr[][9]);
 int generateNumberByInterval(int x, int y);
 
 /**
+ * @param array[][] which holds the game data.
  * @return Returns a integer which indicates if the grid if filled complete.
  *
  *  Checks if the grid if filled complete.
@@ -122,9 +124,9 @@ int generateNumberByInterval(int x, int y);
 int getGridStatus(int array[][9]);
 
 /**
- * @param array which holds the game data.
- * @param x-coordinate of the cell to solve.
- * @param y-coordinate of the cell to solve.
+ * @param array[][] which holds the game data.
+ * @param x is the x-coordinate of the cell to solve.
+ * @param y ist the y-coordinate of the cell to solve.
  *
  *  Checks if the grid if filled complete.
  */

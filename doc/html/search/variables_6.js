@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['../game_8h.html#a6150e0515f7202e2fb518f7206ed97dc',1,'game.h']]]
+  ['time',['time',['../structScore.html#af31f016571e851e9f88e12c7d07d412c',1,'Score']]]
 ];

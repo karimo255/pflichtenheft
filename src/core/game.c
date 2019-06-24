@@ -2,8 +2,8 @@
 // Created by karim on 24.06.19.
 //
 #include <stdlib.h>
-#include "../headers/game.h"
-#include "../headers/shared.h"
+#include "../../headers/core/game.h"
+#include "../../headers/shared/shared.h"
 #include <stdio.h>
 
 int x=0;
