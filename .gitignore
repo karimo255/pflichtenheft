@@ -1,0 +1,10 @@
+app
+app.exe
+
+cmake-build-debug
+.vs
+
+cmake-build-debug/*
+.vs/*
+
+

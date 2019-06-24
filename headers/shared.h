@@ -7,32 +7,35 @@
 
 #endif //SUDOKU_SHARED_H
 
-
+/// Difficulty enum
 enum DIFFICULTY
 {
-    EASY = 4,
-    MEDIUM = 6,
-    HARD = 7
+    EASY = 4, ///< EASY
+    MEDIUM = 6, ///< MEDIUM
+    HARD = 7 ///< HARD
 };
 
+/// Positions enum
 enum POSITIONS
 {
-    MENU = 0,
-    IN_GAME = 1,
-    DIFFICULTY_DIALOG = 2,
-    DETAILS = 3
+    MENU = 0, ///< MENU
+    IN_GAME = 1, ///< IN_GAME
+    DIFFICULTY_DIALOG = 2, ///< DIFFICULTY_DIALOG
+    DETAILS = 3 ///< DETAILS
 };
 
+/// Grid-Status enum
 enum GRID_STATUS
 {
-    FILLED,
-    NOT_FILLED
+    FILLED, ///< DETAILS
+    NOT_FILLED ///< DETAILS
 };
 
+/// Arrows enum
 enum ARROWS{
-	UP=72,
-	DOWN = 80,
-	LEFT=75,
-	RIGHT=77,
+	UP=72, ///< UP
+	DOWN = 80, ///< DOWN
+	LEFT=75, ///< LEFT
+	RIGHT=77, ///< RIGHT
 };
 	

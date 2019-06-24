@@ -181,7 +181,7 @@ void deleteCells(int array[][9], int difficulty)
 }
 
 
-int getGameStatus(int array[][9])
+int getGridStatus(int array[][9])
 {
     for (int x = 0; x < 9; x++)
     {
