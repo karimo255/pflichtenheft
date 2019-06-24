@@ -71,7 +71,7 @@ int main()
 
     while (!exitTheGame)
     {
-        system("clear");
+        system("cls");
         switch (currentPosition)
         {
             case MENU:
@@ -115,19 +115,19 @@ void navigateTo(int pos)
 {
     switch (pos)
     { // the real value
-        case 'A':
+        case UP:
             // code for arrow up
             x--;
             break;
-        case 'B':
+        case DOWN:
             // code for arrow down
             x++;
             break;
-        case 'C':
+        case RIGHT:
             // code for arrow right
             y++;
             break;
-        case 'D':
+        case LEFT:
             // code for arrow left
             y--;
             break;
@@ -155,9 +155,7 @@ void handleUserInput()
     int userInput;
     int pos;
 
-    if ((userInput = getch()) == '\033')
-    {          // if the first value is esc
-        getch(); // skip the [
+    if ((userInput = getch()) == 224){
         navigateTo(getch());
     }
     else

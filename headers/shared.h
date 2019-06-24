@@ -28,3 +28,11 @@ enum GRID_STATUS
     FILLED,
     NOT_FILLED
 };
+
+enum ARROWS{
+	UP=72,
+	DOWN = 80,
+	LEFT=75,
+	RIGHT=77,
+};
+	

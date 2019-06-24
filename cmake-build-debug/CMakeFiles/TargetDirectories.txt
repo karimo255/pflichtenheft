@@ -1,3 +1,0 @@
-/home/karim/Dokumente/schule/Pragmmieren/sudoku/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/karim/Dokumente/schule/Pragmmieren/sudoku/cmake-build-debug/CMakeFiles/sudoku.dir
-/home/karim/Dokumente/schule/Pragmmieren/sudoku/cmake-build-debug/CMakeFiles/edit_cache.dir
