@@ -106,6 +106,7 @@ int main()
 
         handleUserInput();
     }
+	printf("Tschuuuuuuuuuues");
     return 0;
 }
 
@@ -255,12 +256,14 @@ void handleUserInput()
                                 sprintf(gameMessage, "%s", "Nicht geloest");
                             }
                             break;
-
+							
+						case 'q':
+							exitTheGame = 1;
                         case 'a':
                             resetGameData(arr);
                             isGameActive = 0;
 
-                        case 'b':
+                        case 'z':
                             currentPosition = MENU;
                             break;
                     }
@@ -271,9 +274,9 @@ void handleUserInput()
                 {
                     switch (userInput)
                     {
-                        case 'b':
+                        case 'z':
                             currentPosition = MENU;
-                            printf("Bestlist\n");
+                            
                             break;
                     }
                 }

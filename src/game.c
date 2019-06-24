@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "../headers/game.h"
 #include "../headers/shared.h"
+#include <stdio.h>
 
 int x=0;
 int y=0;
@@ -112,13 +113,20 @@ int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
 }
 void generateGameData(int a[][9])
 {
+	int countOfTrys=1000;
     for (int x = 0; x < 9; x++)
     {
         for (int y = 0; y < 9; y++)
         {
+			if(countOfTrys == 0){
+				printf("Problem gefunden");
+				resetGameData(a);
+				generateGameData(a);
+			}
             int number = generateRandomNumber();
             if (isElementInArray(a[x], number) >= 0)
             { // number darf nur einmal in row vorkommen.
+				countOfTrys--;
                 y--;
                 continue;
             }
@@ -133,10 +141,11 @@ void generateGameData(int a[][9])
             if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x - x % 3, y - y % 3, number) >= 0)
             {
                 resetArray(a[x]);
+				countOfTrys--;
                 x--;
                 break;
             }
-
+			countOfTrys=1000;
             a[x][y] = number;
         }
     }
