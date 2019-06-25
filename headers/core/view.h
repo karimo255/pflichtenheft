@@ -83,3 +83,5 @@ int lenHelper(int input);
 */
 
 int getRemainingCells(int array[][9]);
+
+void print_list(struct score *head);

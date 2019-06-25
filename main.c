@@ -4,14 +4,20 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
-
+enum OS {
+    UNIX=0,
+    WINDOWS=1,
+    MAC_OS=2
+};
 
 #include "headers/core/view.h"
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
 #include "headers/services/user_service.h"
 #include "headers/services/score_service.h"
+#include "headers/services/connection.h"
 #include "libs/sqlite3.h"
+
 
 #define HEIGHT 720
 #define WIDTH 400
@@ -22,12 +28,19 @@ int userCells[9][9];
 int difficulty;
 int isGameActive;
 int currentPosition;
+int os;
+
+#define TRUE 1
+#define FALSE 0
 
 #ifdef __unix__
 #include <termios.h>
 #include <unistd.h>
+
 static struct termios new_io;
 static struct termios old_io;
+
+
 
 int cbreak(int fd)
 {
@@ -66,22 +79,32 @@ int exitTheGame = 0;
 
 sqlite3 *connection;
 
-void print_list(struct score * head) {
-    struct score * current = head;
+void resizeWindow() {
+    #ifdef __unix__
+    system("resize -s 45 48");
+    #endif
 
-    while (current != NULL) {
-        printf("ScoreID %d\n", current->scoreID);
-        printf("Score %d\n", current->score);
-        printf("userID %d\n", current->userID);
-        printf("Difficulty %d\n", current->difficulty);
-        current = current->next;
-    }
+    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+    HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
+    MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
+    #endif
 }
+
+void clear_output(){
+    #ifdef __unix__
+        system("clear");
+    #endif
+
+    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+        system("cls");
+    #endif
+}
+
+struct score *scores;
 
 int main()
 {
-	// HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
-	// MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
+    resizeWindow();
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 
@@ -93,21 +116,17 @@ int main()
 
     srand(time(NULL));
 
-    registerUser("karim2");
-    insertScore(1, 2, 4);
-
+    // registerUser("user");
+     insertScore(2, 2, 9);
     struct score *scores;
-
     getScores(scores);
-    print_list(scores);
-
 
     currentPosition = MENU;
     difficulty = EASY;
 
     while (!exitTheGame)
     {
-        system("cls");
+       clear_output();
         switch (currentPosition)
         {
             case MENU:
@@ -136,7 +155,7 @@ int main()
                 break;
 
             case DETAILS:
-                renderDetails();
+                renderDetails(scores);
                 break;
             case HELP:
                 renderHelpDialog();
@@ -146,7 +165,7 @@ int main()
 
         handleUserInput();
     }
-	printf("Tschuuuuuuuuuues");
+	printf("Ciao");
     return 0;
 }
 
@@ -169,6 +188,22 @@ void navigateTo(int pos)
             y++;
             break;
         case LEFT:
+            // code for arrow left
+            y--;
+            break;
+        case UP_LINUX:
+            // code for arrow up
+            x--;
+            break;
+        case DOWN_LINUX:
+            // code for arrow down
+            x++;
+            break;
+        case RIGHT_LINUX:
+            // code for arrow right
+            y++;
+            break;
+        case LEFT_LINUX:
             // code for arrow left
             y--;
             break;
@@ -197,13 +232,13 @@ void handleUserInput()
     int pos;
 
     if ((userInput = getch()) == 224){
-        navigateTo(getch());
+        navigateTo(getch()); // windows
     }
     else
     {
+        navigateTo(userInput); // linux
         switch (currentPosition)
         {
-
             case DIFFICULTY_DIALOG:
                 if (userInput == 10) // enter pressed
                 {

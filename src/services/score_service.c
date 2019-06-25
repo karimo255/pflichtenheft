@@ -78,7 +78,6 @@ void getScores(score *scores){
     int rc = sqlite3_exec(connection, sql, callback, scores, &zErrMsg);
     deleteNode(scores);
     printf("%s\n", sql);
-
 }
 
 

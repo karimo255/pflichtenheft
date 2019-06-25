@@ -3,14 +3,19 @@
 //
 #include <stdio.h>
 #include <string.h>
+
+#include "../../headers/services/score_service.h"
+#include "../../libs/sqlite3.h"
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
 #include "../../headers/core/game.h"
+#include "../../headers/services/connection.h"
 
 int deletedCells[9][9];
 int userCells[9][9];
 int difficulty;
 int isGameActive;
+
 
 void renderCourt()
 {
@@ -138,13 +143,29 @@ void renderMenu()
     printf("%s++================================++\n",KCYN);
 }
 
-void renderDetails()
+void print_list(struct score *head){
+    struct score * current = head;
+    printf("|| ScoreID  | Score  | UserID  | Difficulty||\n", current->scoreID);
+
+    while (current != NULL) {
+        if(current->userID == 2) {
+            printf("|| %s%d       | %d     | %d       | %d         %s||\n",KYEL, current->scoreID, current->score, current->userID, current->difficulty, KCYN);
+        } else{
+            printf("|| %d       | %d     | %d       | %d         ||\n", current->scoreID, current->score, current->userID, current->difficulty);
+        }
+
+        current = current->next;
+    }
+}
+void renderDetails(struct score *scores)
 {
-    printf("%s++=========== Details  ===========++\n",KCYN);
-	printf("%s||                                ||\n",KCYN);
-    printf("||          %sz - Zurueck           %s||\n",KWHT,KCYN);
-	printf("%s||                                ||\n",KCYN);
-    printf("++================================++\n");
+    printf("%s++===============  Details  ===============++\n",KCYN);
+    print_list(scores);
+    printf("%s||                                         ||\n",KCYN);
+    printf("%s||                                         ||\n",KCYN);
+    printf("|| %sz - Zurueck                             %s||\n",KWHT,KCYN);
+	printf("%s||                                         ||\n",KCYN);
+    printf("++=========================================++\n");
 }
 
 void renderDifficultyDialog()

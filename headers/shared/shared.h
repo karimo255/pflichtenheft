@@ -38,5 +38,9 @@ enum ARROWS{
 	DOWN = 80, ///< DOWN
 	LEFT=75, ///< LEFT
 	RIGHT=77, ///< RIGHT
+	UP_LINUX=65, ///< RIGHT ON UNIX
+    DOWN_LINUX = 66, ///< DOWN ON UNIX
+    RIGHT_LINUX = 67, ///< DOWN ON UNIX
+    LEFT_LINUX = 68, ///< DOWN ON UNIX
 };
 	
