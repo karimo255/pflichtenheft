@@ -9,6 +9,11 @@
 #include "headers/core/view.h"
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
+#include "headers/services/user_service.h"
+#include "headers/services/score_service.h"
+#include "libs/sqlite3.h"
+
+// #include "headers/services/user_service.h"
 
 int arr[9][9];
 int deletedCells[9][9];
@@ -57,14 +62,30 @@ int getch(void)
 
 
 
+
 int exitTheGame = 0;
 
 
+sqlite3 *connection;
 
 
 int main()
 {
+
+    int rc = sqlite3_open("./sudoku.db", &connection);
+
+    if (rc != SQLITE_OK)
+    {
+        printf("Failed to open the database.db\n");
+        return 1;
+    }
+
+
     srand(time(NULL));
+
+    registerUser("karim2");
+    insertScore(1, 2, 4);
+    getScores();
 
     currentPosition = MENU;
     difficulty = EASY;
