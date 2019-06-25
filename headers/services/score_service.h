@@ -4,12 +4,13 @@
 #include "../../libs/sqlite3.h"
 
 
-typedef struct Score {
+struct score {
     int userID;
     int score;
     int difficulty;
+    struct score * next;
 };
-
+typedef struct score score;
 
 
 /**
@@ -29,4 +30,4 @@ int insertScore(int userID, int score, int difficulty);
  *
  * @param scores is an array of Score where the scores put into.
  */
-void getScores();
+void getScores(struct score scores[]);

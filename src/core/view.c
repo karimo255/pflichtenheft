@@ -1,5 +1,5 @@
 //
-// Created by karim on 24.06.19.
+// Created by team on 24.06.19. (haben wir schon einen Teamnamen?)
 //
 #include <stdio.h>
 #include <string.h>
@@ -125,20 +125,17 @@ void renderMenu()
 		printf("%s||                                ||\n", KCYN);
         printf("||      %ss - Spiel Starten         %s||\n",KWHT,KCYN);
     }
-<<<<<<< HEAD
 
     printf("| %sb - BestenListe             %s|\n",KWHT,KCYN);
     printf("| %sk - Spielregeln             %s|\n",KWHT,KCYN);
     printf("| %sq - Beenden                 %s|\n",KWHT,KCYN);
     printf("%s+-----------------------------+\n",KCYN);
-=======
 	printf("%s||                                ||\n",KCYN);
     printf("||      %sb - BestenListe           %s||\n",KWHT,KCYN);
 	printf("%s||                                ||\n",KCYN);
     printf("||      %sq - Beenden               %s||\n",KWHT,KCYN);
 	printf("%s||                                ||\n",KCYN);
     printf("%s++================================++\n",KCYN);
->>>>>>> d9e3d3b1aa6553e149b5104bc61c050e32838a41
 }
 
 void renderDetails()

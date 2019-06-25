@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
-#include <Windows.h>
 
 
 #include "headers/core/view.h"
@@ -61,6 +60,7 @@ int getch(void)
 }
 
 #elif __WIN32__ || _MSC_VER || __MS_DOS__
+#include <Windows.h>
 #include <conio.h>
 #endif
 
@@ -75,8 +75,8 @@ sqlite3 *connection;
 
 int main()
 {
-	HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
-	MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
+	// HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
+	// MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 
@@ -88,9 +88,15 @@ int main()
 
     srand(time(NULL));
 
-    registerUser("karim2");
-    insertScore(1, 2, 4);
-    getScores();
+    //registerUser("karim2");
+    //insertScore(1, 2, 4);
+
+    struct score scores;
+
+    getScores(&scores);
+
+
+
 
     currentPosition = MENU;
     difficulty = EASY;
@@ -101,7 +107,7 @@ int main()
         switch (currentPosition)
         {
             case MENU:
-                renderMenu();7
+                renderMenu();
                 break;
 
             case IN_GAME:
