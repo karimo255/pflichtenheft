@@ -122,6 +122,7 @@ void generateGameData(int a[][9])
 				printf("Problem gefunden");
 				resetGameData(a);
 				generateGameData(a);
+				countOfTrys=1000;
 			}
             int number = generateRandomNumber();
             if (isElementInArray(a[x], number) >= 0)
