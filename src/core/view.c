@@ -19,6 +19,7 @@ void renderCourt()
     {
         for (int j = 0; j < 9; j++)
         {
+			
             int number = arr[i][j];
             if (j % 3 == 0)
             {
@@ -93,11 +94,11 @@ void renderInfoBox()
     int userBoxWith = 10;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
-    printf("%s+---------------------------------------+\n", KCYN);
-    printf("%s| %sUser: %s%*s%s| %sBestscore: %d      %s|\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
-    printf("%s| %sTime: %s     %s| %sDifficulty: %s%*s%s|\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
-    printf("%s| %sRemaining: %d%*s%s|                     |\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
-    printf("%s+---------------------------------------+\n\n", KCYN);
+    printf("%s++=================++=====================++\n", KCYN);
+    printf("%s|| %sUser: %s%*s%s|| %sBestscore: %d      %s||\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
+    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
+    printf("%s|| %sRemaining: %d%*s%s||                     ||\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
+    printf("%s++=================++=====================++\n\n", KCYN);
 }
 
 void renderGameMenu()
@@ -112,38 +113,49 @@ void renderGameMenu()
 
 void renderMenu()
 {
-    printf("%s+----------- Menu ------------+\n",KCYN);
+    printf("%s++============= Menu =============++\n",KCYN);
     if (isGameActive > 0)
     {
-        printf("| %sr - Spiel Fortsetzen        %s|\n",KWHT,KCYN);
+		printf("%s||                                ||\n",KCYN);
+        printf("||      %sr - Spiel Fortsetzen      %s||\n",KWHT,KCYN);
     }
     else
     {
-        printf("| %ss - Spiel Starten           %s|\n",KWHT,KCYN);
+		printf("%s||                                ||\n", KCYN);
+        printf("||      %ss - Spiel Starten         %s||\n",KWHT,KCYN);
     }
-
-    printf("| %sb - BestenListe             %s|\n",KWHT,KCYN);
-    printf("| %sq - Beenden                 %s|\n",KWHT,KCYN);
-    printf("%s+-----------------------------+\n",KCYN);
+	printf("%s||                                ||\n",KCYN);
+    printf("||      %sb - BestenListe           %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n",KCYN);
+    printf("||      %sq - Beenden               %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n",KCYN);
+    printf("%s++================================++\n",KCYN);
 }
 
 void renderDetails()
 {
-    printf("%s+---------- Details  ----------+\n",KCYN);
-    printf("| %sz - Zurueck                  %s|\n",KWHT,KCYN);
-    printf("+------------------------------+\n");
+    printf("%s++=========== Details  ===========++\n",KCYN);
+	printf("%s||                                ||\n",KCYN);
+    printf("||          %sz - Zurueck           %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n",KCYN);
+    printf("++================================++\n");
 }
 
 void renderDifficultyDialog()
 {
-    printf("%s+----- Schwierigkeiteinstellungen ------+%s\n",KCYN,KWHT);
-    printf("%s| %sa - Einfach                           %s|\n",KCYN,KWHT,KCYN);
-    printf("%s| %sb - Mittel                            %s|\n",KCYN,KWHT,KCYN);
-    printf("%s| %sc - Schwer                            %s|\n",KCYN,KWHT,KCYN);
-	printf("%s|                                       |\n",KCYN);
-    printf("%s| %sWaehle die gewuenschte                %s|\n",KCYN,KWHT,KCYN);
-    printf("%s| %sSchwierigkeitsstufe aus.              %s|\n",KCYN,KWHT,KCYN);
-    printf("%s+---------------------------------------+\n",KCYN);
+    printf("%s++====== Schwierigkeiteinstellungen ======++%s\n",KCYN,KWHT);
+	printf("%s||                                        ||\n",KCYN);
+    printf("%s||             %sa - Einfach                %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||                                        ||\n",KCYN);
+    printf("%s||             %sb - Mittel                 %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||                                        ||\n",KCYN);
+    printf("%s||             %sc - Schwer                 %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||                                        ||\n",KCYN);
+	printf("%s||                                        ||\n",KCYN);
+    printf("%s||         %sWaehle die gewuenschte         %s||\n",KCYN,KWHT,KCYN);
+    printf("%s||        %sSchwierigkeitsstufe aus.        %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||                                        ||\n",KCYN);
+    printf("%s++========================================++\n",KCYN);
 }
 
 
@@ -165,10 +177,10 @@ int getRemainingCells(int array[][9])
 }
 
 int lenHelper(int x) {
-    if (x >= 100000)     return 6;
-    if (x >= 10000)      return 5;
-    if (x >= 1000)       return 4;
-    if (x >= 100)        return 3;
+    if (x >= 50000)     return 6;
+    if (x >= 5000)      return 5;
+    if (x >= 500)       return 4;
+    if (x >= 50)        return 3;
     if (x >= 10)         return 2;
     return 1;
 }
