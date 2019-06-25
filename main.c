@@ -13,8 +13,6 @@
 #include "headers/services/score_service.h"
 #include "libs/sqlite3.h"
 
-// #include "headers/services/user_service.h"
-
 #define HEIGHT 720
 #define WIDTH 400
 
@@ -64,14 +62,21 @@ int getch(void)
 #include <conio.h>
 #endif
 
-
-
-
 int exitTheGame = 0;
-
 
 sqlite3 *connection;
 
+void print_list(struct score * head) {
+    struct score * current = head;
+
+    while (current != NULL) {
+        printf("ScoreID %d\n", current->scoreID);
+        printf("Score %d\n", current->score);
+        printf("userID %d\n", current->userID);
+        printf("Difficulty %d\n", current->difficulty);
+        current = current->next;
+    }
+}
 
 int main()
 {
@@ -88,14 +93,13 @@ int main()
 
     srand(time(NULL));
 
-    //registerUser("karim2");
-    //insertScore(1, 2, 4);
+    registerUser("karim2");
+    insertScore(1, 2, 4);
 
-    struct score scores;
+    struct score *scores;
 
-    getScores(&scores);
-
-
+    getScores(scores);
+    print_list(scores);
 
 
     currentPosition = MENU;

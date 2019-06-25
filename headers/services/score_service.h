@@ -7,6 +7,7 @@
 struct score {
     int userID;
     int score;
+    int scoreID;
     int difficulty;
     struct score * next;
 };
