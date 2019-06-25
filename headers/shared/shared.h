@@ -21,7 +21,8 @@ enum POSITIONS
     MENU = 0, ///< MENU
     IN_GAME = 1, ///< IN_GAME
     DIFFICULTY_DIALOG = 2, ///< DIFFICULTY_DIALOG
-    DETAILS = 3 ///< DETAILS
+    DETAILS = 3, ///< DETAILS
+    HELP = 4 ///< DETAILS
 };
 
 /// Grid-Status enum
