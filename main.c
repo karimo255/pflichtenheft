@@ -75,7 +75,7 @@ int main()
         switch (currentPosition)
         {
             case MENU:
-                renderMenu();
+                renderMenu();7
                 break;
 
             case IN_GAME:
