@@ -107,6 +107,7 @@ void renderGameMenu()
     printf("%s %c - Left        %ss - Solve \n\n", KWHT, '<', getGameStatus(arr) == FILLED ? KWHT : KRED);
     printf("%s %c - Top         a - Abbrechen \n\n", KWHT, '^');
     printf("%s %c - Down        z - Zurueck \n\n", KWHT, 'v');
+    printf("%s                 k - Spielregeln \n\n", KWHT, 'v');
 	printf("                 q - Beenden \n\n", KWHT);
 }
 
@@ -123,6 +124,7 @@ void renderMenu()
     }
 
     printf("| %sb - BestenListe             %s|\n",KWHT,KCYN);
+    printf("| %sk - Spielregeln             %s|\n",KWHT,KCYN);
     printf("| %sq - Beenden                 %s|\n",KWHT,KCYN);
     printf("%s+-----------------------------+\n",KCYN);
 }
@@ -146,6 +148,52 @@ void renderDifficultyDialog()
     printf("%s+---------------------------------------+\n",KCYN);
 }
 
+
+void renderHelpDialog()
+{
+    printf("%s+------------ Die Spielregeln -------------+%s\n",KCYN,KWHT);
+    printf("%s| %sSudoku ist ein Zahlenpuzzle. Das         %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %sPuzzlefeld besteht aus einem Quadrat,    %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %sdas in 3×3 Unterquadrate bzw. Bloecke   %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %seingeteilt ist. Jedes Unterquadrat ist   %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %swieder in 3×3 Felder eingeteilt. Das    %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %sGesamtquadrat enthält also 81 Felder    %s|\n",KCYN,KWHT,KCYN);
+	printf("%s| %sin 9 Reihen und 9 Spalten.               %s|\n",KCYN,KWHT,KCYN);
+    printf("| %s                                         %s|\n",KWHT,KCYN);
+    printf("%s| %sIn einigen dieser Felder sind schon      %s|\n",KCYN,KWHT,KCYN);
+    printf("| %szu Beginn Ziffern (1-9) eingetragen.     %s|\n",KWHT,KCYN);
+    printf("| %sTypischerweise sind 22 bis 36 Felder von %s|\n",KWHT,KCYN);
+    printf("| %s81 moeglichen vorgegeben. Das Puzzle     %s|\n",KWHT,KCYN);
+    printf("| %smuss nun so vervollstaendigt werden,     %s|\n",KWHT,KCYN);
+    printf("| %sdass:                                    %s|\n",KWHT,KCYN);
+    printf("| %s                                         %s|\n",KWHT,KCYN);
+    printf("| %s                                         %s|\n",KWHT,KCYN);
+    printf("| %s                                         %s|\n",KWHT,KCYN);
+    
+    
+  /*  In einige
+n
+dieser Felder sind schon zu Beginn 
+Ziffern
+(1 bis 9) eingetragen. Typischerweise sind 22 
+bis 36 Felder von 81 möglichen vorgegeben. Das Puzzle muss nun
+so vervollständigt werden, dass
+•
+in jeder Zeile, 
+•
+in jeder Spalte und 
+•
+in jedem der neun Blöcke jede Ziffer von 1 bis 9 genau einmal auftritt*/
+    if (isGameActive > 0)
+    {
+    printf("%s| %sz - Zurueck zum Spiel                     %s|\n",KCYN,KWHT,KCYN);
+    }
+    else
+    {
+        printf("%s| %sz - Zurueck zum Menue                    %s|\n",KCYN,KWHT,KCYN);
+    }
+    printf("%s+------------------------------------------+\n",KCYN);
+}
 
 
 int getRemainingCells(int array[][9])

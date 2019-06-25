@@ -59,6 +59,13 @@ void renderGameMenu();
 void renderDifficultyDialog();
 
 /**
+ * \brief Function to render the help dialog
+ *
+ * It shows help dialog
+ */
+void renderHelpDialog();
+
+/**
  * \brief Function to get the length of integers (aka strlen for strings)
  *
  * @param input an integer to get length of

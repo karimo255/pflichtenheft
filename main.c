@@ -4,11 +4,15 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
+#include <Windows.h>
 
 
 #include "headers/core/view.h"
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
+
+#define HEIGHT 720
+#define WIDTH 400
 
 int arr[9][9];
 int deletedCells[9][9];
@@ -64,6 +68,8 @@ int exitTheGame = 0;
 
 int main()
 {
+	HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
+	MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
     srand(time(NULL));
 
     currentPosition = MENU;
@@ -102,6 +108,10 @@ int main()
             case DETAILS:
                 renderDetails();
                 break;
+            case HELP:
+                renderHelpDialog();
+                break;
+                
         }
 
         handleUserInput();
@@ -218,6 +228,10 @@ void handleUserInput()
                             currentPosition = DETAILS;
                             break;
 
+                        case 'k':
+                            currentPosition = HELP;
+                            break;
+
                         case 'q':
                             exitTheGame = 1;
                             break;
@@ -266,6 +280,9 @@ void handleUserInput()
                         case 'z':
                             currentPosition = MENU;
                             break;
+                        case 'k':
+                            currentPosition = HELP;
+                            break;
                     }
                 }
                 break;
@@ -276,6 +293,25 @@ void handleUserInput()
                     {
                         case 'z':
                             currentPosition = MENU;
+                            
+                            break;
+                    }
+                }
+                break;
+            case HELP:
+                if (isalpha(userInput))
+                {
+                    switch (userInput)
+                    {
+                        case 'z':
+                            if (isGameActive > 0)
+                            {
+								currentPosition = IN_GAME;
+							}
+							else
+							{
+								currentPosition = MENU;
+							}
                             
                             break;
                     }
