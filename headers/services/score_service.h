@@ -3,12 +3,14 @@
 //
 #include "../../libs/sqlite3.h"
 
-typedef struct Score{
-    char *username;
+
+typedef struct Score {
+    int userID;
     int score;
-    char *time;
     int difficulty;
 };
+
+
 
 /**
  * \brief Inserts score in the database.
@@ -19,7 +21,7 @@ typedef struct Score{
  * @param difficulty
  * @return Returns the id of the last user if insered, otherwise -1.
  */
-int insertScore(char username[], int score, char *_time, int difficulty);
+int insertScore(int userID, int score, int difficulty);
 
 
 /**
@@ -27,4 +29,4 @@ int insertScore(char username[], int score, char *_time, int difficulty);
  *
  * @param scores is an array of Score where the scores put into.
  */
-void getScores(Score scores[]);
+void getScores();

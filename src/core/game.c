@@ -25,6 +25,7 @@ void solveCell(int array[][9], int x, int y)
 {
     if (deletedCells[x][y] > 0)
     {
+        userCells[x][y] = 0;
         array[x][y] = deletedCells[x][y];
     }
 }
