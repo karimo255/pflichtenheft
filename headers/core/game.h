@@ -131,3 +131,5 @@ int getGridStatus(int array[][9]);
  *  Checks if the grid if filled complete.
  */
 void solveCell(int array[][9], int x, int y);
+
+int getGameStatus(int array[][9]);

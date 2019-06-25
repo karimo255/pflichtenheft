@@ -195,3 +195,19 @@ int getGridStatus(int array[][9])
     }
     return FILLED;
 }
+
+
+int getGameStatus(int array[][9])
+{
+    for (int x = 0; x < 9; x++)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            if (array[x][y] == 0)
+            {
+                return NOT_FILLED;
+            }
+        }
+    }
+    return FILLED;
+}
