@@ -190,46 +190,37 @@ void renderDifficultyDialog()
 
 void renderHelpDialog()
 {
-    printf("%s++============== Die Spielregeln ================++%s\n",KCYN,KWHT);
-	printf("%s||                                               %s||\n",KCYN,KCYN);
-    printf("%s||     %sSudoku ist ein Zahlenpuzzle. Das          %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %sPuzzlefeld besteht aus einem Quadrat,     %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %sdas in 3×3 Unterquadrate bzw. Bloecke    %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %seingeteilt ist. Jedes Unterquadrat ist    %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %swieder in 3×3 Felder eingeteilt. Das     %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %sGesamtquadrat enthält also 81 Felder     %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||     %sin 9 Reihen und 9 Spalten.                %s||\n",KCYN,KWHT,KCYN);
-    printf("||    %s                                           %s||\n",KWHT,KCYN);
-    printf("%s||     %sIn einigen dieser Felder sind schon       %s||\n",KCYN,KWHT,KCYN);
-    printf("||     %szu Beginn Ziffern (1-9) eingetragen.      %s||\n",KWHT,KCYN);
-    printf("||     %sTypischerweise sind 22 bis 36 Felder von  %s||\n",KWHT,KCYN);
-    printf("||     %s81 moeglichen vorgegeben. Das Puzzle      %s||\n",KWHT,KCYN);
-    printf("||     %smuss nun so vervollstaendigt werden,      %s||\n",KWHT,KCYN);
-    printf("||     %sdass:                                     %s||\n",KWHT,KCYN);
-    printf("||    %s                                           %s||\n",KWHT,KCYN);
-    printf("||    %s                                           %s||\n",KWHT,KCYN);
-    printf("||    %s                                           %s||\n",KWHT,KCYN);
-    printf("%s|| %sz - Zurueck zum Menue                         %s||\n",KCYN,KWHT,KCYN);
-    
-  /*  In einige
-n
-dieser Felder sind schon zu Beginn 
-Ziffern
-(1 bis 9) eingetragen. Typischerweise sind 22 
-bis 36 Felder von 81 möglichen vorgegeben. Das Puzzle muss nun
-so vervollständigt werden, dass
-•
-in jeder Zeile, 
-•
-in jeder Spalte und 
-•
-in jedem der neun Blöcke jede Ziffer von 1 bis 9 genau einmal auftritt*/
-    if (isGameActive > 0)
-    {
-    printf("%s|| %sz - Zurueck zum Spiel                         %s||\n",KCYN,KWHT,KCYN);
-    }
-    printf("||    %s                                           %s||\n",KWHT,KCYN);
-    printf("%s++===============================================++\n",KCYN);
+  printf("%s++=========== Die Spielregeln ============++%s\n",KCYN,KWHT);
+  printf("%s|| %sSudoku ist ein Zahlenpuzzle. Das        %s||\n",KCYN,KWHT,KCYN);
+	printf("%s|| %sPuzzlefeld besteht aus einem Quadrat,   %s||\n",KCYN,KWHT,KCYN);
+	printf("%s|| %sdas in 3x3 Unterquadrate bzw. Bloecke   %s||\n",KCYN,KWHT,KCYN);
+	printf("%s|| %seingeteilt ist. Jedes Unterquadrat ist  %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %swieder in 3x3 Felder eingeteilt. Das    %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %sGesamtquadrat enthaelt also 81 Felder   %s||\n",KCYN,KWHT,KCYN);
+	printf("%s|| %sin 9 Reihen und 9 Spalten.              %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s                                        %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %sIn einigen dieser Felder sind schon     %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %szu Beginn Ziffern (1-9) eingetragen.    %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %sTypischerweise sind 22 bis 36 Felder    %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %svon 81 moeglichen vorgegeben. Das       %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %sPuzzle muss nun so vervollstaendigt     %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %swerden, dass:                           %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s- in jeder Zeile,                       %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s- in jeder Spalte und                   %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s- in jedem der neun Bloecke jede Ziffer %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s von 1 bis 9 genau einmal auftritt.     %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s                                        %s||\n",KCYN,KWHT,KCYN);
+  printf("%s|| %s----------------------------------------%s||\n",KCYN,KWHT,KCYN);
+
+  if (isGameActive > 0)
+  {
+    printf("%s|| %sz - Zurueck zum Spiel                    %s||\n",KCYN,KWHT,KCYN);
+  }
+  else
+  {
+    printf("%s|| %sz - Zurueck zum Menue                   %s||\n",KCYN,KWHT,KCYN);
+  }
+  printf("%s++=========================================++\n",KCYN);
 }
 
 
