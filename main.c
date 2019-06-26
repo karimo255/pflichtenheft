@@ -116,8 +116,8 @@ int main()
 
     srand(time(NULL));
 
-    // registerUser("user");
-     insertScore(2, 77, 9);
+     registerUser("user");
+     insertScore(2, 99, 9);
     struct score *scores;
     getScores(scores);
 

@@ -9,7 +9,7 @@ struct score {
     int score;
     int scoreID;
     int difficulty;
-    struct score * next;
+    struct score *next;
 };
 typedef struct score score;
 
