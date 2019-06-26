@@ -6,6 +6,10 @@
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
+
+#include <time.h>
+#include <string.h>
+
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
 #include "../../headers/core/game.h"
@@ -72,7 +76,11 @@ void renderCourt()
         }
         else
         {
-            printf("%s+---+---+---+---+---+---+---+---+---+\n", KGRN );
+            for (int i = 0; i < 3; i++) {
+                printf("%s+", KCYN);
+                printf("%s---+---+---", KGRN );
+            }
+            printf("%s+\n", KCYN);
         }
     }
     printf("%s \n", gameMessage);
@@ -99,9 +107,14 @@ void renderInfoBox()
     int userBoxWith = 10;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
+    int userTime = getUserTime();
+    char userStringTime[5] = "";
+
+    timeToString(userTime, userStringTime);
+
     printf("%s++=================++=====================++\n", KCYN);
     printf("%s|| %sUser: %s%*s%s|| %sBestscore: %d      %s||\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
-    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
+    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, userStringTime, KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
     printf("%s|| %sRemaining: %d%*s%s||                     ||\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
     printf("%s++=================++=====================++\n\n", KCYN);
 }
@@ -256,4 +269,42 @@ int lenHelper(int x) {
     if (x >= 50)        return 3;
     if (x >= 10)         return 2;
     return 1;
+}
+
+int getUserTime() {
+    static int first = 1; ///< first query of the userTime
+
+    clock_t start, now;
+
+    if (first) {
+        start = clock();
+
+        first = 0;
+    }
+
+    now = clock();
+
+    return ((double)(now - start) / CLOCKS_PER_SEC);
+}
+
+void timeToString(int time, char stringTime[]) {
+    int min = time / 60;
+    int sec = time - min * 60;
+    char zwErg[2];
+
+    if (min < 10) {
+        strcat(stringTime, "0");
+        itoa (min,zwErg,10);
+        strcat(stringTime, zwErg);
+    } else {
+        itoa (min,stringTime,10);
+    }
+
+    strcat(stringTime, ":");
+
+    if (sec < 10) {
+        strcat(stringTime, "0");
+    }
+    itoa (sec,zwErg,10);
+    strcat(stringTime, zwErg);
 }

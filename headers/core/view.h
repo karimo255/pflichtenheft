@@ -84,4 +84,10 @@ int lenHelper(int input);
 
 int getRemainingCells(int array[][9]);
 
+
 void print_list(struct score *head);
+
+int getUserTime();
+
+void timeToString(int time, char stringTime[]);
+

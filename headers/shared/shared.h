@@ -8,11 +8,11 @@
 #endif //SUDOKU_SHARED_H
 
 /// Difficulty enum
-enum DIFFICULTY
+enum DIFFICULTY ///< max. deleted cells per box
 {
-    EASY = 4, ///< EASY
-    MEDIUM = 6, ///< MEDIUM
-    HARD = 7 ///< HARD
+    EASY = 5, ///< EASY
+    MEDIUM = 7, ///< MEDIUM
+    HARD = 8 ///< HARD
 };
 
 /// Positions enum
