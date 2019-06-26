@@ -122,10 +122,10 @@ int main()
 
     srand(time(NULL));
 
-     registerUser("user");
-     insertScore(2, 99, 9);
-    struct score *scores;
-    getScores(scores);
+     //registerUser("user");
+     //insertScore(2, 99, 9);
+    //struct score *scores;
+    //getScores(scores);
 
     currentPosition = MENU;
     difficulty = EASY;
