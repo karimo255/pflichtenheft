@@ -11,7 +11,7 @@
 #include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
-#ifdef __WIN32__
+#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
 #include <Windows.h>
 #endif
 
@@ -21,17 +21,17 @@ int difficulty;
 int isGameActive;
 
 
-#ifdef __WIN32__
+#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
 HANDLE hConsole;
 #endif
 
 void initColors(){
-#ifdef __WIN32__
+#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 }
 
-#ifdef __WIN32__
+#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
 void printColoredNumber(int number, int color, int newLine){
     SetConsoleTextAttribute(hConsole, color);
     newLine ? printf("%d \n", number) : printf("%d ", number);

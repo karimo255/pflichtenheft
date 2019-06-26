@@ -83,7 +83,7 @@ void print_list(struct score *head);
 void initColors();
 
 
-#ifdef __WIN32__
+#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
 void printColoredString(char text[], int color, int newLine);
 void printColoredNumber(int number, int color, int newLine);
 void setPrintingColor(int color);

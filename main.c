@@ -4,11 +4,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
-enum OS {
-    UNIX=0,
-    WINDOWS=1,
-    MAC_OS=2
-};
+
 
 #include "headers/core/view.h"
 #include "headers/core/game.h"
@@ -70,7 +66,7 @@ int getch(void)
     return c;
 }
 
-#elif __WIN32__
+#elif __WIN32__ || _MSC_VER || __MS_DOS__
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -84,7 +80,7 @@ void resizeWindow() {
     system("resize -s 45 48");
     #endif
 
-    #ifdef __WIN32__
+    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
     MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
     #endif
@@ -95,7 +91,7 @@ void clear_output(){
         system("clear");
     #endif
 
-    #ifdef __WIN32__
+    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
         system("cls");
     #endif
 }
