@@ -49,7 +49,7 @@ enum ARROWS{
 };
 
 #ifdef __WIN32__
-#define KRED  FOREGROUND_RED///< color red
+s#define KRED  FOREGROUND_RED///< color red
 #define KGRN  FOREGROUND_GREEN ///< color green
 #define KYEL  FOREGROUND_YELLOW ///< color yellow
 #define KBLU  FOREGROUND_BLUE ///< color blue

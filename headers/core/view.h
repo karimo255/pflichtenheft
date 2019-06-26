@@ -21,7 +21,7 @@ void renderMenu();
  *
  * It shows infos about users and scores
  */
-void renderDetails();
+void renderDetails(struct score *scores);
 
 /**
  * \brief Function to render the game grid
@@ -86,9 +86,11 @@ void initColors();
 #ifdef __WIN32__
 void printColoredString(char text[], int color, int newLine);
 void printColoredNumber(int number, int color, int newLine);
+void setPrintingColor(int color);
 #endif
 
 #ifdef __unix__
 void printColoredString(char text[], char color[], int newLine);
 void printColoredNumber(int number, char *color, int newLine);
+void setPrintingColor(char *color);
 #endif

@@ -120,6 +120,8 @@ int main()
      registerUser("user");
      insertScore(2, 99, 9);
     struct score *scores;
+    scores = malloc(sizeof(score));
+    scores->next = NULL;
     getScores(scores);
 
     currentPosition = MENU;

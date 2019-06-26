@@ -43,6 +43,10 @@ void printColoredString(char text[], int color, int newLine){
     newLine ? printf("%s\n", text) : printf("%s", text);
     SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE);
 }
+
+void setPrintingColor(int color){
+    SetConsoleTextAttribute(hConsole, color);
+}
 #endif
 
 #ifdef __unix__
@@ -52,7 +56,10 @@ void printColoredNumber(int number, char *color, int newLine){
 
 void printColoredString(char text[], char color[], int newLine){
     newLine ? printf("%s%s%s\n", color, text, KWHT) : printf("%s%s%s", color, text, KWHT);
+}
 
+void setPrintingColor(char *color){
+    printf("%s", color);
 }
 #endif
 
@@ -138,64 +145,133 @@ void renderInfoBox()
     }
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
+    int bestscoreWidth = 15;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
-    printColoredString("++=================++=====================++", KCYN, 0);
+    printColoredString("++=================++=====================++", KCYN, 1);
 
-    printf("%s|| %sUser: %s%*s%s|| %sBestscore: %d      %s||\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
+    // first row
+    setPrintingColor(KCYN);
+    printf("|| ");
 
+    setPrintingColor(KWHT);
+    printf( "User: %s%*s", "Otto", userBoxWith - strlen("Otto"), "");
 
-    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
-    printf("%s|| %sRemaining: %d%*s%s||                     ||\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
-    printf("%s++=================++=====================++\n\n", KCYN);
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
+    printf( "Bestscore: %d%*s", 257, bestscoreWidth - strlen("Bestscore"), "");
+
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    // second row
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
+    printf( "Time: %s%*s", "01:30", userBoxWith - strlen("01:30"), "");
+
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
+    printf( "Difficulty: %s%*s", difficultyText, difficultyBoxWith - strlen(difficultyText), "");
+
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    // third row
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
+    printf( "Remaining: %d%*s", remaining, remainingBoxWith - lenHelper(remaining), "");
+
+    setPrintingColor(KCYN);
+    printf("||                     ||\n");
+    printf("++=================++=====================++\n\n");
 }
 
 void renderGameMenu()
 {
+    setPrintingColor(KCYN);
     printf("%s Movement        Commands\n\n", KCYN);
-    printf("%s %c - Right       h - Give a hint\n\n", KWHT,'>');
-    printf("%s %c - Left        %ss - Solve \n\n", KWHT, '<', getGameStatus(arr) == FILLED ? KWHT : KRED);
-    printf("%s %c - Top         a - Abbrechen \n\n", KWHT, '^');
-    printf("%s %c - Down        z - Zurueck \n\n", KWHT, 'v');
-    printf("%s                 k - Spielregeln \n\n", KWHT, 'v');
-	printf("                 q - Beenden \n\n", KWHT);
+
+    setPrintingColor(KWHT);
+    printf(" > - Right       h - Give a hint\n\n");
+    printf(" < - Left        ");
+    printColoredString("s - Solve\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
+    printf(" ^ - Top         a - Abbrechen \n\n");
+    printf(" v - Down        z - Zurueck \n\n");
+    printf("                 k - Spielregeln \n\n");
+	printf("                 q - Beenden \n\n");
 }
 
 void renderMenu()
 {
-    printf("%s++============= Menu =============++\n",KCYN);
+    setPrintingColor(KCYN);
+    printf("++============= Menu =============++\n");
+    printf("||                                ||\n");
+    printf("||      ");
+
+    setPrintingColor(KWHT);
+
     if (isGameActive > 0)
     {
-		printf("%s||                                ||\n",KCYN);
-        printf("||      %sr - Spiel Fortsetzen      %s||\n",KWHT,KCYN);
-    }
-    else
-    {
-		printf("%s||                                ||\n", KCYN);
-        printf("||      %ss - Spiel Starten         %s||\n",KWHT,KCYN);
+        printf("r - Spiel fortsetzen");
+        setPrintingColor(KCYN);
+        printf("      ||\n");
+
+    } else {
+        printf("s - Spiel starten");
+        setPrintingColor(KCYN);
+        printf("         ||\n");
     }
 
-    printf("| %sb - BestenListe             %s|\n",KWHT,KCYN);
-    printf("| %sk - Spielregeln             %s|\n",KWHT,KCYN);
-    printf("| %sq - Beenden                 %s|\n",KWHT,KCYN);
-    printf("%s+-----------------------------+\n",KCYN);
-	printf("%s||                                ||\n",KCYN);
-    printf("||      %sb - BestenListe           %s||\n",KWHT,KCYN);
-	printf("%s||                                ||\n",KCYN);
-    printf("||      %sq - Beenden               %s||\n",KWHT,KCYN);
-	printf("%s||                                ||\n",KCYN);
-    printf("%s++================================++\n",KCYN);
+
+    printf("||      ");
+    setPrintingColor(KWHT);
+    printf("b - BestenListe");
+    setPrintingColor(KCYN);
+    printf("           ||\n");
+
+    printf("||      ");
+    setPrintingColor(KWHT);
+    printf("k - Spielregeln");
+    setPrintingColor(KCYN);
+    printf("           ||\n");
+
+    printf("||      ");
+    setPrintingColor(KWHT);
+    printf("q - Beenden");
+    setPrintingColor(KCYN);
+    printf("               ||\n");
+
+    printf("++================================++\n");
 }
 
 void print_list(struct score *head){
     struct score * current = head;
-    printf("|| ScoreID  | Score  | UserID  | Difficulty||\n", current->scoreID);
+    setPrintingColor(KCYN);
+    printf("|| ScoreID  | Score  | UserID  | Difficulty||\n");
 
     while (current != NULL) {
         if(current->userID == 2) {
-            printf("|| %s%d       | %d     | %d       | %d         %s||\n",KYEL, current->scoreID, current->score, current->userID, current->difficulty, KCYN);
+            setPrintingColor(KCYN);
+            printf("|| ");
+            setPrintingColor(KYEL);
+            printf("%d       | %d     | %d       | %d         ", current->scoreID, current->score, current->userID, current->difficulty);
+            setPrintingColor(KCYN);
+            printf("||\n");
         } else{
-            printf("|| %d       | %d     | %d       | %d         ||\n", current->scoreID, current->score, current->userID, current->difficulty);
+            setPrintingColor(KCYN);
+            printf("|| ");
+            setPrintingColor(KWHT);
+            printf("%d       | %d     | %d       | %d         ", current->scoreID, current->score, current->userID, current->difficulty);
+            setPrintingColor(KCYN);
+            printf("||\n");
         }
 
         current = current->next;
@@ -203,77 +279,195 @@ void print_list(struct score *head){
 }
 void renderDetails(struct score *scores)
 {
-    printf("%s++===============  Details  ===============++\n",KCYN);
+    setPrintingColor(KCYN);
+    printf("++===============  Details  ===============++\n");
+
     print_list(scores);
-    printf("%s||                                         ||\n",KCYN);
-    printf("%s||                                         ||\n",KCYN);
-    printf("|| %sz - Zurueck                             %s||\n",KWHT,KCYN);
-	printf("%s||                                         ||\n",KCYN);
+
+    setPrintingColor(KCYN);
+    printf("||                                         ||\n");
+    printf("||                                         ||\n");
+
+    setPrintingColor(KCYN);
+    printf("|| ");
+    setPrintingColor(KWHT);
+    printf("z - Zurueck                             ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    setPrintingColor(KCYN);
+    printf("||                                         ||\n");
     printf("++=========================================++\n");
 }
 
 void renderDifficultyDialog()
 {
-    printf("%s++====== Schwierigkeiteinstellungen ======++%s\n",KCYN,KWHT);
-	printf("%s||                                        ||\n",KCYN);
-    printf("%s||             %sa - Einfach                %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||                                        ||\n",KCYN);
-    printf("%s||             %sb - Mittel                 %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||                                        ||\n",KCYN);
-    printf("%s||             %sc - Schwer                 %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||                                        ||\n",KCYN);
-	printf("%s||                                        ||\n",KCYN);
-    printf("%s||         %sWaehle die gewuenschte         %s||\n",KCYN,KWHT,KCYN);
-    printf("%s||        %sSchwierigkeitsstufe aus.        %s||\n",KCYN,KWHT,KCYN);
-	printf("%s||                                        ||\n",KCYN);
-    printf("%s++========================================++\n",KCYN);
+    setPrintingColor(KCYN);
+    printf("++====== Schwierigkeiteinstellungen ======++\n");
+	printf("||                                        ||\n");
+
+    setPrintingColor(KCYN);
+    printf("||             ");
+    setPrintingColor(KWHT);
+    printf("a - Einfach                ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    setPrintingColor(KCYN);
+    printf("||                                        ||\n");
+
+    setPrintingColor(KCYN);
+    printf("||             ");
+    setPrintingColor(KWHT);
+    printf("b - Mittel                 ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+
+    setPrintingColor(KCYN);
+    printf("||                                        ||\n");
+
+    setPrintingColor(KCYN);
+    printf("||             ");
+    setPrintingColor(KWHT);
+    printf("c - Schwer                 ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    setPrintingColor(KCYN);
+	printf("||                                        ||\n");
+	printf("||                                        ||\n");
+
+
+    setPrintingColor(KCYN);
+    printf("||         ");
+    setPrintingColor(KWHT);
+    printf("Waehle die gewuenschte         ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+    setPrintingColor(KCYN);
+    printf("||         ");
+    setPrintingColor(KWHT);
+    printf("Schwierigkeitsstufe aus.       ");
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+	printf("||                                        ||\n");
+    printf("++========================================++\n");
 }
 
 
 void renderHelpDialog()
 {
-    printf("%s+------------ Die Spielregeln -------------+%s\n",KCYN,KWHT);
-    printf("%s| %sSudoku ist ein Zahlenpuzzle. Das         %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sPuzzlefeld besteht aus einem Quadrat,    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sdas in 3×3 Unterquadrate bzw. Bloecke   %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %seingeteilt ist. Jedes Unterquadrat ist   %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %swieder in 3×3 Felder eingeteilt. Das    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sGesamtquadrat enthält also 81 Felder    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sin 9 Reihen und 9 Spalten.               %s|\n",KCYN,KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("%s| %sIn einigen dieser Felder sind schon      %s|\n",KCYN,KWHT,KCYN);
-    printf("| %szu Beginn Ziffern (1-9) eingetragen.     %s|\n",KWHT,KCYN);
-    printf("| %sTypischerweise sind 22 bis 36 Felder von %s|\n",KWHT,KCYN);
-    printf("| %s81 moeglichen vorgegeben. Das Puzzle     %s|\n",KWHT,KCYN);
-    printf("| %smuss nun so vervollstaendigt werden,     %s|\n",KWHT,KCYN);
-    printf("| %sdass:                                    %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
+    setPrintingColor(KCYN);
+    printf("+------------ Die Spielregeln -------------+\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("Sudoku ist ein Zahlenpuzzle. Das         ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("Puzzlefeld besteht aus einem Quadrat,    ");
+    setPrintingColor(KCYN);
+
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("das in 3×3 Unterquadrate bzw. Bloecke    ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("eingeteilt ist. Jedes Unterquadrat ist   ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("wieder in 3×3 Felder eingeteilt. Das     ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("Gesamtquadrat enthält also 81 Felder     ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("in 9 Reihen und 9 Spalten.               ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("|                                          |\n");
+
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("In einigen dieser Felder sind schon      ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("zu Beginn Ziffern (1-9) eingetragen.     ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("Typischerweise sind 22 bis 36 Felder von ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("81 moeglichen vorgegeben. Das Puzzle     ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("muss nun so vervollstaendigt werden,     ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("| ");
+    setPrintingColor(KWHT);
+    printf("dass:                                    ");
+    setPrintingColor(KCYN);
+    printf("|\n");
+
+    printf("|                                          |\n");
+    printf("|                                          |\n");
+    printf("|                                          |\n");
     
-    
-  /*  In einige
-n
-dieser Felder sind schon zu Beginn 
-Ziffern
-(1 bis 9) eingetragen. Typischerweise sind 22 
-bis 36 Felder von 81 möglichen vorgegeben. Das Puzzle muss nun
-so vervollständigt werden, dass
-•
-in jeder Zeile, 
-•
-in jeder Spalte und 
-•
-in jedem der neun Blöcke jede Ziffer von 1 bis 9 genau einmal auftritt*/
+
     if (isGameActive > 0)
     {
-    printf("%s| %sz - Zurueck zum Spiel                     %s|\n",KCYN,KWHT,KCYN);
+        printf("| ");
+        setPrintingColor(KWHT);
+        printf("z - Zurueck zum Spiel                    ");
+        setPrintingColor(KCYN);
+        printf("|\n");
     }
     else
     {
-        printf("%s| %sz - Zurueck zum Menue                    %s|\n",KCYN,KWHT,KCYN);
+        printf("| ");
+        setPrintingColor(KWHT);
+        printf("z - Zurueck zum Menu                     ");
+        setPrintingColor(KCYN);
+        printf("|\n");
     }
-    printf("%s+------------------------------------------+\n",KCYN);
+    printf("+------------------------------------------+\n");
 }
 
 
