@@ -11,15 +11,56 @@
 #include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
+#ifdef __WIN32__
+#include <Windows.h>
+#endif
+
 int deletedCells[9][9];
 int userCells[9][9];
 int difficulty;
 int isGameActive;
 
 
+#ifdef __WIN32__
+HANDLE hConsole;
+#endif
+
+void initColors(){
+#ifdef __WIN32__
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+#endif
+}
+
+#ifdef __WIN32__
+void printColoredNumber(int number, int color, int newLine){
+    SetConsoleTextAttribute(hConsole, color);
+    newLine ? printf("%d \n", number) : printf("%d ", number);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE);
+}
+
+void printColoredString(char text[], int color, int newLine){
+    SetConsoleTextAttribute(hConsole, color);
+    newLine ? printf("%s\n", text) : printf("%s", text);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE);
+}
+#endif
+
+#ifdef __unix__
+void printColoredNumber(int number, char *color, int newLine){
+    newLine ? printf("%s%d %s\n", color, number, KWHT) : printf("%s%d %s", color, number, KWHT);
+}
+
+void printColoredString(char text[], char color[], int newLine){
+    newLine ? printf("%s%s%s\n", color, text, KWHT) : printf("%s%s%s", color, text, KWHT);
+
+}
+#endif
+
+
 void renderCourt()
 {
-    printf("%s+---+---+---+---+---+---+---+---+---+\n", KCYN);
+
+    printColoredString("+---+---+---+---+---+---+---+---+---+", KCYN, 1);
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
@@ -28,22 +69,22 @@ void renderCourt()
             int number = arr[i][j];
             if (j % 3 == 0)
             {
-                printf("%s| ", KCYN);
+                printColoredString("| ", KCYN, 0);
             }
             else
             {
-                printf("%s| ", KGRN);
+                printColoredString("| ", KGRN, 0);
             }
 
             if (i == x && j == y)
             {
                 if (number > 0)
                 {
-                    printf("%s%d ", KRED, number);
+                    printColoredNumber(number, KRED, 0);
                 }
                 else
                 {
-                    printf("%s| ", KRED);
+                     printColoredString("| ", KRED, 0);
                 }
             }
             else
@@ -52,11 +93,11 @@ void renderCourt()
                 {
                     if (userCells[i][j] == 1)
                     {
-                        printf("%s%d ", KMAG, number);
+                        printColoredNumber(number, KMAG, 0);
                     }
                     else
                     {
-                        printf("%s%d ", KWHT, number);
+                       printColoredNumber(number, KWHT, 0);
                     }
                 }
                 else
@@ -68,11 +109,11 @@ void renderCourt()
         printf("%s|\n", KCYN);
         if ((i + 1) % 3 == 0)
         {
-            printf("%s+---+---+---+---+---+---+---+---+---+\n", KCYN);
+            printColoredString("+---+---+---+---+---+---+---+---+---+", KCYN, 1);
         }
         else
         {
-            printf("%s+---+---+---+---+---+---+---+---+---+\n", KGRN );
+            printColoredString("+---+---+---+---+---+---+---+---+---+", KGRN, 1 );
         }
     }
     printf("%s \n", gameMessage);
@@ -99,8 +140,11 @@ void renderInfoBox()
     int userBoxWith = 10;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
-    printf("%s++=================++=====================++\n", KCYN);
+    printColoredString("++=================++=====================++", KCYN, 0);
+
     printf("%s|| %sUser: %s%*s%s|| %sBestscore: %d      %s||\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
+
+
     printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
     printf("%s|| %sRemaining: %d%*s%s||                     ||\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
     printf("%s++=================++=====================++\n\n", KCYN);

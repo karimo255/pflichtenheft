@@ -70,7 +70,7 @@ int getch(void)
     return c;
 }
 
-#elif __WIN32__ || _MSC_VER || __MS_DOS__
+#elif __WIN32__
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -84,7 +84,7 @@ void resizeWindow() {
     system("resize -s 45 48");
     #endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+    #ifdef __WIN32__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
     MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
     #endif
@@ -95,7 +95,7 @@ void clear_output(){
         system("clear");
     #endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+    #ifdef __WIN32__
         system("cls");
     #endif
 }
@@ -105,6 +105,7 @@ struct score *scores;
 int main()
 {
     resizeWindow();
+    initColors();
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 

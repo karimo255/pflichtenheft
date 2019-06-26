@@ -7,6 +7,10 @@
 
 #endif //SUDOKU_SHARED_H
 
+#ifdef __WIN32__
+#include <Windows.h>
+#endif
+
 /// Difficulty enum
 enum DIFFICULTY
 {
@@ -43,4 +47,24 @@ enum ARROWS{
     RIGHT_LINUX = 67, ///< DOWN ON UNIX
     LEFT_LINUX = 68, ///< DOWN ON UNIX
 };
+
+#ifdef __WIN32__
+#define KRED  FOREGROUND_RED///< color red
+#define KGRN  FOREGROUND_GREEN ///< color green
+#define KYEL  FOREGROUND_YELLOW ///< color yellow
+#define KBLU  FOREGROUND_BLUE ///< color blue
+#define KMAG  FOREGROUND_MAGENTA ///< color magenta
+#define KCYN  FOREGROUND_CYAN ///< color cay
+#define KWHT  FOREGROUND_WHITE ///< color white
+#endif
+
+#ifdef __unix__
+#define KRED  "\x1B[31m" ///< color red
+#define KGRN  "\x1B[32m" ///< color green
+#define KYEL  "\x1B[33m" ///< color yellow
+#define KBLU  "\x1B[34m" ///< color blue
+#define KMAG  "\x1B[35m" ///< color magenta
+#define KCYN  "\x1B[36m" ///< color cay
+#define KWHT "\x1B[37m" ///< color white
+#endif
 	
