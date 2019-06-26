@@ -4,16 +4,14 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
-
 enum OS {
     UNIX=0,
     WINDOWS=1,
     MAC_OS=2
 };
 
-#include <windows.h>
-
 #include "headers/core/view.h"
+
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
 #include "headers/services/user_service.h"
@@ -21,9 +19,6 @@ enum OS {
 #include "headers/services/connection.h"
 #include "libs/sqlite3.h"
 
-
-#define HEIGHT 720
-#define WIDTH 400
 
 #define HEIGHT 720
 #define WIDTH 400
@@ -122,8 +117,8 @@ int main()
 
     srand(time(NULL));
 
-     //registerUser("user");
-     //insertScore(2, 99, 9);
+    // registerUser("user");
+   //  insertScore(2, 77, 9);
     //struct score *scores;
     //getScores(scores);
 

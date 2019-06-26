@@ -6,10 +6,6 @@
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
-
-#include <time.h>
-#include <string.h>
-
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
 #include "../../headers/core/game.h"
@@ -76,11 +72,7 @@ void renderCourt()
         }
         else
         {
-            for (int i = 0; i < 3; i++) {
-                printf("%s+", KCYN);
-                printf("%s---+---+---", KGRN );
-            }
-            printf("%s+\n", KCYN);
+            printf("%s+---+---+---+---+---+---+---+---+---+\n", KGRN );
         }
     }
     printf("%s \n", gameMessage);
@@ -107,14 +99,9 @@ void renderInfoBox()
     int userBoxWith = 10;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
-    int userTime = getUserTime();
-    char userStringTime[5] = "";
-
-    timeToString(userTime, userStringTime);
-
     printf("%s++=================++=====================++\n", KCYN);
     printf("%s|| %sUser: %s%*s%s|| %sBestscore: %d      %s||\n", KCYN, KWHT, "Otto", userBoxWith - strlen("Otto"), "", KCYN, KWHT, 257, KCYN);
-    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, userStringTime, KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
+    printf("%s|| %sTime: %s     %s|| %sDifficulty: %s%*s%s||\n", KCYN, KWHT, "01:30", KCYN, KWHT, difficultyText, difficultyBoxWith - strlen(difficultyText), "", KCYN);
     printf("%s|| %sRemaining: %d%*s%s||                     ||\n", KCYN, KWHT, remaining, remainingBoxWith - lenHelper(remaining), "", KCYN);
     printf("%s++=================++=====================++\n\n", KCYN);
 }
@@ -143,14 +130,16 @@ void renderMenu()
 		printf("%s||                                ||\n", KCYN);
         printf("||      %ss - Spiel Starten         %s||\n",KWHT,KCYN);
     }
-
-    printf("| %sb - BestenListe             %s|\n",KWHT,KCYN);
-    printf("| %sk - Spielregeln             %s|\n",KWHT,KCYN);
-    printf("| %sq - Beenden                 %s|\n",KWHT,KCYN);
-    printf("%s+-----------------------------+\n",KCYN);
+	printf("%s||                                ||\n", KCYN);
+    printf("||      %sb - BestenListe           %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n", KCYN);
+    printf("||      %sk - Spielregeln           %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n", KCYN);
+    printf("||      %sq - Beenden               %s||\n",KWHT,KCYN);
+	printf("%s||                                ||\n", KCYN);
+    printf("%s++================================++\n",KCYN);
 	printf("%s||                                ||\n",KCYN);
     printf("||      %sb - BestenListe           %s||\n",KWHT,KCYN);
-	printf("%s||                                ||\n",KCYN);
     printf("||      %sq - Beenden               %s||\n",KWHT,KCYN);
 	printf("%s||                                ||\n",KCYN);
     printf("%s++================================++\n",KCYN);
@@ -201,25 +190,26 @@ void renderDifficultyDialog()
 
 void renderHelpDialog()
 {
-    printf("%s+------------ Die Spielregeln -------------+%s\n",KCYN,KWHT);
-    printf("%s| %sSudoku ist ein Zahlenpuzzle. Das         %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sPuzzlefeld besteht aus einem Quadrat,    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sdas in 3×3 Unterquadrate bzw. Bloecke   %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %seingeteilt ist. Jedes Unterquadrat ist   %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %swieder in 3×3 Felder eingeteilt. Das    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sGesamtquadrat enthält also 81 Felder    %s|\n",KCYN,KWHT,KCYN);
-	printf("%s| %sin 9 Reihen und 9 Spalten.               %s|\n",KCYN,KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("%s| %sIn einigen dieser Felder sind schon      %s|\n",KCYN,KWHT,KCYN);
-    printf("| %szu Beginn Ziffern (1-9) eingetragen.     %s|\n",KWHT,KCYN);
-    printf("| %sTypischerweise sind 22 bis 36 Felder von %s|\n",KWHT,KCYN);
-    printf("| %s81 moeglichen vorgegeben. Das Puzzle     %s|\n",KWHT,KCYN);
-    printf("| %smuss nun so vervollstaendigt werden,     %s|\n",KWHT,KCYN);
-    printf("| %sdass:                                    %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    printf("| %s                                         %s|\n",KWHT,KCYN);
-    
+    printf("%s++============== Die Spielregeln ================++%s\n",KCYN,KWHT);
+	printf("%s||                                               %s||\n",KCYN,KCYN);
+    printf("%s||     %sSudoku ist ein Zahlenpuzzle. Das          %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %sPuzzlefeld besteht aus einem Quadrat,     %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %sdas in 3×3 Unterquadrate bzw. Bloecke    %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %seingeteilt ist. Jedes Unterquadrat ist    %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %swieder in 3×3 Felder eingeteilt. Das     %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %sGesamtquadrat enthält also 81 Felder     %s||\n",KCYN,KWHT,KCYN);
+	printf("%s||     %sin 9 Reihen und 9 Spalten.                %s||\n",KCYN,KWHT,KCYN);
+    printf("||    %s                                           %s||\n",KWHT,KCYN);
+    printf("%s||     %sIn einigen dieser Felder sind schon       %s||\n",KCYN,KWHT,KCYN);
+    printf("||     %szu Beginn Ziffern (1-9) eingetragen.      %s||\n",KWHT,KCYN);
+    printf("||     %sTypischerweise sind 22 bis 36 Felder von  %s||\n",KWHT,KCYN);
+    printf("||     %s81 moeglichen vorgegeben. Das Puzzle      %s||\n",KWHT,KCYN);
+    printf("||     %smuss nun so vervollstaendigt werden,      %s||\n",KWHT,KCYN);
+    printf("||     %sdass:                                     %s||\n",KWHT,KCYN);
+    printf("||    %s                                           %s||\n",KWHT,KCYN);
+    printf("||    %s                                           %s||\n",KWHT,KCYN);
+    printf("||    %s                                           %s||\n",KWHT,KCYN);
+    printf("%s|| %sz - Zurueck zum Menue                         %s||\n",KCYN,KWHT,KCYN);
     
   /*  In einige
 n
@@ -236,13 +226,10 @@ in jeder Spalte und
 in jedem der neun Blöcke jede Ziffer von 1 bis 9 genau einmal auftritt*/
     if (isGameActive > 0)
     {
-    printf("%s| %sz - Zurueck zum Spiel                     %s|\n",KCYN,KWHT,KCYN);
+    printf("%s|| %sz - Zurueck zum Spiel                         %s||\n",KCYN,KWHT,KCYN);
     }
-    else
-    {
-        printf("%s| %sz - Zurueck zum Menue                    %s|\n",KCYN,KWHT,KCYN);
-    }
-    printf("%s+------------------------------------------+\n",KCYN);
+    printf("||    %s                                           %s||\n",KWHT,KCYN);
+    printf("%s++===============================================++\n",KCYN);
 }
 
 
@@ -269,42 +256,4 @@ int lenHelper(int x) {
     if (x >= 50)        return 3;
     if (x >= 10)         return 2;
     return 1;
-}
-
-int getUserTime() {
-    static int first = 1; ///< first query of the userTime
-
-    clock_t start, now;
-
-    if (first) {
-        start = clock();
-
-        first = 0;
-    }
-
-    now = clock();
-
-    return ((double)(now - start) / CLOCKS_PER_SEC);
-}
-
-void timeToString(int time, char stringTime[]) {
-    int min = time / 60;
-    int sec = time - min * 60;
-    char zwErg[2];
-
-    if (min < 10) {
-        strcat(stringTime, "0");
-        itoa (min,zwErg,10);
-        strcat(stringTime, zwErg);
-    } else {
-        itoa (min,stringTime,10);
-    }
-
-    strcat(stringTime, ":");
-
-    if (sec < 10) {
-        strcat(stringTime, "0");
-    }
-    itoa (sec,zwErg,10);
-    strcat(stringTime, zwErg);
 }
