@@ -214,7 +214,7 @@ void renderHelpDialog()
 
   if (isGameActive > 0)
   {
-    printf("%s|| %sz - Zurueck zum Spiel                    %s||\n",KCYN,KWHT,KCYN);
+    printf("%s|| %sz - Zurueck zum Spiel                   %s||\n",KCYN,KWHT,KCYN);
   }
   else
   {
