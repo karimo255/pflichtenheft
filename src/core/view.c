@@ -68,8 +68,8 @@ void renderUsernameDialog(char *username) {
 
 void renderCourt()
 {
-
-    printColoredString("+---+---+---+---+---+---+---+---+---+", KCYN, 1);
+    int padding = 5;
+    printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
@@ -78,7 +78,11 @@ void renderCourt()
             int number = arr[i][j];
             if (j % 3 == 0)
             {
-                printColoredString("| ", KCYN, 0);
+                if(j == 0){
+                    printf("%s%*s| ", KCYN, padding, "" );
+                } else{
+                    printf("%s| ", KCYN);
+                }
             }
             else
             {
@@ -118,11 +122,11 @@ void renderCourt()
         printf("%s|\n", KCYN);
         if ((i + 1) % 3 == 0)
         {
-            printColoredString("+---+---+---+---+---+---+---+---+---+", KCYN, 1);
+            printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
         }
         else
         {
-            printColoredString("+---+---+---+---+---+---+---+---+---+", KGRN, 1 );
+            printColoredString("     +---+---+---+---+---+---+---+---+---+", KGRN, 1 );
         }
     }
     printf("%s \n", gameMessage);
@@ -150,11 +154,11 @@ void renderInfoBox(char *username, int score)
     int bestscoreWidth = 9;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
-    printColoredString("++=================++=====================++", KCYN, 1);
+    printColoredString("  ++=================++=====================++", KCYN, 1);
 
     // first row
     setPrintingColor(KCYN);
-    printf("|| ");
+    printf("  || ");
 
     setPrintingColor(KWHT);
     printf( "User: %s%*s", username, userBoxWith - strlen(username), "");
@@ -170,7 +174,7 @@ void renderInfoBox(char *username, int score)
 
     // second row
     setPrintingColor(KCYN);
-    printf("|| ");
+    printf("  || ");
 
     setPrintingColor(KWHT);
     printf( "Time: %s%*s", "01:30", userBoxWith - strlen("01:30"), "");
@@ -186,30 +190,30 @@ void renderInfoBox(char *username, int score)
 
     // third row
     setPrintingColor(KCYN);
-    printf("|| ");
+    printf("  || ");
 
     setPrintingColor(KWHT);
     printf( "Remaining: %d%*s", remaining, remainingBoxWith - lenHelper(remaining), "");
 
     setPrintingColor(KCYN);
     printf("||                     ||\n");
-    printf("++=================++=====================++\n\n");
+    printf("  ++=================++=====================++\n\n");
 }
 
 void renderGameMenu()
 {
     setPrintingColor(KCYN);
-    printf("%s Movement        Commands\n\n", KCYN);
+    printf("    %s Movement        Commands\n\n", KCYN);
 
     setPrintingColor(KWHT);
-    printf(" > - Right       h - Give a hint\n\n");
-    printf(" < - Left        ");
+    printf("     > - Right       h - Give a hint\n\n");
+    printf("     < - Left        ");
     printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
-    printf(" ^ - Top         a - Abbrechen \n\n");
-    printf(" v - Down        s - Solve All \n\n");
-    printf("                 z - Zurueck \n\n");
-    printf("                 k - Spielregeln \n\n");
-    printf("                 q - Beenden \n\n");
+    printf("     ^ - Top         a - Abbrechen \n\n");
+    printf("     v - Down        s - Solve All \n\n");
+    printf("                     z - Zurueck \n\n");
+    printf("                     k - Spielregeln \n\n");
+    printf("                     q - Beenden \n\n");
 }
 
 void renderMenu()
