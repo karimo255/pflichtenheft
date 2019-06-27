@@ -148,6 +148,7 @@ int main()
                     isGameActive = 1;
                 }
 
+                int s = getScoreByUserID(userID);
                 renderInfoBox(username, s);
                 renderCourt(arr, userCells, x, y, gameMessage);
                 renderGameMenu();
@@ -238,7 +239,7 @@ void handleUserInput()
 	if (currentPosition == USER_NAME) {
 		scanf("%s", &username);
 		userID = registerUser(username);
-		s = getScoreByUserID(userID);
+		insertScore(userID, 0, difficulty);
 		currentPosition = DIFFICULTY_DIALOG;
 	}
 	else {
@@ -252,11 +253,11 @@ void handleUserInput()
 			switch (currentPosition)
 			{
 			case DIFFICULTY_DIALOG:
-				if (userInput == 10) // enter pressed
-				{
-					currentPosition = IN_GAME;
-				}
-				else if (isalpha(userInput))
+//				if (userInput == 10) // enter pressed
+//				{
+//					currentPosition = IN_GAME;
+//				}
+				if (isalpha(userInput))
 				{
 					switch (userInput)
 					{
