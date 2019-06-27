@@ -97,6 +97,7 @@ void clear_output(){
 }
 
 struct score *scores;
+char username[50];
 
 int main()
 {
@@ -132,6 +133,10 @@ int main()
                 renderMenu();
                 break;
 
+			case USER_NAME:
+				renderUsernameDialog();
+				break;
+
             case IN_GAME:
                 if (isGameActive == 0)
                 {
@@ -143,7 +148,7 @@ int main()
                     isGameActive = 1;
                 }
 
-                renderInfoBox();
+                renderInfoBox(username, 0);
                 renderCourt(arr, userCells, x, y, gameMessage);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
@@ -230,159 +235,167 @@ void handleUserInput()
     int userInput;
     int pos;
 
-    if ((userInput = getch()) == 224){
-        navigateTo(getch()); // windows
-    }
-    else
-    {
-        navigateTo(userInput); // linux
-        switch (currentPosition)
-        {
-            case DIFFICULTY_DIALOG:
-                if (userInput == 10) // enter pressed
-                {
-                    currentPosition = IN_GAME;
-                }
-                else if (isalpha(userInput))
-                {
-                    switch (userInput)
-                    {
-                        case 'a':
-                            difficulty = EASY;
-                            currentPosition = IN_GAME;
-                            break;
+	if (currentPosition == USER_NAME) {
+		scanf("%s", &username);
+		registerUser(username);
+		currentPosition = DIFFICULTY_DIALOG;
+	}
+	else {
 
-                        case 'b':
-                            difficulty = MEDIUM;
-                            currentPosition = IN_GAME;
-                            break;
+		if ((userInput = getch()) == 224) {
+			navigateTo(getch()); // windows
+		}
+		else
+		{
+			navigateTo(userInput); // linux
+			switch (currentPosition)
+			{
+			case DIFFICULTY_DIALOG:
+				if (userInput == 10) // enter pressed
+				{
+					currentPosition = IN_GAME;
+				}
+				else if (isalpha(userInput))
+				{
+					switch (userInput)
+					{
+					case 'a':
+						difficulty = EASY;
+						currentPosition = IN_GAME;
+						break;
 
-                        case 'c':
-                            difficulty = HARD;
-                            currentPosition = IN_GAME;
-                            break;
-                    }
-                }
-                break;
+					case 'b':
+						difficulty = MEDIUM;
+						currentPosition = IN_GAME;
+						break;
 
-            case MENU:
-                if (isalpha(userInput))
-                {
-                    switch (userInput)
-                    {
-                        case 's':
-                            if (isGameActive > 0)
-                            {
-                                break;
-                            }
+					case 'c':
+						difficulty = HARD;
+						currentPosition = IN_GAME;
+						break;
+					}
+				}
+				break;
 
-                            currentPosition = DIFFICULTY_DIALOG;
-                            break;
+			case MENU:
+				if (isalpha(userInput))
+				{
+					switch (userInput)
+					{
+					case 's':
+						if (isGameActive > 0)
+						{
+							break;
+						}
 
-                        case 'r':
-                            if (isGameActive == 0)
-                            {
-                                break;
-                            }
+						currentPosition = USER_NAME;
+						break;
 
-                            currentPosition = IN_GAME;
-                            break;
+					case 'r':
+						if (isGameActive == 0)
+						{
+							break;
+						}
 
-                        case 'b':
-                            currentPosition = DETAILS;
-                            break;
+						currentPosition = IN_GAME;
+						break;
 
-                        case 'k':
-                            currentPosition = HELP;
-                            break;
+					case 'b':
+						currentPosition = DETAILS;
+						break;
 
-                        case 'q':
-                            exitTheGame = 1;
-                            break;
-                    }
-                }
-                break;
+					case 'k':
+						currentPosition = HELP;
+						break;
 
-            case IN_GAME:
-                if (isdigit(userInput))
-                {
-                    if (userCells[x][y] == 1)
-                    {
-                        arr[x][y] = userInput - '0';
-                    }
-                }
-                else if (isalpha(userInput))
-                {
-                    switch (userInput)
-                    {
-                        case 'h':
-                            solveCell(arr, x, y);
-                            break;
-                        case 's':
-                            if (getGameStatus(arr) == NOT_FILLED)
-                            {
-                                sprintf(gameMessage, "%s", "Sudoku Noch nicht voll.");
-                                break;
-                            }
+					case 'q':
+						exitTheGame = 1;
+						break;
+					}
+				}
+				break;
 
-                            if (solveGame(arr) == 1)
-                            {
-                                sprintf(gameMessage, "%s", "Geloest");
-                            }
-                            else
-                            {
-                                sprintf(gameMessage, "%s", "Nicht geloest");
-                            }
-                            break;
+			case IN_GAME:
+				if (isdigit(userInput))
+				{
+					if (userCells[x][y] == 1)
+					{
+						arr[x][y] = userInput - '0';
+					}
+				}
+				else if (isalpha(userInput))
+				{
+					switch (userInput)
+					{
+					case 'h':
+						solveCell(arr, x, y);
+						break;
+					case 's':
+						if (getGameStatus(arr) == NOT_FILLED)
+						{
+							sprintf(gameMessage, "%s", "Sudoku Noch nicht voll.");
+							break;
+						}
 
-                        case 'q':
-                            exitTheGame = 1;
-                        case 'a':
-                            resetGameData(arr);
-                            isGameActive = 0;
+						if (solveGame(arr) == 1)
+						{
+							sprintf(gameMessage, "%s", "Geloest");
+						}
+						else
+						{
+							sprintf(gameMessage, "%s", "Nicht geloest");
+						}
+						break;
 
-                        case 'z':
-                            currentPosition = MENU;
-                            break;
-                        case 'k':
-                            currentPosition = HELP;
-                            break;
-                    }
-                }
-                break;
-            case DETAILS:
-                if (isalpha(userInput))
-                {
-                    switch (userInput)
-                    {
-                        case 'z':
-                            currentPosition = MENU;
+					case 'q':
+						exitTheGame = 1;
+					case 'a':
+						resetGameData(arr);
+						isGameActive = 0;
 
-                            break;
-                    }
-                }
-                break;
-            case HELP:
-                if (isalpha(userInput))
-                {
-                    switch (userInput)
-                    {
-                        case 'z':
-                            if (isGameActive > 0)
-                            {
-                                currentPosition = IN_GAME;
-                            }
-                            else
-                            {
-                                currentPosition = MENU;
-                            }
+					case 'z':
+						currentPosition = MENU;
+						break;
+					case 'k':
+						currentPosition = HELP;
+						break;
+					}
+				}
+				break;
+			case DETAILS:
+				if (isalpha(userInput))
+				{
+					switch (userInput)
+					{
+					case 'z':
+						currentPosition = MENU;
 
-                            break;
-                    }
-                }
-                break;
-        }
-    }
+						break;
+					}
+				}
+				break;
+			case HELP:
+				if (isalpha(userInput))
+				{
+					switch (userInput)
+					{
+					case 'z':
+						if (isGameActive > 0)
+						{
+							currentPosition = IN_GAME;
+						}
+						else
+						{
+							currentPosition = MENU;
+						}
+
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
 }
 
 

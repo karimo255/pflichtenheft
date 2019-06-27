@@ -57,7 +57,9 @@ void setPrintingColor(char *color){
     printf("%s", color);
 }
 
-
+void renderUsernameDialog() {
+	printf("Bitte Name eingeben: ");
+}
 
 void renderCourt()
 {
@@ -121,7 +123,7 @@ void renderCourt()
     printf("%s \n", gameMessage);
     printf("\n");
 }
-void renderInfoBox()
+void renderInfoBox(char *username, int score)
 {
     char difficultyText[20] = "";
     switch (difficulty)
@@ -150,7 +152,7 @@ void renderInfoBox()
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf( "User: %s%*s", "Otto", userBoxWith - strlen("Otto"), "");
+    printf( "User: %s%*s", username, userBoxWith - strlen(username), "");
 
     setPrintingColor(KCYN);
     printf("|| ");
