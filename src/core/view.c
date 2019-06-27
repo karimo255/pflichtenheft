@@ -230,21 +230,21 @@ void renderMenu()
 void print_list(struct score *head){
     struct score * current = head;
     setPrintingColor(KCYN);
-    printf("|| ScoreID  | Score  | UserID  | Difficulty||\n");
+    //printf("|| ScoreID  | Score  | UserID  | Difficulty||\n");
 
     while (current != NULL) {
         if(current->userID == 2) {
             setPrintingColor(KCYN);
             printf("|| ");
             setPrintingColor(KYEL);
-            printf("%d       | %d     | %d       | %d         ", current->scoreID, current->score, current->userID, current->difficulty);
+            printf("%s       | %d     ", current->name, current->time);
             setPrintingColor(KCYN);
             printf("||\n");
         } else{
             setPrintingColor(KCYN);
             printf("|| ");
             setPrintingColor(KWHT);
-            printf("%d       | %d     | %d       | %d         ", current->scoreID, current->score, current->userID, current->difficulty);
+            printf("%s       | %d     ", current->name, current->time);
             setPrintingColor(KCYN);
             printf("||\n");
         }
@@ -255,7 +255,7 @@ void print_list(struct score *head){
 void renderDetails(struct score *scores)
 {
     setPrintingColor(KCYN);
-    printf("++===============  Details  ===============++\n");
+    printf("++=== Bestenliste > Schwierigkeitsgrad: Einfach ===++\n");
 
     print_list(scores);
 

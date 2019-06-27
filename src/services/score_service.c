@@ -4,6 +4,7 @@
 
 #include "../../headers/services/score_service.h"
 #include "../../headers/services/connection.h"
+#include "../../headers/shared/shared.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,9 +32,11 @@ int insertScore(int userID, int score, int difficulty) {
 void deleteNode(score *node) {
     score *temp = node->next;
     node->userID = node->next->userID;
-    node->score = node->next->score;
-    node->scoreID = node->next->scoreID;
-    node->difficulty = node->next->difficulty;
+    printf("drei\n");
+    strcpy(node->name, node->next->name);
+    printf("%s\n", node->name);
+    node->time = node->next->time;
+    printf("f<C3><BC>nf\n");
     node->next = temp->next;
     free(temp);
 }
@@ -56,14 +59,13 @@ int callback(void *scores, int argc, char **argv, char **azColName) {
     a_head->next = malloc(sizeof(score));
 
     for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "ScoreID") == 0) {
-            a_head->next->scoreID = atoi(argv[i]);
-        } else if (strcmp(azColName[i], "Score") == 0) {
-            a_head->next->score = atoi(argv[i]);
-        } else if (strcmp(azColName[i], "UserID") == 0) {
+        if (strcmp(azColName[i], "UserID") == 0) {
             a_head->next->userID = atoi(argv[i]);
-        } else if (strcmp(azColName[i], "Schwierigkeitsgrad") == 0) {
-            a_head->next->difficulty = atoi(argv[i]);
+        } else if (strcmp(azColName[i], "Name") == 0) {
+            printf("%s", argv[i]);
+            strcpy(a_head->next->name, argv[i]);
+        } else if (strcmp(azColName[i], "Score") == 0) {
+            a_head->next->time = atoi(argv[i]);
         }
     }
 
@@ -72,7 +74,7 @@ int callback(void *scores, int argc, char **argv, char **azColName) {
 }
 
 void getScores(score *scores) {
-    sprintf(sql, "SELECT * FROM `Score` LIMIT 9;");
+    sprintf(sql, "SELECT `Score`.`UserID`, `User`.`Name`, `Score`.`Score` FROM `Score` INNER JOIN `User` ON `Score`.`UserID` = `User`.`UserID` WHERE `Score`.`Schwierigkeitsgrad` = %i ORDER BY `Score`.`Score` DESC LIMIT 10;", EASY);
     int rc = sqlite3_exec(connection, sql, callback, scores, &zErrMsg);
     deleteNode(scores);
     printf("%s\n", sql);

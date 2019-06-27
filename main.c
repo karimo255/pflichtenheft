@@ -107,14 +107,14 @@ int main()
 
     if (rc != SQLITE_OK)
     {
-        printf("Failed to open the database.db\n");
+        printf("Failed to open the sudoku.db\n");
         return 1;
     }
 
     srand(time(NULL));
 
-     registerUser("user");
-     insertScore(2, 99, 9);
+    // registerUser("user");
+    // insertScore(2, 99, 9);
     struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
