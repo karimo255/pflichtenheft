@@ -8,7 +8,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(src)
 
 
-SET(CMAKE_C_FLAGS  -pthread)
 SET(CMAKE_C_FLAGS -DSQLITE_OMIT_LOAD_EXTENSION)
 
 
