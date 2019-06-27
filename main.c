@@ -18,14 +18,6 @@
 #define HEIGHT 720
 #define WIDTH 400
 
-int arr[9][9];
-int deletedCells[9][9];
-int userCells[9][9];
-int difficulty;
-int isGameActive;
-int currentPosition;
-int os;
-
 #define TRUE 1
 #define FALSE 0
 
@@ -88,7 +80,7 @@ void resizeWindow() {
 
 void clear_output(){
 #ifdef __unix__
-    system("clear");
+  //  system("clear");
 #endif
 
 #ifdef __WIN32__
@@ -96,15 +88,23 @@ void clear_output(){
 #endif
 }
 
-struct score *scores;
+int arr[9][9];
+int deletedCells[9][9];
+int userCells[9][9];
+int difficulty;
+int isGameActive;
+int currentPosition;
+int os;
 char username[50];
-int userID;
-int s;
+int *userID = 0;
+
 
 int main()
 {
     resizeWindow();
     initColors();
+
+    userID = malloc(sizeof(int));
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 
@@ -134,7 +134,8 @@ int main()
                 break;
 
 			case USER_NAME:
-				renderUsernameDialog();
+				renderUsernameDialog("user:w"
+                         "");
 				break;
 
             case IN_GAME:
@@ -147,9 +148,9 @@ int main()
                     deleteCells(arr, difficulty);
                     isGameActive = 1;
                 }
-
-                int s = getScoreByUserID(userID);
-                renderInfoBox(username, s);
+                int *p;
+                // int s = getBestScoreByUserID(userID, p);
+                renderInfoBox(username, 5);
                 renderCourt(arr, userCells, x, y, gameMessage);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
@@ -234,13 +235,19 @@ void navigateTo(int pos)
 void handleUserInput()
 {
     int userInput;
-    int pos;
+    char ch;
 
 	if (currentPosition == USER_NAME) {
-		scanf("%s", &username);
-		userID = registerUser(username);
-		insertScore(userID, 0, difficulty);
-		currentPosition = DIFFICULTY_DIALOG;
+
+            int b = 0;
+            while ((ch = getch()) != '\n'  && ch != EOF){
+                username[b] = ch;
+                b++;
+            }
+
+            registerUser(username, userID);
+            insertScore(userID, 0, difficulty);
+            currentPosition = DIFFICULTY_DIALOG;
 	}
 	else {
 

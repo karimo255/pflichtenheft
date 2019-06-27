@@ -12,6 +12,6 @@
  */
 
 
-int registerUser(char username[]);
+registerUser(char username[], int *newUserId);
 
 

@@ -5,9 +5,10 @@
 
 
 struct score {
-    int userID;
     char name[30];
+    int userId;
     int time;
+    int difficulty;
     struct score *next;
 };
 typedef struct score score;
@@ -21,7 +22,7 @@ typedef struct score score;
  * @param difficulty
  * @return Returns the id of the last user if insered, otherwise -1.
  */
-int insertScore(int userID, int score, int difficulty);
+int insertScore(int *userID, int score, int difficulty);
 
 
 /**
@@ -32,4 +33,4 @@ int insertScore(int userID, int score, int difficulty);
 void getScores(score *scores);
 
 
-int getScoreByUserID(int userID);
+int getBestScoreByUserID(int userID);

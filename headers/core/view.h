@@ -7,7 +7,7 @@
 
 #endif //SUDOKU_VIEW_H
 
-void renderUsernameDialog();
+void renderUsernameDialog(char *username);
 
 /**
  * \brief function to render menu

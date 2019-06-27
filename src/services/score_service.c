@@ -13,11 +13,14 @@
 char sql[200];
 char *zErrMsg;
 sqlite3 *connection;
+int user_id = 0;
 
 
-int insertScore(int userID, int score, int difficulty) {
-    sprintf(sql, "INSERT INTO `Score` (Score, UserID, Schwierigkeitsgrad) VALUES(\"%d\", \"%d\", \"%d\");", score,
-            userID, difficulty);
+
+
+int insertScore(int *userID, int score, int difficulty) {
+    sprintf(sql, "INSERT INTO `Score` (time, userId, difficulty) VALUES(\"%d\", \"%d\", \"%d\");", score,
+            *userID, difficulty);
 
     int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
     printf("%s\n", sql);
@@ -29,40 +32,8 @@ int insertScore(int userID, int score, int difficulty) {
     }
 }
 
-void deleteNode(score *node) {
-    score *temp = node->next;
-    node->userID = node->next->userID;
-    printf("drei\n");
-    strcpy(node->name, node->next->name);
-    printf("%s\n", node->name);
-    node->time = node->next->time;
-    printf("f<C3><BC>nf\n");
-    node->next = temp->next;
-    free(temp);
-}
 
-int user_id = 0;
-int callback3(void *scores, int argc, char **argv, char **azColName) {
-    for (int i = 0; i < argc; i++) {
-<<<<<<< HEAD
-        if (strcmp(azColName[i], "Score") == 0) {
-           user_id = atoi(argv[i]);
-        } 
-=======
-        if (strcmp(azColName[i], "UserID") == 0) {
-            a_head->next->userID = atoi(argv[i]);
-        } else if (strcmp(azColName[i], "Name") == 0) {
-            printf("%s", argv[i]);
-            strcpy(a_head->next->name, argv[i]);
-        } else if (strcmp(azColName[i], "Score") == 0) {
-            a_head->next->time = atoi(argv[i]);
-        }
->>>>>>> clion
-    }
-    return 0;
-}
-
-int callback(void *scores, int argc, char **argv, char **azColName) {
+int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 	score *a_head = (score *)scores;
 
 	/**
@@ -79,16 +50,16 @@ int callback(void *scores, int argc, char **argv, char **azColName) {
 	a_head->next = malloc(sizeof(score));
 
 	for (int i = 0; i < argc; i++) {
-		if (strcmp(azColName[i], "ScoreID") == 0) {
-			a_head->next->scoreID = atoi(argv[i]);
+		if (strcmp(azColName[i], "time") == 0) {
+			a_head->next->time = atoi(argv[i]);
 		}
-		else if (strcmp(azColName[i], "Score") == 0) {
-			a_head->next->score = atoi(argv[i]);
+        if (strcmp(azColName[i], "name") == 0) {
+          strcpy(a_head->next->name, argv[i]);
+        }
+		else if (strcmp(azColName[i], "userId") == 0) {
+			a_head->next->userId = atoi(argv[i]);
 		}
-		else if (strcmp(azColName[i], "UserID") == 0) {
-			a_head->next->userID = atoi(argv[i]);
-		}
-		else if (strcmp(azColName[i], "Schwierigkeitsgrad") == 0) {
+		else if (strcmp(azColName[i], "difficulty") == 0) {
 			a_head->next->difficulty = atoi(argv[i]);
 		}
 	}
@@ -98,16 +69,29 @@ int callback(void *scores, int argc, char **argv, char **azColName) {
 }
 
 void getScores(score *scores) {
-    sprintf(sql, "SELECT `Score`.`UserID`, `User`.`Name`, `Score`.`Score` FROM `Score` INNER JOIN `User` ON `Score`.`UserID` = `User`.`UserID` WHERE `Score`.`Schwierigkeitsgrad` = %i ORDER BY `Score`.`Score` DESC LIMIT 10;", EASY);
-    int rc = sqlite3_exec(connection, sql, callback, scores, &zErrMsg);
-    deleteNode(scores);
-    printf("%s\n", sql);
+    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %i ORDER BY `Score`.`time` DESC LIMIT 10;", EASY);
+    int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
+    if(rc == SQLITE_OK) {
+        printf("OK\n");
+    } else {
+        printf("NO\n");
+    }
 }
 
 
-int getScoreByUserID(int userID) {
-	sprintf(sql, "SELECT * FROM `Score` where UserID=%d;", userID);
-	int rc = sqlite3_exec(connection, sql, callback3, NULL, &zErrMsg);
+int bestScoreCallBack(void *scores, int argc, char **argv, char **azColName) {
+    for (int i = 0; i < argc; i++) {
+        if (strcmp(azColName[i], "time") == 0) {
+            user_id = atoi(argv[i]);
+        }
+    }
+    return 0;
+}
+
+
+int getBestScoreByUserID(int userID) {
+	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time desc;", userID);
+	int rc = sqlite3_exec(connection, sql, bestScoreCallBack, NULL, &zErrMsg);
 	printf("%s\n", sql);
 	return user_id;
 }

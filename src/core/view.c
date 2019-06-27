@@ -57,8 +57,15 @@ void setPrintingColor(char *color){
     printf("%s", color);
 }
 
-void renderUsernameDialog() {
-	printf("Bitte Name eingeben: ");
+void renderUsernameDialog(char *username) {
+    setPrintingColor(KCYN);
+
+    printf("++=============Spielner Name===============++\n");
+    printf("Bitte Name eingeben: %s", username);
+    printEmptyTableLine();
+    printTableLine("Sie koennen diesen überspringen,       ");
+    printTableLine("druecken Sue dafür einfach enter       ");
+    printEndOfTable();
 }
 
 void renderCourt()
@@ -234,8 +241,8 @@ void print_list(struct score *head){
     setPrintingColor(KCYN);
     //printf("|| ScoreID  | Score  | UserID  | Difficulty||\n");
 
-    while (current != NULL) {
-        if(current->userID == 2) {
+    while (current->next != NULL) { // note: current->next instead of current to skip the first empty element
+        if(current->userId == 2) {
             setPrintingColor(KCYN);
             printf("|| ");
             setPrintingColor(KYEL);
