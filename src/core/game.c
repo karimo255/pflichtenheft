@@ -30,6 +30,19 @@ void solveCell(int array[][9], int x, int y)
     }
 }
 
+void solveAll(int gameData[][9], int deletedCells[][9]){
+    for (int x = 0; x < 9; x++)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            if (deletedCells[x][y] != 0) {
+                gameData[x][y] = deletedCells[x][y];
+            }
+
+        }
+    }
+}
+
 int solveGame(int a[][9])
 {
     for (int x = 0; x < 9; x++)

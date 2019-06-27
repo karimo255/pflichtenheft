@@ -80,7 +80,7 @@ void resizeWindow() {
 
 void clear_output(){
 #ifdef __unix__
-  //  system("clear");
+    system("clear");
 #endif
 
 #ifdef __WIN32__
@@ -95,8 +95,9 @@ int difficulty;
 int isGameActive;
 int currentPosition;
 int os;
-char username[50];
+char username[50] = "Name eingeben...";
 int *userID = 0;
+int b = 0;
 
 
 int main()
@@ -134,8 +135,7 @@ int main()
                 break;
 
 			case USER_NAME:
-				renderUsernameDialog("user:w"
-                         "");
+				renderUsernameDialog(username);
 				break;
 
             case IN_GAME:
@@ -239,15 +239,31 @@ void handleUserInput()
 
 	if (currentPosition == USER_NAME) {
 
-            int b = 0;
-            while ((ch = getch()) != '\n'  && ch != EOF){
+        if ((ch = getch()) != '\n'  && ch != EOF){
+            if(strcmp(username, "Name eingeben...") == 0) resetArray(username);
+            if(ch == 27) { // escape
+                strcpy(username, "anonym");
+                currentPosition = DIFFICULTY_DIALOG;
+            } else if(ch == 127) {
+                b--;
+                if(b < 0) {
+                    b = 0;
+                }
+                username[b] = 0;
+
+            }else {
                 username[b] = ch;
                 b++;
             }
-
-            registerUser(username, userID);
-            insertScore(userID, 0, difficulty);
+        } else if(strlen(username) > 0) {
+            if(strcmp(username, "Name eingeben...") == 0){
+                strcpy(username, "anonym");
+            } else{
+                registerUser(username, userID);
+                insertScore(userID, 0, difficulty);
+            }
             currentPosition = DIFFICULTY_DIALOG;
+        }
 	}
 	else {
 
@@ -339,7 +355,7 @@ void handleUserInput()
 					case 'h':
 						solveCell(arr, x, y);
 						break;
-					case 's':
+					case 'c':
 						if (getGameStatus(arr) == NOT_FILLED)
 						{
 							sprintf(gameMessage, "%s", "Sudoku Noch nicht voll.");
@@ -368,6 +384,9 @@ void handleUserInput()
 					case 'k':
 						currentPosition = HELP;
 						break;
+						case 's':
+                            solveAll(arr, deletedCells);
+                            break;
 					}
 				}
 				break;

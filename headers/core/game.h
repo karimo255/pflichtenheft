@@ -133,3 +133,6 @@ int getGridStatus(int array[][9]);
 void solveCell(int array[][9], int x, int y);
 
 int getGameStatus(int array[][9]);
+
+
+void solveAll(int gameData[][9], int deletedCells[][9]);

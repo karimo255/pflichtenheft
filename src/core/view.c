@@ -32,8 +32,6 @@ void initColors(){
 }
 
 
-
-
 #define KRED  "\x1B[31m" ///< color red
 #define KGRN  "\x1B[32m" ///< color green
 #define KYEL  "\x1B[33m" ///< color yellow
@@ -41,8 +39,6 @@ void initColors(){
 #define KMAG  "\x1B[35m" ///< color magenta
 #define KCYN  "\x1B[36m" ///< color cay
 #define KWHT "\x1B[37m" ///< color white
-
-
 
 
 void printColoredNumber(int number, char *color, int newLine){
@@ -61,10 +57,12 @@ void renderUsernameDialog(char *username) {
     setPrintingColor(KCYN);
 
     printf("++=============Spielner Name===============++\n");
-    printf("Bitte Name eingeben: %s", username);
+    printf("|| Name: %s%*s ||\n", username, 33 - strlen(username), "");
     printEmptyTableLine();
-    printTableLine("Sie koennen diesen überspringen,       ");
-    printTableLine("druecken Sue dafür einfach enter       ");
+    printTableLine("Sie koennen diesen Schritt überspringen,");
+    printTableLine("druecken Sie dafür einfach Enter.       ");
+    printTableLine("                                        ");
+
     printEndOfTable();
 }
 
@@ -206,9 +204,10 @@ void renderGameMenu()
     setPrintingColor(KWHT);
     printf(" > - Right       h - Give a hint\n\n");
     printf(" < - Left        ");
-    printColoredString("s - Solve\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
+    printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
     printf(" ^ - Top         a - Abbrechen \n\n");
-    printf(" v - Down        z - Zurueck \n\n");
+    printf(" v - Down        s - Solve All \n\n");
+    printf("                 z - Zurueck \n\n");
     printf("                 k - Spielregeln \n\n");
     printf("                 q - Beenden \n\n");
 }
@@ -237,23 +236,23 @@ void renderMenu()
 }
 
 void print_list(struct score *head){
-    struct score * current = head;
+    struct score * current = head->next; // note: head->next instead of head to skip the first empty element
     setPrintingColor(KCYN);
-    //printf("|| ScoreID  | Score  | UserID  | Difficulty||\n");
-
+    printf("|| %s%*s| %s%*s ||\n", "Spieler", 19 - strlen("Spieler"),"", "Score", 18 - strlen("Score"),"");
+    printEmptyTableLine();
     while (current->next != NULL) { // note: current->next instead of current to skip the first empty element
         if(current->userId == 2) {
             setPrintingColor(KCYN);
             printf("|| ");
             setPrintingColor(KYEL);
-            printf("%s       | %d     ", current->name, current->time);
+            printf("%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
             setPrintingColor(KCYN);
             printf("||\n");
         } else{
             setPrintingColor(KCYN);
             printf("|| ");
             setPrintingColor(KWHT);
-            printf("%s       | %d     ", current->name, current->time);
+            printf("%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
             setPrintingColor(KCYN);
             printf("||\n");
         }
@@ -261,10 +260,11 @@ void print_list(struct score *head){
         current = current->next;
     }
 }
+
 void renderDetails(struct score *scores)
 {
     setPrintingColor(KCYN);
-    printf("++=== Bestenliste > Schwierigkeitsgrad: Einfach ===++\n");
+    printf("++======== Bestenliste ( Einfach) =========++\n");
 
     print_list(scores);
 
