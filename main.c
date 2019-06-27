@@ -66,7 +66,7 @@ int getch(void)
     return c;
 }
 
-#elif __WIN32__ || _MSC_VER || __MS_DOS__
+#elif __WIN32__
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -80,7 +80,7 @@ void resizeWindow() {
     system("resize -s 45 48");
     #endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+    #ifdef __WIN32__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
     MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
     #endif
@@ -91,7 +91,7 @@ void clear_output(){
         system("clear");
     #endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+    #ifdef __WIN32__
         system("cls");
     #endif
 }
@@ -107,14 +107,14 @@ int main()
 
     if (rc != SQLITE_OK)
     {
-        printf("Failed to open the database.db\n");
+        printf("Failed to open the sudoku.db\n");
         return 1;
     }
 
     srand(time(NULL));
 
-     registerUser("user");
-     insertScore(2, 99, 9);
+    // registerUser("user");
+    // insertScore(2, 99, 9);
     struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
