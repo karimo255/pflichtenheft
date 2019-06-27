@@ -112,6 +112,7 @@ int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
         }
     return -1;
 }
+
 void generateGameData(int a[][9])
 {
 	int countOfTrys=1000;

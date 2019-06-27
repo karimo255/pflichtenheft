@@ -4,14 +4,9 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
-enum OS {
-    UNIX=0,
-    WINDOWS=1,
-    MAC_OS=2
-};
+
 
 #include "headers/core/view.h"
-
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
 #include "headers/services/user_service.h"
@@ -71,7 +66,7 @@ int getch(void)
     return c;
 }
 
-#elif __WIN32__ || _MSC_VER || __MS_DOS__
+#elif __WIN32__
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -81,24 +76,24 @@ int exitTheGame = 0;
 sqlite3 *connection;
 
 void resizeWindow() {
-    #ifdef __unix__
+#ifdef __unix__
     system("resize -s 45 48");
-    #endif
+#endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+#ifdef __WIN32__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
     MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
-    #endif
+#endif
 }
 
 void clear_output(){
-    #ifdef __unix__
-        system("clear");
-    #endif
+#ifdef __unix__
+    system("clear");
+#endif
 
-    #ifdef __WIN32__ || _MSC_VER || __MS_DOS__
-        system("cls");
-    #endif
+#ifdef __WIN32__
+    system("cls");
+#endif
 }
 
 struct score *scores;
@@ -106,6 +101,7 @@ struct score *scores;
 int main()
 {
     resizeWindow();
+    initColors();
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 
@@ -117,17 +113,19 @@ int main()
 
     srand(time(NULL));
 
-    // registerUser("user");
-   //  insertScore(2, 77, 9);
-    //struct score *scores;
-    //getScores(scores);
+    registerUser("user");
+    insertScore(2, 99, 9);
+    struct score *scores;
+    scores = malloc(sizeof(score));
+    scores->next = NULL;
+    getScores(scores);
 
     currentPosition = MENU;
     difficulty = EASY;
 
     while (!exitTheGame)
     {
-       clear_output();
+        clear_output();
         switch (currentPosition)
         {
             case MENU:
@@ -161,12 +159,12 @@ int main()
             case HELP:
                 renderHelpDialog();
                 break;
-                
+
         }
 
         handleUserInput();
     }
-	printf("Ciao");
+    printf("Ciao");
     return 0;
 }
 
@@ -336,9 +334,9 @@ void handleUserInput()
                                 sprintf(gameMessage, "%s", "Nicht geloest");
                             }
                             break;
-							
-						case 'q':
-							exitTheGame = 1;
+
+                        case 'q':
+                            exitTheGame = 1;
                         case 'a':
                             resetGameData(arr);
                             isGameActive = 0;
@@ -359,7 +357,7 @@ void handleUserInput()
                     {
                         case 'z':
                             currentPosition = MENU;
-                            
+
                             break;
                     }
                 }
@@ -372,13 +370,13 @@ void handleUserInput()
                         case 'z':
                             if (isGameActive > 0)
                             {
-								currentPosition = IN_GAME;
-							}
-							else
-							{
-								currentPosition = MENU;
-							}
-                            
+                                currentPosition = IN_GAME;
+                            }
+                            else
+                            {
+                                currentPosition = MENU;
+                            }
+
                             break;
                     }
                 }
@@ -386,6 +384,5 @@ void handleUserInput()
         }
     }
 }
-
 
 

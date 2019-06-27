@@ -7,6 +7,10 @@
 
 #endif //SUDOKU_SHARED_H
 
+#ifdef __WIN32__
+#include <Windows.h>
+#endif
+
 /// Difficulty enum
 enum DIFFICULTY ///< max. deleted cells per box
 {
@@ -43,4 +47,6 @@ enum ARROWS{
     RIGHT_LINUX = 67, ///< DOWN ON UNIX
     LEFT_LINUX = 68, ///< DOWN ON UNIX
 };
+
+
 	
