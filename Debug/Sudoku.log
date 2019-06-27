@@ -1,0 +1,24 @@
+﻿  main.c
+c:\users\schueler\pflichtenheft\main.c(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "unistd.h": No such file or directory
+  game.c
+  view.c
+c:\users\schueler\pflichtenheft\src\core\view.c(132): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+c:\users\schueler\pflichtenheft\src\core\view.c(135): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+c:\users\schueler\pflichtenheft\src\core\view.c(138): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+  score_service.c
+c:\users\schueler\pflichtenheft\src\services\score_service.c(18): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+c:\users\schueler\pflichtenheft\src\services\score_service.c(75): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+c:\users\schueler\pflichtenheft\src\services\score_service.c(82): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+  user_service.c
+c:\users\schueler\pflichtenheft\src\services\user_service.c(22): warning C4013: "atoi" undefiniert; Annahme: extern mit Rückgabetyp int
+c:\users\schueler\pflichtenheft\src\services\user_service.c(30): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+c:\users\schueler\pflichtenheft\src\services\user_service.c(41): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1774): note: Siehe Deklaration von "sprintf"
+  Code wird generiert...
