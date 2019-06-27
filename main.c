@@ -98,6 +98,8 @@ void clear_output(){
 
 struct score *scores;
 char username[50];
+int userID;
+int s;
 
 int main()
 {
@@ -114,8 +116,6 @@ int main()
 
     srand(time(NULL));
 
-    registerUser("user");
-    insertScore(2, 99, 9);
     struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
@@ -148,7 +148,7 @@ int main()
                     isGameActive = 1;
                 }
 
-                renderInfoBox(username, 0);
+                renderInfoBox(username, s);
                 renderCourt(arr, userCells, x, y, gameMessage);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
@@ -237,7 +237,8 @@ void handleUserInput()
 
 	if (currentPosition == USER_NAME) {
 		scanf("%s", &username);
-		registerUser(username);
+		userID = registerUser(username);
+		s = getScoreByUserID(userID);
 		currentPosition = DIFFICULTY_DIALOG;
 	}
 	else {

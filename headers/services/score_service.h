@@ -32,3 +32,6 @@ int insertScore(int userID, int score, int difficulty);
  * @param scores is an array of Score where the scores put into.
  */
 void getScores(score *scores);
+
+
+int getScoreByUserID(int userID);

@@ -142,7 +142,7 @@ void renderInfoBox(char *username, int score)
     }
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 15;
+    int bestscoreWidth = 9;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
     printColoredString("++=================++=====================++", KCYN, 1);
@@ -158,7 +158,7 @@ void renderInfoBox(char *username, int score)
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf( "Bestscore: %d%*s", 257, bestscoreWidth - strlen("Bestscore"), "");
+    printf( "Bestscore: %d%*s", score, bestscoreWidth - lenHelper(score), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
