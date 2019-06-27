@@ -110,7 +110,7 @@ int main()
 
     if (rc != SQLITE_OK)
     {
-        printf("Failed to open the database.db\n");
+        printf("Failed to open the sudoku.db\n");
         return 1;
     }
 

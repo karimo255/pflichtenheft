@@ -6,13 +6,11 @@
 
 struct score {
     int userID;
-    int score;
-    int scoreID;
-    int difficulty;
+    char name[30];
+    int time;
     struct score *next;
 };
 typedef struct score score;
-
 
 /**
  * \brief Inserts score in the database.

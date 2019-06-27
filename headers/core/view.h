@@ -89,3 +89,10 @@ void initColors();
 void printColoredString(char text[], char color[], int newLine);
 void printColoredNumber(int number, char *color, int newLine);
 void setPrintingColor(char *color);
+
+void printStartOfLine();
+void printEndOfLine();
+void printTableLine();
+void printEndOfTable();
+void printEmptyTableLine();
+
