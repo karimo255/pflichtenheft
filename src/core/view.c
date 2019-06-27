@@ -11,7 +11,7 @@
 #include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+#ifdef __WIN32__
 #include <Windows.h>
 #endif
 
@@ -21,35 +21,30 @@ int difficulty;
 int isGameActive;
 
 
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+#ifdef __WIN32__
 HANDLE hConsole;
 #endif
 
 void initColors(){
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+#ifdef __WIN32__
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 }
 
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
-void printColoredNumber(int number, int color, int newLine){
-    SetConsoleTextAttribute(hConsole, color);
-    newLine ? printf("%d \n", number) : printf("%d ", number);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE);
-}
 
-void printColoredString(char text[], int color, int newLine){
-    SetConsoleTextAttribute(hConsole, color);
-    newLine ? printf("%s\n", text) : printf("%s", text);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_WHITE);
-}
 
-void setPrintingColor(int color){
-    SetConsoleTextAttribute(hConsole, color);
-}
-#endif
 
-#ifdef __unix__
+#define KRED  "\x1B[31m" ///< color red
+#define KGRN  "\x1B[32m" ///< color green
+#define KYEL  "\x1B[33m" ///< color yellow
+#define KBLU  "\x1B[34m" ///< color blue
+#define KMAG  "\x1B[35m" ///< color magenta
+#define KCYN  "\x1B[36m" ///< color cay
+#define KWHT "\x1B[37m" ///< color white
+
+
+
+
 void printColoredNumber(int number, char *color, int newLine){
     newLine ? printf("%s%d %s\n", color, number, KWHT) : printf("%s%d %s", color, number, KWHT);
 }
@@ -61,7 +56,7 @@ void printColoredString(char text[], char color[], int newLine){
 void setPrintingColor(char *color){
     printf("%s", color);
 }
-#endif
+
 
 
 void renderCourt()

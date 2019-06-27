@@ -7,7 +7,7 @@
 
 #endif //SUDOKU_SHARED_H
 
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
+#ifdef __WIN32__
 #include <Windows.h>
 #endif
 
@@ -48,23 +48,5 @@ enum ARROWS{
     LEFT_LINUX = 68, ///< DOWN ON UNIX
 };
 
-#ifdef __WIN32__ || _MSC_VER || __MS_DOS__
-s#define KRED  1///< color red
-#define KGRN  20 ///< color green
-#define KYEL  22 ///< color yellow
-#define KBLU  44 ///< color blue
-#define KMAG  55 ///< color magenta
-#define KCYN  89 ///< color cay
-#define KWHT  255 ///< color white
-#endif
 
-#ifdef __unix__
-#define KRED  "\x1B[31m" ///< color red
-#define KGRN  "\x1B[32m" ///< color green
-#define KYEL  "\x1B[33m" ///< color yellow
-#define KBLU  "\x1B[34m" ///< color blue
-#define KMAG  "\x1B[35m" ///< color magenta
-#define KCYN  "\x1B[36m" ///< color cay
-#define KWHT "\x1B[37m" ///< color white
-#endif
 	
