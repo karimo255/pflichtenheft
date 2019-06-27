@@ -207,44 +207,24 @@ void renderGameMenu()
 void renderMenu()
 {
     setPrintingColor(KCYN);
-    printf("++============= Menu =============++\n");
-    printf("||                                ||\n");
-    printf("||      ");
-
-    setPrintingColor(KWHT);
-
+    printf("++================= Menu  =================++\n");
+    printEmptyTableLine();
     if (isGameActive > 0)
     {
-        printf("r - Spiel fortsetzen");
-        setPrintingColor(KCYN);
-        printf("      ||\n");
+        printTableLine("          r - Spiel fortsetzen          ");
 
     } else {
-        printf("s - Spiel starten");
-        setPrintingColor(KCYN);
-        printf("         ||\n");
+        printTableLine("          s - Spiel starten             ");
     }
 
-
-    printf("||      ");
-    setPrintingColor(KWHT);
-    printf("b - BestenListe");
-    setPrintingColor(KCYN);
-    printf("           ||\n");
-
-    printf("||      ");
-    setPrintingColor(KWHT);
-    printf("k - Spielregeln");
-    setPrintingColor(KCYN);
-    printf("           ||\n");
-
-    printf("||      ");
-    setPrintingColor(KWHT);
-    printf("q - Beenden");
-    setPrintingColor(KCYN);
-    printf("               ||\n");
-
-    printf("++================================++\n");
+    printEmptyTableLine();
+    printTableLine("          b - BestenListe               ");
+    printEmptyTableLine();
+    printTableLine("          k - Spielregeln               ");
+    printEmptyTableLine();
+    printTableLine("          q - Beenden                   ");
+    printEmptyTableLine();
+    printEndOfTable();
 }
 
 void print_list(struct score *head){
@@ -279,190 +259,73 @@ void renderDetails(struct score *scores)
 
     print_list(scores);
 
-    setPrintingColor(KCYN);
-    printf("||                                         ||\n");
-    printf("||                                         ||\n");
+    printEmptyTableLine();
+    printEmptyTableLine();
 
-    setPrintingColor(KCYN);
-    printf("|| ");
-    setPrintingColor(KWHT);
-    printf("z - Zurueck                             ");
-    setPrintingColor(KCYN);
-    printf("||\n");
-
-    setPrintingColor(KCYN);
-    printf("||                                         ||\n");
-    printf("++=========================================++\n");
+    printTableLine("z - Zurueck                             ");
+    printEmptyTableLine();
+    printEndOfTable();
 }
 
 void renderDifficultyDialog()
 {
     setPrintingColor(KCYN);
-    printf("++====== Schwierigkeiteinstellungen ======++\n");
-	printf("||                                        ||\n");
+    printf("++====== Schwierigkeiteinstellungen  ======++\n");
 
-    setPrintingColor(KCYN);
-    printf("||             ");
-    setPrintingColor(KWHT);
-    printf("a - Einfach                ");
-    setPrintingColor(KCYN);
-    printf("||\n");
+    printEmptyTableLine();
+    printTableLine("            a - Einfach                 ");
 
-    setPrintingColor(KCYN);
-    printf("||                                        ||\n");
+    printEmptyTableLine();
+    printTableLine("            b - Mittel                  ");
 
-    setPrintingColor(KCYN);
-    printf("||             ");
-    setPrintingColor(KWHT);
-    printf("b - Mittel                 ");
-    setPrintingColor(KCYN);
-    printf("||\n");
+    printEmptyTableLine();
+    printTableLine("            c - Schwer                  ");
 
+    printEmptyTableLine();
+    printEmptyTableLine();
 
-    setPrintingColor(KCYN);
-    printf("||                                        ||\n");
-
-    setPrintingColor(KCYN);
-    printf("||             ");
-    setPrintingColor(KWHT);
-    printf("c - Schwer                 ");
-    setPrintingColor(KCYN);
-    printf("||\n");
-
-    setPrintingColor(KCYN);
-	printf("||                                        ||\n");
-	printf("||                                        ||\n");
-
-
-    setPrintingColor(KCYN);
-    printf("||         ");
-    setPrintingColor(KWHT);
-    printf("Waehle die gewuenschte         ");
-    setPrintingColor(KCYN);
-    printf("||\n");
-
-    setPrintingColor(KCYN);
-    printf("||         ");
-    setPrintingColor(KWHT);
-    printf("Schwierigkeitsstufe aus.       ");
-    setPrintingColor(KCYN);
-    printf("||\n");
-
-	printf("||                                        ||\n");
-    printf("++========================================++\n");
+    printTableLine("        Waehle die gewuenschte          ");
+    printTableLine("        Schwierigkeitsstufe aus.        ");
+    printEmptyTableLine();
+    printEndOfTable();
 }
 
 
 void renderHelpDialog()
 {
-    setPrintingColor(KCYN);
-    printf("+------------ Die Spielregeln -------------+\n");
 
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("Sudoku ist ein Zahlenpuzzle. Das         ");
-    setPrintingColor(KCYN);
-    printf("|\n");
+    printf("%s++=========== Die Spielregeln  ============++%s\n",KCYN,KWHT);
 
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("Puzzlefeld besteht aus einem Quadrat,    ");
-    setPrintingColor(KCYN);
-
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("das in 3×3 Unterquadrate bzw. Bloecke    ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("eingeteilt ist. Jedes Unterquadrat ist   ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("wieder in 3×3 Felder eingeteilt. Das     ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("Gesamtquadrat enthält also 81 Felder     ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("in 9 Reihen und 9 Spalten.               ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("|                                          |\n");
-
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("In einigen dieser Felder sind schon      ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("zu Beginn Ziffern (1-9) eingetragen.     ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("Typischerweise sind 22 bis 36 Felder von ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("81 moeglichen vorgegeben. Das Puzzle     ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("muss nun so vervollstaendigt werden,     ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("| ");
-    setPrintingColor(KWHT);
-    printf("dass:                                    ");
-    setPrintingColor(KCYN);
-    printf("|\n");
-
-    printf("|                                          |\n");
-    printf("|                                          |\n");
-    printf("|                                          |\n");
-    
+    printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
+    printTableLine("Puzzlefeld besteht aus einem Quadrat,   ");
+    printTableLine("das in 3x3 Unterquadrate bzw. Bloecke   ");
+    printTableLine("eingeteilt ist. Jedes Unterquadrat ist  ");
+    printTableLine("wieder in 3x3 Felder eingeteilt. Das    ");
+    printTableLine("Gesamtquadrat enthaelt also 81 Felder   ");
+    printTableLine("in 9 Reihen und 9 Spalten.              ");
+    printTableLine("                                        ");
+    printTableLine("In einigen dieser Felder sind schon     ");
+    printTableLine("zu Beginn Ziffern (1-9) eingetragen.    ");
+    printEmptyTableLine();
+    printTableLine("Typischerweise sind 22 bis 36 Felder    ");
+    printTableLine("von 81 moeglichen vorgegeben. Das       ");
+    printTableLine("Puzzle muss nun so vervollstaendigt     ");
+    printTableLine("werden, dass:                           ");
+    printTableLine("- in jeder Zeile,                       ");
+    printTableLine("- in jeder Spalte und                   ");
+    printTableLine("- in jedem der neun Bloecke jede Ziffer ");
+    printTableLine("  von 1 bis 9 genau einmal auftritt.    ");
+    printEmptyTableLine();
 
     if (isGameActive > 0)
     {
-        printf("| ");
-        setPrintingColor(KWHT);
-        printf("z - Zurueck zum Spiel                    ");
-        setPrintingColor(KCYN);
-        printf("|\n");
+        printTableLine("z - Zurueck zum Spiel                   ");
     }
-    else
-    {
-        printf("| ");
-        setPrintingColor(KWHT);
-        printf("z - Zurueck zum Menu                     ");
-        setPrintingColor(KCYN);
-        printf("|\n");
+    else {
+        printTableLine("z - Zurueck zum Menue                   ");
     }
-    printf("+------------------------------------------+\n");
+
+    printEndOfTable();
 }
 
 
@@ -489,4 +352,39 @@ int lenHelper(int x) {
     if (x >= 50)        return 3;
     if (x >= 10)         return 2;
     return 1;
+}
+
+void printStartOfLine()
+{
+    setPrintingColor(KCYN);
+    printf("|| ");
+}
+
+void printEndOfLine()
+{
+    setPrintingColor(KCYN);
+    printf("||\n");
+}
+
+void printTableLine(char text[])
+{
+    printStartOfLine();
+
+    setPrintingColor(KWHT);
+    printf(text);
+
+    printEndOfLine();
+}
+
+void printEndOfTable()
+{
+    setPrintingColor(KCYN);
+    printf("++=========================================++\n");
+}
+
+void printEmptyTableLine()
+{
+    printStartOfLine();
+    printf("                                        ");
+    printEndOfLine();
 }
