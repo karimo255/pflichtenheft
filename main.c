@@ -16,7 +16,7 @@
 
 
 #define HEIGHT 720
-#define WIDTH 400
+#define WIDTH 420
 
 #define TRUE 1
 #define FALSE 0
