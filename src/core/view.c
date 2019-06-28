@@ -122,11 +122,16 @@ void renderCourt()
         printf("%s|\n", KCYN);
         if ((i + 1) % 3 == 0)
         {
-            printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
+            printf("%s     +---+---+---+---+---+---+---+---+---+\n", KCYN);
         }
         else
         {
-            printColoredString("     +---+---+---+---+---+---+---+---+---+", KGRN, 1 );
+            printf("     ");
+            for (int i = 0; i < 3; i++) {
+                printf("%s+", KCYN);
+                printf("%s---+---+---", KGRN );
+            }
+            printf("%s+\n", KCYN);
         }
     }
     printf("%s \n", gameMessage);
@@ -154,6 +159,8 @@ void renderInfoBox(char *username, int score)
     int bestscoreWidth = 9;
     int remainingBoxWith = 5;
     int remaining = getRemainingCells(arr);
+    char userStringTime[5];
+    timeToString(timer(0), userStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
 
     // first row
@@ -177,7 +184,7 @@ void renderInfoBox(char *username, int score)
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf( "Time: %s%*s", "01:30", userBoxWith - strlen("01:30"), "");
+    printf( "Time: %s%*s", userStringTime, userBoxWith - strlen("00:00"), "");
 
     setPrintingColor(KCYN);
     printf("|| ");

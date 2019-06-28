@@ -15,7 +15,7 @@
 #include "libs/sqlite3.h"
 
 
-#define HEIGHT 720
+#define HEIGHT 760
 #define WIDTH 420
 
 #define TRUE 1
@@ -64,6 +64,7 @@ int getch(void)
 #endif
 
 int exitTheGame = 0;
+int windows = 0;
 
 sqlite3 *connection;
 
@@ -85,6 +86,7 @@ void clear_output(){
 
 #ifdef __WIN32__
     system("cls");
+    windows = 1;
 #endif
 }
 
@@ -147,6 +149,7 @@ int main()
                     generateGameData(arr);
                     deleteCells(arr, difficulty);
                     isGameActive = 1;
+                    timer(2);
                 }
                 int *p;
                 // int s = getBestScoreByUserID(userID, p);
@@ -169,7 +172,44 @@ int main()
 
         }
 
-        handleUserInput();
+        /* if (currentPosition == IN_GAME && windows == 1) {
+            int ende = 0, x = 0;
+            clock_t now;
+            now = clock();
+            int refresh = (int)now;
+
+            while(refresh % 1000 > 9 && !ende)
+            {
+                now = clock();
+                refresh = (int)now;
+                if (kbhit()) {
+                    handleUserInput();
+                    ende = 1;
+                }
+                Sleep(1);
+            }
+        }
+        else {
+            handleUserInput();
+        } */
+
+        if (currentPosition == IN_GAME && windows == 1) {
+            int ende = 0;
+            time_t now, notNow;
+            now = time(NULL);
+
+            while((time(&notNow) - now) == 0 && !ende)
+            {
+                if (kbhit()) {
+                    handleUserInput();
+                    ende = 1;
+                }
+                Sleep(1);
+            }
+        }
+        else {
+            handleUserInput();
+        }
     }
     printf("Ciao");
     return 0;
@@ -238,8 +278,8 @@ void handleUserInput()
     char ch;
 
 	if (currentPosition == USER_NAME) {
-
-        if ((ch = getch()) != '\n'  && ch != EOF){
+        ch = getch();
+        if (ch != 13){
 			
             if(strcmp(username, "Name eingeben...") == 0) resetArray(username);
             if(ch == 27) { // escape
@@ -247,7 +287,7 @@ void handleUserInput()
                 currentPosition = DIFFICULTY_DIALOG;
             } else if(ch == 127 ||ch == 8) {
                 b--;
-                if(b > 0) {
+                if(b < 0) {
                     b = 0;
                 }
                 username[b] = 0;
@@ -385,9 +425,9 @@ void handleUserInput()
 					case 'k':
 						currentPosition = HELP;
 						break;
-						case 's':
-                            solveAll(arr, deletedCells);
-                            break;
+                    case 's':
+                        solveAll(arr, deletedCells);
+                        break;
 					}
 				}
 				break;

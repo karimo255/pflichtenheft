@@ -5,6 +5,7 @@
 #include "../../headers/core/game.h"
 #include "../../headers/shared/shared.h"
 #include <stdio.h>
+#include <time.h>
 
 int x=0;
 int y=0;
@@ -19,6 +20,8 @@ int deletedCells[9][9] = {0};
 int userCells[9][9] = {0};
 
 int elementsInSomeColumn[9] = {0};
+
+time_t start, end, pause;
 
 
 void solveCell(int array[][9], int x, int y)
@@ -226,4 +229,70 @@ int getGameStatus(int array[][9])
         }
     }
     return FILLED;
+}
+
+int timer(int action) {
+
+    static int first = 0, paused = 0;
+    static long int timer = 0, zwErg = 0;
+
+    switch(action) {
+        case 0:
+            break;
+        case 1:
+            if (paused == 0) {
+                pause = time(NULL);
+                paused++;
+            } else {
+                end = time(NULL);
+                zwErg += (end - pause);
+                paused--;
+            }
+            break;
+        case 2:
+            first = 1;
+            zwErg = 0;
+            paused = 0;
+            break;
+        default:
+            break;
+    }
+
+
+
+    if(first) {
+        start = time(NULL);
+        first = 0;
+    }
+
+    end = time(NULL);
+
+
+    timer = end - start;
+    timer -= zwErg;
+
+    return timer;
+
+}
+
+void timeToString(int userTime, char stringTime[]) {
+    int min = userTime / 60;
+    int sec = userTime - min * 60;
+    char zwErg[2];
+
+    if (min < 10) {
+        strcat(stringTime, "0");
+        itoa (min,zwErg,10);
+        strcat(stringTime, zwErg);
+    } else {
+        itoa (min,stringTime,10);
+    }
+
+    strcat(stringTime, ":");
+
+    if (sec < 10) {
+        strcat(stringTime, "0");
+    }
+    itoa (sec,zwErg,10);
+    strcat(stringTime, zwErg);
 }
