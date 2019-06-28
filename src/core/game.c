@@ -298,17 +298,19 @@ void timeToString(int userTime, char stringTime[]) {
     int seconds = userTime % 60;
     int minutes = userTime / 60;
 
-    int nullBeiSeconde = seconds > 10 ? 0 : 1;
-    char s[2]={0};
-    if(seconds > 10){
+    char s[2];
+    char m[2];
+
+    if(seconds < 10){
+        s[0] = '0';
+    }
+
+    if(minutes < 10){
+        m[0] = '0';
 
     }
-    sprintf(stringTime, "%*s%d:     %*s%d", minutes > 10 ? 0 : 1, "0", minutes,      0, "0",seconds );
 
-
-
-
-
+    sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds );
 }
 
 int checkGameSolved()
