@@ -17,7 +17,6 @@ int user_id = 0;
 
 
 
-
 int insertScore(int *userID, int score, int difficulty) {
     sprintf(sql, "INSERT INTO `Score` (time, userId, difficulty) VALUES(\"%d\", \"%d\", \"%d\");", score,
             *userID, difficulty);
@@ -34,12 +33,10 @@ int insertScore(int *userID, int score, int difficulty) {
 
 delete_whole_list(struct score *scores){
     score *temp;
-
-    while(scores->next != NULL)
+    while(scores->next != NULL) // skip first element
     {
-        temp = scores;
+        temp = scores->next;
         scores = scores->next;
-
         free(temp);
     }
 }
@@ -54,7 +51,6 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 	while (a_head->next != NULL) {
 		a_head = a_head->next;
 	}
-
 
 	/**
 	* now we can add a new item
@@ -81,7 +77,7 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 }
 
 void getScores(score *scores, int diff) {
-    // delete_whole_list(scores);
+    delete_whole_list(scores);
     sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %d ORDER BY `Score`.`time` DESC LIMIT 10;", diff);
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
     if(rc == SQLITE_OK) {
@@ -91,7 +87,6 @@ void getScores(score *scores, int diff) {
     }
 }
 
-
 int bestScoreCallBack(void *scores, int argc, char **argv, char **azColName) {
     for (int i = 0; i < argc; i++) {
         if (strcmp(azColName[i], "time") == 0) {
@@ -100,7 +95,6 @@ int bestScoreCallBack(void *scores, int argc, char **argv, char **azColName) {
     }
     return 0;
 }
-
 
 int getBestScoreByUserID(int userID) {
 	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time desc;", userID);

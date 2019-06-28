@@ -6,12 +6,30 @@
 #include "../../headers/shared/shared.h"
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
+#include <values.h>
 
+#ifdef __unix__
+char* itoa(int val, int base){
+
+    static char buf[32] = {0};
+
+    int i = 30;
+
+    for(; val && i ; --i, val /= base)
+
+        buf[i] = "0123456789abcdef"[val % base];
+
+    return &buf[i+1];
+
+}
+
+#endif
 int x=0;
 int y=0;
 int difficulty=EASY;
 char gameMessage[200] = {0};
-int isGameActive=0;
+int isGameActive;
 int currentPosition=0;
 
 
@@ -277,25 +295,19 @@ int timer(int action) {
 }
 
 void timeToString(int userTime, char stringTime[]) {
-    int min = userTime / 60;
-    int sec = userTime - min * 60;
-    char zwErg[2];
+    int seconds = userTime % 60;
+    int minutes = userTime / 60;
 
-    if (min < 10) {
-        strcat(stringTime, "0");
-        itoa(min, zwErg, 10);
-        strcat(stringTime, zwErg);
-    } else {
-        itoa(min, stringTime, 10);
+    int nullBeiSeconde = seconds > 10 ? 0 : 1;
+    char s[2]={0};
+    if(seconds > 10){
+
     }
+    sprintf(stringTime, "%*s%d:     %*s%d", minutes > 10 ? 0 : 1, "0", minutes,      0, "0",seconds );
 
-    strcat(stringTime, ":");
 
-    if (sec < 10) {
-        strcat(stringTime, "0");
-    }
-    itoa(sec, zwErg, 10);
-    strcat(stringTime, zwErg);
+
+
 
 }
 

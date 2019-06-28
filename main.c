@@ -179,23 +179,7 @@ int main()
                 break;
         }
 
-        if (currentPosition == IN_GAME && windows == 1) {
-            int ende = 0;
-            time_t now, notNow;
-            now = time(NULL);
-
-            while((time(&notNow) - now) == 0 && !ende)
-            {
-                if (kbhit()) {
-                    handleUserInput();
-                    ende = 1;
-                }
-                Sleep(1);
-            }
-        }
-        else {
-            handleUserInput();
-        }
+        handleUserInput();
     }
     printf("Ciao");
     return 0;
