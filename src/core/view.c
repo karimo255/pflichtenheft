@@ -56,7 +56,7 @@ void setPrintingColor(char *color){
 void renderUsernameDialog(char *username) {
     setPrintingColor(KCYN);
 
-    printf("++==============Spielner Name================++\n");
+    printf("++==============Spieler Name ================++\n");
     printf("|| Name: %s%*s ||\n", username, 33 - strlen(username), "");
     printEmptyTableLine();
     printTableLine("Sie koennen diesen Schritt ueberspringen,  ");
@@ -214,13 +214,35 @@ void renderGameMenu()
 
     setPrintingColor(KWHT);
     printf("     > - Right       h - Give a hint\n\n");
-    printf("     < - Left        ");
-    printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
-    printf("     ^ - Top         a - Abbrechen \n\n");
-    printf("     v - Down        s - Solve All \n\n");
-    printf("                     z - Zurueck \n\n");
+    printf("     < - Left        a - Abbrechen \n\n");
+    printf("     ^ - Top         s - Solve All \n\n");
+    printf("     v - Down        z - Zurueck \n\n");
     printf("                     k - Spielregeln \n\n");
     printf("                     q - Beenden \n\n");
+    //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
+}
+
+void renderSolvedGame(int solvedAutomatic)
+{
+    printf("%s++===========  Spielende       ============++%s\n",KCYN,KWHT);
+    printEmptyTableLine();
+
+    if (solvedAutomatic == 1)
+    {
+        printTableLine("Du hast das Sudoku leider nicht selber  ");
+        printTableLine("ferig gelöst.                           ");
+    }
+    else
+    {
+        printTableLine("Du hast das Sudoku in einer Zeit von    ");
+        printTableLine("ferig gelöst. Herzlichen Glueckwunsch.  ");
+        printTableLine("Dein Score wird automatisch gespeichert.");
+    }
+    printTableLine("z - Zurueck zum Menue                   ");
+    printEndOfTable();
+
+    printTableLine("Das fertige Spielbrett:                 ");
+    renderCourt();
 }
 
 void renderMenu()
@@ -347,7 +369,7 @@ void renderHelpDialog()
 {
 
     printf("%s++=========== Die Spielregeln  ============++%s\n",KCYN,KWHT);
-	printTableLine("                                        ");
+    printEmptyTableLine();
     printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
     printTableLine("Puzzlefeld besteht aus einem Quadrat,   ");
     printTableLine("das in 3x3 Unterquadrate bzw. Bloecke   ");

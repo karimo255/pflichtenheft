@@ -76,7 +76,7 @@ int solveGame(int a[][9])
             a[x][y] = number;
         }
     }
-    resetGameData(arr);
+    //resetGameData(arr);
     return 1;
 }
 
@@ -231,6 +231,7 @@ int getGameStatus(int array[][9])
     return FILLED;
 }
 
+
 int timer(int action) {
 
     static int first = 0, paused = 0;
@@ -282,10 +283,10 @@ void timeToString(int userTime, char stringTime[]) {
 
     if (min < 10) {
         strcat(stringTime, "0");
-        itoa (min,zwErg,10);
+        itoa(min, zwErg, 10);
         strcat(stringTime, zwErg);
     } else {
-        itoa (min,stringTime,10);
+        itoa(min, stringTime, 10);
     }
 
     strcat(stringTime, ":");
@@ -293,6 +294,22 @@ void timeToString(int userTime, char stringTime[]) {
     if (sec < 10) {
         strcat(stringTime, "0");
     }
-    itoa (sec,zwErg,10);
+    itoa(sec, zwErg, 10);
     strcat(stringTime, zwErg);
+
+}
+
+int checkGameSolved()
+{
+    if (getGameStatus(arr) == FILLED) {
+        if (solveGame(arr) == 1) {
+            currentPosition = SOLVED_GAME;
+            isGameActive = 0;
+            sprintf(gameMessage, "%s", "Das Spiel ist geloest");
+            return 1;
+        } else {
+            sprintf(gameMessage, "%s", "Das Spiel ist nicht korrekt geloest");
+            return 0;
+        }
+    }
 }

@@ -140,3 +140,6 @@ void solveAll(int gameData[][9], int deletedCells[][9]);
 int timer(int action);
 
 void timeToString(int userTime, char stringTime[]);
+
+int checkGameSolved();
+

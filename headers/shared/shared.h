@@ -29,6 +29,7 @@ enum POSITIONS
     HELP = 4, ///< DETAILS
 	USER_NAME = 5,
     DETAILS_DIALOG = 6
+	SOLVED_GAME = 7 ///< SOLVED_GAME
 };
 
 /// Grid-Status enum

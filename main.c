@@ -95,6 +95,7 @@ int deletedCells[9][9];
 int userCells[9][9];
 int difficulty;
 int isGameActive;
+int isSolvedAutomatic;
 int currentPosition;
 int os;
 char username[50] = "Name eingeben...";
@@ -173,7 +174,9 @@ int main()
             case HELP:
                 renderHelpDialog();
                 break;
-
+            case SOLVED_GAME:
+                renderSolvedGame(isSolvedAutomatic);
+                break;
         }
 
         if (currentPosition == IN_GAME && windows == 1) {
@@ -258,6 +261,7 @@ void navigateTo(int pos)
 void handleUserInput()
 {
     int userInput;
+    int score;
     char ch;
 
 	if (currentPosition == USER_NAME) {
@@ -370,7 +374,15 @@ void handleUserInput()
 					if (userCells[x][y] == 1)
 					{
 						arr[x][y] = userInput - '0';
-					}
+
+                        isSolvedAutomatic = 0;
+                        if (checkGameSolved() == 1)
+                        {
+                            // TODO: Score eintragen
+                            //score = timer(0);
+                            //insertScore(userID, score, difficulty);
+                        }
+                    }
 				}
 				else if (isalpha(userInput))
 				{
@@ -378,24 +390,8 @@ void handleUserInput()
 					{
 					case 'h':
 						solveCell(arr, x, y);
+						 isSolvedAutomatic = 1;
 						break;
-					case 'c':
-						if (getGameStatus(arr) == NOT_FILLED)
-						{
-							sprintf(gameMessage, "%s", "Sudoku Noch nicht voll.");
-							break;
-						}
-
-						if (solveGame(arr) == 1)
-						{
-							sprintf(gameMessage, "%s", "Geloest");
-						}
-						else
-						{
-							sprintf(gameMessage, "%s", "Nicht geloest");
-						}
-						break;
-
 					case 'q':
 						exitTheGame = 1;
 					case 'a':
@@ -410,10 +406,13 @@ void handleUserInput()
 						break;
                     case 's':
                         solveAll(arr, deletedCells);
+                        isSolvedAutomatic = 1;
+                        checkGameSolved();
                         break;
 					}
 				}
 				break;
+            case SOLVED_GAME:
 			case DETAILS:
 				if (isalpha(userInput))
 				{

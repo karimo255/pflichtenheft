@@ -47,6 +47,13 @@ void renderInfoBox(char *username, int score);
 void renderGameMenu();
 
 /**
+ * \brief Function to render the dialog after solved game
+ *
+ * It shows the game menu
+ */
+void renderSolvedGame(int solvedAutomatic);
+
+/**
  * \brief Function to render the difficult settings dialog
  *
  * It shows difficult dialog
