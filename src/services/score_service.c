@@ -32,6 +32,18 @@ int insertScore(int *userID, int score, int difficulty) {
     }
 }
 
+delete_whole_list(struct score *scores){
+    score *temp;
+
+    while(scores->next != NULL)
+    {
+        temp = scores;
+        scores = scores->next;
+
+        free(temp);
+    }
+}
+
 
 int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 	score *a_head = (score *)scores;
@@ -68,8 +80,9 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 	return 0;
 }
 
-void getScores(score *scores) {
-    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %i ORDER BY `Score`.`time` DESC LIMIT 10;", EASY);
+void getScores(score *scores, int diff) {
+    // delete_whole_list(scores);
+    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %d ORDER BY `Score`.`time` DESC LIMIT 10;", diff);
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
     if(rc == SQLITE_OK) {
         printf("OK\n");

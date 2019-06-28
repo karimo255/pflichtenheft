@@ -226,7 +226,7 @@ void renderGameMenu()
 void renderMenu()
 {
     setPrintingColor(KCYN);
-    printf("++================= Menu  =================++\n");
+    printf("++================== Menu =================++\n");
     printEmptyTableLine();
     if (isGameActive > 0)
     {
@@ -251,7 +251,7 @@ void print_list(struct score *head){
     setPrintingColor(KCYN);
     printf("|| %s%*s| %s%*s ||\n", "Spieler", 19 - strlen("Spieler"),"", "Score", 18 - strlen("Score"),"");
     printEmptyTableLine();
-    while (current->next != NULL) { // note: current->next instead of current to skip the first empty element
+    while (current!= NULL && current->next != NULL) { // note: current->next instead of current to skip the first empty element
         if(current->userId == 2) {
             setPrintingColor(KCYN);
             printf("|| ");
@@ -272,10 +272,37 @@ void print_list(struct score *head){
     }
 }
 
-void renderDetails(struct score *scores)
+void renderDBestScoreDialog(){
+    printf("++============= Bestenliste ===============++\n");
+    printEmptyTableLine();
+    printTableLine("             e - Einfach                ");
+    printTableLine("             m - Mittel                 ");
+    printTableLine("             s - Schwer                 ");
+    printEmptyTableLine();
+    printEmptyTableLine();
+    printTableLine("Bitte Waehlen Sie                       ");
+    printEmptyTableLine();
+    printTableLine("z- Zurueck                              ");
+    printf("++=========================================++\n");
+}
+
+void renderDetails(struct score *scores, int difficulty)
 {
+    char difficultyText[20];
+    switch (difficulty){
+        case EASY:
+            strcpy(difficultyText, "Einfach");
+            break;
+        case MEDIUM:
+            strcpy(difficultyText, "Mittel ");
+            break;
+        case HARD:
+            strcpy(difficultyText, "Schwer ");
+            break;
+    }
+
     setPrintingColor(KCYN);
-    printf("++======== Bestenliste ( Einfach) =========++\n");
+    printf("++======== Bestenliste ( %s) =========++\n", difficultyText);
 
     print_list(scores);
 
@@ -313,9 +340,6 @@ void renderDifficultyDialog()
     printTableLine("        Schwierigkeitsstufe aus.        ");
     printEmptyTableLine();
     printEndOfTable();
-
-    printf("||                                        ||\n");
-    printf("++========================================++\n");
 }
 
 

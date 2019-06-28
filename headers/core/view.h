@@ -16,12 +16,14 @@ void renderUsernameDialog(char *username);
  */
 void renderMenu();
 
+
+void renderDBestScoreDialog();
 /**
  * \brief Function to render best-score scrren
  *
  * It shows infos about users and scores
  */
-void renderDetails(struct score *scores);
+void renderDetails(struct score *scores, int difficulty);
 
 /**
  * \brief Function to render the game grid
