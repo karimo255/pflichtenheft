@@ -16,7 +16,7 @@
 
 
 #define HEIGHT 720
-#define WIDTH 400
+#define WIDTH 420
 
 #define TRUE 1
 #define FALSE 0
@@ -244,18 +244,19 @@ void handleUserInput()
 	if (currentPosition == USER_NAME) {
         ch = getch();
         if (ch != 13 && ch != '\n' && ch != EOF){
+
             if(strcmp(username, "Name eingeben...") == 0) resetArray(username);
             if(ch == 27) { // escape
                 strcpy(username, "anonym");
                 currentPosition = DIFFICULTY_DIALOG;
-            } else if(ch == 127) {
+            } else if(ch == 127 ||ch == 8) {
                 b--;
-                if(b < 0) {
+                if(b > 0) {
                     b = 0;
                 }
                 username[b] = 0;
 
-            }else {
+            }else if(b < 30) {
                 username[b] = ch;
                 b++;
             }

@@ -56,12 +56,12 @@ void setPrintingColor(char *color){
 void renderUsernameDialog(char *username) {
     setPrintingColor(KCYN);
 
-    printf("++=============Spielner Name===============++\n");
+    printf("++==============Spielner Name================++\n");
     printf("|| Name: %s%*s ||\n", username, 33 - strlen(username), "");
     printEmptyTableLine();
-    printTableLine("Sie koennen diesen Schritt überspringen,");
-    printTableLine("druecken Sie dafür einfach Enter.       ");
-    printTableLine("                                        ");
+    printTableLine("Sie koennen diesen Schritt ueberspringen,  ");
+    printTableLine("druecken Sie dafuer einfach Enter.         ");
+    printTableLine("                                          ");
 
     printEndOfTable();
 }
@@ -340,7 +340,7 @@ void renderHelpDialog()
 {
 
     printf("%s++=========== Die Spielregeln  ============++%s\n",KCYN,KWHT);
-
+	printTableLine("                                        ");
     printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
     printTableLine("Puzzlefeld besteht aus einem Quadrat,   ");
     printTableLine("das in 3x3 Unterquadrate bzw. Bloecke   ");
@@ -360,6 +360,7 @@ void renderHelpDialog()
     printTableLine("- in jeder Spalte und                   ");
     printTableLine("- in jedem der neun Bloecke jede Ziffer ");
     printTableLine("  von 1 bis 9 genau einmal auftritt.    ");
+	printTableLine("                                        ");
     printEmptyTableLine();
 
     if (isGameActive > 0)
