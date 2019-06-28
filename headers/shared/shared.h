@@ -27,7 +27,8 @@ enum POSITIONS
     DIFFICULTY_DIALOG = 2, ///< DIFFICULTY_DIALOG
     DETAILS = 3, ///< DETAILS
     HELP = 4, ///< DETAILS
-	USER_NAME = 5
+	USER_NAME = 5,
+    DETAILS_DIALOG = 6
 };
 
 /// Grid-Status enum

@@ -99,6 +99,8 @@ char username[50] = "Name eingeben...";
 int *userID = 0;
 int b = 0;
 
+struct score *scores = NULL;
+
 
 int main()
 {
@@ -116,11 +118,9 @@ int main()
     }
 
     srand(time(NULL));
-
-    struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
-    getScores(scores);
+
 
     currentPosition = MENU;
     difficulty = EASY;
@@ -160,8 +160,12 @@ int main()
                 renderDifficultyDialog();
                 break;
 
+            case DETAILS_DIALOG:
+                renderDBestScoreDialog();
+                break;
+
             case DETAILS:
-                renderDetails(scores);
+                renderDetails(scores, difficulty);
                 break;
             case HELP:
                 renderHelpDialog();
@@ -217,19 +221,19 @@ void navigateTo(int pos)
 
     if (x > 8)
     {
-        x = 8;
+        x = 0;
     }
     if (x < 0)
     {
-        x = 0;
+        x = 8;
     }
     if (y > 8)
     {
-        y = 8;
+        y = 0;
     }
     if (y < 0)
     {
-        y = 0;
+        y = 8;
     }
 }
 void handleUserInput()
@@ -238,8 +242,8 @@ void handleUserInput()
     char ch;
 
 	if (currentPosition == USER_NAME) {
-
-        if ((ch = getch()) != '\n'  && ch != EOF){
+        ch = getch();
+        if (ch != 13 && ch != '\n' && ch != EOF){
             if(strcmp(username, "Name eingeben...") == 0) resetArray(username);
             if(ch == 27) { // escape
                 strcpy(username, "anonym");
@@ -326,7 +330,7 @@ void handleUserInput()
 						break;
 
 					case 'b':
-						currentPosition = DETAILS;
+						currentPosition = DETAILS_DIALOG;
 						break;
 
 					case 'k':
@@ -402,6 +406,30 @@ void handleUserInput()
 					}
 				}
 				break;
+                case DETAILS_DIALOG:
+                    if (isalpha(userInput))
+                    {
+                        switch (userInput)
+                        {
+                            case 'e':
+                                difficulty = EASY;
+                                currentPosition = DETAILS;
+                                break;
+                            case 'm':
+                                difficulty = MEDIUM;
+                                currentPosition = DETAILS;
+                                break;
+                            case 's':
+                                difficulty = HARD;
+                                currentPosition = DETAILS;
+                                break;
+                            case 'z':
+                                currentPosition = MENU;
+                                break;
+                        }
+                        getScores(scores, difficulty);
+                    }
+                    break;
 			case HELP:
 				if (isalpha(userInput))
 				{
