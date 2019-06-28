@@ -240,18 +240,19 @@ void handleUserInput()
 	if (currentPosition == USER_NAME) {
 
         if ((ch = getch()) != '\n'  && ch != EOF){
+			
             if(strcmp(username, "Name eingeben...") == 0) resetArray(username);
             if(ch == 27) { // escape
                 strcpy(username, "anonym");
                 currentPosition = DIFFICULTY_DIALOG;
-            } else if(ch == 127) {
+            } else if(ch == 127 ||ch == 8) {
                 b--;
-                if(b < 0) {
+                if(b > 0) {
                     b = 0;
                 }
                 username[b] = 0;
 
-            }else {
+            }else if(b < 30) {
                 username[b] = ch;
                 b++;
             }
