@@ -381,6 +381,9 @@ void handleUserInput()
 						solveCell(gameData, x_coordinate, y_coordinate);
 						 isSolvedAutomatic = 1;
 						break;
+                        case 't':
+                            fillNotesForCell(x_coordinate, y_coordinate);
+                            break;
 					case 'q':
 						exitTheGame = 1;
 					case 'a':
@@ -405,6 +408,17 @@ void handleUserInput()
 				}
 				break;
             case SOLVED_GAME:
+                if (isalpha(userInput))
+                {
+                    switch (userInput){
+                        case 'z':
+                            currentPosition = MENU;
+                            break;
+                        case 'q':
+                            exitTheGame = 1;
+                            break;
+                    }
+                }
                 break;
 			    case SET_MARK :
                     if (isdigit(userInput))

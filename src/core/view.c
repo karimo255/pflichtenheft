@@ -60,6 +60,7 @@ void renderUsernameDialog(char *username) {
     char userNameRow[100];
     sprintf(userNameRow, "Name: %s%*s ", username, 33 - strlen(username), "");
     printTableLine(userNameRow);
+    printEmptyTableLine();
     printTableLine("Sie koennen diesen Schritt              ");
     printTableLine("ueberspringen, druecken Sie             ");
     printTableLine("dafuer einfach Enter.                   ");
@@ -214,19 +215,20 @@ void renderGameMenu()
     printf("    %s Navigation      Befehle\n\n", KCYN);
 
     setPrintingColor(KWHT);
-    printf("     > - Right       h - Tipp\n\n");
-    printf("     < - Left        a - Abbrechen \n\n");
+    printf("     > - Right       t - Tipp\n\n");
+    printf("     < - Left        h - Zelle loesen \n\n");
     printf("     ^ - Top         s - Loesung anzeigen \n\n");
     printf("     v - Down        z - Zurueck \n\n");
     printf("                     k - Spielregeln \n\n");
     printf("                     m - Notiz eintragen \n\n");
+    printf("                     a - Abbrechen \n\n");
     printf("                     q - Beenden \n\n");
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 
 void renderSolvedGame(int solvedAutomatic)
 {
-    printf("%s++===========  Spielende       ============++%s\n",KCYN,KWHT);
+    printf("%s ++============== Spielende ================++%s\n",KCYN,KWHT);
     printEmptyTableLine();
 
     if (solvedAutomatic == 1)
@@ -240,10 +242,12 @@ void renderSolvedGame(int solvedAutomatic)
         printTableLine("ferig gelöst. Herzlichen Glueckwunsch.  ");
         printTableLine("Dein Score wird automatisch gespeichert.");
     }
+    printEmptyTableLine();
     printTableLine("z - Zurueck zum Menue                   ");
     printEndOfTable();
-
     printTableLine("Das fertige Spielbrett:                 ");
+    printEndOfTable();
+
 }
 
 void renderMenu()
