@@ -27,6 +27,21 @@ int elementsInSomeColumn[9] = {0};
 
 time_t start, end, _pause;
 
+void fillNotesForCell(int x_coordinate, int y_coordinate)
+{
+    int randomIndexForSolution = rand() % 2;
+    marks[x_coordinate][y_coordinate][randomIndexForSolution] = deletedCells[x_coordinate][y_coordinate];
+    for (int i = 0; i < MAX_MARKS; i++) {
+        if(marks[x_coordinate][y_coordinate][i] == 0) {
+            int number = generateRandomNumber();
+            if (isElementInArray(marks[x_coordinate][y_coordinate], number,MAX_MARKS) > 0) {
+                i--;
+                continue;
+            }
+            marks[x_coordinate][y_coordinate][i] = number;
+        }
+    }
+}
 
 void solveCell(int array[][9], int x, int y)
 {
@@ -37,7 +52,7 @@ void solveCell(int array[][9], int x, int y)
     }
 }
 
-void mark(int x,int y, int suggestion){
+void makeNote(int x, int y, int suggestion){
     for (int i = 0; i < MAX_MARKS; ++i) {
         if(marks[x][y][i] == 0){
             marks[x][y][i] = suggestion;
@@ -67,7 +82,7 @@ int solveGame(int a[][9])
         {
             int number = a[x][y];
             a[x][y] = 0;
-            if (isElementInArray(a[x], number) >= 0 || number == 0)
+            if (isElementInArray(a[x], number,9) >= 0 || number == 0)
             { // number darf nur einmal in row vorkommen.
                 a[x][y] = number;
                 return 0;
@@ -80,7 +95,7 @@ int solveGame(int a[][9])
             }
 
             // number darf nur einmal in column und box vorkommen.
-            if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x - x % 3, y - y % 3, number) >= 0)
+            if (isElementInArray(elementsInSomeColumn, number,9) >= 0 || isElementInBox(a, x - x % 3, y - y % 3, number) >= 0)
             {
                 a[x][y] = number;
                 ;
@@ -116,9 +131,9 @@ void resetGameData(int array[][9])
     }
 }
 
-int isElementInArray(int array[], int ele)
+int isElementInArray(int array[], int ele, int size)
 {
-    for (int x = 0; x < 9; x++)
+    for (int x = 0; x < size; x++)
     {
         if (array[x] == ele && ele != 0)
         {
@@ -162,7 +177,7 @@ void generateGameData(int a[][9])
 			}
             int number = generateRandomNumber();
 
-            if (isElementInArray(a[_x], number) >= 0)
+            if (isElementInArray(a[_x], number,9) >= 0)
             { // number darf nur einmal in row vorkommen.
                 _y--;
                 resetArray(elementsInSomeColumn);
@@ -176,7 +191,7 @@ void generateGameData(int a[][9])
             }
 
             // number darf nur einmal in column und box vorkommen.
-            if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, _x - _x % 3, _y - _y % 3, number) >= 0)
+            if (isElementInArray(elementsInSomeColumn, number,9) >= 0 || isElementInBox(a, _x - _x % 3, _y - _y % 3, number) >= 0)
             {
                 resetArray(a[_x]);
                 _x--;
@@ -255,9 +270,9 @@ int timer(int action) {
     static long int timer = 0, zwErg = 0;
 
     switch(action) {
-        case 0:
+        case TIMER_STATE:
             break;
-        case 1:
+        case TIMER_PAUSE:
             if (paused == 0) {
                 _pause = time(NULL);
                 paused++;
@@ -267,16 +282,26 @@ int timer(int action) {
                 paused--;
             }
             break;
-        case 2:
+        case TIMER_START:
             first = 1;
             zwErg = 0;
             paused = 0;
             break;
+        case TIPP_USED:
+            zwErg -= 15;
+            break;
+        case RESET_TIMER:
+            first = 1;
+            zwErg = 0;
+            paused = 0;
+            timer = 0;
+            break;
+        case HELP_USED:
+            zwErg -= 25;
+            break;
         default:
             break;
     }
-
-
 
     if(first) {
         start = time(NULL);
@@ -284,7 +309,6 @@ int timer(int action) {
     }
 
     end = time(NULL);
-
 
     timer = end - start;
     timer -= zwErg;
@@ -297,8 +321,8 @@ void timeToString(int userTime, char stringTime[]) {
     int seconds = userTime % 60;
     int minutes = userTime / 60;
 
-    char s[2];
-    char m[2];
+    char s[2]={0};
+    char m[2]={0};
 
     if(seconds < 10){
         s[0] = '0';
@@ -317,14 +341,7 @@ void timeToString(int userTime, char stringTime[]) {
 int checkGameSolved()
 {
     if (getGameStatus(gameData) == FILLED) {
-        if (solveGame(gameData) == 1) {
-            currentPosition = SOLVED_GAME;
-            isGameActive = 0;
-            sprintf(gameMessage, "%s", "Das Spiel ist geloest");
-            return 1;
-        } else {
-            sprintf(gameMessage, "%s", "Das Spiel ist nicht korrekt geloest");
-            return 0;
-        }
+        return solveGame(gameData);
     }
+    return 0;
 }

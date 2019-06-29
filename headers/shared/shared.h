@@ -18,6 +18,15 @@ extern enum DIFFICULTY ///< max. deleted cells per box
     HARD = 8 ///< HARD
 };
 
+extern enum ACTIONS {
+    TIMER_STATE=0,
+    TIMER_START=1,
+    TIMER_PAUSE=2,
+    TIPP_USED=3,
+    HELP_USED,
+    RESET_TIMER,
+};
+
 /// Positions enum
 extern enum POSITIONS
 {
@@ -35,8 +44,8 @@ extern enum POSITIONS
 /// Grid-Status enum
 enum GRID_STATUS
 {
-    FILLED, ///< DETAILS
-    NOT_FILLED ///< DETAILS
+    FILLED=1, ///< DETAILS
+    NOT_FILLED=0 ///< DETAILS
 };
 
 /// Arrows enum

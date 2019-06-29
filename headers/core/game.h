@@ -10,6 +10,7 @@
 
 extern int marks[9][9][MAX_MARKS];
 
+void fillNotesForCell(int x_coordinate, int y_coordinate);
 
 /// x-coordinate of the cursor.
 extern int x_coordinate;
@@ -38,6 +39,9 @@ extern int deletedCells[9][9];
 /// array which holds the coordinates of user cells (cells to solve) to keep track of theme.
 extern int userCells[9][9];
 
+void fillNotesForCell(int x_coordinate, int y_coordinate);
+
+
 /**
  * @param array int array to search.
  * @param number is the integer to search for.
@@ -45,7 +49,7 @@ extern int userCells[9][9];
  *
  * Checks if a number exists in an array.
  */
-int isElementInArray(int array[], int number);
+int isElementInArray(int array[], int number, int size);
 
 /**
  * @param array int array to clear.
@@ -80,7 +84,7 @@ void deleteCells(int array[][9], int difficulty);
  */
 void navigateTo(int direction);
 
-void mark(int x,int y, int suggestion);
+void makeNote(int x, int y, int suggestion);
 /**
  * @param array[][] which holds the game data.
  * @param box_start_row Where does the row start from.
