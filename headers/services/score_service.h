@@ -34,3 +34,8 @@ void getScores(score *scores, int diff);
 
 
 int getBestScoreByUserID(int userID);
+
+int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName);
+
+
+int getBestScore(int *bestScore);

@@ -6,7 +6,6 @@
 #include <string.h>
 
 
-#include "headers/core/view.h"
 #include "headers/core/game.h"
 #include "headers/shared/shared.h"
 #include "headers/services/user_service.h"
@@ -79,16 +78,7 @@ void resizeWindow() {
 #endif
 }
 
-void clear_output(){
-#ifdef __unix__
-    system("clear");
-#endif
 
-#ifdef __WIN32__
-    system("cls");
-    windows = 1;
-#endif
-}
 
 int arr[9][9];
 int deletedCells[9][9];
@@ -100,22 +90,24 @@ int currentPosition;
 int os;
 char username[50] = "Name eingeben...";
 int *userID = 0;
+int *bestScore=0;
+
 int b = 0;
 
 struct score *scores = NULL;
 
 
-int main()
-{
+int main() {
+
     resizeWindow();
     initColors();
 
     userID = malloc(sizeof(int));
+    bestScore = malloc(sizeof(int));
 
     int rc = sqlite3_open("./sudoku.db", &connection);
 
-    if (rc != SQLITE_OK)
-    {
+    if (rc != SQLITE_OK) {
         printf("Failed to open the sudoku.db\n");
         return 1;
     }
@@ -128,22 +120,19 @@ int main()
     currentPosition = MENU;
     difficulty = EASY;
 
-    while (!exitTheGame)
-    {
+    while (!exitTheGame) {
         clear_output();
-        switch (currentPosition)
-        {
+        switch (currentPosition) {
             case MENU:
                 renderMenu();
                 break;
 
-			case USER_NAME:
-				renderUsernameDialog(username);
-				break;
+            case USER_NAME:
+                renderUsernameDialog(username);
+                break;
 
             case IN_GAME:
-                if (isGameActive == 0)
-                {
+                if (isGameActive == 0) {
                     resetGameData(arr);
                     resetGameData(deletedCells);
                     resetGameData(userCells);
@@ -152,9 +141,24 @@ int main()
                     isGameActive = 1;
                     timer(2);
                 }
-                int *p;
                 // int s = getBestScoreByUserID(userID, p);
-                renderInfoBox(username, 5);
+                getBestScore(bestScore);
+                renderInfoBox(username, bestScore, difficulty);
+                for (int i = 0; i < MAX_MARKS; ++i) {
+                    if (marks[x][y][i] != 0){
+                        printf("| %d  ", marks[x][y][i]);
+                    }
+                }
+                printf("\n");
+                renderCourt(arr, userCells, x, y, gameMessage);
+                renderGameMenu();
+                sprintf(gameMessage, "%s", "");
+                break;
+
+            case SET_MARK:
+                getBestScore(bestScore);
+                renderInfoBox(username, bestScore, difficulty);
+                renderMarkModeMessage();
                 renderCourt(arr, userCells, x, y, gameMessage);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
@@ -245,7 +249,6 @@ void navigateTo(int pos)
 void handleUserInput()
 {
     int userInput;
-    int score;
     char ch;
 
 	if (currentPosition == USER_NAME) {
@@ -393,10 +396,28 @@ void handleUserInput()
                         isSolvedAutomatic = 1;
                         checkGameSolved();
                         break;
+                        case 'm':
+                            currentPosition = SET_MARK;
+                            break;
 					}
 				}
 				break;
             case SOLVED_GAME:
+                break;
+			    case SET_MARK :
+                    if (isdigit(userInput))
+                    {
+                        mark(x, y, userInput - '0');
+                    }
+                    if (isalpha(userInput))
+                    {
+                        switch (userInput){
+                            case 'm':
+                                currentPosition = IN_GAME;
+                                break;
+                        }
+                    }
+                    break;
 			case DETAILS:
 				if (isalpha(userInput))
 				{

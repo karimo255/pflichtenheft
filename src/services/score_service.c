@@ -87,7 +87,7 @@ void getScores(score *scores, int diff) {
     }
 }
 
-int bestScoreCallBack(void *scores, int argc, char **argv, char **azColName) {
+int bestScoresCallBack(void *scores, int argc, char **argv, char **azColName) {
     for (int i = 0; i < argc; i++) {
         if (strcmp(azColName[i], "time") == 0) {
             user_id = atoi(argv[i]);
@@ -98,10 +98,30 @@ int bestScoreCallBack(void *scores, int argc, char **argv, char **azColName) {
 
 int getBestScoreByUserID(int userID) {
 	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time desc;", userID);
-	int rc = sqlite3_exec(connection, sql, bestScoreCallBack, NULL, &zErrMsg);
+	int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
 	printf("%s\n", sql);
 	return user_id;
 }
 
+int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) {
+    int *tmp = (int *)bestScore;
+    for (int i = 0; i < argc; i++) {
+        if (strcmp(azColName[i], "time") == 0) {
+            *tmp = atoi(argv[i]);
+        }
+    }
+    return 0;
+}
 
+
+int getBestScore(int *bestScore) {
+    sprintf(sql, "SELECT time FROM `Score` order by time desc  limit 1");
+    int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
+    if (!rc == SQLITE_OK) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
 

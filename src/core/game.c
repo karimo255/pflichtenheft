@@ -8,23 +8,8 @@
 #include <time.h>
 #include <string.h>
 #include <values.h>
+#include <unistd.h>
 
-#ifdef __unix__
-char* itoa(int val, int base){
-
-    static char buf[32] = {0};
-
-    int i = 30;
-
-    for(; val && i ; --i, val /= base)
-
-        buf[i] = "0123456789abcdef"[val % base];
-
-    return &buf[i+1];
-
-}
-
-#endif
 int x=0;
 int y=0;
 int difficulty=EASY;
@@ -34,12 +19,13 @@ int currentPosition=0;
 
 
 int arr[9][9] = {0};
+int marks[9][9][MAX_MARKS] = {0};
 int deletedCells[9][9] = {0};
 int userCells[9][9] = {0};
 
 int elementsInSomeColumn[9] = {0};
 
-time_t start, end, pause;
+time_t start, end, _pause;
 
 
 void solveCell(int array[][9], int x, int y)
@@ -48,6 +34,15 @@ void solveCell(int array[][9], int x, int y)
     {
         userCells[x][y] = 0;
         array[x][y] = deletedCells[x][y];
+    }
+}
+
+void mark(int x,int y, int suggestion){
+    for (int i = 0; i < MAX_MARKS; ++i) {
+        if(marks[x][y][i] == 0){
+            marks[x][y][i] = suggestion;
+            break;
+        }
     }
 }
 
@@ -112,11 +107,11 @@ void resetArray(int array[])
 }
 void resetGameData(int array[][9])
 {
-    for (int x = 0; x < 9; x++)
+    for (int _x = 0; _x < 9; _x++)
     {
-        for (int y = 0; y < 9; y++)
+        for (int _y = 0; _y < 9; _y++)
         {
-            array[x][y] = 0;
+            array[_x][_y] = 0;
         }
     }
 }
@@ -149,41 +144,45 @@ int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
 
 void generateGameData(int a[][9])
 {
-	int countOfTrys=1000;
-    for (int x = 0; x < 9; x++)
+    time_t start_t, end_t;
+    double diff_t;
+    time(&start_t);
+    resetGameData(arr);
+    srand(time(NULL));
+
+    for (int _x = 0; _x < 9; _x++)
     {
-        for (int y = 0; y < 9; y++)
+        for (int _y = 0; _y < 9; _y++)
         {
-			if(countOfTrys == 0){
-				printf("Problem gefunden");
-				resetGameData(a);
-				generateGameData(a);
-				countOfTrys=1000;
+            time(&end_t);
+            diff_t = difftime(end_t, start_t);
+            if(diff_t > 3){
+                generateGameData(arr);
+                break; // das ist der fix;
 			}
             int number = generateRandomNumber();
-            if (isElementInArray(a[x], number) >= 0)
+
+            if (isElementInArray(a[_x], number) >= 0)
             { // number darf nur einmal in row vorkommen.
-				countOfTrys--;
-                y--;
+                _y--;
+                resetArray(elementsInSomeColumn);
                 continue;
             }
 
             resetArray(elementsInSomeColumn);
-            for (int l = 0; l < sizeof(elementsInSomeColumn); l++)
+            for (int l = 0; l < 9; l++)
             {
-                elementsInSomeColumn[l] = a[l][y];
+                elementsInSomeColumn[l] = a[l][_y];
             }
 
             // number darf nur einmal in column und box vorkommen.
-            if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, x - x % 3, y - y % 3, number) >= 0)
+            if (isElementInArray(elementsInSomeColumn, number) >= 0 || isElementInBox(a, _x - _x % 3, _y - _y % 3, number) >= 0)
             {
-                resetArray(a[x]);
-				countOfTrys--;
-                x--;
+                resetArray(a[_x]);
+                _x--;
                 break;
             }
-			countOfTrys=1000;
-            a[x][y] = number;
+            a[_x][_y] = number;
         }
     }
 }
@@ -260,11 +259,11 @@ int timer(int action) {
             break;
         case 1:
             if (paused == 0) {
-                pause = time(NULL);
+                _pause = time(NULL);
                 paused++;
             } else {
                 end = time(NULL);
-                zwErg += (end - pause);
+                zwErg += (end - _pause);
                 paused--;
             }
             break;
@@ -307,11 +306,11 @@ void timeToString(int userTime, char stringTime[]) {
 
     if(minutes < 10){
         m[0] = '0';
-
     }
 
     sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds );
 }
+
 
 int checkGameSolved()
 {

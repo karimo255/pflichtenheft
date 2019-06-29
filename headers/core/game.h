@@ -1,6 +1,10 @@
+#include "view.h"
+
 //
 // Created by karim on 24.06.19.
 //
+#define MAX_MARKS 4
+
 
 /// x-coordinate of the cursor.
 extern int x;
@@ -22,6 +26,8 @@ extern int currentPosition;
 
 /// array which holds the game data.
 extern int arr[9][9];
+
+extern int marks[9][9][MAX_MARKS];
 
 /// array which holds deleted cells to keep track of them.
 extern int deletedCells[9][9];
@@ -71,6 +77,7 @@ void deleteCells(int array[][9], int difficulty);
  */
 void navigateTo(int direction);
 
+void mark(int x,int y, int suggestion);
 /**
  * @param array[][] which holds the game data.
  * @param box_start_row Where does the row start from.

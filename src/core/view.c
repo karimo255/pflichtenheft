@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
@@ -17,7 +18,6 @@
 
 int deletedCells[9][9];
 int userCells[9][9];
-int difficulty;
 int isGameActive;
 
 
@@ -137,28 +137,14 @@ void renderCourt()
     printf("%s \n", gameMessage);
     printf("\n");
 }
-void renderInfoBox(char *username, int score)
+void renderInfoBox(char *username, int *score, int difficulty)
 {
-    char difficultyText[20] = "";
-    switch (difficulty)
-    {
-        case EASY:
-            sprintf(difficultyText, "%s", "Einfach");
-            break;
-        case MEDIUM:
-            sprintf(difficultyText, "%s", "Mittel");
-            break;
-        case HARD:
-            sprintf(difficultyText, "%s", "Schwer");
-            break;
-        default:
-            break;
-    }
+    int remaining = getRemainingCells(arr);
+
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
     int bestscoreWidth = 9;
     int remainingBoxWith = 5;
-    int remaining = getRemainingCells(arr);
     char userStringTime[5];
     timeToString(timer(0), userStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
@@ -174,7 +160,7 @@ void renderInfoBox(char *username, int score)
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf( "Bestscore: %d%*s", score, bestscoreWidth - lenHelper(score), "");
+    printf( "Bestscore: %d%*s", *score, bestscoreWidth - lenHelper(*score), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -184,13 +170,28 @@ void renderInfoBox(char *username, int score)
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf( "Time: %s%*s", userStringTime, userBoxWith - strlen("00:00"), "");
+    printf( "Time: %s     ", userStringTime);
 
     setPrintingColor(KCYN);
     printf("|| ");
 
+    char _difficultyText[40];
+    switch (difficulty)
+    {
+        case EASY:
+            strcpy(_difficultyText,"Einfach");
+            break;
+        case MEDIUM:
+            strcpy(_difficultyText, "Mittel ");
+            break;
+        case HARD:
+            strcpy(_difficultyText,  "Schwer ");
+            break;
+        default:
+            break;
+    }
     setPrintingColor(KWHT);
-    printf( "Difficulty: %s%*s", difficultyText, difficultyBoxWith - strlen(difficultyText), "");
+    printf( "Difficulty: %s%*s", _difficultyText, difficultyBoxWith - strlen(_difficultyText), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -218,6 +219,7 @@ void renderGameMenu()
     printf("     ^ - Top         s - Solve All \n\n");
     printf("     v - Down        z - Zurueck \n\n");
     printf("                     k - Spielregeln \n\n");
+    printf("                     m - Markiere \n\n");
     printf("                     q - Beenden \n\n");
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
@@ -403,6 +405,14 @@ void renderHelpDialog()
     printEndOfTable();
 }
 
+void renderMarkModeMessage(){
+    printf("++============= Markieren-Modus ==============++\n");
+    printTableLine("    Sie sind im Markieren-Modus,           ");
+    printTableLine("    hier koennen Sie mögliche              ");
+    printTableLine("    nummer setzen. drücke < m >            ");
+    printTableLine("    um diesen Modus zu verlassen.          ");
+    printf("++============================================++\n");
+}
 
 int getRemainingCells(int array[][9])
 {
@@ -462,4 +472,15 @@ void printEmptyTableLine()
     printStartOfLine();
     printf("                                        ");
     printEndOfLine();
+}
+
+void clear_output(){
+#ifdef __unix__
+    system("clear");
+#endif
+
+#ifdef __WIN32__
+    system("cls");
+    windows = 1;
+#endif
 }

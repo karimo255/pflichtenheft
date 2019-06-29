@@ -7,6 +7,7 @@
 
 #endif //SUDOKU_VIEW_H
 
+void renderMarkModeMessage();
 void renderUsernameDialog(char *username);
 
 /**
@@ -37,7 +38,7 @@ void renderCourt();
  *
  * It shows the current session information
  */
-void renderInfoBox(char *username, int score);
+void renderInfoBox(char *username, int *score, int difficulty);
 
 /**
  * \brief Function to render the game menu
@@ -105,3 +106,6 @@ void printTableLine();
 void printEndOfTable();
 void printEmptyTableLine();
 
+void renderLoadingBar(int x);
+
+void clear_output();
