@@ -7,15 +7,13 @@
 
 
 #include "headers/core/game.h"
-#include "headers/shared/shared.h"
 #include "headers/services/user_service.h"
 #include "headers/services/score_service.h"
 #include "headers/services/connection.h"
 #include "libs/sqlite3.h"
 
 
-#define HEIGHT 760
-#define WIDTH 420
+
 
 #define TRUE 1
 #define FALSE 0
@@ -23,6 +21,7 @@
 #ifdef __unix__
 #include <termios.h>
 #include <unistd.h>
+#include <headers/core/view.h>
 
 static struct termios new_io;
 static struct termios old_io;
@@ -58,6 +57,8 @@ int getch(void)
 }
 
 #elif __WIN32__
+#define HEIGHT 760
+#define WIDTH 420
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -80,17 +81,20 @@ void resizeWindow() {
 
 
 
-int arr[9][9];
+
+int gameData[9][9];
 int deletedCells[9][9];
 int userCells[9][9];
 int difficulty;
 int isGameActive;
 int isSolvedAutomatic;
 int currentPosition;
-int os;
 char username[50] = "Name eingeben...";
 int *userID = 0;
 int *bestScore=0;
+int remaining=0;
+int marks[9][9][MAX_MARKS];
+
 
 int b = 0;
 
@@ -133,33 +137,30 @@ int main() {
 
             case IN_GAME:
                 if (isGameActive == 0) {
-                    resetGameData(arr);
+                    resetGameData(gameData);
                     resetGameData(deletedCells);
                     resetGameData(userCells);
-                    generateGameData(arr);
-                    deleteCells(arr, difficulty);
+                    generateGameData(gameData);
+                    deleteCells(gameData, difficulty);
                     isGameActive = 1;
                     timer(2);
                 }
                 // int s = getBestScoreByUserID(userID, p);
                 getBestScore(bestScore);
-                renderInfoBox(username, bestScore, difficulty);
-                for (int i = 0; i < MAX_MARKS; ++i) {
-                    if (marks[x][y][i] != 0){
-                        printf("| %d  ", marks[x][y][i]);
-                    }
-                }
-                printf("\n");
-                renderCourt(arr, userCells, x, y, gameMessage);
+                remaining = getRemainingCells(gameData);
+                renderInfoBox(username, bestScore, difficulty,remaining);
+                renderNotesBox(x_coordinate, y_coordinate);
+                renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
                 break;
 
             case SET_MARK:
                 getBestScore(bestScore);
-                renderInfoBox(username, bestScore, difficulty);
+                remaining = getRemainingCells(gameData);
+                renderInfoBox(username, bestScore, difficulty, remaining);
                 renderMarkModeMessage();
-                renderCourt(arr, userCells, x, y, gameMessage);
+                renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
                 break;
@@ -180,6 +181,7 @@ int main() {
                 break;
             case SOLVED_GAME:
                 renderSolvedGame(isSolvedAutomatic);
+                renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 break;
         }
 
@@ -197,53 +199,53 @@ void navigateTo(int pos)
     { // the real value
         case UP:
             // code for arrow up
-            x--;
+            x_coordinate--;
             break;
         case DOWN:
             // code for arrow down
-            x++;
+            x_coordinate++;
             break;
         case RIGHT:
             // code for arrow right
-            y++;
+            y_coordinate++;
             break;
         case LEFT:
             // code for arrow left
-            y--;
+            y_coordinate--;
             break;
         case UP_LINUX:
             // code for arrow up
-            x--;
+            x_coordinate--;
             break;
         case DOWN_LINUX:
             // code for arrow down
-            x++;
+            x_coordinate++;
             break;
         case RIGHT_LINUX:
             // code for arrow right
-            y++;
+            y_coordinate++;
             break;
         case LEFT_LINUX:
             // code for arrow left
-            y--;
+            y_coordinate--;
             break;
     }
 
-    if (x > 8)
+    if (x_coordinate > 8)
     {
-        x = 0;
+        x_coordinate = 0;
     }
-    if (x < 0)
+    if (x_coordinate < 0)
     {
-        x = 8;
+        x_coordinate = 8;
     }
-    if (y > 8)
+    if (y_coordinate > 8)
     {
-        y = 0;
+        y_coordinate = 0;
     }
-    if (y < 0)
+    if (y_coordinate < 0)
     {
-        y = 8;
+        y_coordinate = 8;
     }
 }
 void handleUserInput()
@@ -358,9 +360,9 @@ void handleUserInput()
 			case IN_GAME:
 				if (isdigit(userInput))
 				{
-					if (userCells[x][y] == 1)
+					if (userCells[x_coordinate][y_coordinate] == 1)
 					{
-						arr[x][y] = userInput - '0';
+						gameData[x_coordinate][y_coordinate] = userInput - '0';
 
                         isSolvedAutomatic = 0;
                         if (checkGameSolved() == 1)
@@ -376,13 +378,13 @@ void handleUserInput()
 					switch (userInput)
 					{
 					case 'h':
-						solveCell(arr, x, y);
+						solveCell(gameData, x_coordinate, y_coordinate);
 						 isSolvedAutomatic = 1;
 						break;
 					case 'q':
 						exitTheGame = 1;
 					case 'a':
-						resetGameData(arr);
+						resetGameData(gameData);
 						isGameActive = 0;
 
 					case 'z':
@@ -392,7 +394,7 @@ void handleUserInput()
 						currentPosition = HELP;
 						break;
                     case 's':
-                        solveAll(arr, deletedCells);
+                        solveAll(gameData, deletedCells);
                         isSolvedAutomatic = 1;
                         checkGameSolved();
                         break;
@@ -407,7 +409,7 @@ void handleUserInput()
 			    case SET_MARK :
                     if (isdigit(userInput))
                     {
-                        mark(x, y, userInput - '0');
+                        mark(x_coordinate, y_coordinate, userInput - '0');
                     }
                     if (isalpha(userInput))
                     {

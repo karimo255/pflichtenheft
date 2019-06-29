@@ -10,16 +10,16 @@
 #include <values.h>
 #include <unistd.h>
 
-int x=0;
-int y=0;
+int x_coordinate=0;
+int y_coordinate=0;
 int difficulty=EASY;
 char gameMessage[200] = {0};
 int isGameActive;
 int currentPosition=0;
 
 
-int arr[9][9] = {0};
-int marks[9][9][MAX_MARKS] = {0};
+int gameData[9][9] = {0};
+int marks[9][9][MAX_MARKS];
 int deletedCells[9][9] = {0};
 int userCells[9][9] = {0};
 
@@ -147,7 +147,7 @@ void generateGameData(int a[][9])
     time_t start_t, end_t;
     double diff_t;
     time(&start_t);
-    resetGameData(arr);
+    resetGameData(gameData);
     srand(time(NULL));
 
     for (int _x = 0; _x < 9; _x++)
@@ -157,7 +157,7 @@ void generateGameData(int a[][9])
             time(&end_t);
             diff_t = difftime(end_t, start_t);
             if(diff_t > 3){
-                generateGameData(arr);
+                generateGameData(gameData);
                 break; // das ist der fix;
 			}
             int number = generateRandomNumber();
@@ -302,20 +302,22 @@ void timeToString(int userTime, char stringTime[]) {
 
     if(seconds < 10){
         s[0] = '0';
+        s[1] = '\0';
     }
 
     if(minutes < 10){
         m[0] = '0';
+        m[1] = '\0';
     }
-
     sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds );
+    stringTime[9] = '\0';
 }
 
 
 int checkGameSolved()
 {
-    if (getGameStatus(arr) == FILLED) {
-        if (solveGame(arr) == 1) {
+    if (getGameStatus(gameData) == FILLED) {
+        if (solveGame(gameData) == 1) {
             currentPosition = SOLVED_GAME;
             isGameActive = 0;
             sprintf(gameMessage, "%s", "Das Spiel ist geloest");

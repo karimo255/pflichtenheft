@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <headers/core/game.h>
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
-#include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
 #ifdef __WIN32__
@@ -56,17 +56,18 @@ void setPrintingColor(char *color){
 void renderUsernameDialog(char *username) {
     setPrintingColor(KCYN);
 
-    printf("++==============Spieler Name ================++\n");
-    printf("|| Name: %s%*s ||\n", username, 33 - strlen(username), "");
-    printEmptyTableLine();
-    printTableLine("Sie koennen diesen Schritt ueberspringen,  ");
-    printTableLine("druecken Sie dafuer einfach Enter.         ");
-    printTableLine("                                          ");
-
+    printf(" ++============= Spieler Name ==============++\n");
+    char userNameRow[100];
+    sprintf(userNameRow, "Name: %s%*s ", username, 33 - strlen(username), "");
+    printTableLine(userNameRow);
+    printTableLine("Sie koennen diesen Schritt              ");
+    printTableLine("ueberspringen, druecken Sie             ");
+    printTableLine("dafuer einfach Enter.                   ");
+    printTableLine("                                        ");
     printEndOfTable();
 }
 
-void renderCourt()
+void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate)
 {
     int padding = 5;
     printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
@@ -75,7 +76,7 @@ void renderCourt()
         for (int j = 0; j < 9; j++)
         {
 
-            int number = arr[i][j];
+            int number = gameData[i][j];
             if (j % 3 == 0)
             {
                 if(j == 0){
@@ -89,7 +90,7 @@ void renderCourt()
                 printColoredString("| ", KGRN, 0);
             }
 
-            if (i == x && j == y)
+            if (i == x_coordinate && j == y_coordinate)
             {
                 if (number > 0)
                 {
@@ -102,7 +103,7 @@ void renderCourt()
             }
             else
             {
-                if (arr[i][j] > 0)
+                if (gameData[i][j] > 0)
                 {
                     if (userCells[i][j] == 1)
                     {
@@ -137,15 +138,14 @@ void renderCourt()
     printf("%s \n", gameMessage);
     printf("\n");
 }
-void renderInfoBox(char *username, int *score, int difficulty)
+void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
 {
-    int remaining = getRemainingCells(arr);
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
     int bestscoreWidth = 9;
     int remainingBoxWith = 5;
-    char userStringTime[5];
+    char userStringTime[10];
     timeToString(timer(0), userStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
 
@@ -176,7 +176,7 @@ void renderInfoBox(char *username, int *score, int difficulty)
     printf("|| ");
 
     char _difficultyText[40];
-    switch (difficulty)
+    switch (_difficulty)
     {
         case EASY:
             strcpy(_difficultyText,"Einfach");
@@ -211,15 +211,15 @@ void renderInfoBox(char *username, int *score, int difficulty)
 void renderGameMenu()
 {
     setPrintingColor(KCYN);
-    printf("    %s Movement        Commands\n\n", KCYN);
+    printf("    %s Navigation      Befehle\n\n", KCYN);
 
     setPrintingColor(KWHT);
-    printf("     > - Right       h - Give a hint\n\n");
+    printf("     > - Right       h - Tipp\n\n");
     printf("     < - Left        a - Abbrechen \n\n");
-    printf("     ^ - Top         s - Solve All \n\n");
+    printf("     ^ - Top         s - Loesung anzeigen \n\n");
     printf("     v - Down        z - Zurueck \n\n");
     printf("                     k - Spielregeln \n\n");
-    printf("                     m - Markiere \n\n");
+    printf("                     m - Notiz eintragen \n\n");
     printf("                     q - Beenden \n\n");
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
@@ -244,13 +244,12 @@ void renderSolvedGame(int solvedAutomatic)
     printEndOfTable();
 
     printTableLine("Das fertige Spielbrett:                 ");
-    renderCourt();
 }
 
 void renderMenu()
 {
     setPrintingColor(KCYN);
-    printf("++================== Menu =================++\n");
+    printf(" ++================== Menu =================++\n");
     printEmptyTableLine();
     if (isGameActive > 0)
     {
@@ -261,7 +260,7 @@ void renderMenu()
     }
 
     printEmptyTableLine();
-    printTableLine("          b - BestenListe               ");
+    printTableLine("          b - Bestenliste               ");
     printEmptyTableLine();
     printTableLine("          k - Spielregeln               ");
     printEmptyTableLine();
@@ -273,23 +272,19 @@ void renderMenu()
 void print_list(struct score *head){
     struct score * current = head->next; // note: head->next instead of head to skip the first empty element
     setPrintingColor(KCYN);
-    printf("|| %s%*s| %s%*s ||\n", "Spieler", 19 - strlen("Spieler"),"", "Score", 18 - strlen("Score"),"");
+    char screenTitle[100];
+    sprintf(screenTitle,"%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"),"", "Score", 18 - strlen("Score"),"");
+    printTableLine(screenTitle);
     printEmptyTableLine();
     while (current!= NULL && current->next != NULL) { // note: current->next instead of current to skip the first empty element
         if(current->userId == 2) {
-            setPrintingColor(KCYN);
-            printf("|| ");
-            setPrintingColor(KYEL);
-            printf("%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
-            setPrintingColor(KCYN);
-            printf("||\n");
+            char scoreRow[100];
+            sprintf(scoreRow,"%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
+            printTableLine(scoreRow);
         } else{
-            setPrintingColor(KCYN);
-            printf("|| ");
-            setPrintingColor(KWHT);
-            printf("%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
-            setPrintingColor(KCYN);
-            printf("||\n");
+            char scoreRow[100];
+            sprintf(scoreRow,"%s%*s | %d%*s", current->name, 18 - strlen(current->name),"", current->time, 19 - lenHelper(current->time),"");
+            printTableLine(scoreRow);
         }
 
         current = current->next;
@@ -297,7 +292,7 @@ void print_list(struct score *head){
 }
 
 void renderDBestScoreDialog(){
-    printf("++============= Bestenliste ===============++\n");
+    printf(" ++============= Bestenliste ===============++\n");
     printEmptyTableLine();
     printTableLine("             e - Einfach                ");
     printTableLine("             m - Mittel                 ");
@@ -307,7 +302,7 @@ void renderDBestScoreDialog(){
     printTableLine("Bitte Waehlen Sie                       ");
     printEmptyTableLine();
     printTableLine("z- Zurueck                              ");
-    printf("++=========================================++\n");
+    printEndOfTable();
 }
 
 void renderDetails(struct score *scores, int difficulty)
@@ -326,7 +321,7 @@ void renderDetails(struct score *scores, int difficulty)
     }
 
     setPrintingColor(KCYN);
-    printf("++======== Bestenliste ( %s) =========++\n", difficultyText);
+    printf(" ++======== Bestenliste ( %s) =========++\n", difficultyText);
 
     print_list(scores);
 
@@ -342,7 +337,7 @@ void renderDifficultyDialog()
 {
     setPrintingColor(KCYN);
 
-    printf("++====== Schwierigkeiteinstellungen  ======++\n");
+    printf(" ++====== Schwierigkeitseinstellungen ======++\n");
 
 
     printEmptyTableLine();
@@ -360,7 +355,7 @@ void renderDifficultyDialog()
     printEmptyTableLine();
 
 
-    printTableLine("        Waehle die gewuenschte          ");
+    printTableLine("        Waehlen Sie die gewuenschte     ");
     printTableLine("        Schwierigkeitsstufe aus.        ");
     printEmptyTableLine();
     printEndOfTable();
@@ -370,7 +365,7 @@ void renderDifficultyDialog()
 void renderHelpDialog()
 {
 
-    printf("%s++=========== Die Spielregeln  ============++%s\n",KCYN,KWHT);
+    printf("%s ++=========== Die Spielregeln =============++%s\n",KCYN,KWHT);
     printEmptyTableLine();
     printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
     printTableLine("Puzzlefeld besteht aus einem Quadrat,   ");
@@ -406,12 +401,12 @@ void renderHelpDialog()
 }
 
 void renderMarkModeMessage(){
-    printf("++============= Markieren-Modus ==============++\n");
-    printTableLine("    Sie sind im Markieren-Modus,           ");
-    printTableLine("    hier koennen Sie mögliche              ");
-    printTableLine("    nummer setzen. drücke < m >            ");
-    printTableLine("    um diesen Modus zu verlassen.          ");
-    printf("++============================================++\n");
+    printf(" ++============= Markieren-Modus ============++\n");
+    printTableLine("    Sie sind im Markieren-Modus,         ");
+    printTableLine("    hier koennen Sie mögliche            ");
+    printTableLine("    Zahlen setzen. Drücken Sie < m >     ");
+    printTableLine("    um diesen Modus zu verlassen.        ");
+    printEndOfTable();
 }
 
 int getRemainingCells(int array[][9])
@@ -442,7 +437,7 @@ int lenHelper(int x) {
 void printStartOfLine()
 {
     setPrintingColor(KCYN);
-    printf("|| ");
+    printf(" || ");
 }
 
 void printEndOfLine()
@@ -461,10 +456,25 @@ void printTableLine(char text[])
     printEndOfLine();
 }
 
+void renderNotesBox(int x,int y){
+    printf("     "); // padding-left
+    for (int j = 0; j < y_coordinate - y_coordinate % 3; ++j) {
+        printf("    ");
+    }
+    for (int i = 0; i < MAX_MARKS; ++i) {
+        if (marks[x_coordinate][y_coordinate][i] != 0){
+            printf("| %d ", marks[x_coordinate][y_coordinate][i]);
+        } else {
+            printf("|   ", marks[x_coordinate][y_coordinate][i]);
+        }
+    }
+    printf("|\n");
+}
+
 void printEndOfTable()
 {
     setPrintingColor(KCYN);
-    printf("++=========================================++\n");
+    printf(" ++=========================================++\n");
 }
 
 void printEmptyTableLine()

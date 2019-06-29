@@ -1,16 +1,21 @@
-#include "view.h"
 
 //
 // Created by karim on 24.06.19.
 //
-#define MAX_MARKS 4
+#ifndef SUDOKU_GAME_H
+#define SUDOKU_GAME_H
+
+
+#include <headers/shared/shared.h>
+
+extern int marks[9][9][MAX_MARKS];
 
 
 /// x-coordinate of the cursor.
-extern int x;
+extern int x_coordinate;
 
 /// y-coordinate of the cursor.
-extern int y;
+extern int y_coordinate;
 
 /// game difficulty.
 extern int difficulty;
@@ -25,9 +30,7 @@ extern int isGameActive;
 extern int currentPosition;
 
 /// array which holds the game data.
-extern int arr[9][9];
-
-extern int marks[9][9][MAX_MARKS];
+extern int gameData[9][9];
 
 /// array which holds deleted cells to keep track of them.
 extern int deletedCells[9][9];
@@ -150,3 +153,4 @@ void timeToString(int userTime, char stringTime[]);
 
 int checkGameSolved();
 
+#endif //SUDOKU_GAME_H

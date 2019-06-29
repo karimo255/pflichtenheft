@@ -2,6 +2,8 @@
 // Created by karim on 24.06.19.
 //
 
+#include <headers/shared/shared.h>
+
 #ifndef SUDOKU_VIEW_H
 #define SUDOKU_VIEW_H
 
@@ -31,14 +33,13 @@ void renderDetails(struct score *scores, int difficulty);
  *
  * It shows the game grid
  */
-void renderCourt();
-
+void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate);
 /**
  * \brief Function to render infos about current session
  *
  * It shows the current session information
  */
-void renderInfoBox(char *username, int *score, int difficulty);
+void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
 
 /**
  * \brief Function to render the game menu
@@ -109,3 +110,6 @@ void printEmptyTableLine();
 void renderLoadingBar(int x);
 
 void clear_output();
+
+
+void renderNotesBox(int x,int y);
