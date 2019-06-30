@@ -136,7 +136,8 @@ void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_c
             printf("%s+\n", KCYN);
         }
     }
-    printf("%s \n", gameMessage);
+    printf("\n");
+    printf("        %s%s \n",KYEL , gameMessage);
     printf("\n");
 }
 void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
@@ -144,8 +145,10 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 9;
+    int bestscoreWidth = 10;
     int remainingBoxWith = 5;
+    int hilfeWidth = 12;
+    int tippWidth = 8;
     char userStringTime[10];
     timeToString(timer(0), userStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
@@ -203,6 +206,24 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
 
     setPrintingColor(KWHT);
     printf( "Remaining: %d%*s", remaining, remainingBoxWith - lenHelper(remaining), "");
+
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
+    printf( "Hilfe: %d/%d%*s", anzahlDerHilfe, erlaubteAnzahlDerHilfe, hilfeWidth - lenHelper(anzahlDerHilfe)-lenHelper(erlaubteAnzahlDerHilfe), "");
+
+    setPrintingColor(KCYN);
+    printf("||\n");
+
+
+
+    // third row
+    setPrintingColor(KCYN);
+    printf("  || ");
+
+    setPrintingColor(KWHT);
+    printf( "Tipps: %d/%d%*s", anzahlDerTipps,erlaubteAnzahlDerTipps, tippWidth - lenHelper(anzahlDerTipps)-lenHelper(erlaubteAnzahlDerTipps), "");
 
     setPrintingColor(KCYN);
     printf("||                     ||\n");
@@ -465,14 +486,26 @@ void renderNotesBox(int x,int y){
     for (int j = 0; j < y_coordinate - y_coordinate % 3; ++j) {
         printf("    ");
     }
+    int shouldDisplay = 0;
     for (int i = 0; i < MAX_MARKS; ++i) {
         if (marks[x_coordinate][y_coordinate][i] != 0){
-            printf("| %d ", marks[x_coordinate][y_coordinate][i]);
-        } else {
-            printf("|   ", marks[x_coordinate][y_coordinate][i]);
+            shouldDisplay++;
+            break;
         }
     }
-    printf("|\n");
+    if (shouldDisplay){
+        for (int i = 0; i < MAX_MARKS; ++i) {
+            if (marks[x_coordinate][y_coordinate][i] != 0){
+                printf("| %d ", marks[x_coordinate][y_coordinate][i]);
+            } else {
+                printf("|   ", marks[x_coordinate][y_coordinate][i]);
+            }
+        }
+        printf("|\n");
+    } else{
+        printf("\n");
+    }
+
 }
 
 void printEndOfTable()

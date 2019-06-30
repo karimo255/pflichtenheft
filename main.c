@@ -65,7 +65,7 @@ sqlite3 *connection;
 
 void resizeWindow() {
 #ifdef __unix__
-    system("resize -s 47 48");
+    system("resize -s 48 48");
 #endif
 
 #ifdef __WIN32__
@@ -82,7 +82,7 @@ int difficulty;
 int isGameActive;
 int isSolvedAutomatic;
 int currentPosition;
-char username[50] = "Name eingeben...";
+char username[50] = "Name eingeben...\0";
 int *userID = 0;
 int *bestScore = 0;
 int remaining = 0;
@@ -94,6 +94,32 @@ int b = 0;
 struct score *scores = NULL;
 void checkGameState();
 void renderGame();
+
+int anzahlDerTipps=0;
+int anzahlDerHilfe = 0;
+
+
+int erlaubteAnzahlDerTipps=0;
+int erlaubteAnzahlDerHilfe = 0;
+
+void setConfig() {
+    anzahlDerTipps=0;
+    anzahlDerHilfe = 0;
+    switch (difficulty){
+        case EASY:
+            erlaubteAnzahlDerHilfe=5;
+            erlaubteAnzahlDerTipps=8;
+            break;
+        case MEDIUM:
+            erlaubteAnzahlDerHilfe=3;
+            erlaubteAnzahlDerTipps=5;
+            break;
+        case HARD:
+            erlaubteAnzahlDerHilfe=2;
+            erlaubteAnzahlDerTipps=3;
+            break;
+    }
+}
 
 int main() {
 
@@ -214,6 +240,7 @@ void handleUserInput() {
                 b++;
             }
         } else if (strlen(username) > 0) {
+            username[b] = '\0';
             if (strcmp(username, "Name eingeben...") == 0) {
                 strcpy(username, "anonym");
             } else {
@@ -239,16 +266,19 @@ void handleUserInput() {
                             case 'a':
                                 difficulty = EASY;
                                 currentPosition = IN_GAME;
+                                setConfig();
                                 break;
 
                             case 'b':
                                 difficulty = MEDIUM;
                                 currentPosition = IN_GAME;
+                                setConfig();
                                 break;
 
                             case 'c':
                                 difficulty = HARD;
                                 currentPosition = IN_GAME;
+                                setConfig();
                                 break;
                         }
                     }
@@ -298,12 +328,33 @@ void handleUserInput() {
                     } else if (isalpha(userInput)) {
                         switch (userInput) {
                             case 'h':
-                                solveCell(gameData, x_coordinate, y_coordinate);
-                                timer(HELP_USED);
+                                if (deletedCells[x_coordinate][y_coordinate] > 0) {
+                                    if (anzahlDerHilfe == erlaubteAnzahlDerHilfe){
+                                        strcpy(gameMessage, "Anzahl der Hilfen verbraucht.");
+                                        break;
+                                    }
+                                    anzahlDerHilfe++;
+                                    solveCell(gameData, x_coordinate, y_coordinate);
+                                    timer(HELP_USED);
+                                } else{
+                                    strcpy(gameMessage, "Zelle ist nicht leer.");
+                                }
+
+
                                 break;
                             case 't':
-                                fillNotesForCell(x_coordinate, y_coordinate);
-                                timer(TIPP_USED);
+                                if (deletedCells[x_coordinate][y_coordinate] > 0) {
+                                    if (anzahlDerTipps == erlaubteAnzahlDerHilfe){
+                                        strcpy(gameMessage, "Anzahl der Tipps verbraucht.");
+                                        break;
+                                    }
+                                    anzahlDerTipps++;
+                                    fillNotesForCell(x_coordinate, y_coordinate);
+                                    timer(TIPP_USED);
+                                } else {
+                                    strcpy(gameMessage, "Tipp ist nicht verfuegbar");
+                                }
+
                                 break;
                             case 'q':
                                 exitTheGame = 1;
@@ -325,7 +376,11 @@ void handleUserInput() {
                                 isSolvedAutomatic = 1;
                                 break;
                             case 'm':
-                                currentPosition = SET_MARK;
+                                if (gameData[x_coordinate][y_coordinate] == 0){
+                                    currentPosition = SET_MARK;
+                                } else{
+                                    strcpy(gameMessage, "Markiere-Mous nicht verfuegbar.");
+                                }
                                 break;
                         }
                     }

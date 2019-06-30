@@ -29,18 +29,18 @@ time_t start, end, _pause;
 
 void fillNotesForCell(int x_coordinate, int y_coordinate)
 {
-    int randomIndexForSolution = rand() % 2;
-    marks[x_coordinate][y_coordinate][randomIndexForSolution] = deletedCells[x_coordinate][y_coordinate];
-    for (int i = 0; i < MAX_MARKS; i++) {
-        if(marks[x_coordinate][y_coordinate][i] == 0) {
-            int number = generateRandomNumber();
-            if (isElementInArray(marks[x_coordinate][y_coordinate], number,MAX_MARKS) > 0) {
-                i--;
-                continue;
+        int randomIndexForSolution = rand() % 2;
+        marks[x_coordinate][y_coordinate][randomIndexForSolution] = deletedCells[x_coordinate][y_coordinate];
+        for (int i = 0; i < MAX_MARKS; i++) {
+            if(marks[x_coordinate][y_coordinate][i] == 0) {
+                int number = generateRandomNumber();
+                if (isElementInArray(marks[x_coordinate][y_coordinate], number,MAX_MARKS) > 0) {
+                    i--;
+                    continue;
+                }
+                marks[x_coordinate][y_coordinate][i] = number;
             }
-            marks[x_coordinate][y_coordinate][i] = number;
         }
-    }
 }
 
 void solveCell(int array[][9], int x, int y)
@@ -164,14 +164,19 @@ void generateGameData(int a[][9])
     time(&start_t);
     resetGameData(gameData);
     srand(time(NULL));
+    int steps=0;
+    system("clear");
+    printf("          Generieren von Spieldaten....\n");
+    usleep(500000);
 
     for (int _x = 0; _x < 9; _x++)
     {
         for (int _y = 0; _y < 9; _y++)
         {
+            steps++;
             time(&end_t);
             diff_t = difftime(end_t, start_t);
-            if(diff_t > 3){
+            if(diff_t > 2){
                 generateGameData(gameData);
                 break; // das ist der fix;
 			}
@@ -200,6 +205,7 @@ void generateGameData(int a[][9])
             a[_x][_y] = number;
         }
     }
+    printf("\n");
 }
 
 

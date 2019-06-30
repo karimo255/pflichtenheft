@@ -39,6 +39,13 @@ extern int deletedCells[9][9];
 /// array which holds the coordinates of user cells (cells to solve) to keep track of theme.
 extern int userCells[9][9];
 
+extern int anzahlDerTipps;
+extern int anzahlDerHilfe;
+
+
+extern int erlaubteAnzahlDerTipps;
+extern int erlaubteAnzahlDerHilfe;
+
 void fillNotesForCell(int x_coordinate, int y_coordinate);
 
 
