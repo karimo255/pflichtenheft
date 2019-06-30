@@ -83,7 +83,7 @@ int isGameActive;
 int isSolvedAutomatic;
 int currentPosition;
 char username[50] = "Name eingeben...\0";
-char password[4] = {0};
+char password[6] = {0};
 int *userID = 0;
 int *bestScore = 0;
 int remaining = 0;
@@ -171,7 +171,7 @@ void checkGameState() {
     int score = timer(TIMER_STATE);
 
     char t[6];
-    timeToString(score, t);
+  //  timeToString(score, t);
 }
 
 void navigateTo(int pos) {
@@ -249,6 +249,8 @@ void handleUserInput() {
             }
         } else if (strlen(username) > 0) { // enter
             username[b] = '\0';
+
+            b = 0;
             if (strcmp(username, "Name eingeben...") == 0 || strcmp(username, "") == 0) {
                 strcpy(username, "anonym");
             } else{
@@ -263,29 +265,54 @@ void handleUserInput() {
     } else if(currentPosition == SET_PASSWORD) {
         ch = getch();
 
-        if (ch != 13 && ch != '\n' && ch != EOF) {
-            if (password[0] == 0) resetArray(password, 8);
-            if (ch == 27) { // escape
-                currentPosition = DIFFICULTY_DIALOG;
-            } else if (ch == 127 || ch == 8) {
+        printf("%d\n", ch);
+        if (ch != 13 && ch != '\n' && ch != EOF) { // not enter
+         //   if (password[0] == 0) resetArray(password, 8);
+         printf("size of pass %d\n", strlen(password));
+            if (ch == 127 || ch == 8) { // delete backspace
                 b--;
                 if (b < 0) {
                     b = 0;
                 }
                 password[b] = 0;
 
-            } else if (b < 8) {
+            } else if (b < 6) {
                 password[b] = ch;
                 b++;
             }
-        } else if (strlen(username) > 0) {
-            username[b] = '\0';
-            if (strcmp(username, "Name eingeben...") == 0) {
-                strcpy(username, "anonym");
-            } else {
-                registerUser(username, password, userID);
-            }
+        } else { // enter
+            registerUser(username, password, userID);
             currentPosition = DIFFICULTY_DIALOG;
+        }
+    }else if(currentPosition == ENTER_PASSWORD) {
+        ch = getch();
+
+        if (ch != 13 && ch != '\n' && ch != EOF) { // not enter
+            if (ch == 127 || ch == 8) { // delete backspace
+                b--;
+                if (b < 0) {
+                    b = 0;
+                }
+                password[b] = 0;
+
+            } else if (b < 6) {
+                password[b] = ch;
+                b++;
+            }
+        } else { // enter
+            int *id=0;
+            id = malloc(sizeof(int));
+
+            loginUser(username,password, id);
+            if(*id > 0){
+                currentPosition = DIFFICULTY_DIALOG;
+             //   strcpy(gameMessage, "Passwort ist falsch");
+            } else{
+                char loginMessage[50];
+                strcpy(gameMessage, "Passwort ist falsch");
+                resetArray(password,6);
+                b =0;
+            }
         }
     }
     else {
@@ -511,10 +538,10 @@ void renderGame() {
         clear_output();
         switch (currentPosition) {
             case SET_PASSWORD:
-                printf("set_pass\n");
+                renderSetPassword();
                 break;
             case ENTER_PASSWORD:
-                printf("enter pass\n");
+                renderEnterPassword();
                 break;
             case MENU:
                 renderMenu();

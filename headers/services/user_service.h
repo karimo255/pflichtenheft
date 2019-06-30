@@ -14,6 +14,7 @@
 
 int registerUser(char username[], char password[], int *newUserId);
 
+void loginUser(char username[], char password[], int*id);
 
 int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
 

@@ -113,3 +113,7 @@ void clear_output();
 
 
 void renderNotesBox(int x,int y);
+
+void renderSetPassword();
+
+void renderEnterPassword();

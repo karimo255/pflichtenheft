@@ -251,6 +251,22 @@ void renderSolvedGame(int solvedAutomatic) {
 
 }
 
+void renderSetPassword(){
+    printf(" ++=========== Password setzen =============++\n");
+    printEmptyTableLine();
+    printTableLine(" Password setzen:                       ");
+    printEmptyTableLine();
+    printEndOfTable();
+}
+
+void renderEnterPassword(){
+    printf(" ++=========== Password eingeben ===========++\n");
+    printEmptyTableLine();
+    printTableLine(" Password eingeben:                     ");
+    printEmptyTableLine();
+    printEndOfTable();
+}
+
 void renderMenu() {
     setPrintingColor(KCYN);
     printf(" ++================== Menu =================++\n");
