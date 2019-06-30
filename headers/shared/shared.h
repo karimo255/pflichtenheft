@@ -19,17 +19,16 @@ extern enum DIFFICULTY ///< max. deleted cells per box
 };
 
 extern enum ACTIONS {
-    TIMER_STATE=0,
-    TIMER_START=1,
-    TIMER_PAUSE=2,
-    TIPP_USED=3,
+    TIMER_STATE = 0,
+    TIMER_START = 1,
+    TIMER_PAUSE = 2,
+    TIPP_USED = 3,
     HELP_USED,
     RESET_TIMER,
 };
 
 /// Positions enum
-extern enum POSITIONS
-{
+extern enum POSITIONS {
     MENU = 0, ///< MENU
     IN_GAME = 1, ///< IN_GAME
     DIFFICULTY_DIALOG = 2, ///< DIFFICULTY_DIALOG
@@ -42,19 +41,18 @@ extern enum POSITIONS
 };
 
 /// Grid-Status enum
-enum GRID_STATUS
-{
-    FILLED=1, ///< DETAILS
-    NOT_FILLED=0 ///< DETAILS
+enum GRID_STATUS {
+    FILLED = 1, ///< DETAILS
+    NOT_FILLED = 0 ///< DETAILS
 };
 
 /// Arrows enum
-enum ARROWS{
-    UP=72, ///< UP
+enum ARROWS {
+    UP = 72, ///< UP
     DOWN = 80, ///< DOWN
-    LEFT=75, ///< LEFT
-    RIGHT=77, ///< RIGHT
-    UP_LINUX=65, ///< RIGHT ON UNIX
+    LEFT = 75, ///< LEFT
+    RIGHT = 77, ///< RIGHT
+    UP_LINUX = 65, ///< RIGHT ON UNIX
     DOWN_LINUX = 66, ///< DOWN ON UNIX
     RIGHT_LINUX = 67, ///< DOWN ON UNIX
     LEFT_LINUX = 68, ///< DOWN ON UNIX

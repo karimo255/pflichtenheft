@@ -92,31 +92,33 @@ int marks[9][9][MAX_MARKS];
 int b = 0;
 
 struct score *scores = NULL;
+
 void checkGameState();
+
 void renderGame();
 
-int anzahlDerTipps=0;
+int anzahlDerTipps = 0;
 int anzahlDerHilfe = 0;
 
 
-int erlaubteAnzahlDerTipps=0;
+int erlaubteAnzahlDerTipps = 0;
 int erlaubteAnzahlDerHilfe = 0;
 
 void setConfig() {
-    anzahlDerTipps=0;
+    anzahlDerTipps = 0;
     anzahlDerHilfe = 0;
-    switch (difficulty){
+    switch (difficulty) {
         case EASY:
-            erlaubteAnzahlDerHilfe=5;
-            erlaubteAnzahlDerTipps=8;
+            erlaubteAnzahlDerHilfe = 5;
+            erlaubteAnzahlDerTipps = 8;
             break;
         case MEDIUM:
-            erlaubteAnzahlDerHilfe=3;
-            erlaubteAnzahlDerTipps=5;
+            erlaubteAnzahlDerHilfe = 3;
+            erlaubteAnzahlDerTipps = 5;
             break;
         case HARD:
-            erlaubteAnzahlDerHilfe=2;
-            erlaubteAnzahlDerTipps=3;
+            erlaubteAnzahlDerHilfe = 2;
+            erlaubteAnzahlDerTipps = 3;
             break;
     }
 }
@@ -150,28 +152,25 @@ int main() {
     return 0;
 }
 
-void checkGameState(){
-        if (isGameActive && getGameStatus(gameData) == FILLED) {
-            int solveState = solveGame(gameData);
-            if(solveState == 1){
-                if(*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0 ){
-                    int _score = timer(TIMER_STATE);
-                    printf("score =>  %d", _score);
-                    insertScore(userID, _score, difficulty);
-                }
-                currentPosition = SOLVED_GAME;
-                isGameActive=0;
-            } else{
-
-                strcpy(gameMessage, "Das Spiel ist nicht korrekt geloest.");
+void checkGameState() {
+    if (isGameActive && getGameStatus(gameData) == FILLED) {
+        int solveState = solveGame(gameData);
+        if (solveState == 1) {
+            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0) {
+                int _score = timer(TIMER_STATE);
+                insertScore(userID, _score, difficulty);
             }
+            currentPosition = SOLVED_GAME;
+            isGameActive = 0;
+        } else {
+
+            strcpy(gameMessage, "Das Spiel ist nicht korrekt geloest.");
         }
+    }
     int score = timer(TIMER_STATE);
 
-    printf("score =>  %d\n", score);
     char t[6];
-    timeToString(score,t);
-    printf("score =>  %s\n", t);
+    timeToString(score, t);
 }
 
 void navigateTo(int pos) {
@@ -336,14 +335,14 @@ void handleUserInput() {
                         switch (userInput) {
                             case 'h':
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
-                                    if (anzahlDerHilfe == erlaubteAnzahlDerHilfe){
+                                    if (anzahlDerHilfe == erlaubteAnzahlDerHilfe) {
                                         strcpy(gameMessage, "Anzahl der Hilfen verbraucht.");
-                                       // break;
+                                        // break;
                                     }
                                     anzahlDerHilfe++;
                                     solveCell(gameData, x_coordinate, y_coordinate);
                                     timer(HELP_USED);
-                                } else{
+                                } else {
                                     strcpy(gameMessage, "Zelle ist nicht leer.");
                                 }
 
@@ -351,7 +350,7 @@ void handleUserInput() {
                                 break;
                             case 't':
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
-                                    if (anzahlDerTipps == erlaubteAnzahlDerTipps){
+                                    if (anzahlDerTipps == erlaubteAnzahlDerTipps) {
                                         strcpy(gameMessage, "Anzahl der Tipps verbraucht.");
                                         break;
                                     }
@@ -383,9 +382,9 @@ void handleUserInput() {
                                 isSolvedAutomatic = 1;
                                 break;
                             case 'm':
-                                if (gameData[x_coordinate][y_coordinate] == 0){
+                                if (gameData[x_coordinate][y_coordinate] == 0) {
                                     currentPosition = SET_MARK;
-                                } else{
+                                } else {
                                     strcpy(gameMessage, "Markiere-Mous nicht verfuegbar.");
                                 }
                                 break;
@@ -474,7 +473,7 @@ void handleUserInput() {
 }
 
 
-void renderGame(){
+void renderGame() {
     while (!exitTheGame) {
         clear_output();
         switch (currentPosition) {
@@ -494,13 +493,12 @@ void renderGame(){
                     resetGameData(userCells);
                     generateGameData(gameData);
                     deleteCells(gameData, difficulty);
-                    resetArray(marks[x_coordinate][y_coordinate],MAX_MARKS);
+                    resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
                     isGameActive = 1;
                     timer(TIMER_START);
-                    isSolvedAutomatic=0;
+                    isSolvedAutomatic = 0;
                 }
 
-                // int s = getBestScoreByUserID(userID, p);
                 getBestScore(bestScore);
                 remaining = getRemainingCells(gameData);
                 renderInfoBox(username, bestScore, difficulty, remaining);
