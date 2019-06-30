@@ -26,6 +26,10 @@ int lastInsertIdCallBack(void *userID, int argc, char **argv, char **azColName) 
 
 int getLastInsertId(int *newUserId) {
 	sprintf(sql, "SELECT last_insert_rowid()");
+
+    fflush(stdout);
+    clear_output();
+
 	int rc = sqlite3_exec(connection, sql, lastInsertIdCallBack, newUserId, &zErrMsg);
 	if (!rc == SQLITE_OK) {
         return -1;
@@ -37,6 +41,10 @@ int getLastInsertId(int *newUserId) {
 
 registerUser(char username[], int *newUserId) {
 	sprintf(sql, "INSERT INTO `User` (name) VALUES(\"%s\");", username);
+
+    fflush(stdout);
+    clear_output();
+
 	int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
 
 	if (!rc == SQLITE_OK) {
@@ -48,7 +56,11 @@ registerUser(char username[], int *newUserId) {
 }
 
 int createDatabaseIfNotExist() {
-    sprintf(sql, "CREATE DATABASE IF NOT EXISTS \"huso\";");
+    sprintf(sql, "CREATE DATABASE IF NOT EXISTS \"sudoku\";");
+
+    fflush(stdout);
+    clear_output();
+
     int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
     if (!rc == SQLITE_OK) {
         return 1;
@@ -60,6 +72,10 @@ int createDatabaseIfNotExist() {
 
 int createTables() {
     sprintf(sql, "CREATE TABLE \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL); CREATE TABLE \"Score\" (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`);");
+
+    fflush(stdout);
+    clear_output();
+
     int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
     if (!rc == SQLITE_OK) {
         return 1;
