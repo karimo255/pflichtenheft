@@ -38,6 +38,8 @@ extern enum POSITIONS {
     DETAILS_DIALOG = 6,
     SOLVED_GAME = 7, ///< SOLVED_GAME
     SET_MARK = 8,
+    SET_PASSWORD = 9,
+    ENTER_PASSWORD = 10,
 };
 
 /// Grid-Status enum

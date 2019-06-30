@@ -12,6 +12,9 @@
  */
 
 
-registerUser(char username[], int *newUserId);
+int registerUser(char username[], char password[], int *newUserId);
 
 
+int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
+
+void getUserID(char username[30], int *userID);

@@ -83,6 +83,7 @@ int isGameActive;
 int isSolvedAutomatic;
 int currentPosition;
 char username[50] = "Name eingeben...\0";
+char password[4] = {0};
 int *userID = 0;
 int *bestScore = 0;
 int remaining = 0;
@@ -230,8 +231,8 @@ void handleUserInput() {
     if (currentPosition == USER_NAME) {
         ch = getch();
 
-        if (ch != 13 && ch != '\n' && ch != EOF) {
-            if (strcmp(username, "Name eingeben...") == 0 || strcmp(username, "anonym") == 0) resetArray(username, 30);
+        if (ch != 13 && ch != '\n' && ch != EOF) { // no enter
+            if (strcmp(username, "Name eingeben...") == 0 ) resetArray(username, 30);
             if (ch == 27) { // escape
                 strcpy(username, "anonym");
                 currentPosition = DIFFICULTY_DIALOG;
@@ -246,16 +247,48 @@ void handleUserInput() {
                 username[b] = ch;
                 b++;
             }
+        } else if (strlen(username) > 0) { // enter
+            username[b] = '\0';
+            if (strcmp(username, "Name eingeben...") == 0 || strcmp(username, "") == 0) {
+                strcpy(username, "anonym");
+            } else{
+                getUserID(username, userID);
+                if(*userID > 0) {
+                    currentPosition = ENTER_PASSWORD;
+                } else {
+                    currentPosition = SET_PASSWORD;
+                }
+            }
+        }
+    } else if(currentPosition == SET_PASSWORD) {
+        ch = getch();
+
+        if (ch != 13 && ch != '\n' && ch != EOF) {
+            if (password[0] == 0) resetArray(password, 8);
+            if (ch == 27) { // escape
+                currentPosition = DIFFICULTY_DIALOG;
+            } else if (ch == 127 || ch == 8) {
+                b--;
+                if (b < 0) {
+                    b = 0;
+                }
+                password[b] = 0;
+
+            } else if (b < 8) {
+                password[b] = ch;
+                b++;
+            }
         } else if (strlen(username) > 0) {
             username[b] = '\0';
             if (strcmp(username, "Name eingeben...") == 0) {
                 strcpy(username, "anonym");
             } else {
-                registerUser(username, userID);
+                registerUser(username, password, userID);
             }
             currentPosition = DIFFICULTY_DIALOG;
         }
-    } else {
+    }
+    else {
 
         if ((userInput = getch()) == 224) {
             navigateTo(getch()); // windows
@@ -477,6 +510,12 @@ void renderGame() {
     while (!exitTheGame) {
         clear_output();
         switch (currentPosition) {
+            case SET_PASSWORD:
+                printf("set_pass\n");
+                break;
+            case ENTER_PASSWORD:
+                printf("enter pass\n");
+                break;
             case MENU:
                 renderMenu();
                 break;
@@ -539,6 +578,7 @@ void renderGame() {
         }
 
         handleUserInput();
+
         checkGameState();
 
     }

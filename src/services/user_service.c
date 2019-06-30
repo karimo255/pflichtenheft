@@ -34,8 +34,8 @@ int getLastInsertId(int *newUserId) {
     }
 }
 
-registerUser(char username[], int *newUserId) {
-    sprintf(sql, "INSERT INTO `User` (name) VALUES(\"%s\");", username);
+int registerUser(char username[], char password[8],  int *newUserId) {
+    sprintf(sql, "INSERT INTO `User` (name, password) VALUES(\"%s\", \"%s\");", username, password);
     int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
 
     if (!rc == SQLITE_OK) {
@@ -43,4 +43,22 @@ registerUser(char username[], int *newUserId) {
     } else {
         return getLastInsertId(newUserId);
     }
+}
+
+
+int getUserIdCallback(void *userID, int argc, char **argv, char **azColName) {
+    int *tmp = (int *) userID;
+    for (int i = 0; i < argc; i++) {
+        if (strcmp(azColName[i], "id") == 0) {
+            *tmp = atoi(argv[i]);
+            printf("ja\n");
+        }
+    }
+    return 0;
+}
+
+void getUserID(char username[30], int *userID){
+    sprintf(sql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", username);
+    printf(sql);
+    int rc = sqlite3_exec(connection, sql, getUserIdCallback, userID, &zErrMsg);
 }
