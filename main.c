@@ -558,8 +558,7 @@ void renderGame() {
                     resetGameData(deletedCells);
                     resetGameData(userCells);
                     generateGameData(gameData);
-                    gameData[x_coordinate][y_coordinate] = 0;
-                    //deleteCells(gameData, difficulty);
+                    deleteCells(gameData, difficulty);
                     resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
                     isGameActive = 1;
                     timer(TIMER_START);

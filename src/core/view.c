@@ -124,7 +124,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 9;
+    int bestscoreWidth = 10;
     int remainingBoxWith = 5;
     int hilfeWidth = 12;
     int tippWidth = 8;
