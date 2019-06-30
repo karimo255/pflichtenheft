@@ -565,7 +565,7 @@ void renderGame() {
                     isSolvedAutomatic = 0;
                 }
 
-                getBestScore(bestScore);
+                getBestScore(bestScore, difficulty);
                 remaining = getRemainingCells(gameData);
                 renderInfoBox(username, bestScore, difficulty, remaining);
                 renderNotesBox(x_coordinate, y_coordinate);
@@ -576,7 +576,7 @@ void renderGame() {
                 break;
 
             case SET_MARK:
-                getBestScore(bestScore);
+                getBestScore(bestScore, difficulty);
                 remaining = getRemainingCells(gameData);
                 renderInfoBox(username, bestScore, difficulty, remaining);
                 renderMarkModeMessage();

@@ -124,7 +124,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 10;
+    int bestscoreWidth = 9;
     int remainingBoxWith = 5;
     int hilfeWidth = 12;
     int tippWidth = 8;
@@ -144,7 +144,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf("Bestscore: %d%*s", *score, bestscoreWidth - lenHelper(*score), "");
+    printf("Bestscore: %d%*s", *score, bestscoreWidth -( *score > 10 ? 2: 1), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -216,14 +216,15 @@ void renderGameMenu() {
     printf("    %s Navigation      Befehle\n\n", KCYN);
 
     setPrintingColor(KWHT);
-    printf("     > - Right       t - Tipp\n\n");
-    printf("     < - Left        h - Zelle loesen \n\n");
-    printf("     ^ - Top         s - Loesung anzeigen \n\n");
-    printf("     v - Down        z - Zurueck \n\n");
-    printf("                     k - Spielregeln \n\n");
-    printf("                     m - Notiz eintragen \n\n");
-    printf("                     a - Abbrechen \n\n");
-    printf("                     q - Beenden \n\n");
+    printf("     > - Rechts      0 - Zelle loeschen\n");
+    printf("     < - Links       m - Notiz eintragen\n");
+    printf("     ^ - Oben        t - Tipp (+15 sec)\n");
+    printf("     v - Unten       h - Zelle loesen (+30 sec)\n");
+    printf("                     s - Loesung anzeigen\n");
+    printf("                     k - Spielregeln\n");
+    printf("                     p - Pause\n");
+    printf("                     a - Abbrechen\n");
+    printf("                     q - Beenden\n");
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 

@@ -250,7 +250,6 @@ int timer(int action) {
             paused = 0;
             break;
         case RESET_TIMER:
-            printf("Timeer reseted");
             system("clear");
             first = 1;
             zwErg = 0;
