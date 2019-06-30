@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <headers/core/game.h>
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
+#include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
 #ifdef __WIN32__
@@ -149,8 +149,9 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
     int remainingBoxWith = 5;
     int hilfeWidth = 12;
     int tippWidth = 8;
-    char userStringTime[10];
-    timeToString(timer(0), userStringTime);
+    char userStringTime[6];
+
+    timeToString(timer(TIMER_STATE), userStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
 
     // first row
@@ -259,7 +260,11 @@ void renderSolvedGame(int solvedAutomatic)
     }
     else
     {
-        printTableLine("Du hast das Sudoku in einer Zeit von    ");
+        char zeitMessage[80];
+        char timeT[6];
+        timeToString(timer(TIMER_STATE),timeT);
+        sprintf(zeitMessage, "Du hast das Sudoku in einer Zeit von %s   ", timeT);
+        printTableLine(zeitMessage);
         printTableLine("ferig gelöst. Herzlichen Glueckwunsch.  ");
         printTableLine("Dein Score wird automatisch gespeichert.");
     }
@@ -431,6 +436,7 @@ void renderMarkModeMessage(){
     printTableLine("    hier koennen Sie mögliche            ");
     printTableLine("    Zahlen setzen. Drücken Sie < m >     ");
     printTableLine("    um diesen Modus zu verlassen.        ");
+    printTableLine("    < d > um Notizen zu loeschen.        ");
     printEndOfTable();
 }
 

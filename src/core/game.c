@@ -83,28 +83,25 @@ int solveGame(int a[][9])
             int number = a[x][y];
             a[x][y] = 0;
             if (isElementInArray(a[x], number,9) >= 0 || number == 0)
-            { // number darf nur einmal in row vorkommen.
+            {
                 a[x][y] = number;
                 return 0;
             }
 
-            resetArray(elementsInSomeColumn);
+            resetArray(elementsInSomeColumn, 9);
             for (int l = 0; l < sizeof(elementsInSomeColumn); l++)
             {
                 elementsInSomeColumn[l] = a[l][y];
             }
 
-            // number darf nur einmal in column und box vorkommen.
             if (isElementInArray(elementsInSomeColumn, number,9) >= 0 || isElementInBox(a, x - x % 3, y - y % 3, number) >= 0)
             {
                 a[x][y] = number;
-                ;
                 return 0;
             }
             a[x][y] = number;
         }
     }
-    //resetGameData(arr);
     return 1;
 }
 
@@ -113,7 +110,7 @@ int generateRandomNumber()
     return 1 + rand() % 9;
 }
 
-void resetArray(int array[])
+void resetArray(int array[], int size)
 {
     for (int l = 0; l < 9; l++)
     {
@@ -185,11 +182,11 @@ void generateGameData(int a[][9])
             if (isElementInArray(a[_x], number,9) >= 0)
             { // number darf nur einmal in row vorkommen.
                 _y--;
-                resetArray(elementsInSomeColumn);
+                resetArray(elementsInSomeColumn,9);
                 continue;
             }
 
-            resetArray(elementsInSomeColumn);
+            resetArray(elementsInSomeColumn,9);
             for (int l = 0; l < 9; l++)
             {
                 elementsInSomeColumn[l] = a[l][_y];
@@ -198,7 +195,7 @@ void generateGameData(int a[][9])
             // number darf nur einmal in column und box vorkommen.
             if (isElementInArray(elementsInSomeColumn, number,9) >= 0 || isElementInBox(a, _x - _x % 3, _y - _y % 3, number) >= 0)
             {
-                resetArray(a[_x]);
+                resetArray(a[_x],9);
                 _x--;
                 break;
             }
@@ -273,7 +270,7 @@ int getGameStatus(int array[][9])
 int timer(int action) {
 
     static int first = 0, paused = 0;
-    static long int timer = 0, zwErg = 0;
+    static int timer = 0, zwErg = 0;
 
     switch(action) {
         case TIMER_STATE:
@@ -297,6 +294,8 @@ int timer(int action) {
             zwErg -= 15;
             break;
         case RESET_TIMER:
+            printf("Timeer reseted");
+            system("clear");
             first = 1;
             zwErg = 0;
             paused = 0;
@@ -340,7 +339,7 @@ void timeToString(int userTime, char stringTime[]) {
         m[1] = '\0';
     }
     sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds );
-    stringTime[9] = '\0';
+    stringTime[5] = '\0';
 }
 
 

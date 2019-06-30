@@ -6,7 +6,7 @@
 #define SUDOKU_GAME_H
 
 
-#include <headers/shared/shared.h>
+#include "../../headers/shared/shared.h"
 
 extern int marks[9][9][MAX_MARKS];
 
@@ -63,7 +63,7 @@ int isElementInArray(int array[], int number, int size);
  *
  * Sets the value of array items to zero.
  */
-void resetArray(int array[]);
+void resetArray(int array[], int size);
 
 /**
  * \brief Function to generate the game data.

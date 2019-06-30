@@ -2,7 +2,7 @@
 // Created by karim on 24.06.19.
 //
 
-#include <headers/shared/shared.h>
+#include "../../headers/shared/shared.h"
 
 #ifndef SUDOKU_VIEW_H
 #define SUDOKU_VIEW_H

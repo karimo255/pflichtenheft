@@ -11,6 +11,7 @@
 #include "headers/services/score_service.h"
 #include "headers/services/connection.h"
 #include "libs/sqlite3.h"
+#include "headers/core/view.h"
 
 
 #define TRUE 1
@@ -20,7 +21,6 @@
 
 #include <termios.h>
 #include <unistd.h>
-#include <headers/core/view.h>
 
 static struct termios new_io;
 static struct termios old_io;
@@ -154,16 +154,24 @@ void checkGameState(){
         if (isGameActive && getGameStatus(gameData) == FILLED) {
             int solveState = solveGame(gameData);
             if(solveState == 1){
-                if(*userID != 0 && isSolvedAutomatic == 0 ){
-                    int score = timer(0);
-                    insertScore(userID, score, difficulty);
+                if(*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0 ){
+                    int _score = timer(TIMER_STATE);
+                    printf("score =>  %d", _score);
+                    insertScore(userID, _score, difficulty);
                 }
                 currentPosition = SOLVED_GAME;
                 isGameActive=0;
             } else{
+
                 strcpy(gameMessage, "Das Spiel ist nicht korrekt geloest.");
             }
         }
+    int score = timer(TIMER_STATE);
+
+    printf("score =>  %d\n", score);
+    char t[6];
+    timeToString(score,t);
+    printf("score =>  %s\n", t);
 }
 
 void navigateTo(int pos) {
@@ -224,7 +232,7 @@ void handleUserInput() {
         ch = getch();
 
         if (ch != 13 && ch != '\n' && ch != EOF) {
-            if (strcmp(username, "Name eingeben...") == 0) resetArray(username);
+            if (strcmp(username, "Name eingeben...") == 0 || strcmp(username, "anonym") == 0) resetArray(username, 30);
             if (ch == 27) { // escape
                 strcpy(username, "anonym");
                 currentPosition = DIFFICULTY_DIALOG;
@@ -245,7 +253,6 @@ void handleUserInput() {
                 strcpy(username, "anonym");
             } else {
                 registerUser(username, userID);
-                insertScore(userID, 0, difficulty);
             }
             currentPosition = DIFFICULTY_DIALOG;
         }
@@ -331,7 +338,7 @@ void handleUserInput() {
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
                                     if (anzahlDerHilfe == erlaubteAnzahlDerHilfe){
                                         strcpy(gameMessage, "Anzahl der Hilfen verbraucht.");
-                                        break;
+                                       // break;
                                     }
                                     anzahlDerHilfe++;
                                     solveCell(gameData, x_coordinate, y_coordinate);
@@ -344,7 +351,7 @@ void handleUserInput() {
                                 break;
                             case 't':
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
-                                    if (anzahlDerTipps == erlaubteAnzahlDerHilfe){
+                                    if (anzahlDerTipps == erlaubteAnzahlDerTipps){
                                         strcpy(gameMessage, "Anzahl der Tipps verbraucht.");
                                         break;
                                     }
@@ -404,6 +411,12 @@ void handleUserInput() {
                     if (isalpha(userInput)) {
                         switch (userInput) {
                             case 'm':
+                                strcpy(gameMessage, "Notizen erstellt");
+                                currentPosition = IN_GAME;
+                                break;
+                            case 'd':
+                                resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
+                                strcpy(gameMessage, "Notizen geloescht");
                                 currentPosition = IN_GAME;
                                 break;
                         }
@@ -481,7 +494,7 @@ void renderGame(){
                     resetGameData(userCells);
                     generateGameData(gameData);
                     deleteCells(gameData, difficulty);
-                    resetArray(marks[x_coordinate][y_coordinate]);
+                    resetArray(marks[x_coordinate][y_coordinate],MAX_MARKS);
                     isGameActive = 1;
                     timer(TIMER_START);
                     isSolvedAutomatic=0;
