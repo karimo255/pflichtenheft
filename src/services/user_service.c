@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <headers/core/view.h>
 
 
 char sql[200];
@@ -25,9 +26,11 @@ int lastInsertIdCallBack(void *userID, int argc, char **argv, char **azColName) 
 
 
 int getLastInsertId(int *newUserId) {
-    sprintf(sql, "SELECT last_insert_rowid()");
-    int rc = sqlite3_exec(connection, sql, lastInsertIdCallBack, newUserId, &zErrMsg);
-    if (!rc == SQLITE_OK) {
+	sprintf(sql, "SELECT last_insert_rowid()");
+    fflush(stdout);
+    clear_output();
+	int rc = sqlite3_exec(connection, sql, lastInsertIdCallBack, newUserId, &zErrMsg);
+	if (!rc == SQLITE_OK) {
         return -1;
     } else {
         return 0;
@@ -78,4 +81,34 @@ int getUserIdCallback(void *userID, int argc, char **argv, char **azColName) {
 void getUserID(char username[30], int *userID) {
     sprintf(sql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", username);
     int rc = sqlite3_exec(connection, sql, getUserIdCallback, userID, &zErrMsg);
+}
+
+int createDatabaseIfNotExist() {
+    sprintf(sql, "CREATE DATABASE IF NOT EXISTS \"sudoku\";");
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+    if (!rc == SQLITE_OK) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+int createTables() {
+    sprintf(sql, "CREATE TABLE \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL); CREATE TABLE \"Score\" (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`);");
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+    if (!rc == SQLITE_OK) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }

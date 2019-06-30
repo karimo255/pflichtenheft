@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <headers/core/view.h>
 
 
 char sql[200];
@@ -19,6 +20,9 @@ int user_id = 0;
 int insertScore(int *userID, int score, int difficulty) {
     sprintf(sql, "INSERT INTO `Score` (time, userId, difficulty) VALUES(\"%d\", \"%d\", \"%d\");", score,
             *userID, difficulty);
+
+    fflush(stdout);
+    clear_output();
 
     int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
     printf("%s\n", sql);
@@ -75,9 +79,11 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
 
 void getScores(score *scores, int diff) {
     delete_whole_list(scores);
-    sprintf(sql,
-            "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %d ORDER BY `Score`.`time` DESC LIMIT 10;",
-            diff);
+    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %d ORDER BY `Score`.`time` DESC LIMIT 10;", diff);
+    fflush(stdout);
+    clear_output();
+
+
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
     if (rc == SQLITE_OK) {
         printf("OK\n");
@@ -96,10 +102,14 @@ int bestScoresCallBack(void *scores, int argc, char **argv, char **azColName) {
 }
 
 int getBestScoreByUserID(int userID) {
-    sprintf(sql, "SELECT time FROM `Score` WHERE userId = %d LIMIT 1 SORT BY time DESC;", userID);
-    int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
-    printf("%s\n", sql);
-    return user_id;
+	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", userID);
+    fflush(stdout);
+    clear_output();
+
+	int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
+	printf("%s\n", sql);
+	return user_id;
+
 }
 
 int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) {
@@ -115,6 +125,9 @@ int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) 
 
 int getBestScore(int *bestScore,int difficulty) {
     sprintf(sql, "SELECT time FROM `Score`  WHERE  difficulty=%d ORDER by time desc  LIMIT 1", difficulty);
+    fflush(stdout);
+    clear_output();
+
     int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
     if (!rc == SQLITE_OK) {
         return -1;

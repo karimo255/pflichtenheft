@@ -2,7 +2,7 @@
 // Created by karim on 24.06.19.
 //
 
-#include "../../headers/shared/shared.h"
+#include "../shared/shared.h"
 
 #ifndef SUDOKU_VIEW_H
 #define SUDOKU_VIEW_H
@@ -53,7 +53,7 @@ void renderGameMenu();
  *
  * It shows the game menu
  */
-void renderSolvedGame(int solvedAutomatic);
+void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe);
 
 /**
  * \brief Function to render the difficult settings dialog

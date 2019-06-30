@@ -6,7 +6,8 @@
 #define SUDOKU_GAME_H
 
 
-#include "../../headers/shared/shared.h"
+#include "../shared/shared.h"
+
 
 extern int marks[9][9][MAX_MARKS];
 

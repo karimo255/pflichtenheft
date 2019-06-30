@@ -7,6 +7,7 @@
 
 #include "../../headers/services/score_service.h"
 #include "../../libs/sqlite3.h"
+#include "../../headers/core/game.h"
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
 #include "../../headers/core/game.h"
@@ -124,7 +125,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 9;
+    int bestscoreWidth = 6;
     int remainingBoxWith = 5;
     int hilfeWidth = 12;
     int tippWidth = 8;
@@ -144,7 +145,9 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf("Bestscore: %d%*s", *score, bestscoreWidth -( *score > 10 ? 2: 1), "");
+    char us[6];
+    timeToString(*score,us);
+    printf("Bestscore: %s%*s", us, bestscoreWidth -( *score > 10 ? 2: 1), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -228,24 +231,32 @@ void renderGameMenu() {
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 
-void renderSolvedGame(int solvedAutomatic) {
-    printf("%s ++============== Spielende ================++%s\n", KCYN, KWHT);
+void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe)
+{
+    char stringTime[5];
+
+    printf("%s ++============== Spielende ================++%s\n",KCYN,KWHT);
     printEmptyTableLine();
 
-    if (solvedAutomatic == 1) {
-        printTableLine("Du hast das Sudoku leider nicht selber  ");
-        printTableLine("ferig gelöst.                           ");
-    } else {
-        printTableLine("Du hast das Spiel in einer Zeit von     ");
-
-        char zeitMessage[80];
-        char timeT[6];
-        timeToString(timer(TIMER_STATE), timeT);
-        sprintf(zeitMessage, "%s ferig gelöst.                     ", timeT);
-        printEmptyTableLine();
-        printTableLine(zeitMessage);
-        printTableLine("Herzlichen Glueckwunsch.                ");
-        printTableLine("Dein Score wird automatisch gespeichert.");
+    if (solvedAutomatic == 1)
+    {
+        printTableLine("Du hast das Sudoku leider nicht selbst- ");
+        printTableLine("staendig gelöst. Mehr Erfolg beim       ");
+        printTableLine("naechsten Versuch!                      ");
+    }
+    else
+    {
+        timeToString(timer(TIMER_STATE), stringTime);
+        printTableLine("Herzlichen Glueckwunsch!!!              ");
+        printTableLine("Du hast das Sudoku in einer Zeit von    ");
+        printStartOfLine();
+        setPrintingColor(KWHT);
+        printf("%s geloest und hast dabei %d Tipps und", stringTime, anzahlDerTipps);
+        printEndOfLine();printStartOfLine();
+        setPrintingColor(KWHT);
+        printf("%d Zellloesungen verwendet.              ", anzahlDerHilfe);
+        printEndOfLine();
+        printTableLine("Deine Zeit wird automatisch gespeichert.");
     }
     printEmptyTableLine();
     printTableLine("z - Zurueck zum Menue                   ");
@@ -328,7 +339,9 @@ void renderDBestScoreDialog() {
     printf(" ++============= Bestenliste ===============++\n");
     printEmptyTableLine();
     printTableLine("             e - Einfach                ");
+    printEmptyTableLine();
     printTableLine("             m - Mittel                 ");
+    printEmptyTableLine();
     printTableLine("             s - Schwer                 ");
     printEmptyTableLine();
     printEmptyTableLine();
@@ -430,9 +443,9 @@ void renderHelpDialog() {
 
 void renderMarkModeMessage() {
     printf(" ++============= Markieren-Modus ============++\n");
-    printTableLine("    Sie sind im Markieren-Modus,         ");
-    printTableLine("    hier koennen Sie mögliche            ");
-    printTableLine("    Zahlen setzen. Drücken Sie < m >     ");
+    printTableLine("    Sie sind im Markieren-Modus!         ");
+    printTableLine("    Nun koennen Sie moegliche            ");
+    printTableLine("    Zahlen setzen. Druecken Sie < m >,   ");
     printTableLine("    um diesen Modus zu verlassen.        ");
     printTableLine("    < d > um Notizen zu loeschen.        ");
     printEndOfTable();
@@ -523,6 +536,5 @@ void clear_output() {
 
 #ifdef __WIN32__
     system("cls");
-    windows = 1;
 #endif
 }

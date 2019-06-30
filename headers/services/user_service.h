@@ -1,7 +1,3 @@
-//
-// Created by karim on 25.06.19.
-//
-
 #include "../../libs/sqlite3.h"
 
 /**
@@ -11,10 +7,12 @@
  * @return Returns zero if insered, otherwise -1.
  */
 
-
 int registerUser(char username[], char password[], int *newUserId);
 
 void loginUser(char username[], char password[], int*id);
+int createDatabaseIfNotExist();
+
+int createTables();
 
 int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
 
