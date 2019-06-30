@@ -124,7 +124,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
-    int bestscoreWidth = 10;
+    int bestscoreWidth = 9;
     int remainingBoxWith = 5;
     int hilfeWidth = 12;
     int tippWidth = 8;
@@ -235,12 +235,15 @@ void renderSolvedGame(int solvedAutomatic) {
         printTableLine("Du hast das Sudoku leider nicht selber  ");
         printTableLine("ferig gelöst.                           ");
     } else {
+        printTableLine("Du hast das Spiel in einer Zeit von     ");
+
         char zeitMessage[80];
         char timeT[6];
         timeToString(timer(TIMER_STATE), timeT);
-        sprintf(zeitMessage, "Du hast das Sudoku in einer Zeit von %s   ", timeT);
+        sprintf(zeitMessage, "%s ferig gelöst.                     ", timeT);
+        printEmptyTableLine();
         printTableLine(zeitMessage);
-        printTableLine("ferig gelöst. Herzlichen Glueckwunsch.  ");
+        printTableLine("Herzlichen Glueckwunsch.                ");
         printTableLine("Dein Score wird automatisch gespeichert.");
     }
     printEmptyTableLine();
@@ -263,6 +266,13 @@ void renderEnterPassword(){
     printf(" ++=========== Password eingeben ===========++\n");
     printEmptyTableLine();
     printTableLine(" Password eingeben:                     ");
+    printEmptyTableLine();
+
+    char m[100];
+    sprintf(m, " %s%s                    %s", KRED, gameMessage, KWHT);
+    if(strlen(gameMessage) > 0 ){
+        printTableLine(m);
+    }
     printEmptyTableLine();
     printEndOfTable();
 }

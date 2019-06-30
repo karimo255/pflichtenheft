@@ -558,7 +558,8 @@ void renderGame() {
                     resetGameData(deletedCells);
                     resetGameData(userCells);
                     generateGameData(gameData);
-                    deleteCells(gameData, difficulty);
+                    gameData[x_coordinate][y_coordinate] = 0;
+                    //deleteCells(gameData, difficulty);
                     resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
                     isGameActive = 1;
                     timer(TIMER_START);
@@ -571,6 +572,7 @@ void renderGame() {
                 renderNotesBox(x_coordinate, y_coordinate);
                 renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 renderGameMenu();
+
                 sprintf(gameMessage, "%s", "");
                 break;
 

@@ -249,9 +249,6 @@ int timer(int action) {
             zwErg = 0;
             paused = 0;
             break;
-        case TIPP_USED:
-            zwErg -= 15;
-            break;
         case RESET_TIMER:
             printf("Timeer reseted");
             system("clear");
@@ -259,9 +256,6 @@ int timer(int action) {
             zwErg = 0;
             paused = 0;
             timer = 0;
-            break;
-        case HELP_USED:
-            zwErg -= 25;
             break;
         default:
             break;
