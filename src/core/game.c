@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include <values.h>
+// #include <values.h>
 #include <unistd.h>
 
 int x_coordinate=0;
@@ -53,10 +53,15 @@ void solveCell(int array[][9], int x, int y)
 }
 
 void makeNote(int x, int y, int suggestion){
-    for (int i = 0; i < MAX_MARKS; ++i) {
+    for (int i = 0; i <= MAX_MARKS; i++) {
         if(marks[x][y][i] == 0){
             marks[x][y][i] = suggestion;
             break;
+        } else if (i == MAX_MARKS) {
+            marks[x][y][0] = suggestion;
+            for (int j = 1; j < MAX_MARKS; j++) {
+                marks[x][y][j] = 0;
+            }
         }
     }
 }
@@ -165,8 +170,9 @@ void generateGameData(int a[][9])
     resetGameData(gameData);
     srand(time(NULL));
     int steps=0;
-    system("clear");
-    printf("          Generieren von Spieldaten....\n");
+    clear_output();
+    printf("        Generiere Spieldaten ...\n");
+    fflush(stdout);
     usleep(500000);
 
     for (int _x = 0; _x < 9; _x++)
@@ -206,6 +212,8 @@ void generateGameData(int a[][9])
         }
     }
     printf("\n");
+    fflush(stdout);
+    clear_output();
 }
 
 
@@ -216,6 +224,20 @@ int generateNumberByInterval(int x, int y)
 
 void deleteCells(int array[][9], int difficulty)
 {
+    int delete;
+
+    switch(difficulty) {
+        case 5:
+            delete = 42;
+            break;
+        case 7:
+            delete = 49;
+            break;
+        case 8:
+            delete = 56;
+            break;
+    }
+
     for (int x = 1; x <= 3; x++)
     {
         for (int y = 1; y <= 3; y++)
@@ -230,9 +252,23 @@ void deleteCells(int array[][9], int difficulty)
                     deletedCells[r][c] = array[r][c];
                     userCells[r][c] = 1;
                     array[r][c] = 0;
+                    delete--;
                 }
                 tmp--;
             }
+        }
+    }
+
+    while (delete > 0) {
+        int x = rand() % 9;
+        int y = rand() % 9;
+
+        if (array[x][y] > 0)
+        { // not already deleted
+            deletedCells[x][y] = array[x][y];
+            userCells[x][y] = 1;
+            array[x][y] = 0;
+            delete--;
         }
     }
 }
@@ -293,17 +329,17 @@ int timer(int action) {
             zwErg = 0;
             paused = 0;
             break;
-        case TIPP_USED:
-            zwErg -= 15;
-            break;
         case RESET_TIMER:
             first = 1;
             zwErg = 0;
             paused = 0;
             timer = 0;
             break;
+        case TIPP_USED:
+            start -= 15;
+            break;
         case HELP_USED:
-            zwErg -= 25;
+            start -= 30;
             break;
         default:
             break;
@@ -350,4 +386,8 @@ int checkGameSolved()
         return solveGame(gameData);
     }
     return 0;
+}
+
+int solveSudoku(int array[][9]) {
+
 }

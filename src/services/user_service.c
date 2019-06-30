@@ -46,3 +46,25 @@ registerUser(char username[], int *newUserId) {
 		return getLastInsertId(newUserId);
 	}
 }
+
+int createDatabaseIfNotExist() {
+    sprintf(sql, "CREATE DATABASE IF NOT EXISTS \"huso\";");
+    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+    if (!rc == SQLITE_OK) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+int createTables() {
+    sprintf(sql, "CREATE TABLE \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL); CREATE TABLE \"Score\" (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`);");
+    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+    if (!rc == SQLITE_OK) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}

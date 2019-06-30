@@ -97,7 +97,7 @@ int bestScoresCallBack(void *scores, int argc, char **argv, char **azColName) {
 }
 
 int getBestScoreByUserID(int userID) {
-	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time desc;", userID);
+	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", userID);
 	int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
 	printf("%s\n", sql);
 	return user_id;
@@ -115,7 +115,7 @@ int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) 
 
 
 int getBestScore(int *bestScore) {
-    sprintf(sql, "SELECT time FROM `Score` order by time desc  limit 1");
+    sprintf(sql, "SELECT time FROM `Score` ORDER BY time limit 1");
     int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
     if (!rc == SQLITE_OK) {
         return -1;

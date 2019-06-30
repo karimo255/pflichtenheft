@@ -1,7 +1,3 @@
-//
-// Created by karim on 25.06.19.
-//
-
 #include "../../libs/sqlite3.h"
 
 /**
@@ -13,5 +9,9 @@
 
 
 registerUser(char username[], int *newUserId);
+
+int createDatabaseIfNotExist();
+
+int createTables();
 
 

@@ -1,3 +1,9 @@
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: main.c
+ * Datum:
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -52,8 +58,8 @@ int getch(void) {
 }
 
 #elif __WIN32__
-#define HEIGHT 760
-#define WIDTH 420
+#define HEIGHT 805
+#define WIDTH 370
 #include <Windows.h>
 #include <conio.h>
 #endif
@@ -70,7 +76,8 @@ void resizeWindow() {
 
 #ifdef __WIN32__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
-    MoveWindow(hwnd, 550, 50, WIDTH, HEIGHT, TRUE);
+    MoveWindow(hwnd, 550, 15, WIDTH, HEIGHT, TRUE);
+    setvbuf(stdout, NULL, _IOFBF, 10000);
 #endif
 }
 
@@ -111,17 +118,24 @@ void setConfig() {
             erlaubteAnzahlDerTipps=8;
             break;
         case MEDIUM:
-            erlaubteAnzahlDerHilfe=3;
-            erlaubteAnzahlDerTipps=5;
+            erlaubteAnzahlDerHilfe=4;
+            erlaubteAnzahlDerTipps=6;
             break;
         case HARD:
-            erlaubteAnzahlDerHilfe=2;
-            erlaubteAnzahlDerTipps=3;
+            erlaubteAnzahlDerHilfe=3;
+            erlaubteAnzahlDerTipps=4;
             break;
     }
 }
 
 int main() {
+
+    if (createDatabaseIfNotExist()) {
+        int test = createTables();
+        printf("test: %d", test);
+        fflush(stdout);
+        system("Pause");
+    }
 
     resizeWindow();
     initColors();
@@ -247,6 +261,8 @@ void handleUserInput() {
                 registerUser(username, userID);
                 insertScore(userID, 0, difficulty);
             }
+            fflush(stdout);
+            clear_output();
             currentPosition = DIFFICULTY_DIALOG;
         }
     } else {
@@ -319,8 +335,6 @@ void handleUserInput() {
                     break;
 
                 case IN_GAME:
-
-
                     if (isdigit(userInput)) {
                         if (userCells[x_coordinate][y_coordinate] == 1) {
                             gameData[x_coordinate][y_coordinate] = userInput - '0';
@@ -344,7 +358,7 @@ void handleUserInput() {
                                 break;
                             case 't':
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
-                                    if (anzahlDerTipps == erlaubteAnzahlDerHilfe){
+                                    if (anzahlDerTipps == erlaubteAnzahlDerTipps){
                                         strcpy(gameMessage, "Anzahl der Tipps verbraucht.");
                                         break;
                                     }
@@ -363,7 +377,7 @@ void handleUserInput() {
                                 isGameActive = 0;
                                 timer(RESET_TIMER);
 
-                            case 'z':
+                            case 'p':
                                 timer(TIMER_PAUSE);
                                 currentPosition = MENU;
                                 break;
@@ -406,6 +420,8 @@ void handleUserInput() {
                             case 'm':
                                 currentPosition = IN_GAME;
                                 break;
+                            case 'q':
+                                exitTheGame = 1;
                         }
                     }
                     break;
@@ -467,10 +483,12 @@ void renderGame(){
         switch (currentPosition) {
             case MENU:
                 renderMenu();
+                fflush(stdout);
                 break;
 
             case USER_NAME:
                 renderUsernameDialog(username);
+                fflush(stdout);
                 break;
 
             case IN_GAME:
@@ -495,6 +513,7 @@ void renderGame(){
                 renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
+                fflush(stdout);
                 break;
 
             case SET_MARK:
@@ -505,25 +524,32 @@ void renderGame(){
                 renderCourt(gameData, userCells, x_coordinate, y_coordinate);
                 renderGameMenu();
                 sprintf(gameMessage, "%s", "");
+                fflush(stdout);
                 break;
 
             case DIFFICULTY_DIALOG:
                 renderDifficultyDialog();
+                fflush(stdout);
                 break;
 
             case DETAILS_DIALOG:
                 renderDBestScoreDialog();
+                fflush(stdout);
                 break;
 
             case DETAILS:
                 renderDetails(scores, difficulty);
+                fflush(stdout);
                 break;
             case HELP:
                 renderHelpDialog();
+                fflush(stdout);
                 break;
             case SOLVED_GAME:
-                renderSolvedGame(isSolvedAutomatic);
+                printf("%d      %d", anzahlDerTipps, anzahlDerHilfe);
+                renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
                 renderCourt(gameData, userCells, x_coordinate, y_coordinate);
+                fflush(stdout);
                 break;
         }
 
