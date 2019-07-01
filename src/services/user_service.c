@@ -50,6 +50,10 @@ int registerUser(char username[], char password[6], int *newUserId) {
 
 int loginUserCallback(void *userID, int argc, char **argv, char **azColName) {
     int *_id = (int *) userID;
+    if(argc <= 0) {
+        *_id = 0;
+        return 0;
+    }
     for (int i = 0; i < argc; i++) {
         if (strcmp(azColName[i], "id") == 0) {
             *_id = atoi(argv[i]);
@@ -60,7 +64,6 @@ int loginUserCallback(void *userID, int argc, char **argv, char **azColName) {
 }
 
 void loginUser(char username[], char password[], int *id) {
-    int returnValue;
     sprintf(sql, "SELECT * FROM `User` WHERE name =\"%s\" AND password = \"%s\";", username, password);
     printf("sql: %s\n",sql);
     int rc = sqlite3_exec(connection, sql, loginUserCallback, id, &zErrMsg);
