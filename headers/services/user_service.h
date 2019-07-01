@@ -10,9 +10,9 @@
 int registerUser(char username[], char password[], int *newUserId);
 
 void loginUser(char username[], char password[], int*id);
-int createDatabaseIfNotExist();
+int createUserTable();
 
-int createTables();
+int createScoreTable();
 
 int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
 

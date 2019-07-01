@@ -317,8 +317,7 @@ void print_list(struct score *head) {
     sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
     printTableLine(screenTitle);
     printEmptyTableLine();
-    while (current != NULL &&
-           current->next != NULL) { // note: current->next instead of current to skip the first empty element
+    while (current->next != NULL) { // note: current->next instead of current to skip the first empty element
         if (current->userId == 2) {
             char scoreRow[100];
             sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
@@ -531,7 +530,7 @@ void printEmptyTableLine() {
 
 void clear_output() {
 #ifdef __unix__
-    system("clear");
+    //system("clear");
 #endif
 
 #ifdef __WIN32__

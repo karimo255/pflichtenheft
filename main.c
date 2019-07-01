@@ -133,12 +133,6 @@ void setConfig() {
 
 int main() {
 
-//    if (createDatabaseIfNotExist()) {
-//        int test = createTables();
-//        printf("test: %d", test);
-//        fflush(stdout);
-//        system("Pause");
-//    }
 
     resizeWindow();
     initColors();
@@ -152,6 +146,13 @@ int main() {
         printf("Failed to open the sudoku.db\n");
         return 1;
     }
+
+    createUserTable();
+    createScoreTable();
+
+
+    fflush(stdout);
+
 
     srand(time(NULL));
     scores = malloc(sizeof(score));

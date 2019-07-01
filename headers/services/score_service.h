@@ -5,7 +5,7 @@
 
 
 struct score {
-    char name[30];
+    char name[10];
     int userId;
     int time;
     int difficulty;

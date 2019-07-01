@@ -9,7 +9,7 @@
 #include <headers/core/view.h>
 
 
-char sql[200];
+char sql[2000];
 char *zErrMsg;
 sqlite3 *connection;
 
@@ -83,9 +83,10 @@ void getUserID(char username[30], int *userID) {
     int rc = sqlite3_exec(connection, sql, getUserIdCallback, userID, &zErrMsg);
 }
 
-int createDatabaseIfNotExist() {
-    sprintf(sql, "CREATE DATABASE IF NOT EXISTS \"sudoku\";");
 
+
+int createUserTable() {
+    sprintf(sql, "CREATE TABLE IF NOT EXISTS \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL)");
     fflush(stdout);
     clear_output();
 
@@ -98,9 +99,8 @@ int createDatabaseIfNotExist() {
     }
 }
 
-int createTables() {
-    sprintf(sql, "CREATE TABLE \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL); CREATE TABLE \"Score\" (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`);");
-
+int createScoreTable() {
+    sprintf(sql, "CREATE TABLE \"Score\" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) )");
     fflush(stdout);
     clear_output();
 
