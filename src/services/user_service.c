@@ -55,6 +55,12 @@ int getLastInsertId(int *piNewUserId)
 }
 
 int registerUser(char cUsername[], char cPassword[6], int *piNewUserId)
+/* Registriert einen neuen Nutzer mit seinem von ihm gesetzten Passwort in
+ * der Datenbank.
+ * 1. Parameter: eingegebener Nutzername
+ * 2. Parameter: eingegebenes Passwort
+ * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
     sprintf(cSql, "INSERT INTO `User` (name, cPassword) VALUES(\"%s\", \"%s\");", cUsername, cPassword);
 
@@ -89,6 +95,12 @@ int loginUserCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzCol
 }
 
 void loginUser(char cUsername[], char cPassword[], int *pId)
+/* Überprüft mit Hilfe der Daten aus der Datenbank, ob das eingegebene
+ * Passwort richtig ist.
+ * 1. Parameter: eingegebener Nutzername
+ * 2. Parameter: eingegebenes Passwort
+ * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
     sprintf(cSql, "SELECT * FROM `User` WHERE name =\"%s\" AND cPassword = \"%s\";", cUsername, cPassword);
     printf("cSql: %s\n",cSql);
@@ -117,6 +129,10 @@ int getUserIdCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzCol
 }
 
 void getUserID(char cUsername[30], int *piUserID)
+/* Erfragt die zugehörige UserID zu einem bestimmten Nutzernamen aus der Datenbank.
+ * 1. Parameter: Nutzername des Spielers, dessen UserID erfragt werden soll
+ * 2. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
     sprintf(cSql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", cUsername);
 
@@ -129,6 +145,8 @@ void getUserID(char cUsername[30], int *piUserID)
 
 
 int createUserTable()
+/* Erstellt die Tabelle für die Daten des Nutzers (NutzerID, Name und Passwort).
+ */
 {
     sprintf(cSql, "CREATE TABLE \"User\" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `cPassword` TEXT )");
 
@@ -147,6 +165,9 @@ int createUserTable()
 }
 
 int createScoreTable()
+/* Erstellt die Tabelle für die Daten rund um die benötigten Zeiten
+ * der Spieler (NutzerID, benötigte Zeit und Schwierigkeitsgrad).
+ */
 {
     sprintf(cSql, "CREATE TABLE \"Score\" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `iDifficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) )");
 

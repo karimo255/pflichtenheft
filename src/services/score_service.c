@@ -24,7 +24,7 @@ sqlite3 *psqlConnection;
 int insertScore(int *piUserID, int iScore, int iDifficulty)
 /* Fügt die benötigte Zeit des aktuellen Spielers für sein gerade
  * beendetes Spiel in die Datenbank ein.
- * 1. Parameter: UserID des Spielers
+ * 1. Parameter: Zeiger auf Variable mit dem Wert der UserID des Spielers
  * 2. Parameter: benötigte Zeit
  * 3. Parameter: Schwierigkeitsgrad des gelösten Sudokus
  */
@@ -109,6 +109,10 @@ void deleteNode(struct sScore *node)
 }
 
 void getScores(struct sScore *scores, int iDiff)
+/* Abfrage der Highscores inklusive der zugehörigen Spielernamen / UserIDs
+ * 1. Parameter: Zeiger auf die Struktur, in der die abgefragten Daten ge-
+ * speichert werden sollen
+ */
 {
     sprintf(cSql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`iDifficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
 
@@ -143,6 +147,9 @@ int bestScoresCallBack(void *pvScores, int iArgc, char **ppcArgv, char **ppcAzCo
 }
 
 int getBestScoreByUserID(int iUserID)
+/* Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.
+ * 1. Parameter: UserID des aktuellen Nutzers
+ */
 {
 	sprintf(cSql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", iUserID);
 
@@ -173,6 +180,10 @@ int bestScoreCallback(void *pcBestScore, int iArgc, char **ppcArgv, char **ppcAz
 
 
 int getBestScore(int *piBestScore, int iDifficulty)
+/* Erfragt den Highscore aller Spieler im aktuellen Schwierigkeitsgrad aus der Datenbank.
+ * 1. Parameter: Zeiger auf die Variable, in die der Highscore geschrieben werden soll
+ * 2. Parameter: aktueller Schwierigkeitsgrad
+ */
 {
     sprintf(cSql, "SELECT time FROM `Score`  WHERE  iDifficulty=%d ORDER by time desc  LIMIT 1", iDifficulty);
 

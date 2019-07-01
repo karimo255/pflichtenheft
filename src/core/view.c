@@ -47,7 +47,8 @@ int iIsGameActive;
 void printColoredNumber(int iNumber, char *pcColor, int iNewLine)
 /* Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
  * 1. Parameter: Zahl, die gedruckt werden soll
- * 2. Parameter: Farbe, in der die Zahl gedruckt werden soll
+ * 2. Parameter: Zeiger auf die Variable mit dem Wert für die Farbe,
+ * in der die Zahl gedruckt werden soll
  * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
  */
 {
@@ -66,7 +67,7 @@ void printColoredString(char cText[], char cColor[], int iNewLine)
 
 void setPrintingColor(char *pcColor)
 /* Setzt die Farbe, in der ab sofort in die Konsole geschrieben werden soll
- * 1. Parameter: Farbe
+ * 1. Parameter: Zeiger auf die Variable mit dem Wert für die Farbe
  */
 {
     printf("%s", pcColor);
@@ -75,8 +76,9 @@ void setPrintingColor(char *pcColor)
 void renderUsernameDialog(char *pcUsername)
 /* Gibt den Dialog, in dem der Spieler nach seinem Namen gefragt wird
  * aus.
- * 1. Parameter: bisheriger Benutzername (Zeichen werden einzeln
- * entgegengenommen, um eine nutzerfreundliche Obfläche / Eingabe
+ * 1. Parameter: Zeiger auf die Variable mit dem Wert des bisherigern
+ * Benutzernamens (Zeichen werden einzeln entgegengenommen, um eine
+ * nutzerfreundliche Obfläche / Eingabe
  * und das Nutzen der Löschen-Taste zu ermöglichen)
  */
 {
@@ -185,8 +187,8 @@ void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemai
 /* Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet
  * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
  * enthält.
- * 1. Parameter: Nutzernamen, des aktuell spielenden Spielers
- * 2. Parameter: Highscore im aktuellen Schwierigkeitsgrad
+ * 1. Parameter: Zeiger auf die Variable, die den Nutzernamen des aktuell spielenden Spielers enthält
+ * 2. Parameter: Zeiger auf die Variable, die den Highscore im aktuellen Schwierigkeitsgrad enthält
  * 3. Parameter: aktuell ausgewählter Schwierigkeitsgrad
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  */
@@ -407,7 +409,7 @@ void renderMenu()
 void print_list(struct sScore *head, int iDifficulty)
 /* Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
  * aus.
- * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
  * 2. Parameter: ausgewählter Schwierigkeitsgrad
  */
 {
@@ -465,7 +467,7 @@ void renderDBestScoreDialog()
 void renderDetails(struct sScore *scores, int iDifficulty)
 /* Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw.
  * initialisiert diese Ausgabe
- * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
  * 2. Parameter: ausgewählter Schwierigkeitsgrad
  */
 {

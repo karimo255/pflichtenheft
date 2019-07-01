@@ -665,6 +665,8 @@ void renderGame(struct sScore *pSScores)
 /* Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
  * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
  * Funktionen ausführt.
+ * 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
+ * (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
  */
 {
     while (!iExitTheGame)
