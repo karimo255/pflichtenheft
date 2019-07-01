@@ -413,7 +413,7 @@ void handleUserInput() {
                                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
                                     if (anzahlDerHilfe == erlaubteAnzahlDerHilfe) {
                                         strcpy(gameMessage, "Anzahl der Hilfen verbraucht.");
-                                        // break;
+                                        break;
                                     }
                                     anzahlDerHilfe++;
                                     solveCell(gameData, x_coordinate, y_coordinate);

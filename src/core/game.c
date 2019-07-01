@@ -146,7 +146,6 @@ void generateGameData(int a[][9]) {
     time(&start_t);
     resetGameData(gameData);
     srand(time(NULL));
-    int steps = 0;
     system("clear");
     printf("          Generieren von Spieldaten....\n");
     fflush(stdout);
@@ -154,7 +153,6 @@ void generateGameData(int a[][9]) {
 
     for (int _x = 0; _x < 9; _x++) {
         for (int _y = 0; _y < 9; _y++) {
-            steps++;
             time(&end_t);
             diff_t = difftime(end_t, start_t);
             if (diff_t > 2) {
@@ -197,63 +195,25 @@ int generateNumberByInterval(int x, int y) {
 
 void deleteCells(int array[][9], int difficulty)
 {
-    int delete;
-
-    switch(difficulty) {
-        case 5:
-            delete = 42;
-            break;
-        case 7:
-            delete = 49;
-            break;
-        case 8:
-            delete = 56;
-            break;
-    }
-
     for (int x = 1; x <= 3; x++)
     {
         for (int y = 1; y <= 3; y++)
         {
             int tmp = difficulty;
-            while (tmp > 0) {
+            while (tmp > 0)
+            {
                 int r = generateNumberByInterval(3 * (x - 1), 3 * x - 1);
                 int c = generateNumberByInterval(3 * (y - 1), 3 * y - 1);
-                if (array[r][c] > 0) { // not already deleted
+                if (array[r][c] > 0)
+                { // not already deleted
                     deletedCells[r][c] = array[r][c];
                     userCells[r][c] = 1;
                     array[r][c] = 0;
-                    delete--;
                 }
                 tmp--;
             }
         }
     }
-
-    while (delete > 0) {
-        int x = rand() % 9;
-        int y = rand() % 9;
-
-        if (array[x][y] > 0)
-        { // not already deleted
-            deletedCells[x][y] = array[x][y];
-            userCells[x][y] = 1;
-            array[x][y] = 0;
-            delete--;
-        }
-    }
-}
-
-
-int getGridStatus(int array[][9]) {
-    for (int x = 0; x < 9; x++) {
-        for (int y = 0; y < 9; y++) {
-            if (array[x][y] == 0) {
-                return NOT_FILLED;
-            }
-        }
-    }
-    return FILLED;
 }
 
 
