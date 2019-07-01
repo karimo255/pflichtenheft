@@ -76,13 +76,168 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab43b24c7dd6951c35523432013340ecc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#ab43b24c7dd6951c35523432013340ecc">registerUser</a> (char username[])</td></tr>
-<tr class="memdesc:ab43b24c7dd6951c35523432013340ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts user in the database.  <a href="#ab43b24c7dd6951c35523432013340ecc">More...</a><br /></td></tr>
-<tr class="separator:ab43b24c7dd6951c35523432013340ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af149c82cca14bfe0fe1543362d1af5d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#af149c82cca14bfe0fe1543362d1af5d0">registerUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[], char password[], int *newUserId)</td></tr>
+<tr class="separator:af149c82cca14bfe0fe1543362d1af5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b1cab6db949b8b663dce996da7d211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a64b1cab6db949b8b663dce996da7d211">loginUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[], char password[], int *id)</td></tr>
+<tr class="separator:a64b1cab6db949b8b663dce996da7d211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f9ae4eb4fb46f6282f7a7ec3231e76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#ad7f9ae4eb4fb46f6282f7a7ec3231e76">createUserTable</a> ()</td></tr>
+<tr class="separator:ad7f9ae4eb4fb46f6282f7a7ec3231e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b55604795f8a341c2da9bdaa2790f14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a8b55604795f8a341c2da9bdaa2790f14">createScoreTable</a> ()</td></tr>
+<tr class="separator:a8b55604795f8a341c2da9bdaa2790f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab228de1589563c63b624a1db58f1cc73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#ab228de1589563c63b624a1db58f1cc73">getUserIdCallback</a> (void *userID, int argc, char **argv, char **azColName)</td></tr>
+<tr class="separator:ab228de1589563c63b624a1db58f1cc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f67288bbdbf4366e83e5998e86bd49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a2f67288bbdbf4366e83e5998e86bd49b">getUserID</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[8], int *userID)</td></tr>
+<tr class="separator:a2f67288bbdbf4366e83e5998e86bd49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ab43b24c7dd6951c35523432013340ecc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab43b24c7dd6951c35523432013340ecc">&#9670;&nbsp;</a></span>registerUser()</h2>
+<a id="a8b55604795f8a341c2da9bdaa2790f14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b55604795f8a341c2da9bdaa2790f14">&#9670;&nbsp;</a></span>createScoreTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int createScoreTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Erstellt die Tabelle für die Daten des Nutzers (NutzerID, Name und Passwort). </p>
+
+</div>
+</div>
+<a id="ad7f9ae4eb4fb46f6282f7a7ec3231e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f9ae4eb4fb46f6282f7a7ec3231e76">&#9670;&nbsp;</a></span>createUserTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int createUserTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f67288bbdbf4366e83e5998e86bd49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f67288bbdbf4366e83e5998e86bd49b">&#9670;&nbsp;</a></span>getUserID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getUserID </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>username</em>[8], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>userID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Erfragt die zugehörige UserID zu einem bestimmten Nutzernamen aus der Datenbank.</p><ol type="1">
+<li>Parameter: Nutzername des Spielers, dessen UserID erfragt werden soll</li>
+<li>Parameter: Zeiger auf die zu befüllende Variable UserID </li>
+</ol>
+
+</div>
+</div>
+<a id="ab228de1589563c63b624a1db58f1cc73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab228de1589563c63b624a1db58f1cc73">&#9670;&nbsp;</a></span>getUserIdCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getUserIdCallback </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>userID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>azColName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64b1cab6db949b8b663dce996da7d211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b1cab6db949b8b663dce996da7d211">&#9670;&nbsp;</a></span>loginUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loginUser </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>username</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>password</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Überprüft mit Hilfe der Daten aus der Datenbank, ob das eingegebene Passwort richtig ist.</p><ol type="1">
+<li>Parameter: eingegebener Nutzername</li>
+<li>Parameter: eingegebenes Passwort</li>
+<li>Parameter: Zeiger auf die zu befüllende Variable UserID </li>
+</ol>
+
+</div>
+</div>
+<a id="af149c82cca14bfe0fe1543362d1af5d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af149c82cca14bfe0fe1543362d1af5d0">&#9670;&nbsp;</a></span>registerUser()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -91,27 +246,39 @@ Functions</h2></td></tr>
           <td class="memname">int registerUser </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[]</td><td>)</td>
+          <td class="paramname"><em>username</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>password</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>newUserId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Inserts user in the database. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">username</td><td>to insert. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the id of the last user if insered, otherwise -1. </dd></dl>
+<p>Registriert einen neuen Nutzer mit seinem von ihm gesetzten Passwort in der Datenbank.</p><ol type="1">
+<li>Parameter: eingegebener Nutzername</li>
+<li>Parameter: eingegebenes Passwort</li>
+<li>Parameter: Zeiger auf die zu befüllende Variable UserID </li>
+</ol>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 25 2019 00:49:21 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 2 2019 01:17:47 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

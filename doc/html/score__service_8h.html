@@ -66,6 +66,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">score_service.h File Reference</div>  </div>
@@ -77,21 +78,139 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScore.html">Score</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsScore.html">sScore</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:afbf9f2e3c24dbf9966e5b859416d0bf4"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsScore.html">sScore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a></td></tr>
+<tr class="separator:afbf9f2e3c24dbf9966e5b859416d0bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a485ea08ce2b3d0559f488663fd64ae5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a485ea08ce2b3d0559f488663fd64ae5a">insertScore</a> (char username[], int score, char *_time, int <a class="el" href="game_8h.html#a016a5d341f375d13639c75bf5987fb23">difficulty</a>)</td></tr>
-<tr class="memdesc:a485ea08ce2b3d0559f488663fd64ae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts score in the database.  <a href="#a485ea08ce2b3d0559f488663fd64ae5a">More...</a><br /></td></tr>
-<tr class="separator:a485ea08ce2b3d0559f488663fd64ae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad8d3c95160a2ccec7b8c73345887cf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#aad8d3c95160a2ccec7b8c73345887cf1">getScores</a> (<a class="el" href="structScore.html">Score</a> scores[])</td></tr>
-<tr class="memdesc:aad8d3c95160a2ccec7b8c73345887cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves score from the database.  <a href="#aad8d3c95160a2ccec7b8c73345887cf1">More...</a><br /></td></tr>
-<tr class="separator:aad8d3c95160a2ccec7b8c73345887cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14bcef3d3c49224abdc4a4401f23c35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#ac14bcef3d3c49224abdc4a4401f23c35">insertScore</a> (int *userID, int <a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a>, int difficulty)</td></tr>
+<tr class="memdesc:ac14bcef3d3c49224abdc4a4401f23c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts score in the database.  <a href="#ac14bcef3d3c49224abdc4a4401f23c35">More...</a><br /></td></tr>
+<tr class="separator:ac14bcef3d3c49224abdc4a4401f23c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ae95ce5a1c0b15c48c72e177ad57b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a63ae95ce5a1c0b15c48c72e177ad57b7">getScores</a> (struct <a class="el" href="structsScore.html">sScore</a> *scores)</td></tr>
+<tr class="separator:a63ae95ce5a1c0b15c48c72e177ad57b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50854f2511946640b8587f4a8f135bea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a50854f2511946640b8587f4a8f135bea">getBestScoreByUserID</a> (int userID)</td></tr>
+<tr class="separator:a50854f2511946640b8587f4a8f135bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f8d2221161b95a2f9c640392de914b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a05f8d2221161b95a2f9c640392de914b">bestScoreCallback</a> (void *bestScore, int argc, char **argv, char **azColName)</td></tr>
+<tr class="separator:a05f8d2221161b95a2f9c640392de914b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a984548eb9736aa3c6e0f72a51844dfcf">getBestScore</a> (int *bestScore, int difficulty)</td></tr>
+<tr class="separator:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="afbf9f2e3c24dbf9966e5b859416d0bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbf9f2e3c24dbf9966e5b859416d0bf4">&#9670;&nbsp;</a></span>score</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsScore.html">sScore</a> <a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aad8d3c95160a2ccec7b8c73345887cf1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad8d3c95160a2ccec7b8c73345887cf1">&#9670;&nbsp;</a></span>getScores()</h2>
+<a id="a05f8d2221161b95a2f9c640392de914b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f8d2221161b95a2f9c640392de914b">&#9670;&nbsp;</a></span>bestScoreCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bestScoreCallback </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>bestScore</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>azColName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a984548eb9736aa3c6e0f72a51844dfcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984548eb9736aa3c6e0f72a51844dfcf">&#9670;&nbsp;</a></span>getBestScore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getBestScore </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>bestScore</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>difficulty</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Erfragt den Highscore aller Spieler im aktuellen Schwierigkeitsgrad aus der Datenbank.</p><ol type="1">
+<li>Parameter: Zeiger auf die Variable, in die der Highscore geschrieben werden soll</li>
+<li>Parameter: aktueller Schwierigkeitsgrad </li>
+</ol>
+
+</div>
+</div>
+<a id="a50854f2511946640b8587f4a8f135bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50854f2511946640b8587f4a8f135bea">&#9670;&nbsp;</a></span>getBestScoreByUserID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getBestScoreByUserID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>userID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.</p><ol type="1">
+<li>Parameter: UserID des aktuellen Nutzers </li>
+</ol>
+
+</div>
+</div>
+<a id="a63ae95ce5a1c0b15c48c72e177ad57b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63ae95ce5a1c0b15c48c72e177ad57b7">&#9670;&nbsp;</a></span>getScores()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -99,25 +218,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void getScores </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structScore.html">Score</a>&#160;</td>
-          <td class="paramname"><em>scores</em>[]</td><td>)</td>
+          <td class="paramtype">struct <a class="el" href="structsScore.html">sScore</a> *&#160;</td>
+          <td class="paramname"><em>scores</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Retrieves score from the database. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">scores</td><td>is an array of <a class="el" href="structScore.html">Score</a> where the scores put into. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Abfrage der Highscores inklusive der zugehörigen Spielernamen / UserIDs</p><ol type="1">
+<li>Parameter: Zeiger auf die Struktur, in der die abgefragten Daten ge- speichert werden sollen </li>
+</ol>
 
 </div>
 </div>
-<a id="a485ea08ce2b3d0559f488663fd64ae5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a485ea08ce2b3d0559f488663fd64ae5a">&#9670;&nbsp;</a></span>insertScore()</h2>
+<a id="ac14bcef3d3c49224abdc4a4401f23c35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14bcef3d3c49224abdc4a4401f23c35">&#9670;&nbsp;</a></span>insertScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,20 +239,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int insertScore </td>
           <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[], </td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>userID</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>score</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>_time</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -171,7 +279,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 25 2019 00:49:21 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 2 2019 01:17:47 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

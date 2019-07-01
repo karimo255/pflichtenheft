@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deletecells',['deleteCells',['../game_8h.html#a4405f6bbd7260e9a9d3e9a6ed716a4fc',1,'game.h']]]
+  ['bestscorecallback',['bestScoreCallback',['../score__service_8h.html#a05f8d2221161b95a2f9c640392de914b',1,'score_service.h']]]
 ];

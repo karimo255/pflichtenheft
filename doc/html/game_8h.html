@@ -71,71 +71,118 @@ $(function() {
 <div class="title">game.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &quot;<a class="el" href="shared_8h_source.html">../shared/shared.h</a>&quot;</code><br />
+</div>
 <p><a href="game_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a37c730bb23876fd8bd8563d8b833bd9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a37c730bb23876fd8bd8563d8b833bd9b">isElementInArray</a> (int array[], int number)</td></tr>
-<tr class="separator:a37c730bb23876fd8bd8563d8b833bd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dca567ab1d04740111a8da70847390e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a2dca567ab1d04740111a8da70847390e">resetArray</a> (int array[])</td></tr>
-<tr class="separator:a2dca567ab1d04740111a8da70847390e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf25f11b7059d3b5438f4685cd4f103f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#acf25f11b7059d3b5438f4685cd4f103f">generateGameData</a> (int array[][9])</td></tr>
-<tr class="memdesc:acf25f11b7059d3b5438f4685cd4f103f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to generate the game data.  <a href="#acf25f11b7059d3b5438f4685cd4f103f">More...</a><br /></td></tr>
-<tr class="separator:acf25f11b7059d3b5438f4685cd4f103f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4405f6bbd7260e9a9d3e9a6ed716a4fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a4405f6bbd7260e9a9d3e9a6ed716a4fc">deleteCells</a> (int array[][9], int <a class="el" href="game_8h.html#a016a5d341f375d13639c75bf5987fb23">difficulty</a>)</td></tr>
-<tr class="memdesc:a4405f6bbd7260e9a9d3e9a6ed716a4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to delete grid cells randomly.  <a href="#a4405f6bbd7260e9a9d3e9a6ed716a4fc">More...</a><br /></td></tr>
+<tr class="memitem:a373977092430043a8fd79dd44d5ec679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a373977092430043a8fd79dd44d5ec679">fillNotesForCell</a> (int <a class="el" href="game_8h.html#a3698d706bfeb3de61dfb1489abe995ba">iX_coordinate</a>, int <a class="el" href="game_8h.html#a5d0cacf417c6d4647c97c377165789d2">iY_coordinate</a>)</td></tr>
+<tr class="separator:a373977092430043a8fd79dd44d5ec679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d5baf8fb30cfde69dcaa370dc59203"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a23d5baf8fb30cfde69dcaa370dc59203">isElementInArray</a> (int iArray[], int iNumber, int iSize)</td></tr>
+<tr class="separator:a23d5baf8fb30cfde69dcaa370dc59203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bce53e6b508a6ca5261035641e6e0c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5bce53e6b508a6ca5261035641e6e0c3">resetArray</a> (int iArray[], int iSize)</td></tr>
+<tr class="separator:a5bce53e6b508a6ca5261035641e6e0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac112d0da928064037f94db4069622195"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac112d0da928064037f94db4069622195">generateGameData</a> (int <a class="el" href="game_8h.html#af013409455ca9ab915c88cb6127d62df">iGameData</a>[][9])</td></tr>
+<tr class="separator:ac112d0da928064037f94db4069622195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4405f6bbd7260e9a9d3e9a6ed716a4fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a4405f6bbd7260e9a9d3e9a6ed716a4fc">deleteCells</a> (int array[][9], int difficulty)</td></tr>
 <tr class="separator:a4405f6bbd7260e9a9d3e9a6ed716a4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a191f1d8ed731d9d201455a58c7911b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a191f1d8ed731d9d201455a58c7911b23">navigateTo</a> (int direction)</td></tr>
 <tr class="separator:a191f1d8ed731d9d201455a58c7911b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a365826d933111b6ccf3f91f6175484d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a365826d933111b6ccf3f91f6175484d1">makeNote</a> (int iX, int iY, int iSuggestion)</td></tr>
+<tr class="separator:a365826d933111b6ccf3f91f6175484d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a493e89dabc2b2199c976f1e24a94717c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a493e89dabc2b2199c976f1e24a94717c">isElementInBox</a> (int array[][9], int box_start_row, int box_start_col, int number)</td></tr>
 <tr class="separator:a493e89dabc2b2199c976f1e24a94717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fb6ddc78d0d0c1f79b3c67f7238f12b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a9fb6ddc78d0d0c1f79b3c67f7238f12b">generateRandomNumber</a> ()</td></tr>
 <tr class="separator:a9fb6ddc78d0d0c1f79b3c67f7238f12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a121bcaed11755558e8ceab907b976667"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a121bcaed11755558e8ceab907b976667">handleUserInput</a> ()</td></tr>
-<tr class="separator:a121bcaed11755558e8ceab907b976667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0be2fc2ea9b7366d1b8a55b32b0a4678"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0be2fc2ea9b7366d1b8a55b32b0a4678">solveGame</a> (int array[][9])</td></tr>
-<tr class="separator:a0be2fc2ea9b7366d1b8a55b32b0a4678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab05f7c2782449793f37837bf291d6983"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ab05f7c2782449793f37837bf291d6983">solveGame</a> (int <a class="el" href="game_8h.html#af013409455ca9ab915c88cb6127d62df">iGameData</a>[][9])</td></tr>
+<tr class="separator:ab05f7c2782449793f37837bf291d6983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a99d723999c92f94ed93e8f660383e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac1a99d723999c92f94ed93e8f660383e">resetGameData</a> (int array[][9])</td></tr>
 <tr class="separator:ac1a99d723999c92f94ed93e8f660383e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1c277eb5626eba3bd802e1bfda2a85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac1c277eb5626eba3bd802e1bfda2a85b">generateNumberByInterval</a> (int <a class="el" href="game_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, int <a class="el" href="game_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>)</td></tr>
-<tr class="separator:ac1c277eb5626eba3bd802e1bfda2a85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f0fc7a20da8a9b27d9399244abf5342"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a3f0fc7a20da8a9b27d9399244abf5342">getGridStatus</a> (int array[][9])</td></tr>
 <tr class="separator:a3f0fc7a20da8a9b27d9399244abf5342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b54de1370021db5cd668e728a340415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a3b54de1370021db5cd668e728a340415">solveCell</a> (int array[][9], int <a class="el" href="game_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a>, int <a class="el" href="game_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a>)</td></tr>
-<tr class="separator:a3b54de1370021db5cd668e728a340415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6117d5344e3a3ebe2611da4b88a0f13d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6117d5344e3a3ebe2611da4b88a0f13d">solveCell</a> (int <a class="el" href="game_8h.html#af013409455ca9ab915c88cb6127d62df">iGameData</a>[][9], int iX, int iY)</td></tr>
+<tr class="separator:a6117d5344e3a3ebe2611da4b88a0f13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205fc420246f79c19f927f34b15ba048"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a205fc420246f79c19f927f34b15ba048">getGameStatus</a> (int array[][9])</td></tr>
+<tr class="separator:a205fc420246f79c19f927f34b15ba048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492a807d53c38f7a587f5031f2b40839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a492a807d53c38f7a587f5031f2b40839">solveAll</a> (int gameData[][9], int deletedCells[][9])</td></tr>
+<tr class="separator:a492a807d53c38f7a587f5031f2b40839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffd5a6a84b97defba5632f635847f1f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a1ffd5a6a84b97defba5632f635847f1f">timer</a> (int iAction)</td></tr>
+<tr class="separator:a1ffd5a6a84b97defba5632f635847f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd23201070d273bb047f2c86df9629cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#afd23201070d273bb047f2c86df9629cc">timeToString</a> (int userTime, char stringTime[])</td></tr>
+<tr class="separator:afd23201070d273bb047f2c86df9629cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add82131d6acef0bb01168dfdd1face49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#add82131d6acef0bb01168dfdd1face49">checkGameSolved</a> ()</td></tr>
+<tr class="separator:add82131d6acef0bb01168dfdd1face49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6150e0515f7202e2fb518f7206ed97dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6150e0515f7202e2fb518f7206ed97dc">x</a></td></tr>
-<tr class="memdesc:a6150e0515f7202e2fb518f7206ed97dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">x-coordinate of the cursor.  <a href="#a6150e0515f7202e2fb518f7206ed97dc">More...</a><br /></td></tr>
-<tr class="separator:a6150e0515f7202e2fb518f7206ed97dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a2f84ed7838f07779ae24c5a9086d33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0a2f84ed7838f07779ae24c5a9086d33">y</a></td></tr>
-<tr class="memdesc:a0a2f84ed7838f07779ae24c5a9086d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">y-coordinate of the cursor.  <a href="#a0a2f84ed7838f07779ae24c5a9086d33">More...</a><br /></td></tr>
-<tr class="separator:a0a2f84ed7838f07779ae24c5a9086d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a016a5d341f375d13639c75bf5987fb23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a016a5d341f375d13639c75bf5987fb23">difficulty</a></td></tr>
-<tr class="memdesc:a016a5d341f375d13639c75bf5987fb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">game difficulty.  <a href="#a016a5d341f375d13639c75bf5987fb23">More...</a><br /></td></tr>
-<tr class="separator:a016a5d341f375d13639c75bf5987fb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ce9e00d9c674fcc9aa617cd0d1c8239"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6ce9e00d9c674fcc9aa617cd0d1c8239">gameMessage</a> [200]</td></tr>
-<tr class="memdesc:a6ce9e00d9c674fcc9aa617cd0d1c8239"><td class="mdescLeft">&#160;</td><td class="mdescRight">game message  <a href="#a6ce9e00d9c674fcc9aa617cd0d1c8239">More...</a><br /></td></tr>
-<tr class="separator:a6ce9e00d9c674fcc9aa617cd0d1c8239"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93411de513b7334562cde41de40119e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a93411de513b7334562cde41de40119e1">isGameActive</a></td></tr>
-<tr class="memdesc:a93411de513b7334562cde41de40119e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">is a session active.  <a href="#a93411de513b7334562cde41de40119e1">More...</a><br /></td></tr>
-<tr class="separator:a93411de513b7334562cde41de40119e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa662efe820ee154e4fc6e5ef1a5af99a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#aa662efe820ee154e4fc6e5ef1a5af99a">currentPosition</a></td></tr>
-<tr class="memdesc:aa662efe820ee154e4fc6e5ef1a5af99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">current active menu item.  <a href="#aa662efe820ee154e4fc6e5ef1a5af99a">More...</a><br /></td></tr>
-<tr class="separator:aa662efe820ee154e4fc6e5ef1a5af99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8368a4448e8c390ecd721a4beea89df6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a8368a4448e8c390ecd721a4beea89df6">arr</a> [9][9]</td></tr>
-<tr class="memdesc:a8368a4448e8c390ecd721a4beea89df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds the game data.  <a href="#a8368a4448e8c390ecd721a4beea89df6">More...</a><br /></td></tr>
-<tr class="separator:a8368a4448e8c390ecd721a4beea89df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67217bba41c556f73434f46bd5409aa1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a67217bba41c556f73434f46bd5409aa1">deletedCells</a> [9][9]</td></tr>
-<tr class="memdesc:a67217bba41c556f73434f46bd5409aa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds deleted cells to keep track of them.  <a href="#a67217bba41c556f73434f46bd5409aa1">More...</a><br /></td></tr>
-<tr class="separator:a67217bba41c556f73434f46bd5409aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a666ea338b38b7c4d34a75cdd6635fb7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a666ea338b38b7c4d34a75cdd6635fb7e">userCells</a> [9][9]</td></tr>
-<tr class="memdesc:a666ea338b38b7c4d34a75cdd6635fb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds the coordinates of user cells (cells to solve) to keep track of theme.  <a href="#a666ea338b38b7c4d34a75cdd6635fb7e">More...</a><br /></td></tr>
-<tr class="separator:a666ea338b38b7c4d34a75cdd6635fb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d5f89092c234524bf659135c2f2c7b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a3d5f89092c234524bf659135c2f2c7b7">iMarks</a> [9][9][<a class="el" href="shared_8h.html#a16d1b4d48bc3ed775d299e10f884d027">MAX_MARKS</a>]</td></tr>
+<tr class="separator:a3d5f89092c234524bf659135c2f2c7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3698d706bfeb3de61dfb1489abe995ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a3698d706bfeb3de61dfb1489abe995ba">iX_coordinate</a></td></tr>
+<tr class="memdesc:a3698d706bfeb3de61dfb1489abe995ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">x-coordinate of the cursor.  <a href="#a3698d706bfeb3de61dfb1489abe995ba">More...</a><br /></td></tr>
+<tr class="separator:a3698d706bfeb3de61dfb1489abe995ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0cacf417c6d4647c97c377165789d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5d0cacf417c6d4647c97c377165789d2">iY_coordinate</a></td></tr>
+<tr class="memdesc:a5d0cacf417c6d4647c97c377165789d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">y-coordinate of the cursor.  <a href="#a5d0cacf417c6d4647c97c377165789d2">More...</a><br /></td></tr>
+<tr class="separator:a5d0cacf417c6d4647c97c377165789d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f91d4431416753676b0837dc182c82"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ac2f91d4431416753676b0837dc182c82">iDifficulty</a></td></tr>
+<tr class="memdesc:ac2f91d4431416753676b0837dc182c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">game difficulty.  <a href="#ac2f91d4431416753676b0837dc182c82">More...</a><br /></td></tr>
+<tr class="separator:ac2f91d4431416753676b0837dc182c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6584d70bac774360df7abdb36e45b18f"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6584d70bac774360df7abdb36e45b18f">cGameMessage</a> [200]</td></tr>
+<tr class="memdesc:a6584d70bac774360df7abdb36e45b18f"><td class="mdescLeft">&#160;</td><td class="mdescRight">game message  <a href="#a6584d70bac774360df7abdb36e45b18f">More...</a><br /></td></tr>
+<tr class="separator:a6584d70bac774360df7abdb36e45b18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12f4de108aac350f1f1484d9dd4fcef5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a12f4de108aac350f1f1484d9dd4fcef5">iIsGameActive</a></td></tr>
+<tr class="memdesc:a12f4de108aac350f1f1484d9dd4fcef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">is a session active.  <a href="#a12f4de108aac350f1f1484d9dd4fcef5">More...</a><br /></td></tr>
+<tr class="separator:a12f4de108aac350f1f1484d9dd4fcef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ab0aabf3f257e564d47d8a8ff15157"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a37ab0aabf3f257e564d47d8a8ff15157">iCurrentPosition</a></td></tr>
+<tr class="memdesc:a37ab0aabf3f257e564d47d8a8ff15157"><td class="mdescLeft">&#160;</td><td class="mdescRight">current active menu item.  <a href="#a37ab0aabf3f257e564d47d8a8ff15157">More...</a><br /></td></tr>
+<tr class="separator:a37ab0aabf3f257e564d47d8a8ff15157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77db05ea214ffd8085ef1d065654c8e0"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a> [8]</td></tr>
+<tr class="separator:a77db05ea214ffd8085ef1d065654c8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a039b7ee7b6cda7b1c6d793f26a198554"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a039b7ee7b6cda7b1c6d793f26a198554">isUserLoggedIn</a></td></tr>
+<tr class="separator:a039b7ee7b6cda7b1c6d793f26a198554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef7771c03a2349e18a18c6ca58257e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#adef7771c03a2349e18a18c6ca58257e1">exitTheGame</a></td></tr>
+<tr class="separator:adef7771c03a2349e18a18c6ca58257e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d2be05e20e3fcd0b9a662bb1b577bae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6d2be05e20e3fcd0b9a662bb1b577bae">isSolvedAutomatic</a></td></tr>
+<tr class="separator:a6d2be05e20e3fcd0b9a662bb1b577bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60ab91a3547a7147cde8079199c56b9"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#ab60ab91a3547a7147cde8079199c56b9">userId</a></td></tr>
+<tr class="separator:ab60ab91a3547a7147cde8079199c56b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af013409455ca9ab915c88cb6127d62df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#af013409455ca9ab915c88cb6127d62df">iGameData</a> [9][9]</td></tr>
+<tr class="memdesc:af013409455ca9ab915c88cb6127d62df"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds the game data.  <a href="#af013409455ca9ab915c88cb6127d62df">More...</a><br /></td></tr>
+<tr class="separator:af013409455ca9ab915c88cb6127d62df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658ac20e5270f0e15b0c6463628e9d10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a658ac20e5270f0e15b0c6463628e9d10">iDeletedCells</a> [9][9]</td></tr>
+<tr class="memdesc:a658ac20e5270f0e15b0c6463628e9d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds deleted cells to keep track of them.  <a href="#a658ac20e5270f0e15b0c6463628e9d10">More...</a><br /></td></tr>
+<tr class="separator:a658ac20e5270f0e15b0c6463628e9d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acefd22c20fd787749039a5d47cf86274"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#acefd22c20fd787749039a5d47cf86274">iUserCells</a> [9][9]</td></tr>
+<tr class="memdesc:acefd22c20fd787749039a5d47cf86274"><td class="mdescLeft">&#160;</td><td class="mdescRight">array which holds the coordinates of user cells (cells to solve) to keep track of theme.  <a href="#acefd22c20fd787749039a5d47cf86274">More...</a><br /></td></tr>
+<tr class="separator:acefd22c20fd787749039a5d47cf86274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b31e6ec1f5aff9e1e04dc93f9b947d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a4b31e6ec1f5aff9e1e04dc93f9b947d4">anzahlDerTipps</a></td></tr>
+<tr class="separator:a4b31e6ec1f5aff9e1e04dc93f9b947d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0748f7a4a9faacbc57901b616e827186"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a0748f7a4a9faacbc57901b616e827186">anzahlDerHilfe</a></td></tr>
+<tr class="separator:a0748f7a4a9faacbc57901b616e827186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5522e7b836cc4cb5c2664712b344ef7d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5522e7b836cc4cb5c2664712b344ef7d">erlaubteAnzahlDerTipps</a></td></tr>
+<tr class="separator:a5522e7b836cc4cb5c2664712b344ef7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca2d2e3dde8cb8e4d2c79e276f6c487"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a5ca2d2e3dde8cb8e4d2c79e276f6c487">erlaubteAnzahlDerHilfe</a></td></tr>
+<tr class="separator:a5ca2d2e3dde8cb8e4d2c79e276f6c487"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="add82131d6acef0bb01168dfdd1face49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add82131d6acef0bb01168dfdd1face49">&#9670;&nbsp;</a></span>checkGameSolved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int checkGameSolved </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig und richtig gelöst wurde, ein. </p>
+
+</div>
+</div>
 <a id="a4405f6bbd7260e9a9d3e9a6ed716a4fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4405f6bbd7260e9a9d3e9a6ed716a4fc">&#9670;&nbsp;</a></span>deleteCells()</h2>
 
@@ -161,63 +208,30 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Function to delete grid cells randomly. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>to keep track of deleted grid cells. </td></tr>
-    <tr><td class="paramname">difficulty</td><td>is an integer which defines how difficult the game should be.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>It randomly deletes cells by difficulty level. </p>
+<p>Löscht je nach Schwierigkeitsgrad mehr oder weniger zufällige Zellen aus dem sichtbaren Spielfeld und speichert die gelöschten Zellen im Array iDeletedCells;</p><ol type="1">
+<li>Parameter: Spielfeld</li>
+<li>Parameter: Schwierigkeitsgrad </li>
+</ol>
 
 </div>
 </div>
-<a id="acf25f11b7059d3b5438f4685cd4f103f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf25f11b7059d3b5438f4685cd4f103f">&#9670;&nbsp;</a></span>generateGameData()</h2>
+<a id="a373977092430043a8fd79dd44d5ec679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373977092430043a8fd79dd44d5ec679">&#9670;&nbsp;</a></span>fillNotesForCell()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void generateGameData </td>
+          <td class="memname">void fillNotesForCell </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>array</em>[][9]</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to generate the game data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>where we put the randomly generated data into.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>It generates a completed sudoku game. </p>
-
-</div>
-</div>
-<a id="ac1c277eb5626eba3bd802e1bfda2a85b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1c277eb5626eba3bd802e1bfda2a85b">&#9670;&nbsp;</a></span>generateNumberByInterval()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int generateNumberByInterval </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
+          <td class="paramname"><em>iX_coordinate</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramname"><em>iY_coordinate</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -226,8 +240,27 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns randomly generated number by interval</dd></dl>
-<p>Generate randomly generated number by interval </p>
+
+</div>
+</div>
+<a id="ac112d0da928064037f94db4069622195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac112d0da928064037f94db4069622195">&#9670;&nbsp;</a></span>generateGameData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generateGameData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iGameData</em>[][9]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generiert vor jedem neuen Spiel ein neues gelöstet Spielfeld. Sorgt damit dafür, dass das Sudoku lösbar ist. Der Vorgang wird nach zwei Sekunden neu gestartet, fall die Funktion zu keiner Lösung gekommen ist, um eine Endlossschleife zu vermeiden.</p><ol type="1">
+<li>Parameter: leeres Spielfeld </li>
+</ol>
 
 </div>
 </div>
@@ -245,8 +278,28 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>randomly generated number between 0-9</dd></dl>
-<p>Generates randomly generated number </p>
+<p>Generiert eine Zufallszahl zwischen 1 und 9. Rückgabewert: generierte Zufallszahl </p>
+
+</div>
+</div>
+<a id="a205fc420246f79c19f927f34b15ba048"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205fc420246f79c19f927f34b15ba048">&#9670;&nbsp;</a></span>getGameStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getGameStatus </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>array</em>[][9]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Überprüft, ob alle Felder des sichtbaren Spielfeldes aufgefüllt wurden.</p><ol type="1">
+<li>Parameter: sichtbares Spielfeld Rückgabewert: Vollständig (FILLED) oder unvollständig (NOT_FILLED) </li>
+</ol>
 
 </div>
 </div>
@@ -265,7 +318,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Generiert eine Zufallszahl in einem definierbaren Intervall.</p><ol type="1">
+<li>Parameter: Intervall-Start</li>
+<li>Parameter: Intervall-Ende Rückgabewert: generierte Zufallszahl int generateNumberByInterval(int x, int y);</li>
+</ol>
+<p>/** </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
   </table>
@@ -276,26 +333,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a121bcaed11755558e8ceab907b976667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a121bcaed11755558e8ceab907b976667">&#9670;&nbsp;</a></span>handleUserInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleUserInput </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>It handles user input </p>
-
-</div>
-</div>
-<a id="a37c730bb23876fd8bd8563d8b833bd9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37c730bb23876fd8bd8563d8b833bd9b">&#9670;&nbsp;</a></span>isElementInArray()</h2>
+<a id="a23d5baf8fb30cfde69dcaa370dc59203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d5baf8fb30cfde69dcaa370dc59203">&#9670;&nbsp;</a></span>isElementInArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -304,13 +343,19 @@ Variables</h2></td></tr>
           <td class="memname">int isElementInArray </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>array</em>[], </td>
+          <td class="paramname"><em>iArray</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>number</em>&#160;</td>
+          <td class="paramname"><em>iNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iSize</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -319,15 +364,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>int array to search. </td></tr>
-    <tr><td class="paramname">number</td><td>is the integer to search for. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the index of the number if number is found in the array, -1 otherwise.</dd></dl>
-<p>Checks if a number exists in an array. </p>
+<p>Überpüft, ob sich ein bestimmtes Element in einen bestimmten Array befindet.</p><ol type="1">
+<li>Parameter: zu überprüfender Array</li>
+<li>Parameter: Element, nach dem gesucht werden soll</li>
+<li>Parameter: Länge des Arrays Rückgabewert: Stelle, an der das Element gefunden wurde oder -1, falls es nicht im Array ist </li>
+</ol>
 
 </div>
 </div>
@@ -368,17 +409,51 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
-    <tr><td class="paramname">box_start_row</td><td>Where does the row start from. </td></tr>
-    <tr><td class="paramname">box_start_col</td><td>Where does the column start from. </td></tr>
-    <tr><td class="paramname">number</td><td>is the integer to search for. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the x-coordinate of the number if number is found in the array, -1 otherwise.</dd></dl>
-<p>Checks if a number exists in an array </p>
+<p>Dient zur Überprüfung, ob eine bestimmte Zahl in einer bestimmten der neun Unterquadrate des Sudokus vorhanden ist.</p><ol type="1">
+<li>Parameter: aktuelles Spielfeld</li>
+<li>Parameter: y-Koordinate der oberen, linken Ecke der Box</li>
+<li>Parameter: x-Koordinate der obenen, linken Ecke der Box</li>
+<li>Parameter: Element, nach dem gesucht werden soll Rückgabewert: Gefunden? 1 -&gt; Ja, -1 -&gt; Nein </li>
+</ol>
+
+</div>
+</div>
+<a id="a365826d933111b6ccf3f91f6175484d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a365826d933111b6ccf3f91f6175484d1">&#9670;&nbsp;</a></span>makeNote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void makeNote </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iSuggestion</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wird nur aufgerufen, wenn sich der Spieler im "Makiere-Modus" befindet. Es können bis zu drei Zahlen in eine Notiz eingetragen werden. Wenn die Notiz voll ist und eine weitere Zahl eingetragen wird, wird die Notiz gelöscht und die weitere Zahl eingetragen.</p><ol type="1">
+<li>Parameter: x-Koordinate, an der der Spieler sich befindet</li>
+<li>Parameter: y-Koordinate, an der der Spieler sich befindet</li>
+<li>Parameter: Zahl, die der Spiele in die Notiz schreiben möchte </li>
+</ol>
 
 </div>
 </div>
@@ -407,8 +482,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2dca567ab1d04740111a8da70847390e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dca567ab1d04740111a8da70847390e">&#9670;&nbsp;</a></span>resetArray()</h2>
+<a id="a5bce53e6b508a6ca5261035641e6e0c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bce53e6b508a6ca5261035641e6e0c3">&#9670;&nbsp;</a></span>resetArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -417,18 +492,25 @@ Variables</h2></td></tr>
           <td class="memname">void resetArray </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>array</em>[]</td><td>)</td>
+          <td class="paramname"><em>iArray</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>int array to clear.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Sets the value of array items to zero. </p>
+<p>Setzt einen Array auf den Ursprungszustand zurück, indem alle Werte auf Null gesetzt werden.</p><ol type="1">
+<li>Parameter: der zurückzusetzende Array</li>
+<li>Parameter: Länge des Arrays </li>
+</ol>
 
 </div>
 </div>
@@ -457,29 +539,23 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a3b54de1370021db5cd668e728a340415"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b54de1370021db5cd668e728a340415">&#9670;&nbsp;</a></span>solveCell()</h2>
+<a id="a492a807d53c38f7a587f5031f2b40839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a492a807d53c38f7a587f5031f2b40839">&#9670;&nbsp;</a></span>solveAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void solveCell </td>
+          <td class="memname">void solveAll </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>array</em>[][9], </td>
+          <td class="paramname"><em>gameData</em>[][9], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramname"><em>deletedCells</em>[][9]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -488,20 +564,50 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
-    <tr><td class="paramname">x</td><td>is the x-coordinate of the cell to solve. </td></tr>
-    <tr><td class="paramname">y</td><td>ist the y-coordinate of the cell to solve.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Checks if the grid if filled complete. </p>
 
 </div>
 </div>
-<a id="a0be2fc2ea9b7366d1b8a55b32b0a4678"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0be2fc2ea9b7366d1b8a55b32b0a4678">&#9670;&nbsp;</a></span>solveGame()</h2>
+<a id="a6117d5344e3a3ebe2611da4b88a0f13d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6117d5344e3a3ebe2611da4b88a0f13d">&#9670;&nbsp;</a></span>solveCell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void solveCell </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iGameData</em>[][9], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wird aufgerufen, wenn der Spieler die Hilfefunktion nutzt. Aus dem zweidimensionalen Array, in dem die gelöschten Zellen gespeichert sind, wird der Lösungswert in das aktuelle Spielfeld eingetragen.</p><ol type="1">
+<li>Parameter: aktuelles Spielfeld</li>
+<li>Parameter: x-Koordinate, an der der Spieler sich befindet</li>
+<li>Parameter: y-Koordinate, an der der Spieler sich befindet </li>
+</ol>
+
+</div>
+</div>
+<a id="ab05f7c2782449793f37837bf291d6983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab05f7c2782449793f37837bf291d6983">&#9670;&nbsp;</a></span>solveGame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -510,94 +616,107 @@ Variables</h2></td></tr>
           <td class="memname">int solveGame </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>array</em>[][9]</td><td>)</td>
+          <td class="paramname"><em>iGameData</em>[][9]</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array[][]</td><td>which holds the game data. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Return 1 if the game successfully solved, otherwise 0. </dd></dl>
+<p>Wird aufgerufen, wenn die keine Zellen mehr ausgefüllt werden müssen. Überprüft, ob der Spieler das Spielfeld richtig gelöst hat.</p><ol type="1">
+<li>Parameter: aktuelles Spielfeld Rückgabewert: Richtig gelöst (1) oder es existiert mindestens ein Fehler (0) </li>
+</ol>
+
+</div>
+</div>
+<a id="a1ffd5a6a84b97defba5632f635847f1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffd5a6a84b97defba5632f635847f1f">&#9670;&nbsp;</a></span>timer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int timer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iAction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum Lösen des Sudokus verwendet. Stoppuhr kann (neu-)gestartet, ge- stopped und pausiert werden.</p><ol type="1">
+<li>Parameter: Aktion für die Stoppuhr (Zeit abfragen, Zurück- setzen, Starten, Stoppen) </li>
+</ol>
+
+</div>
+</div>
+<a id="afd23201070d273bb047f2c86df9629cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd23201070d273bb047f2c86df9629cc">&#9670;&nbsp;</a></span>timeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void timeToString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>userTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>stringTime</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wandelt eine Zeitangabe in Sekunden in das "00:00"-Format um.</p><ol type="1">
+<li>Parameter: Zeitangabe in Sekunden</li>
+<li>Parameter: Char-Array, in den die formatierte Zeit geschrieben werden soll </li>
+</ol>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a8368a4448e8c390ecd721a4beea89df6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8368a4448e8c390ecd721a4beea89df6">&#9670;&nbsp;</a></span>arr</h2>
+<a id="a0748f7a4a9faacbc57901b616e827186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0748f7a4a9faacbc57901b616e827186">&#9670;&nbsp;</a></span>anzahlDerHilfe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int arr[9][9]</td>
+          <td class="memname">int anzahlDerHilfe</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>array which holds the game data. </p>
-
 </div>
 </div>
-<a id="aa662efe820ee154e4fc6e5ef1a5af99a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa662efe820ee154e4fc6e5ef1a5af99a">&#9670;&nbsp;</a></span>currentPosition</h2>
+<a id="a4b31e6ec1f5aff9e1e04dc93f9b947d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b31e6ec1f5aff9e1e04dc93f9b947d4">&#9670;&nbsp;</a></span>anzahlDerTipps</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int currentPosition</td>
+          <td class="memname">int anzahlDerTipps</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>current active menu item. </p>
-
 </div>
 </div>
-<a id="a67217bba41c556f73434f46bd5409aa1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67217bba41c556f73434f46bd5409aa1">&#9670;&nbsp;</a></span>deletedCells</h2>
+<a id="a6584d70bac774360df7abdb36e45b18f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6584d70bac774360df7abdb36e45b18f">&#9670;&nbsp;</a></span>cGameMessage</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int deletedCells[9][9]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>array which holds deleted cells to keep track of them. </p>
-
-</div>
-</div>
-<a id="a016a5d341f375d13639c75bf5987fb23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a016a5d341f375d13639c75bf5987fb23">&#9670;&nbsp;</a></span>difficulty</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int difficulty</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>game difficulty. </p>
-
-</div>
-</div>
-<a id="a6ce9e00d9c674fcc9aa617cd0d1c8239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ce9e00d9c674fcc9aa617cd0d1c8239">&#9670;&nbsp;</a></span>gameMessage</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char gameMessage[200]</td>
+          <td class="memname">char cGameMessage[200]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -606,14 +725,120 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a93411de513b7334562cde41de40119e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93411de513b7334562cde41de40119e1">&#9670;&nbsp;</a></span>isGameActive</h2>
+<a id="a5ca2d2e3dde8cb8e4d2c79e276f6c487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca2d2e3dde8cb8e4d2c79e276f6c487">&#9670;&nbsp;</a></span>erlaubteAnzahlDerHilfe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int isGameActive</td>
+          <td class="memname">int erlaubteAnzahlDerHilfe</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5522e7b836cc4cb5c2664712b344ef7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5522e7b836cc4cb5c2664712b344ef7d">&#9670;&nbsp;</a></span>erlaubteAnzahlDerTipps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int erlaubteAnzahlDerTipps</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adef7771c03a2349e18a18c6ca58257e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef7771c03a2349e18a18c6ca58257e1">&#9670;&nbsp;</a></span>exitTheGame</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int exitTheGame</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37ab0aabf3f257e564d47d8a8ff15157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ab0aabf3f257e564d47d8a8ff15157">&#9670;&nbsp;</a></span>iCurrentPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iCurrentPosition</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>current active menu item. </p>
+
+</div>
+</div>
+<a id="a658ac20e5270f0e15b0c6463628e9d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658ac20e5270f0e15b0c6463628e9d10">&#9670;&nbsp;</a></span>iDeletedCells</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iDeletedCells[9][9]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>array which holds deleted cells to keep track of them. </p>
+
+</div>
+</div>
+<a id="ac2f91d4431416753676b0837dc182c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f91d4431416753676b0837dc182c82">&#9670;&nbsp;</a></span>iDifficulty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iDifficulty</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>game difficulty. </p>
+
+</div>
+</div>
+<a id="af013409455ca9ab915c88cb6127d62df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af013409455ca9ab915c88cb6127d62df">&#9670;&nbsp;</a></span>iGameData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iGameData[9][9]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>array which holds the game data. </p>
+
+</div>
+</div>
+<a id="a12f4de108aac350f1f1484d9dd4fcef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12f4de108aac350f1f1484d9dd4fcef5">&#9670;&nbsp;</a></span>iIsGameActive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iIsGameActive</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -622,14 +847,56 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a666ea338b38b7c4d34a75cdd6635fb7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a666ea338b38b7c4d34a75cdd6635fb7e">&#9670;&nbsp;</a></span>userCells</h2>
+<a id="a3d5f89092c234524bf659135c2f2c7b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d5f89092c234524bf659135c2f2c7b7">&#9670;&nbsp;</a></span>iMarks</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int userCells[9][9]</td>
+          <td class="memname">int iMarks[9][9][<a class="el" href="shared_8h.html#a16d1b4d48bc3ed775d299e10f884d027">MAX_MARKS</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d2be05e20e3fcd0b9a662bb1b577bae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d2be05e20e3fcd0b9a662bb1b577bae">&#9670;&nbsp;</a></span>isSolvedAutomatic</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isSolvedAutomatic</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a039b7ee7b6cda7b1c6d793f26a198554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039b7ee7b6cda7b1c6d793f26a198554">&#9670;&nbsp;</a></span>isUserLoggedIn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* isUserLoggedIn</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acefd22c20fd787749039a5d47cf86274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acefd22c20fd787749039a5d47cf86274">&#9670;&nbsp;</a></span>iUserCells</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iUserCells[9][9]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -638,14 +905,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6150e0515f7202e2fb518f7206ed97dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6150e0515f7202e2fb518f7206ed97dc">&#9670;&nbsp;</a></span>x</h2>
+<a id="a3698d706bfeb3de61dfb1489abe995ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3698d706bfeb3de61dfb1489abe995ba">&#9670;&nbsp;</a></span>iX_coordinate</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int x</td>
+          <td class="memname">int iX_coordinate</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -654,14 +921,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0a2f84ed7838f07779ae24c5a9086d33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a2f84ed7838f07779ae24c5a9086d33">&#9670;&nbsp;</a></span>y</h2>
+<a id="a5d0cacf417c6d4647c97c377165789d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0cacf417c6d4647c97c377165789d2">&#9670;&nbsp;</a></span>iY_coordinate</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int y</td>
+          <td class="memname">int iY_coordinate</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -670,10 +937,38 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab60ab91a3547a7147cde8079199c56b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60ab91a3547a7147cde8079199c56b9">&#9670;&nbsp;</a></span>userId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* userId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77db05ea214ffd8085ef1d065654c8e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77db05ea214ffd8085ef1d065654c8e0">&#9670;&nbsp;</a></span>username</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char username[8]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 25 2019 00:49:21 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 2 2019 01:17:47 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

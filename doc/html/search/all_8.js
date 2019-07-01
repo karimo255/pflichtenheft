@@ -1,11 +1,20 @@
 var searchData=
 [
-  ['kblu',['KBLU',['../view_8h.html#a3f838f2fc3a9a3b434be606fc908964b',1,'view.h']]],
-  ['kcyn',['KCYN',['../view_8h.html#a32036c94dbb166a3f874b7efc169841f',1,'view.h']]],
-  ['kgrn',['KGRN',['../view_8h.html#ac081c83b067273757f7a2e54a5957d41',1,'view.h']]],
-  ['kmag',['KMAG',['../view_8h.html#a6825f05d3b9d619d91d79d0ef18bb8b2',1,'view.h']]],
-  ['knrm',['KNRM',['../view_8h.html#a137aa83ec74421d226a90c92ec032ac9',1,'view.h']]],
-  ['kred',['KRED',['../view_8h.html#a66290957baed5df3930ada4cb8caccf1',1,'view.h']]],
-  ['kwht',['KWHT',['../view_8h.html#af0036c8022c9980079ab17e5c87fd478',1,'view.h']]],
-  ['kyel',['KYEL',['../view_8h.html#a897b10d246533c95ba86cb79f92e465a',1,'view.h']]]
+  ['icurrentposition',['iCurrentPosition',['../game_8h.html#a37ab0aabf3f257e564d47d8a8ff15157',1,'game.h']]],
+  ['ideletedcells',['iDeletedCells',['../game_8h.html#a658ac20e5270f0e15b0c6463628e9d10',1,'game.h']]],
+  ['idifficulty',['iDifficulty',['../game_8h.html#ac2f91d4431416753676b0837dc182c82',1,'game.h']]],
+  ['igamedata',['iGameData',['../game_8h.html#af013409455ca9ab915c88cb6127d62df',1,'game.h']]],
+  ['iisgameactive',['iIsGameActive',['../game_8h.html#a12f4de108aac350f1f1484d9dd4fcef5',1,'game.h']]],
+  ['imarks',['iMarks',['../game_8h.html#a3d5f89092c234524bf659135c2f2c7b7',1,'game.h']]],
+  ['in_5fgame',['IN_GAME',['../shared_8h.html#a6f846a4971a81f40033539a021c34cf9a87ff207aee31a9e4007c3dba3fe84893',1,'shared.h']]],
+  ['initcolors',['initColors',['../view_8h.html#abd1f8c83fcebf1f40bc3fec0f96fb2bb',1,'view.h']]],
+  ['inputhandler_2eh',['inputHandler.h',['../inputHandler_8h.html',1,'']]],
+  ['insertscore',['insertScore',['../score__service_8h.html#ac14bcef3d3c49224abdc4a4401f23c35',1,'score_service.h']]],
+  ['iselementinarray',['isElementInArray',['../game_8h.html#a23d5baf8fb30cfde69dcaa370dc59203',1,'game.h']]],
+  ['iselementinbox',['isElementInBox',['../game_8h.html#a493e89dabc2b2199c976f1e24a94717c',1,'game.h']]],
+  ['issolvedautomatic',['isSolvedAutomatic',['../game_8h.html#a6d2be05e20e3fcd0b9a662bb1b577bae',1,'game.h']]],
+  ['isuserloggedin',['isUserLoggedIn',['../game_8h.html#a039b7ee7b6cda7b1c6d793f26a198554',1,'game.h']]],
+  ['iusercells',['iUserCells',['../game_8h.html#acefd22c20fd787749039a5d47cf86274',1,'game.h']]],
+  ['ix_5fcoordinate',['iX_coordinate',['../game_8h.html#a3698d706bfeb3de61dfb1489abe995ba',1,'game.h']]],
+  ['iy_5fcoordinate',['iY_coordinate',['../game_8h.html#a5d0cacf417c6d4647c97c377165789d2',1,'game.h']]]
 ];

@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['deletecells',['deleteCells',['../game_8h.html#a4405f6bbd7260e9a9d3e9a6ed716a4fc',1,'game.h']]],
-  ['deletedcells',['deletedCells',['../game_8h.html#a67217bba41c556f73434f46bd5409aa1',1,'game.h']]],
-  ['details',['DETAILS',['../shared_8h.html#a6f846a4971a81f40033539a021c34cf9ac798da18a4385ee11bbd525fd4afd8ee',1,'shared.h']]],
-  ['difficulty',['difficulty',['../structScore.html#af2c37b8548a1fcad347bc9a2afb121e1',1,'Score::difficulty()'],['../shared_8h.html#abad2be49a3ac120910f7f8a1355167a4',1,'DIFFICULTY():&#160;shared.h'],['../game_8h.html#a016a5d341f375d13639c75bf5987fb23',1,'difficulty():&#160;game.h']]],
-  ['difficulty_5fdialog',['DIFFICULTY_DIALOG',['../shared_8h.html#a6f846a4971a81f40033539a021c34cf9ad5a03011d78a66ac7a42a7613061853a',1,'shared.h']]],
-  ['down',['DOWN',['../shared_8h.html#a19aa33589879aa74ba5116ff56fe316ca9b0b4a95b99523966e0e34ffdadac9da',1,'shared.h']]]
+  ['cbreak',['cbreak',['../getch_8h.html#aedb5d6ebd5acab6f6f3c52fc669bfee9',1,'getch.h']]],
+  ['cgamemessage',['cGameMessage',['../game_8h.html#a6584d70bac774360df7abdb36e45b18f',1,'game.h']]],
+  ['checkgamesolved',['checkGameSolved',['../game_8h.html#add82131d6acef0bb01168dfdd1face49',1,'game.h']]],
+  ['checkgamestate',['checkGameState',['../view_8h.html#a2b8086c17b948486da00732e709362cb',1,'view.h']]],
+  ['clear_5foutput',['clear_output',['../view_8h.html#aa7da83ed703c21222cb74f6e846e33fb',1,'view.h']]],
+  ['connection',['connection',['../connection_8h.html#ac5f12232ead558dcedc61718e4c56037',1,'connection.h']]],
+  ['connection_2eh',['connection.h',['../connection_8h.html',1,'']]],
+  ['createscoretable',['createScoreTable',['../user__service_8h.html#a8b55604795f8a341c2da9bdaa2790f14',1,'user_service.h']]],
+  ['createusertable',['createUserTable',['../user__service_8h.html#ad7f9ae4eb4fb46f6282f7a7ec3231e76',1,'user_service.h']]]
 ];
