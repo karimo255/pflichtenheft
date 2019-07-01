@@ -157,7 +157,7 @@ int main() {
     struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
-    getScores(scores, 5);
+    getScores(scores);
 
     currentPosition = MENU;
     difficulty = EASY;
@@ -363,7 +363,6 @@ void handleUserInput() {
                                 setConfig();
                                 break;
                         }
-                      //  getScores(scores, 5);
 
                     }
                     break;

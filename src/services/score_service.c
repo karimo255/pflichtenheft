@@ -47,9 +47,12 @@ delete_whole_list(struct score *scores) {
 
 int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     score *a_head = (score *) scores;
+    printf("hon}\n");
     if(argc <= 0) {
         return 0;
     }
+
+
 
     /**
     * We go to end of the list
@@ -89,7 +92,7 @@ void deleteNode(score *node) {
     free(temp);
 }
 
-void getScores(score *scores, int diff) {
+void getScores(score *scores) {
     sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
     fflush(stdout);
     clear_output();
@@ -98,7 +101,7 @@ void getScores(score *scores, int diff) {
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
 
     if(scores->next != NULL) {
-        deleteNode(scores);
+       // deleteNode(scores);
     }
     if (rc == SQLITE_OK) {
         printf("OK\n");
