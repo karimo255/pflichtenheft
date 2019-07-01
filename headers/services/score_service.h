@@ -4,14 +4,14 @@
 #include "../../libs/sqlite3.h"
 
 
-struct score {
+struct sScore {
     char name[10];
     int userId;
     int time;
     int difficulty;
-    struct score *next;
+    struct sScore *next;
 };
-typedef struct score score;
+typedef struct sScore score;
 
 /**
  * \brief Inserts score in the database.
@@ -29,7 +29,7 @@ int insertScore(int *userID, int score, int difficulty);
  * 1. Parameter: Zeiger auf die Struktur, in der die abgefragten Daten ge-
  * speichert werden sollen
  */
-void getScores(score *scores);
+void getScores(struct sScore *scores);
 
 /** Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.
  * 1. Parameter: UserID des aktuellen Nutzers

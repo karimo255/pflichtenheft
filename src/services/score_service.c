@@ -38,7 +38,7 @@ int insertScore(int *userID, int score, int difficulty) {
 
 
 int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
-    score *a_head = (score *) scores;
+    struct sScore *a_head = (struct sScore *) scores;
     if(argc <= 0) {
         return 0;
     }
@@ -55,7 +55,7 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     /**
     * now we can add a new item
     */
-    a_head->next = malloc(sizeof(score));
+    a_head->next = malloc(sizeof(struct sScore));
 
     for (int i = 0; i < argc; i++) {
         if (strcmp(azColName[i], "time") == 0) {
@@ -74,7 +74,7 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     return 0;
 }
 
-void getScores(score *scores) {
+void getScores(struct sScore *scores) {
     sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` ASC LIMIT 10;");
     fflush(stdout);
     clear_output();

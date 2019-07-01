@@ -64,7 +64,7 @@ int isSolvedAutomatic;
 int currentPosition;
 char username[8] = {0};
 
-void renderGame(struct score *scores);
+void renderGame(struct sScore *scores);
 
 void handleInput();
 
@@ -102,8 +102,8 @@ int main() {
     fflush(stdout);
     srand(time(NULL));
 
-    struct score *scores;
-    scores = malloc(sizeof(score));
+    struct sScore *scores;
+    scores = malloc(sizeof(struct sScore));
     scores->next = NULL;
     getScores(scores);
     currentPosition = MENU;
@@ -128,11 +128,12 @@ int main() {
 
     sqlite3_close(connection);
     free(scores);
+    free(bestScore);
     printf("Das Programm ist beendet\n");
     return 0;
 }
 
-void renderGame(struct score *scores) {
+void renderGame(struct sScore *scores) {
     switch (currentPosition) {
         case SET_PASSWORD:
             renderSetPassword();

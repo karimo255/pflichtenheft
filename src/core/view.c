@@ -53,12 +53,12 @@ void setPrintingColor(char *color) {
     printf("%s", color);
 }
 
-void renderUsernameDialog(char *username) {
+void renderUsernameDialog(char *pcUsername) {
     setPrintingColor(KCYN);
 
     printf(" ++============= Spieler Name ==============++\n");
     char userNameRow[100];
-    sprintf(userNameRow, "Name: %s%*s ", username, 33 - strlen(username), "");
+    sprintf(userNameRow, "Name: %s%*s ", pcUsername, 33 - strlen(pcUsername), "");
     printTableLine(userNameRow);
     printEmptyTableLine();
     printTableLine("Sie koennen diesen Schritt              ");
@@ -312,15 +312,15 @@ void renderMenu() {
     printEndOfTable();
 }
 
-void print_list(struct score *head, int difficulty) {
-    struct score *current = head;
+void print_list(struct sScore *head, int iDifficulty) {
+    struct sScore *current = head;
     setPrintingColor(KCYN);
     char screenTitle[100];
     sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
     printTableLine(screenTitle);
     printEmptyTableLine();
     while (current != NULL) {
-        if(current->difficulty == difficulty) {
+        if(current->difficulty == iDifficulty) {
             if (current->userId == 2) {
                 char scoreRow[100];
                 char us[10];
@@ -361,7 +361,7 @@ void renderDBestScoreDialog() {
     printEndOfTable();
 }
 
-void renderDetails(struct score *scores, int difficulty) {
+void renderDetails(struct sScore *scores, int difficulty) {
     char difficultyText[20];
     switch (difficulty) {
         case EASY:

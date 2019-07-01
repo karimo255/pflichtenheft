@@ -22,7 +22,7 @@ void renderMarkModeMessage();
  * und das Nutzen der Löschen-Taste zu ermöglichen)
  * und das Nutzen der Löschen-Taste zu ermöglichen)
  */
-void renderUsernameDialog(char *username);
+void renderUsernameDialog(char *pcUsername);
 
 /** Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
  * aus.
@@ -50,7 +50,7 @@ void renderDBestScoreDialog();
  *
  * It shows infos about users and scores
  */
-void renderDetails(struct score *scores, int difficulty);
+void renderDetails(struct sScore *scores, int difficulty);
 
 /**
  * \brief Function to render the game grid
@@ -123,7 +123,7 @@ int lenHelper(int input);
 
 int getRemainingCells(int array[][9]);
 
-void print_list(struct score *head,int difficulty);
+void print_list(struct sScore *head, int iDifficulty);
 
 
 void initColors();
