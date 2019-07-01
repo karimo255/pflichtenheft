@@ -86,7 +86,7 @@ void getUserID(char username[30], int *userID) {
 
 
 int createUserTable() {
-    sprintf(sql, "CREATE TABLE IF NOT EXISTS \"User\" (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL)");
+    sprintf(sql, "CREATE TABLE \"User\" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `password` TEXT )");
     fflush(stdout);
     clear_output();
 

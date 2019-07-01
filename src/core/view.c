@@ -533,7 +533,7 @@ void printEmptyTableLine() {
 
 void clear_output() {
 #ifdef __unix__
-    //system("clear");
+    system("clear");
 #endif
 
 #ifdef __WIN32__
