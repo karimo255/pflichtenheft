@@ -120,6 +120,7 @@ int main()
     {
         clear_output();
         renderGame(scores);
+        fflush(stdout);
         resetArray(cGameMessage, 200);
         handleInput();
         checkGameState();
@@ -138,19 +139,15 @@ void renderGame(struct sScore *scores)
     {
     case SET_PASSWORD:
         renderSetPassword();
-        fflush(stdout);
         break;
     case ENTER_PASSWORD:
         renderEnterPassword();
-        fflush(stdout);
         break;
     case MENU:
         renderMenu();
-        fflush(stdout);
         break;
     case USER_NAME:
         renderUsernameDialog(username);
-        fflush(stdout);
         break;
     case IN_GAME:
         if (iIsGameActive == 0)
@@ -174,7 +171,6 @@ void renderGame(struct sScore *scores)
         printGameMessage();
         renderGameMenu();
         sprintf(cGameMessage, "%s", "");
-        fflush(stdout);
         break;
     case SET_MARK:
         remaining = getRemainingCells(iGameData);
@@ -183,28 +179,22 @@ void renderGame(struct sScore *scores)
         renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
         renderGameMenu();
         sprintf(cGameMessage, "%s", "");
-        fflush(stdout);
         break;
     case DIFFICULTY_DIALOG:
         renderDifficultyDialog();
-        fflush(stdout);
         break;
     case DETAILS_DIALOG:
         renderDBestScoreDialog();
-        fflush(stdout);
         break;
     case DETAILS:
         renderDetails(scores, iDifficulty);
-        fflush(stdout);
         break;
     case HELP:
         renderHelpDialog();
-        fflush(stdout);
         break;
     case SOLVED_GAME:
         renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
         renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
-        fflush(stdout);
         break;
     }
 }
