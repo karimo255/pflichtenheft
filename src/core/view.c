@@ -326,8 +326,11 @@ void print_list(struct score *head, int difficulty) {
                 printTableLine(scoreRow);
             } else {
                 char scoreRow[100];
-                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
-                        19 - lenHelper(current->time), "");
+                char us[6];
+                int t = (int)current->time;
+                timeToString(5,us);
+                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", us,
+                        14 - strlen(us), "");
                 printTableLine(scoreRow);
             }
         }

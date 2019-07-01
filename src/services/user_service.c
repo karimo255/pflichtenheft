@@ -72,8 +72,12 @@ void loginUser(char username[], char password[], int *id) {
 
 int getUserIdCallback(void *userID, int argc, char **argv, char **azColName) {
     int *tmp = (int *) userID;
+    if (argc <= 0){
+        *tmp= 0;
+        return 0;
+    }
     for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "id") == 0) {
+        if (strcmp(azColName[i], "id") == 0 && atoi(argv[i] > 0)) {
             *tmp = atoi(argv[i]);
             printf("ja\n");
         }

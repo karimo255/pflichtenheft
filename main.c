@@ -322,7 +322,6 @@ void handleUserInput() {
             loginUser(username,password, id);
             if(*id > 0){
                 currentPosition = DIFFICULTY_DIALOG;
-             //   strcpy(gameMessage, "Passwort ist falsch");
             } else{
                 char loginMessage[50];
                 strcpy(gameMessage, "Passwort ist falsch");
