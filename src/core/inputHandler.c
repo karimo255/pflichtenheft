@@ -88,7 +88,6 @@ void handleUserNameInput(){
     char ch = getch();
 
     if (ch != 13 && ch != '\n' && ch != EOF) { // no enter
-        if (strcmp(username, "Name eingeben...") == 0 ) resetArray(username, 30);
         if (ch == 27) { // escape
             strcpy(username, "anonym");
             currentPosition = DIFFICULTY_DIALOG;
@@ -99,7 +98,7 @@ void handleUserNameInput(){
             }
             username[b] = 0;
 
-        } else if (b < 30) {
+        } else if (b < 8) {
             username[b] = ch;
             b++;
         }
@@ -107,7 +106,7 @@ void handleUserNameInput(){
         username[b] = '\0';
 
         b = 0;
-        if (strcmp(username, "Name eingeben...") == 0 || strcmp(username, "") == 0) {
+        if (username[0] == 0) {
             strcpy(username, "anonym");
         } else {
             userID = malloc(sizeof(int));
@@ -208,7 +207,7 @@ void handleMenuInput(int userInput){
                 if (isGameActive > 0) {
                     break;
                 }
-
+                b = strlen(username);
                 currentPosition = USER_NAME;
                 break;
 
@@ -254,8 +253,6 @@ void handleInGameInput(int userInput){
                 } else {
                     strcpy(gameMessage, "Zelle ist nicht leer.");
                 }
-
-
                 break;
             case 't':
                 if (deletedCells[x_coordinate][y_coordinate] > 0) {
@@ -276,6 +273,7 @@ void handleInGameInput(int userInput){
             case 'a':
                 resetGameData(gameData);
                 isGameActive = 0;
+                resetArray(username,8);
                 timer(RESET_TIMER);
 
             case 'p':
@@ -340,7 +338,6 @@ void handleDetailsInput(int userInput){
         switch (userInput) {
             case 'z':
                 currentPosition = MENU;
-
                 break;
         }
     }
@@ -416,9 +413,4 @@ void checkGameState() {
             strcpy(gameMessage, "Das Spiel ist nicht korrekt geloest.");
         }
     }
-}
-
-clearMemory()
-{
-    free(isUserLoggedIn);
 }

@@ -62,7 +62,7 @@ int difficulty;
 int isGameActive;
 int isSolvedAutomatic;
 int currentPosition;
-char username[50] = "Name eingeben...\0";
+char username[8] = {0};
 
 void renderGame(struct score *scores);
 

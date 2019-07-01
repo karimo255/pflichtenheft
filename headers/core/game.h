@@ -31,7 +31,7 @@ extern int isGameActive;
 /// current active menu item.
 extern int currentPosition;
 
-extern char username[50];
+extern char username[8];
 extern int *isUserLoggedIn;
 extern int exitTheGame;
 extern int isSolvedAutomatic;

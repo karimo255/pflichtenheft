@@ -85,7 +85,7 @@ int getUserIdCallback(void *userID, int argc, char **argv, char **azColName) {
     return 0;
 }
 
-void getUserID(char username[30], int *userID) {
+void getUserID(char username[8], int *userID) {
     sprintf(sql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", username);
     int rc = sqlite3_exec(connection, sql, getUserIdCallback, userID, &zErrMsg);
     if (!rc == SQLITE_OK) {

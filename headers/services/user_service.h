@@ -27,4 +27,4 @@ int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
  * 1. Parameter: Nutzername des Spielers, dessen UserID erfragt werden soll
  * 2. Parameter: Zeiger auf die zu befüllende Variable UserID
  */
-void getUserID(char username[30], int *userID);
+void getUserID(char username[8], int *userID);
