@@ -5,10 +5,10 @@
 #include "../../headers/services/score_service.h"
 #include "../../headers/services/connection.h"
 #include "../../headers/shared/shared.h"
+#include "../../headers/core/view.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <headers/core/view.h>
 
 
 char sql[200];

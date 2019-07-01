@@ -3,10 +3,10 @@
 //
 #include "../../headers/services/user_service.h"
 #include "../../headers/services/connection.h"
+#include "../../headers/core/view.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <headers/core/view.h>
 
 
 char sql[2000];

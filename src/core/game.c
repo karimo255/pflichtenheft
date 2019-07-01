@@ -2,6 +2,7 @@
 // Created by karim on 24.06.19.
 //
 #include <stdlib.h>
+#include "../../headers/core/view.h"
 #include "../../headers/core/game.h"
 #include "../../headers/shared/shared.h"
 #include <stdio.h>
@@ -9,7 +10,6 @@
 #include <string.h>
 
 #include <unistd.h>
-#include <headers/core/view.h>
 
 int x_coordinate = 0;
 int y_coordinate = 0;
