@@ -47,6 +47,9 @@ delete_whole_list(struct score *scores) {
 
 int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     score *a_head = (score *) scores;
+    if(argc <= 0) {
+        return 0;
+    }
 
     /**
     * We go to end of the list
@@ -93,7 +96,10 @@ void getScores(score *scores, int diff) {
 
 
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
-    deleteNode(scores);
+
+    if(scores->next != NULL) {
+        deleteNode(scores);
+    }
     if (rc == SQLITE_OK) {
         printf("OK\n");
     } else {
