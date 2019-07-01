@@ -146,7 +146,6 @@ void generateGameData(int a[][9]) {
     time(&start_t);
     resetGameData(gameData);
     srand(time(NULL));
-    system("clear");
     printf("          Generieren von Spieldaten....\n");
     fflush(stdout);
     usleep(500000);
@@ -253,7 +252,6 @@ int timer(int action) {
             paused = 0;
             break;
         case RESET_TIMER:
-            system("clear");
             first = 1;
             zwErg = 0;
             paused = 0;

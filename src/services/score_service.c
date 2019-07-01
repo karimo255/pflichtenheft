@@ -47,7 +47,6 @@ delete_whole_list(struct score *scores) {
 
 int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     score *a_head = (score *) scores;
-    printf("hon}\n");
     if(argc <= 0) {
         return 0;
     }

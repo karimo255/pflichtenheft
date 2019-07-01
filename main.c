@@ -555,9 +555,13 @@ void renderGame(struct score *scores) {
         switch (currentPosition) {
             case SET_PASSWORD:
                 renderSetPassword();
+                fflush(stdout);
+
                 break;
             case ENTER_PASSWORD:
                 renderEnterPassword();
+                fflush(stdout);
+
                 break;
             case MENU:
                 renderMenu();
