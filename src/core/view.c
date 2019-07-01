@@ -10,7 +10,6 @@
 #include "../../headers/core/game.h"
 #include "../../headers/core/view.h"
 #include "../../headers/shared/shared.h"
-#include "../../headers/core/game.h"
 #include "../../headers/services/connection.h"
 
 #ifdef __WIN32__
@@ -116,9 +115,6 @@ void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_
             printf("%s+\n", KCYN);
         }
     }
-    printf("\n");
-    printf("        %s%s \n", KYEL, gameMessage);
-    printf("\n");
 }
 
 void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
@@ -231,6 +227,12 @@ void renderGameMenu() {
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 
+void printGameMessage(){
+    printf("\n");
+    printf(" %s%s\n", KYEL, gameMessage);
+    printf("\n");
+}
+
 void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe)
 {
     char stringTime[5];
@@ -321,16 +323,19 @@ void print_list(struct score *head, int difficulty) {
         if(current->difficulty == difficulty) {
             if (current->userId == 2) {
                 char scoreRow[100];
-                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
-                        19 - lenHelper(current->time), "");
+                char us[10];
+                timeToString(current->time,us);
+                sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
+                        19 - strlen(us), "");
+                setPrintingColor(KYEL);
                 printTableLine(scoreRow);
+                setPrintingColor(KWHT);
             } else {
                 char scoreRow[100];
-                char us[6];
-                int t = (int)current->time;
-                timeToString(5,us);
-                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", us,
-                        14 - strlen(us), "");
+                char us[10];
+                timeToString(current->time,us);
+                sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
+                        19 - strlen(us), "");
                 printTableLine(scoreRow);
             }
         }

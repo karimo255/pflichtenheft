@@ -47,6 +47,7 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
  * It shows the game menu
  */
 void renderGameMenu();
+void checkGameState();
 
 /**
  * \brief Function to render the dialog after solved game
@@ -93,9 +94,7 @@ void print_list(struct score *head,int difficulty);
 
 void initColors();
 
-
-
-
+void printGameMessage();
 
 void printColoredString(char text[], char color[], int newLine);
 void printColoredNumber(int number, char *color, int newLine);

@@ -31,6 +31,12 @@ extern int isGameActive;
 /// current active menu item.
 extern int currentPosition;
 
+extern char username[50];
+extern int *isUserLoggedIn;
+extern int exitTheGame;
+extern int isSolvedAutomatic;
+
+extern int *userId;
 /// array which holds the game data.
 extern int gameData[9][9];
 
@@ -110,11 +116,6 @@ int isElementInBox(int array[][9], int box_start_row, int box_start_col, int num
  * Generates randomly generated number
  */
 int generateRandomNumber();
-
-/**
- * It handles user input
- */
-void handleUserInput();
 
 /**
  *

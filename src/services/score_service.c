@@ -6,6 +6,8 @@
 #include "../../headers/services/connection.h"
 #include "../../headers/shared/shared.h"
 #include "../../headers/core/view.h"
+#include "../../headers/core/game.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +30,8 @@ int insertScore(int *userID, int score, int difficulty) {
     printf("%s\n", sql);
 
     if (!rc == SQLITE_OK) {
-        return -1;
+        strcpy(gameMessage, "Score konnte nicht gespeichert werden.");
+        return 1;
     } else {
         return 0;
     }
@@ -82,17 +85,8 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     return 0;
 }
 
-void deleteNode(score *node) {
-    score *temp = node->next;
-    node->userId = node->next->userId;
-    strcpy(node->name, node->next->name);
-    node->time = node->next->time;
-    node->next = temp->next;
-    free(temp);
-}
-
 void getScores(score *scores) {
-    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
+    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` ASC LIMIT 10;");
     fflush(stdout);
     clear_output();
 
@@ -102,10 +96,8 @@ void getScores(score *scores) {
     if(scores->next != NULL) {
        // deleteNode(scores);
     }
-    if (rc == SQLITE_OK) {
-        printf("OK\n");
-    } else {
-        printf("NO\n");
+    if (rc != SQLITE_OK) {
+        strcpy(gameMessage, "Bestscores Abfrage fehlgeschlagen.");
     }
 }
 
@@ -124,13 +116,16 @@ int getBestScoreByUserID(int userID) {
     clear_output();
 
 	int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
-	printf("%s\n", sql);
 	return user_id;
 
 }
 
 int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) {
     int *tmp = (int *) bestScore;
+    if(argc <= 0) {
+        *tmp = 0;
+        return  0;
+    }
     for (int i = 0; i < argc; i++) {
         if (strcmp(azColName[i], "time") == 0) {
             *tmp = atoi(argv[i]);
@@ -147,7 +142,8 @@ int getBestScore(int *bestScore,int difficulty) {
 
     int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
     if (!rc == SQLITE_OK) {
-        return -1;
+        strcpy(gameMessage, "Bestscore Abfrage fehlgeschlagen.");
+        return 1;
     } else {
         return 0;
     }
