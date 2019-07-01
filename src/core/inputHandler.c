@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -32,6 +31,7 @@ char password[6] = {0};
 char loginMessage[50];
 int b=0;
 int *userID = 0;
+int difficulty;
 
 
 void navigateTo(int pos) {

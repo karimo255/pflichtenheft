@@ -18,7 +18,6 @@ char *zErrMsg;
 sqlite3 *connection;
 int user_id = 0;
 
-
 int insertScore(int *userID, int score, int difficulty) {
     sprintf(sql, "INSERT INTO `Score` (time, userId, difficulty) VALUES(\"%d\", \"%d\", \"%d\");", score,
             *userID, difficulty);
@@ -34,16 +33,6 @@ int insertScore(int *userID, int score, int difficulty) {
         return 1;
     } else {
         return 0;
-    }
-}
-
-delete_whole_list(struct score *scores) {
-    score *temp;
-    while (scores->next != NULL) // skip first element
-    {
-        temp = scores->next;
-        scores = scores->next;
-        free(temp);
     }
 }
 
@@ -141,8 +130,10 @@ int getBestScore(int *bestScore,int difficulty) {
     clear_output();
 
     int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
+
     if (!rc == SQLITE_OK) {
-        strcpy(gameMessage, "Bestscore Abfrage fehlgeschlagen.");
+        printf(sql);
+        strcpy(gameMessage, "Bestscore Abfrage fehlgeschlagen2.");
         return 1;
     } else {
         return 0;

@@ -64,6 +64,10 @@ int isSolvedAutomatic;
 int currentPosition;
 char username[50] = "Name eingeben...\0";
 
+void renderGame(struct score *scores);
+
+void handleInput();
+
 
 // Speicher am Ende freigeben.
 int *bestScore = 0;
@@ -79,7 +83,7 @@ int anzahlDerHilfe = 0;
 int erlaubteAnzahlDerTipps = 0;
 int erlaubteAnzahlDerHilfe = 0;
 
-void initDb(){
+void initDb() {
     int rc = sqlite3_open("./sudoku.db", &connection);
 
     if (rc != SQLITE_OK) {
@@ -89,7 +93,9 @@ void initDb(){
     createScoreTable();
 }
 
+
 int main() {
+    initDb();
     resizeWindow();
     initColors();
 
@@ -103,129 +109,145 @@ int main() {
     currentPosition = MENU;
     difficulty = EASY;
 
-        while (!exitTheGame) {
-            clear_output();
-            switch (currentPosition) {
-                case SET_PASSWORD:
-                    renderSetPassword();
-                    fflush(stdout);
-                    break;
-                case ENTER_PASSWORD:
-                    renderEnterPassword();
-                    fflush(stdout);
-                    break;
-                case MENU:
-                    renderMenu();
-                    fflush(stdout);
-                    break;
-                case USER_NAME:
-                    renderUsernameDialog(username);
-                    fflush(stdout);
-                    break;
-                case IN_GAME:
-                    if (isGameActive == 0) {
-                        resetGameData(gameData);
-                        resetGameData(deletedCells);
-                        resetGameData(userCells);
-                        generateGameData(gameData);
-                        deleteCells(gameData, difficulty);
-                        resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
-                        isGameActive = 1;
-                        timer(TIMER_START);
-                        isSolvedAutomatic = 0;
-                    }
-                    bestScore = malloc(sizeof(int));
-                    getBestScore(bestScore, difficulty);
-                    remaining = getRemainingCells(gameData);
-                    renderInfoBox(username, bestScore, difficulty, remaining);
-                    renderNotesBox(x_coordinate, y_coordinate);
-                    renderCourt(gameData, userCells, x_coordinate, y_coordinate);
-                    printGameMessage();
-                    renderGameMenu();
-                    sprintf(gameMessage, "%s", "");
-                    fflush(stdout);
-                    free(bestScore);
-                    break;
-                case SET_MARK:
-                    remaining = getRemainingCells(gameData);
-                    renderInfoBox(username, bestScore, difficulty, remaining);
-                    renderMarkModeMessage();
-                    renderCourt(gameData, userCells, x_coordinate, y_coordinate);
-                    renderGameMenu();
-                    sprintf(gameMessage, "%s", "");
-                    fflush(stdout);
-                    break;
-                case DIFFICULTY_DIALOG:
-                    renderDifficultyDialog();
-                    fflush(stdout);
-                    break;
-                case DETAILS_DIALOG:
-                    renderDBestScoreDialog();
-                    fflush(stdout);
-                    break;
-                case DETAILS:
-                    renderDetails(scores, difficulty);
-                    fflush(stdout);
-                    break;
-                case HELP:
-                    renderHelpDialog();
-                    fflush(stdout);
-                    break;
-                case SOLVED_GAME:
-                    renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
-                    renderCourt(gameData, userCells, x_coordinate, y_coordinate);
-                    fflush(stdout);
-                    break;
-            }
-            resetArray(gameMessage, 200);
-            if (currentPosition == USER_NAME) {
-                handleUserNameInput();
-            } else if (currentPosition == SET_PASSWORD) {
-                handleSetPasswordInput();
-            } else if (currentPosition == ENTER_PASSWORD) {
-                handleEnterPasswordInput();
-            } else {
-                int userInput;
+    /** Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
+     * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
+     * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
+     * Funktionen ausführt.
+     * Funktionen ausführt.
+     * 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
+     * (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
+     */
 
-                if ((userInput = getch()) == 224) {
-                    navigateTo(getch()); // windows Navigation Tasten
-                } else {
-                    navigateTo(userInput); // linux Navigation Tasten
-                    switch (currentPosition) {
-                        case DIFFICULTY_DIALOG:
-                            handleDifficultyDialogInput(userInput);
-                            break;
-                        case MENU:
-                            handleMenuInput(userInput);
-                            break;
-                        case IN_GAME:
-                            handleInGameInput(userInput);
-                            break;
-                        case SOLVED_GAME:
-                            handleSolvedGameInput(userInput);
-                            break;
-                        case SET_MARK :
-                            handleSetMarkInput(userInput);
-                            break;
-                        case DETAILS:
-                            handleDetailsInput(userInput);
-                            break;
-                        case DETAILS_DIALOG:
-                            handleDetailsDialogInput(userInput);
-                            break;
-                        case HELP:
-                            handleHelpInput(userInput);
-                            break;
-                    }
-                }
-            }
-            checkGameState();
-        }
-        
+    while (!exitTheGame) {
+        clear_output();
+        renderGame(scores);
+        resetArray(gameMessage, 200);
+        handleInput();
+        checkGameState();
+    }
+
     sqlite3_close(connection);
     free(scores);
     printf("Das Programm ist beendet\n");
     return 0;
+}
+
+void renderGame(struct score *scores) {
+    switch (currentPosition) {
+        case SET_PASSWORD:
+            renderSetPassword();
+            fflush(stdout);
+            break;
+        case ENTER_PASSWORD:
+            renderEnterPassword();
+            fflush(stdout);
+            break;
+        case MENU:
+            renderMenu();
+            fflush(stdout);
+            break;
+        case USER_NAME:
+            renderUsernameDialog(username);
+            fflush(stdout);
+            break;
+        case IN_GAME:
+            if (isGameActive == 0) {
+                resetGameData(gameData);
+                resetGameData(deletedCells);
+                resetGameData(userCells);
+                generateGameData(gameData);
+                deleteCells(gameData, difficulty);
+                resetArray(marks[x_coordinate][y_coordinate], MAX_MARKS);
+                isGameActive = 1;
+                timer(TIMER_START);
+                isSolvedAutomatic = 0;
+            }
+            bestScore = malloc(sizeof(int));
+            getBestScore(bestScore, difficulty);
+            remaining = getRemainingCells(gameData);
+            renderInfoBox(username, bestScore, difficulty, remaining);
+            renderNotesBox(x_coordinate, y_coordinate);
+            renderCourt(gameData, userCells, x_coordinate, y_coordinate);
+            printGameMessage();
+            renderGameMenu();
+            sprintf(gameMessage, "%s", "");
+            fflush(stdout);
+            break;
+        case SET_MARK:
+            remaining = getRemainingCells(gameData);
+            renderInfoBox(username, bestScore, difficulty, remaining);
+            renderMarkModeMessage();
+            renderCourt(gameData, userCells, x_coordinate, y_coordinate);
+            renderGameMenu();
+            sprintf(gameMessage, "%s", "");
+            fflush(stdout);
+            break;
+        case DIFFICULTY_DIALOG:
+            renderDifficultyDialog();
+            fflush(stdout);
+            break;
+        case DETAILS_DIALOG:
+            renderDBestScoreDialog();
+            fflush(stdout);
+            break;
+        case DETAILS:
+            renderDetails(scores, difficulty);
+            fflush(stdout);
+            break;
+        case HELP:
+            renderHelpDialog();
+            fflush(stdout);
+            break;
+        case SOLVED_GAME:
+            renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
+            renderCourt(gameData, userCells, x_coordinate, y_coordinate);
+            fflush(stdout);
+            break;
+    }
+}
+
+void handleInput() {
+    if (currentPosition == USER_NAME) {
+        handleUserNameInput();
+    } else if (currentPosition == SET_PASSWORD) {
+        handleSetPasswordInput();
+    } else if (currentPosition == ENTER_PASSWORD) {
+        handleEnterPasswordInput();
+    } else {
+        int userInput;
+
+        if ((userInput = getch()) == 224) {
+            navigateTo(getch()); // windows Navigation Tasten
+        } else {
+            navigateTo(userInput); // linux Navigation Tasten
+            switch (currentPosition) {
+                case DIFFICULTY_DIALOG:
+                    handleDifficultyDialogInput(userInput);
+                    break;
+                case MENU:
+                    handleMenuInput(userInput);
+                    break;
+                case IN_GAME:
+                    handleInGameInput(userInput);
+                    break;
+                case SOLVED_GAME:
+                    handleSolvedGameInput(userInput);
+                    break;
+                case SET_MARK :
+                    handleSetMarkInput(userInput);
+                    break;
+                case DETAILS:
+                    handleDetailsInput(userInput);
+                    break;
+                case DETAILS_DIALOG:
+                    handleDetailsDialogInput(userInput);
+                    break;
+                case HELP:
+                    handleHelpInput(userInput);
+                    break;
+            }
+        }
+    }
 }
 
 

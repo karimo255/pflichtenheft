@@ -1,4 +1,7 @@
 
+
+#ifdef __unix__
+
 #include <termio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -31,3 +34,5 @@ int getch(void) {
     tcsetattr(STDIN_FILENO, TCSANOW, &old_io);
     return c;
 }
+
+#endif

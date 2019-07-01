@@ -10,15 +10,39 @@
 #endif //SUDOKU_VIEW_H
 
 void renderMarkModeMessage();
+
+/** Gibt den Dialog, in dem der Spieler nach seinem Namen gefragt wird
+ * aus.
+ * aus.
+ * 1. Parameter: bisheriger Benutzername (Zeichen werden einzeln
+ * 1. Parameter: Zeiger auf die Variable mit dem Wert des bisherigern
+ * entgegengenommen, um eine nutzerfreundliche Obfläche / Eingabe
+ * Benutzernamens (Zeichen werden einzeln entgegengenommen, um eine
+ * nutzerfreundliche Obfläche / Eingabe
+ * und das Nutzen der Löschen-Taste zu ermöglichen)
+ * und das Nutzen der Löschen-Taste zu ermöglichen)
+ */
 void renderUsernameDialog(char *username);
 
-/**
- * \brief function to render menu
- *
- * It show the game menu in the console
+/** Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
+ * aus.
+ * aus.
+ * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
  */
 void renderMenu();
 
+
+/** Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw.
+ * initialisiert diese Ausgabe
+ * initialisiert diese Ausgabe
+ * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
+ */
 
 void renderDBestScoreDialog();
 /**
@@ -34,10 +58,20 @@ void renderDetails(struct score *scores, int difficulty);
  * It shows the game grid
  */
 void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate);
-/**
- * \brief Function to render infos about current session
- *
- * It shows the current session information
+
+/** Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet
+ * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
+ * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
+ * enthält.
+ * enthält.
+ * 1. Parameter: Nutzernamen, des aktuell spielenden Spielers
+ * 1. Parameter: Zeiger auf die Variable, die den Nutzernamen des aktuell spielenden Spielers enthält
+ * 2. Parameter: Highscore im aktuellen Schwierigkeitsgrad
+ * 2. Parameter: Zeiger auf die Variable, die den Highscore im aktuellen Schwierigkeitsgrad enthält
+ * 3. Parameter: aktuell ausgewählter Schwierigkeitsgrad
+ * 3. Parameter: aktuell ausgewählter Schwierigkeitsgrad
+ * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
+ * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  */
 void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
 
@@ -97,7 +131,22 @@ void initColors();
 void printGameMessage();
 
 void printColoredString(char text[], char color[], int newLine);
+
+/** Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
+ * 1. Parameter: Zahl, die gedruckt werden soll
+ * 1. Parameter: Zahl, die gedruckt werden soll
+ * 2. Parameter: Farbe, in der die Zahl gedruckt werden soll
+ * 2. Parameter: Zeiger auf die Variable mit dem Wert für die Farbe,
+ * in der die Zahl gedruckt werden soll
+ * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+ * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+ */
 void printColoredNumber(int number, char *color, int newLine);
+
+/** Setzt die Farbe, in der ab sofort in die Konsole geschrieben werden soll
+ * 1. Parameter: Farbe
+ * 1. Parameter: Zeiger auf die Variable mit dem Wert für die Farbe
+ */
 void setPrintingColor(char *color);
 
 void printStartOfLine();
