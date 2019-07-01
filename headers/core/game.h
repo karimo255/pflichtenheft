@@ -9,27 +9,33 @@
 #include "../shared/shared.h"
 
 
-extern int marks[9][9][MAX_MARKS];
+extern int iMarks[9][9][MAX_MARKS];
 
-void fillNotesForCell(int x_coordinate, int y_coordinate);
+/* Wird aufgerufen, wenn der Spieler einen Tipp haben möchte. Befüllt
+ * die Notiz in der entsprechenden Zelle mit drei Zahlen, von denen
+ * eine die richtige im Kontext des Sudokus darstellt.
+ * 1. Parameter: x-Koordinate, an der sich der Spieler befindet
+ * 2. Parameter: y-Koordinate, an der sich der Spieler befindet
+ */
+void fillNotesForCell(int iX_coordinate, int iY_coordinate);
 
 /// x-coordinate of the cursor.
-extern int x_coordinate;
+extern int iX_coordinate;
 
 /// y-coordinate of the cursor.
-extern int y_coordinate;
+extern int iY_coordinate;
 
 /// game difficulty.
-extern int difficulty;
+extern int iDifficulty;
 
 /// game message
-extern char gameMessage[200];
+extern char cGameMessage[200];
 
 /// is a session active.
-extern int isGameActive;
+extern int iIsGameActive;
 
 /// current active menu item.
-extern int currentPosition;
+extern int iCurrentPosition;
 
 extern char username[8];
 extern int *isUserLoggedIn;
@@ -38,13 +44,13 @@ extern int isSolvedAutomatic;
 
 extern int *userId;
 /// array which holds the game data.
-extern int gameData[9][9];
+extern int iGameData[9][9];
 
 /// array which holds deleted cells to keep track of them.
-extern int deletedCells[9][9];
+extern int iDeletedCells[9][9];
 
 /// array which holds the coordinates of user cells (cells to solve) to keep track of theme.
-extern int userCells[9][9];
+extern int iUserCells[9][9];
 
 extern int anzahlDerTipps;
 extern int anzahlDerHilfe;
@@ -53,41 +59,39 @@ extern int anzahlDerHilfe;
 extern int erlaubteAnzahlDerTipps;
 extern int erlaubteAnzahlDerHilfe;
 
-void fillNotesForCell(int x_coordinate, int y_coordinate);
+void fillNotesForCell(int iX_coordinate, int iY_coordinate);
 
 
-/**
- * @param array int array to search.
- * @param number is the integer to search for.
- * @return Returns the index of the number if number is found in the array, -1 otherwise.
- *
- * Checks if a number exists in an array.
+/** Überpüft, ob sich ein bestimmtes Element in einen bestimmten Array
+ * befindet.
+ * 1. Parameter: zu überprüfender Array
+ * 2. Parameter: Element, nach dem gesucht werden soll
+ * 3. Parameter: Länge des Arrays
+ * Rückgabewert: Stelle, an der das Element gefunden wurde oder -1, falls
+ * es nicht im Array ist
  */
-int isElementInArray(int array[], int number, int size);
+int isElementInArray(int iArray[], int iNumber, int iSize);
 
-/**
- * @param array int array to clear.
- *
- * Sets the value of array items to zero.
+/** Setzt einen Array auf den Ursprungszustand zurück, indem alle Werte
+ * auf Null gesetzt werden.
+ * 1. Parameter: der zurückzusetzende Array
+ * 2. Parameter: Länge des Arrays
  */
-void resetArray(int array[], int size);
+void resetArray(int iArray[], int iSize);
 
-/**
- * \brief Function to generate the game data.
- *
- * @param array where we put the randomly generated data into.
- *
- * It generates a completed sudoku game.
+/** Generiert vor jedem neuen Spiel ein neues gelöstet Spielfeld. Sorgt
+ * damit dafür, dass das Sudoku lösbar ist. Der Vorgang wird nach zwei
+ * Sekunden neu gestartet, fall die Funktion zu keiner Lösung gekommen
+ * ist, um eine Endlossschleife zu vermeiden.
+ * 1. Parameter: leeres Spielfeld
  */
-void generateGameData(int array[][9]);
+void generateGameData(int iGameData[][9]);
 
-/**
- * \brief Function to delete grid cells randomly.
- *
- * @param array to keep track of deleted grid cells.
- * @param difficulty is an integer which defines how difficult the game should be.
- *
- * It randomly deletes cells by difficulty level.
+/** Löscht je nach Schwierigkeitsgrad mehr oder weniger zufällige Zellen
+ * aus dem sichtbaren Spielfeld und speichert die gelöschten Zellen im
+ * Array iDeletedCells;
+ * 1. Parameter: Spielfeld
+ * 2. Parameter: Schwierigkeitsgrad
  */
 void deleteCells(int array[][9], int difficulty);
 
@@ -98,31 +102,37 @@ void deleteCells(int array[][9], int difficulty);
  */
 void navigateTo(int direction);
 
-void makeNote(int x, int y, int suggestion);
-/**
- * @param array[][] which holds the game data.
- * @param box_start_row Where does the row start from.
- * @param box_start_col Where does the column start from.
- * @param number is the integer to search for.
- * @return Returns the x-coordinate of the number if number is found in the array, -1 otherwise.
- *
- * Checks if a number exists in an array
+/** Wird nur aufgerufen, wenn sich der Spieler im "Makiere-Modus" befindet.
+ * Es können bis zu drei Zahlen in eine Notiz eingetragen werden. Wenn
+ * die Notiz voll ist und eine weitere Zahl eingetragen wird, wird die Notiz
+ * gelöscht und die weitere Zahl eingetragen.
+ * 1. Parameter: x-Koordinate, an der der Spieler sich befindet
+ * 2. Parameter: y-Koordinate, an der der Spieler sich befindet
+ * 3. Parameter: Zahl, die der Spiele in die Notiz schreiben möchte
+ */
+void makeNote(int iX, int iY, int iSuggestion);
+
+/** Dient zur Überprüfung, ob eine bestimmte Zahl in einer bestimmten der
+ * neun Unterquadrate des Sudokus vorhanden ist.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: y-Koordinate der oberen, linken Ecke der Box
+ * 3. Parameter: x-Koordinate der obenen, linken Ecke der Box
+ * 4. Parameter: Element, nach dem gesucht werden soll
+ * Rückgabewert: Gefunden? 1 -> Ja, -1 -> Nein
  */
 int isElementInBox(int array[][9], int box_start_row, int box_start_col, int number);
 
-/**
- * @return randomly generated number between 0-9
- *
- * Generates randomly generated number
+/** Generiert eine Zufallszahl zwischen 1 und 9.
+ * Rückgabewert: generierte Zufallszahl
  */
 int generateRandomNumber();
 
-/**
- *
- * @param array[][] which holds the game data.
- * @return Return 1 if the game successfully solved, otherwise 0.
+/** Wird aufgerufen, wenn die keine Zellen mehr ausgefüllt werden müssen.
+ * Überprüft, ob der Spieler das Spielfeld richtig gelöst hat.
+ * 1. Parameter: aktuelles Spielfeld
+ * Rückgabewert: Richtig gelöst (1) oder es existiert mindestens ein Fehler (0)
  */
-int solveGame(int array[][9]);
+int solveGame(int iGameData[][9]);
 
 /**
  * @param array[][] which holds the game data.
@@ -131,11 +141,10 @@ int solveGame(int array[][9]);
  */
 void resetGameData(int array[][9]);
 
-/**
- * @return Returns randomly generated number by interval
- *
- *  Generate randomly generated number by interval
- */
+/** Generiert eine Zufallszahl in einem definierbaren Intervall.
+ * 1. Parameter: Intervall-Start
+ * 2. Parameter: Intervall-Ende
+ * Rückgabewert: generierte Zufallszahl
 int generateNumberByInterval(int x, int y);
 
 /**
@@ -146,24 +155,44 @@ int generateNumberByInterval(int x, int y);
  */
 int getGridStatus(int array[][9]);
 
-/**
- * @param array[][] which holds the game data.
- * @param x is the x-coordinate of the cell to solve.
- * @param y ist the y-coordinate of the cell to solve.
- *
- *  Checks if the grid if filled complete.
+/** Wird aufgerufen, wenn der Spieler die Hilfefunktion nutzt. Aus dem
+ * zweidimensionalen Array, in dem die gelöschten Zellen gespeichert sind,
+ * wird der Lösungswert in das aktuelle Spielfeld eingetragen.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: x-Koordinate, an der der Spieler sich befindet
+ * 3. Parameter: y-Koordinate, an der der Spieler sich befindet
  */
-void solveCell(int array[][9], int x, int y);
+void solveCell(int iGameData[][9], int iX, int iY);
 
+/** Überprüft, ob alle Felder des sichtbaren Spielfeldes aufgefüllt
+ * wurden.
+ * 1. Parameter: sichtbares Spielfeld
+ * Rückgabewert: Vollständig (FILLED) oder unvollständig (NOT_FILLED)
+ */
 int getGameStatus(int array[][9]);
 
 
 void solveAll(int gameData[][9], int deletedCells[][9]);
 
-int timer(int action);
+/** Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum
+ * Lösen des Sudokus verwendet. Stoppuhr kann (neu-)gestartet, ge-
+ * stopped und pausiert werden.
+ * 1. Parameter: Aktion für die Stoppuhr (Zeit abfragen, Zurück-
+ * setzen, Starten, Stoppen)
+ */
+int timer(int iAction);
 
+
+/** Wandelt eine Zeitangabe in Sekunden in das "00:00"-Format um.
+ * 1. Parameter: Zeitangabe in Sekunden
+ * 2. Parameter: Char-Array, in den die formatierte Zeit geschrieben
+ * werden soll
+ */
 void timeToString(int userTime, char stringTime[]);
 
+/** Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig
+ * und richtig gelöst wurde, ein.
+ */
 int checkGameSolved();
 
 #endif //SUDOKU_GAME_H

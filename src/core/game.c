@@ -1,6 +1,13 @@
-//
-// Created by karim on 24.06.19.
-//
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: game.c
+ * Datum: 24.06.19
+ * Beschreibung: Hier werden im Wesentlichen alle für das Spiel
+ * nötigen Berechnungen durchgeführt. Z.B. das Generieren des Spiel-
+ * feldes oder der Timer, wie lange ein Spieler für das Lösen
+ * ein Spiel benötigt.
+*/
+
 #include <stdlib.h>
 #include "../../headers/core/view.h"
 #include "../../headers/core/game.h"
@@ -11,175 +18,213 @@
 
 #include <unistd.h>
 
-int x_coordinate = 0;
-int y_coordinate = 0;
-int difficulty = EASY;
-char gameMessage[200] = {0};
-int isGameActive;
-int currentPosition = 0;
+int iX_coordinate = 0;
+int iY_coordinate = 0;
+int iDifficulty = EASY;
+char cGameMessage[200] = {0};
+int iIsGameActive;
+int iCurrentPosition = 0;
 
+int iGameData[9][9] = {0};
+int iMarks[9][9][MAX_MARKS];
+int iDeletedCells[9][9] = {0};
+int iUserCells[9][9] = {0};
 
-int gameData[9][9] = {0};
-int marks[9][9][MAX_MARKS];
-int deletedCells[9][9] = {0};
-int userCells[9][9] = {0};
-
-int elementsInSomeColumn[9] = {0};
+int iElementsInSomeColumn[9] = {0};
 
 time_t start, end, _pause;
 
-void fillNotesForCell(int x_coordinate, int y_coordinate) {
-    int randomIndexForSolution = rand() % 2;
-    marks[x_coordinate][y_coordinate][randomIndexForSolution] = deletedCells[x_coordinate][y_coordinate];
-    for (int i = 0; i < MAX_MARKS; i++) {
-        if (marks[x_coordinate][y_coordinate][i] == 0) {
-            int number = generateRandomNumber();
-            if (isElementInArray(marks[x_coordinate][y_coordinate], number, MAX_MARKS) > 0) {
+void fillNotesForCell(int iX_coordinate, int iY_coordinate)
+{
+    int iRandomIndexForSolution = rand() % 2;
+    iMarks[iX_coordinate][iY_coordinate][iRandomIndexForSolution] = iDeletedCells[iX_coordinate][iY_coordinate];
+    for (int i = 0; i < MAX_MARKS; i++)
+    {
+        if (iMarks[iX_coordinate][iY_coordinate][i] == 0)
+        {
+            int iNumber = generateRandomNumber();
+            if (isElementInArray(iMarks[iX_coordinate][iY_coordinate], iNumber, MAX_MARKS) > 0)
+            {
                 i--;
                 continue;
             }
-            marks[x_coordinate][y_coordinate][i] = number;
+            iMarks[iX_coordinate][iY_coordinate][i] = iNumber;
         }
     }
 }
 
-void solveCell(int array[][9], int x, int y) {
-    if (deletedCells[x][y] > 0) {
-        userCells[x][y] = 0;
-        array[x][y] = deletedCells[x][y];
+void solveCell(int iGameData[][9], int iX, int iY)
+{
+    if (iDeletedCells[iX][iY] > 0)
+    {
+        iUserCells[iX][iY] = 0;
+        iGameData[iX][iY] = iDeletedCells[iX][iY];
     }
 }
 
-
-void makeNote(int x, int y, int suggestion){
-    for (int i = 0; i <= MAX_MARKS; i++) {
-        if(marks[x][y][i] == 0){
-            marks[x][y][i] = suggestion;
+void makeNote(int iX, int iY, int iSuggestion)
+{
+    for (int i = 0; i <= MAX_MARKS; i++)
+    {
+        if (iMarks[iX][iY][i] == 0)
+        {
+            iMarks[iX][iY][i] = iSuggestion;
             break;
-        } else if (i == MAX_MARKS) {
-            marks[x][y][0] = suggestion;
-            for (int j = 1; j < MAX_MARKS; j++) {
-                marks[x][y][j] = 0;
+        }
+        else if (i == MAX_MARKS)
+        {
+            iMarks[iX][iY][0] = iSuggestion;
+            for (int j = 1; j < MAX_MARKS; j++)
+            {
+                iMarks[iX][iY][j] = 0;
             }
         }
     }
 }
 
-void solveAll(int gameData[][9], int deletedCells[][9]) {
-    for (int x = 0; x < 9; x++) {
-        for (int y = 0; y < 9; y++) {
-            if (deletedCells[x][y] != 0) {
+void solveAll(int gameData[][9], int deletedCells[][9])
+{
+    for (int x = 0; x < 9; x++)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            if (deletedCells[x][y] != 0)
+            {
                 gameData[x][y] = deletedCells[x][y];
             }
-
         }
     }
 }
 
-int solveGame(int a[][9]) {
-    for (int x = 0; x < 9; x++) {
-        for (int y = 0; y < 9; y++) {
-            int number = a[x][y];
-            a[x][y] = 0;
-            if (isElementInArray(a[x], number, 9) >= 0 || number == 0) {
-                a[x][y] = number;
+int solveGame(int iGameData[][9])
+{
+    for (int x = 0; x < 9; x++)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            int number = iGameData[x][y];
+            iGameData[x][y] = 0;
+            if (isElementInArray(iGameData[x], number, 9) >= 0 || number == 0)
+            {
+                iGameData[x][y] = number;
                 return 0;
             }
 
-            resetArray(elementsInSomeColumn, 9);
-            for (int l = 0; l < sizeof(elementsInSomeColumn); l++) {
-                elementsInSomeColumn[l] = a[l][y];
+            resetArray(iElementsInSomeColumn, 9);
+            for (int l = 0; l < sizeof(iElementsInSomeColumn); l++)
+            {
+                iElementsInSomeColumn[l] = iGameData[l][y];
             }
 
-            if (isElementInArray(elementsInSomeColumn, number, 9) >= 0 ||
-                isElementInBox(a, x - x % 3, y - y % 3, number) >= 0) {
-                a[x][y] = number;
+            if (isElementInArray(iElementsInSomeColumn, number, 9) >= 0 ||
+                isElementInBox(iGameData, x - x % 3, y - y % 3, number) >= 0)
+            {
+                iGameData[x][y] = number;
                 return 0;
             }
-            a[x][y] = number;
+            iGameData[x][y] = number;
         }
     }
     return 1;
 }
 
-int generateRandomNumber() {
+int generateRandomNumber()
+{
     return 1 + rand() % 9;
 }
 
-void resetArray(int array[], int size) {
-    for (int l = 0; l < 9; l++) {
-        array[l] = 0;
+void resetArray(int iArray[], int iSize)
+{
+    for (int l = 0; l < 9; l++)
+    {
+        iArray[l] = 0;
     }
 }
 
-void resetGameData(int array[][9]) {
-    for (int _x = 0; _x < 9; _x++) {
-        for (int _y = 0; _y < 9; _y++) {
+void resetGameData(int array[][9])
+{
+    for (int _x = 0; _x < 9; _x++)
+    {
+        for (int _y = 0; _y < 9; _y++)
+        {
             array[_x][_y] = 0;
         }
     }
 }
 
-int isElementInArray(int array[], int ele, int size) {
-    for (int x = 0; x < size; x++) {
-        if (array[x] == ele && ele != 0) {
+int isElementInArray(int iArray[], int iNumber, int iSize)
+{
+    for (int x = 0; x < iSize; x++)
+    {
+        if (iArray[x] == iNumber && iNumber != 0)
+        {
             return x;
         }
     }
     return -1;
 }
 
-int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele) {
+int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
+{
     for (int row = 0; row < 3; row++)
-        for (int col = 0; col < 3; col++) {
+        for (int col = 0; col < 3; col++)
+        {
 
-            if (arr[row + box_start_row][col + box_start_col] == ele && ele != 0) {
+            if (arr[row + box_start_row][col + box_start_col] == ele && ele != 0)
+            {
                 return 1;
             }
         }
     return -1;
 }
 
-void generateGameData(int a[][9]) {
+void generateGameData(int iGameData[][9])
+{
     time_t start_t, end_t;
-    double diff_t;
+    double iDiff_t;
     time(&start_t);
-    resetGameData(gameData);
+    resetGameData(iGameData);
     srand(time(NULL));
     clear_output();
     printf("          Generieren von Spieldaten....\n");
     fflush(stdout);
     usleep(500000);
 
-    for (int _x = 0; _x < 9; _x++) {
-        for (int _y = 0; _y < 9; _y++) {
+    for (int _x = 0; _x < 9; _x++)
+    {
+        for (int _y = 0; _y < 9; _y++)
+        {
             time(&end_t);
-            diff_t = difftime(end_t, start_t);
-            if (diff_t > 2) {
-                generateGameData(gameData);
+            iDiff_t = difftime(end_t, start_t);
+            if (iDiff_t > 2)
+            {
+                generateGameData(iGameData);
                 break; // das ist der fix;
             }
             int number = generateRandomNumber();
 
-            if (isElementInArray(a[_x], number, 9) >= 0) { // number darf nur einmal in row vorkommen.
+            if (isElementInArray(iGameData[_x], number, 9) >= 0)
+            { // number darf nur einmal in row vorkommen.
                 _y--;
-                resetArray(elementsInSomeColumn, 9);
+                resetArray(iElementsInSomeColumn, 9);
                 continue;
             }
 
-            resetArray(elementsInSomeColumn, 9);
-            for (int l = 0; l < 9; l++) {
-                elementsInSomeColumn[l] = a[l][_y];
+            resetArray(iElementsInSomeColumn, 9);
+            for (int l = 0; l < 9; l++)
+            {
+                iElementsInSomeColumn[l] = iGameData[l][_y];
             }
 
             // number darf nur einmal in column und box vorkommen.
-            if (isElementInArray(elementsInSomeColumn, number, 9) >= 0 ||
-                isElementInBox(a, _x - _x % 3, _y - _y % 3, number) >= 0) {
-                resetArray(a[_x], 9);
+            if (isElementInArray(iElementsInSomeColumn, number, 9) >= 0 ||
+                isElementInBox(iGameData, _x - _x % 3, _y - _y % 3, number) >= 0)
+            {
+                resetArray(iGameData[_x], 9);
                 _x--;
                 break;
             }
-            a[_x][_y] = number;
+            iGameData[_x][_y] = number;
         }
     }
     printf("\n");
@@ -187,11 +232,10 @@ void generateGameData(int a[][9]) {
     clear_output();
 }
 
-
-int generateNumberByInterval(int x, int y) {
+int generateNumberByInterval(int x, int y)
+{
     return x + rand() % (y - x + 1);
 }
-
 
 void deleteCells(int array[][9], int difficulty)
 {
@@ -206,8 +250,8 @@ void deleteCells(int array[][9], int difficulty)
                 int c = generateNumberByInterval(3 * (y - 1), 3 * y - 1);
                 if (array[r][c] > 0)
                 { // not already deleted
-                    deletedCells[r][c] = array[r][c];
-                    userCells[r][c] = 1;
+                    iDeletedCells[r][c] = array[r][c];
+                    iUserCells[r][c] = 1;
                     array[r][c] = 0;
                 }
                 tmp--;
@@ -216,11 +260,14 @@ void deleteCells(int array[][9], int difficulty)
     }
 }
 
-
-int getGameStatus(int array[][9]) {
-    for (int x = 0; x < 9; x++) {
-        for (int y = 0; y < 9; y++) {
-            if (array[x][y] == 0) {
+int getGameStatus(int array[][9])
+{
+    for (int x = 0; x < 9; x++)
+    {
+        for (int y = 0; y < 9; y++)
+        {
+            if (array[x][y] == 0)
+            {
                 return NOT_FILLED;
             }
         }
@@ -228,72 +275,95 @@ int getGameStatus(int array[][9]) {
     return FILLED;
 }
 
+int timer(int iAction)
+{
 
-int timer(int action) {
+    static int iFirst = 0, paused = 0;
+    static int iTimer = 0, zwErg = 0;
 
-    static int first = 0, paused = 0;
-    static int timer = 0, zwErg = 0;
+    switch (iAction)
+    {
 
-    switch (action) {
-        case TIMER_STATE:
-            break;
-        case TIMER_PAUSE:
-            if (paused == 0) {
-                _pause = time(NULL);
-                paused++;
-            } else {
-                end = time(NULL);
-                zwErg += (end - _pause);
-                paused--;
-            }
-            break;
-        case TIMER_START:
-            first = 1;
-            zwErg = 0;
-            paused = 0;
-            break;
-        case RESET_TIMER:
-            first = 1;
-            zwErg = 0;
-            paused = 0;
-            timer = 0;
-            break;
-        case TIPP_USED:
-            start -= 15;
-            break;
-        case HELP_USED:
-            start -= 30;
-        default:
-            break;
+    /** Keine Aktion, da nur aktuelle Zeit ausgegeben werden soll */
+    case TIMER_STATE:
+        break;
+
+    /** Stoppuhr pausieren. Beim ersten Durchlauf, wird ein aktueller
+     * Zeitstempel genommen, beim zweiten Durchlauf, wird die
+     * pausierte Zeit zum Zwischenergebnis aufaddiert */
+    case TIMER_PAUSE:
+        if (paused == 0)
+        {
+            _pause = time(NULL);
+            paused++;
+        }
+        else
+        {
+            end = time(NULL);
+            zwErg += (end - _pause);
+            paused--;
+        }
+        break;
+
+        /** iFirst auf 1 setzen, um Timer zu starten (erster Duchlauf) */
+    case TIMER_START:
+        iFirst = 1;
+        zwErg = 0;
+        paused = 0;
+        break;
+
+        /** Stoppuhr bzw. alle zugehörigen Werte zurücksetzen. */
+    case RESET_TIMER:
+        iFirst = 1;
+        zwErg = 0;
+        paused = 0;
+        iTimer = 0;
+        break;
+
+        /** Vom Startzeitstempel 15 Sekunden abziehen, die als zusätzliche
+         * 15 Strafsekungen gerechnet werden. */
+    case TIPP_USED:
+        start -= 15;
+        break;
+
+        /** Vom Startzeitstempel 30 Sekunden abziehen, die als zusätzliche
+         * 30 Strafsekungen gerechnet werden. */
+    case HELP_USED:
+        start -= 30;
+    default:
+        break;
     }
 
-    if (first) {
+    if (iFirst)
+    {
         start = time(NULL);
-        first = 0;
+        iFirst = 0;
     }
 
     end = time(NULL);
 
-    timer = end - start;
-    timer -= zwErg;
+    iTimer = end - start;
+    iTimer -= zwErg;
 
-    return timer;
-
+    return iTimer;
 }
 
-void timeToString(int userTime, char stringTime[]) {
+void timeToString(int userTime, char stringTime[])
+{
     int seconds = userTime % 60;
     int minutes = userTime / 60;
 
     char s[2] = {0};
     char m[2] = {0};
 
-    if (seconds < 10) {
+    if (seconds < 10)
+    {
         s[0] = '0';
         s[1] = '\0';
     }
 
-    if (minutes < 10) {
+    if (minutes < 10)
+    {
         m[0] = '0';
         m[1] = '\0';
     }
@@ -301,14 +371,15 @@ void timeToString(int userTime, char stringTime[]) {
     stringTime[5] = '\0';
 }
 
-
-int checkGameSolved() {
-    if (getGameStatus(gameData) == FILLED) {
-        return solveGame(gameData);
+int checkGameSolved()
+{
+    if (getGameStatus(iGameData) == FILLED)
+    {
+        return solveGame(iGameData);
     }
     return 0;
 }
 
-int solveSudoku(int array[][9]) {
-
+int solveSudoku(int array[][9])
+{
 }

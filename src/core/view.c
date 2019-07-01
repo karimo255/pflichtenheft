@@ -1,6 +1,11 @@
-//
-// Created by team on 24.06.19. (haben wir schon einen Teamnamen?)
-//
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: game.c
+ * Datum: 24.06.19
+ * Beschreibung: Hier werden alle "Screens" im Spiel erstellt bzw.
+ * gerendert.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,44 +21,46 @@
 #include <Windows.h>
 #endif
 
-int deletedCells[9][9];
-int userCells[9][9];
-int isGameActive;
-
+int iDeletedCells[9][9];
+int iUserCells[9][9];
+int iIsGameActive;
 
 #ifdef __WIN32__
 HANDLE hConsole;
 #endif
 
-void initColors() {
+void initColors()
+{
 #ifdef __WIN32__
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 }
 
-
-#define KRED  "\x1B[31m" ///< color red
-#define KGRN  "\x1B[32m" ///< color green
-#define KYEL  "\x1B[33m" ///< color yellow
-#define KBLU  "\x1B[34m" ///< color blue
-#define KMAG  "\x1B[35m" ///< color magenta
-#define KCYN  "\x1B[36m" ///< color cay
+#define KRED "\x1B[31m" ///< color red
+#define KGRN "\x1B[32m" ///< color green
+#define KYEL "\x1B[33m" ///< color yellow
+#define KBLU "\x1B[34m" ///< color blue
+#define KMAG "\x1B[35m" ///< color magenta
+#define KCYN "\x1B[36m" ///< color cay
 #define KWHT "\x1B[37m" ///< color white
 
-
-void printColoredNumber(int number, char *color, int newLine) {
+void printColoredNumber(int number, char *color, int newLine)
+{
     newLine ? printf("%s%d %s\n", color, number, KWHT) : printf("%s%d %s", color, number, KWHT);
 }
 
-void printColoredString(char text[], char color[], int newLine) {
+void printColoredString(char text[], char color[], int newLine)
+{
     newLine ? printf("%s%s%s\n", color, text, KWHT) : printf("%s%s%s", color, text, KWHT);
 }
 
-void setPrintingColor(char *color) {
+void setPrintingColor(char *color)
+{
     printf("%s", color);
 }
 
-void renderUsernameDialog(char *pcUsername) {
+void renderUsernameDialog(char *pcUsername)
+{
     setPrintingColor(KCYN);
 
     printf(" ++============= Spieler Name ==============++\n");
@@ -68,47 +75,72 @@ void renderUsernameDialog(char *pcUsername) {
     printEndOfTable();
 }
 
-void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_coordinate) {
+void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_coordinate)
+{
     int padding = 5;
     printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
 
             int number = gameData[i][j];
-            if (j % 3 == 0) {
-                if (j == 0) {
+            if (j % 3 == 0)
+            {
+                if (j == 0)
+                {
                     printf("%s%*s| ", KCYN, padding, "");
-                } else {
+                }
+                else
+                {
                     printf("%s| ", KCYN);
                 }
-            } else {
+            }
+            else
+            {
                 printColoredString("| ", KGRN, 0);
             }
 
-            if (i == x_coordinate && j == y_coordinate) {
-                if (number > 0) {
+            if (i == x_coordinate && j == y_coordinate)
+            {
+                if (number > 0)
+                {
                     printColoredNumber(number, KRED, 0);
-                } else {
+                }
+                else
+                {
                     printColoredString("| ", KRED, 0);
                 }
-            } else {
-                if (gameData[i][j] > 0) {
-                    if (userCells[i][j] == 1) {
+            }
+            else
+            {
+                if (gameData[i][j] > 0)
+                {
+                    if (userCells[i][j] == 1)
+                    {
                         printColoredNumber(number, KMAG, 0);
-                    } else {
+                    }
+                    else
+                    {
                         printColoredNumber(number, KWHT, 0);
                     }
-                } else {
+                }
+                else
+                {
                     printf("%s  ", KGRN);
                 }
             }
         }
         printf("%s|\n", KCYN);
-        if ((i + 1) % 3 == 0) {
+        if ((i + 1) % 3 == 0)
+        {
             printf("%s     +---+---+---+---+---+---+---+---+---+\n", KCYN);
-        } else {
+        }
+        else
+        {
             printf("     ");
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 printf("%s+", KCYN);
                 printf("%s---+---+---", KGRN);
             }
@@ -117,7 +149,8 @@ void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_
     }
 }
 
-void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
+void renderInfoBox(char *username, int *score, int _difficulty, int remaining)
+{
 
     int difficultyBoxWith = 8;
     int userBoxWith = 10;
@@ -142,8 +175,8 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
 
     setPrintingColor(KWHT);
     char us[6];
-    timeToString(*score,us);
-    printf("Bestscore: %s%*s", us, bestscoreWidth -( *score > 10 ? 2: 1), "");
+    timeToString(*score, us);
+    printf("Bestscore: %s%*s", us, bestscoreWidth - (*score > 10 ? 2 : 1), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -159,18 +192,19 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("|| ");
 
     char _difficultyText[40];
-    switch (_difficulty) {
-        case EASY:
-            strcpy(_difficultyText, "Einfach");
-            break;
-        case MEDIUM:
-            strcpy(_difficultyText, "Mittel ");
-            break;
-        case HARD:
-            strcpy(_difficultyText, "Schwer ");
-            break;
-        default:
-            break;
+    switch (_difficulty)
+    {
+    case EASY:
+        strcpy(_difficultyText, "Einfach");
+        break;
+    case MEDIUM:
+        strcpy(_difficultyText, "Mittel ");
+        break;
+    case HARD:
+        strcpy(_difficultyText, "Schwer ");
+        break;
+    default:
+        break;
     }
     setPrintingColor(KWHT);
     printf("Difficulty: %s%*s", _difficultyText, difficultyBoxWith - strlen(_difficultyText), "");
@@ -195,8 +229,6 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     setPrintingColor(KCYN);
     printf("||\n");
 
-
-
     // third row
     setPrintingColor(KCYN);
     printf("  || ");
@@ -210,7 +242,8 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("  ++=================++=====================++\n\n");
 }
 
-void renderGameMenu() {
+void renderGameMenu()
+{
     setPrintingColor(KCYN);
     printf("    %s Navigation      Befehle\n\n", KCYN);
 
@@ -227,9 +260,10 @@ void renderGameMenu() {
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 
-void printGameMessage(){
+void printGameMessage()
+{
     printf("\n");
-    printf(" %s%s\n", KYEL, gameMessage);
+    printf(" %s%s\n", KYEL, cGameMessage);
     printf("\n");
 }
 
@@ -237,7 +271,7 @@ void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilf
 {
     char stringTime[5];
 
-    printf("%s ++============== Spielende ================++%s\n",KCYN,KWHT);
+    printf("%s ++============== Spielende ================++%s\n", KCYN, KWHT);
     printEmptyTableLine();
 
     if (solvedAutomatic == 1)
@@ -254,7 +288,8 @@ void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilf
         printStartOfLine();
         setPrintingColor(KWHT);
         printf("%s geloest und hast dabei %d Tipps und", stringTime, anzahlDerTipps);
-        printEndOfLine();printStartOfLine();
+        printEndOfLine();
+        printStartOfLine();
         setPrintingColor(KWHT);
         printf("%d Zellloesungen verwendet.              ", anzahlDerHilfe);
         printEndOfLine();
@@ -265,10 +300,10 @@ void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilf
     printEndOfTable();
     printTableLine("Das fertige Spielbrett:                 ");
     printEndOfTable();
-
 }
 
-void renderSetPassword(){
+void renderSetPassword()
+{
     printf(" ++=========== Password setzen =============++\n");
     printEmptyTableLine();
     printTableLine(" Password setzen:                       ");
@@ -276,29 +311,34 @@ void renderSetPassword(){
     printEndOfTable();
 }
 
-void renderEnterPassword(){
+void renderEnterPassword()
+{
     printf(" ++=========== Password eingeben ===========++\n");
     printEmptyTableLine();
     printTableLine(" Password eingeben:                     ");
     printEmptyTableLine();
 
     char m[100];
-    sprintf(m, " %s%s                    %s", KRED, gameMessage, KWHT);
-    if(strlen(gameMessage) > 0 ){
+    sprintf(m, " %s%s                    %s", KRED, cGameMessage, KWHT);
+    if (strlen(cGameMessage) > 0)
+    {
         printTableLine(m);
     }
     printEmptyTableLine();
     printEndOfTable();
 }
 
-void renderMenu() {
+void renderMenu()
+{
     setPrintingColor(KCYN);
     printf(" ++================== Menu =================++\n");
     printEmptyTableLine();
-    if (isGameActive > 0) {
+    if (iIsGameActive > 0)
+    {
         printTableLine("          r - Spiel fortsetzen          ");
-
-    } else {
+    }
+    else
+    {
         printTableLine("          s - Spiel starten             ");
     }
 
@@ -312,40 +352,46 @@ void renderMenu() {
     printEndOfTable();
 }
 
-void print_list(struct sScore *head, int iDifficulty) {
+void print_list(struct sScore *head, int iDifficulty)
+{
     struct sScore *current = head;
     setPrintingColor(KCYN);
     char screenTitle[100];
     sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
     printTableLine(screenTitle);
     printEmptyTableLine();
-    while (current != NULL) {
-        if(current->difficulty == iDifficulty) {
-            if (current->userId == 2) {
+    while (current != NULL)
+    {
+        if (current->difficulty == iDifficulty)
+        {
+            if (current->userId == 2)
+            {
                 char scoreRow[100];
                 char us[10];
-                timeToString(current->time,us);
+                timeToString(current->time, us);
                 sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
                         19 - strlen(us), "");
                 setPrintingColor(KYEL);
                 printTableLine(scoreRow);
                 setPrintingColor(KWHT);
-            } else {
+            }
+            else
+            {
                 char scoreRow[100];
                 char us[10];
-                timeToString(current->time,us);
+                timeToString(current->time, us);
                 sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
                         19 - strlen(us), "");
                 printTableLine(scoreRow);
             }
         }
 
-
         current = current->next;
     }
 }
 
-void renderDBestScoreDialog() {
+void renderDBestScoreDialog()
+{
     printf(" ++============= Bestenliste ===============++\n");
     printEmptyTableLine();
     printTableLine("             e - Einfach                ");
@@ -361,18 +407,20 @@ void renderDBestScoreDialog() {
     printEndOfTable();
 }
 
-void renderDetails(struct sScore *scores, int difficulty) {
+void renderDetails(struct sScore *scores, int difficulty)
+{
     char difficultyText[20];
-    switch (difficulty) {
-        case EASY:
-            strcpy(difficultyText, "Einfach");
-            break;
-        case MEDIUM:
-            strcpy(difficultyText, "Mittel ");
-            break;
-        case HARD:
-            strcpy(difficultyText, "Schwer ");
-            break;
+    switch (difficulty)
+    {
+    case EASY:
+        strcpy(difficultyText, "Einfach");
+        break;
+    case MEDIUM:
+        strcpy(difficultyText, "Mittel ");
+        break;
+    case HARD:
+        strcpy(difficultyText, "Schwer ");
+        break;
     }
 
     setPrintingColor(KCYN);
@@ -388,11 +436,11 @@ void renderDetails(struct sScore *scores, int difficulty) {
     printEndOfTable();
 }
 
-void renderDifficultyDialog() {
+void renderDifficultyDialog()
+{
     setPrintingColor(KCYN);
 
     printf(" ++====== Schwierigkeitseinstellungen ======++\n");
-
 
     printEmptyTableLine();
     printTableLine("            a - Einfach                 ");
@@ -400,14 +448,11 @@ void renderDifficultyDialog() {
     printEmptyTableLine();
     printTableLine("            b - Mittel                  ");
 
-
     printEmptyTableLine();
     printTableLine("            c - Schwer                  ");
 
-
     printEmptyTableLine();
     printEmptyTableLine();
-
 
     printTableLine("        Waehlen Sie die gewuenschte     ");
     printTableLine("        Schwierigkeitsstufe aus.        ");
@@ -415,9 +460,10 @@ void renderDifficultyDialog() {
     printEndOfTable();
 }
 
-
-void renderHelpDialog() {
-
+void renderHelpDialog()
+/* Gibt die Spielregeln in der Konsole aus.
+ */
+{
     printf("%s ++=========== Die Spielregeln =============++%s\n", KCYN, KWHT);
     printEmptyTableLine();
     printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
@@ -442,16 +488,20 @@ void renderHelpDialog() {
     printTableLine("                                        ");
     printEmptyTableLine();
 
-    if (isGameActive > 0) {
+    if (iIsGameActive > 0)
+    {
         printTableLine("z - Zurueck zum Spiel                   ");
-    } else {
+    }
+    else
+    {
         printTableLine("z - Zurueck zum Menue                   ");
     }
 
     printEndOfTable();
 }
 
-void renderMarkModeMessage() {
+void renderMarkModeMessage()
+{
     printf(" ++============= Markieren-Modus ============++\n");
     printTableLine("    Sie sind im Markieren-Modus!         ");
     printTableLine("    Nun koennen Sie moegliche            ");
@@ -461,11 +511,15 @@ void renderMarkModeMessage() {
     printEndOfTable();
 }
 
-int getRemainingCells(int array[][9]) {
+int getRemainingCells(int iArray[][9])
+{
     int counter = 0;
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            if (array[i][j] == 0) {
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (iArray[i][j] == 0)
+            {
                 counter++;
             }
         }
@@ -473,26 +527,35 @@ int getRemainingCells(int array[][9]) {
     return counter;
 }
 
-int lenHelper(int x) {
-    if (x >= 50000) return 6;
-    if (x >= 5000) return 5;
-    if (x >= 500) return 4;
-    if (x >= 50) return 3;
-    if (x >= 10) return 2;
+int lenHelper(int x)
+{
+    if (x >= 50000)
+        return 6;
+    if (x >= 5000)
+        return 5;
+    if (x >= 500)
+        return 4;
+    if (x >= 50)
+        return 3;
+    if (x >= 10)
+        return 2;
     return 1;
 }
 
-void printStartOfLine() {
+void printStartOfLine()
+{
     setPrintingColor(KCYN);
     printf(" || ");
 }
 
-void printEndOfLine() {
+void printEndOfLine()
+{
     setPrintingColor(KCYN);
     printf("||\n");
 }
 
-void printTableLine(char text[]) {
+void printTableLine(char text[])
+{
     printStartOfLine();
 
     setPrintingColor(KWHT);
@@ -501,45 +564,58 @@ void printTableLine(char text[]) {
     printEndOfLine();
 }
 
-void renderNotesBox(int x, int y) {
+void renderNotesBox(int x, int y)
+{
     printf("     "); // padding-left
-    for (int j = 0; j < y_coordinate - y_coordinate % 3; ++j) {
+    for (int j = 0; j < iY_coordinate - iY_coordinate % 3; ++j)
+    {
         printf("    ");
     }
     int shouldDisplay = 0;
-    for (int i = 0; i < MAX_MARKS; ++i) {
-        if (marks[x_coordinate][y_coordinate][i] != 0) {
+    for (int i = 0; i < MAX_MARKS; ++i)
+    {
+        if (iMarks[iX_coordinate][iY_coordinate][i] != 0)
+        {
             shouldDisplay++;
             break;
         }
     }
-    if (shouldDisplay) {
-        for (int i = 0; i < MAX_MARKS; ++i) {
-            if (marks[x_coordinate][y_coordinate][i] != 0) {
-                printf("| %d ", marks[x_coordinate][y_coordinate][i]);
-            } else {
-                printf("|   ", marks[x_coordinate][y_coordinate][i]);
+    if (shouldDisplay)
+    {
+        for (int i = 0; i < MAX_MARKS; ++i)
+        {
+            if (iMarks[iX_coordinate][iY_coordinate][i] != 0)
+            {
+                printf("| %d ", iMarks[iX_coordinate][iY_coordinate][i]);
+            }
+            else
+            {
+                printf("|   ", iMarks[iX_coordinate][iY_coordinate][i]);
             }
         }
         printf("|\n");
-    } else {
+    }
+    else
+    {
         printf("\n");
     }
-
 }
 
-void printEndOfTable() {
+void printEndOfTable()
+{
     setPrintingColor(KCYN);
     printf(" ++=========================================++\n");
 }
 
-void printEmptyTableLine() {
+void printEmptyTableLine()
+{
     printStartOfLine();
     printf("                                        ");
     printEndOfLine();
 }
 
-void clear_output() {
+void clear_output()
+{
 #ifdef __unix__
     system("clear");
 #endif

@@ -45,10 +45,11 @@ void renderMenu();
  */
 
 void renderDBestScoreDialog();
-/**
- * \brief Function to render best-score scrren
- *
- * It shows infos about users and scores
+
+/** Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw.
+ * initialisiert diese Ausgabe
+ * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
  */
 void renderDetails(struct sScore *scores, int difficulty);
 
@@ -90,17 +91,12 @@ void checkGameState();
  */
 void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe);
 
-/**
- * \brief Function to render the difficult settings dialog
- *
- * It shows difficult dialog
+/** Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad
+ * für sein Spiel wählen kann.
  */
 void renderDifficultyDialog();
 
-/**
- * \brief Function to render the help dialog
- *
- * It shows help dialog
+/** Gibt die Spielregeln in der Konsole aus.
  */
 void renderHelpDialog();
 
@@ -114,14 +110,10 @@ void renderHelpDialog();
  */
 int lenHelper(int input);
 
-/**
-* \brief Get count of not filled cells
-*
-* \param array gameData
-* \return count of not filled cells
-*/
-
-int getRemainingCells(int array[][9]);
+/** Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+ * 1. Parameter: sichtbares Spielfeld
+ */
+int getRemainingCells(int iArray[][9]);
 
 void print_list(struct sScore *head, int iDifficulty);
 
@@ -149,17 +141,37 @@ void printColoredNumber(int number, char *color, int newLine);
  */
 void setPrintingColor(char *color);
 
+/** Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+ * 1. Parameter: sichtbares Spielfeld
+ */
 void printStartOfLine();
+
+/** Ausgabe des Endes einer Zeile, die zu einer Box mit Informationen
+ * gehört (Beispiel: Spielregeln).
+ */
 void printEndOfLine();
+
+/** Ausgabe einer Zeile, die zu einer Box mit Informationen gehört
+ * (Beispiel: Spielregeln).
+ * 1. Parameter: Text, der gedruckt werden sollen
+ */
 void printTableLine();
+
+/** Ausgabe der Zeile, die das Ende einer Box mit Informationen darstellt
+ * (Beispiel: Spielregeln).
+ */
 void printEndOfTable();
 void printEmptyTableLine();
 
 void renderLoadingBar(int x);
 
+/** Löscht den aktuellen Konsoleninhalt. Überprüft zunächst das
+ * laufende Betriebssystem, um einen ordnungsgemäßen Ablauf zu
+ * gewährleisten.
+ */
 void clear_output();
 
-
+/** Augabe - sofern vorhanden - der Notizen des Spielers (bzw. Tipps).*/
 void renderNotesBox(int x,int y);
 
 void renderSetPassword();

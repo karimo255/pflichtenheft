@@ -10,7 +10,8 @@
 static struct termios new_io;
 static struct termios old_io;
 
-int cbreak(int fd) {
+int cbreak(int fd)
+{
     if ((tcgetattr(fd, &old_io)) == -1)
         return -1;
     new_io = old_io;
@@ -23,10 +24,12 @@ int cbreak(int fd) {
     return 1;
 }
 
-int getch(void) {
+int getch(void)
+{
     int c;
 
-    if (cbreak(STDIN_FILENO) == -1) {
+    if (cbreak(STDIN_FILENO) == -1)
+    {
         printf("Fehler bei der Funktion cbreak ... \n");
         exit(EXIT_FAILURE);
     }
