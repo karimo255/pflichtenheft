@@ -310,25 +310,28 @@ void renderMenu() {
     printEndOfTable();
 }
 
-void print_list(struct score *head) {
-    struct score *current = head->next; // note: head->next instead of head to skip the first empty element
+void print_list(struct score *head, int difficulty) {
+    struct score *current = head;
     setPrintingColor(KCYN);
     char screenTitle[100];
     sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
     printTableLine(screenTitle);
     printEmptyTableLine();
-    while (current->next != NULL) { // note: current->next instead of current to skip the first empty element
-        if (current->userId == 2) {
-            char scoreRow[100];
-            sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
-                    19 - lenHelper(current->time), "");
-            printTableLine(scoreRow);
-        } else {
-            char scoreRow[100];
-            sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
-                    19 - lenHelper(current->time), "");
-            printTableLine(scoreRow);
+    while (current != NULL) {
+        if(current->difficulty == difficulty) {
+            if (current->userId == 2) {
+                char scoreRow[100];
+                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
+                        19 - lenHelper(current->time), "");
+                printTableLine(scoreRow);
+            } else {
+                char scoreRow[100];
+                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
+                        19 - lenHelper(current->time), "");
+                printTableLine(scoreRow);
+            }
         }
+
 
         current = current->next;
     }
@@ -367,7 +370,7 @@ void renderDetails(struct score *scores, int difficulty) {
     setPrintingColor(KCYN);
     printf(" ++======== Bestenliste ( %s) =========++\n", difficultyText);
 
-    print_list(scores);
+    print_list(scores, difficulty);
 
     printEmptyTableLine();
     printEmptyTableLine();

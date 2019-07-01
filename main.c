@@ -99,8 +99,6 @@ int marks[9][9][MAX_MARKS];
 
 int b = 0;
 
-struct score *scores = NULL;
-
 void checkGameState();
 
 void renderGame();
@@ -155,14 +153,16 @@ int main() {
 
 
     srand(time(NULL));
+
+    struct score *scores;
     scores = malloc(sizeof(score));
     scores->next = NULL;
-
+    getScores(scores, 5);
 
     currentPosition = MENU;
     difficulty = EASY;
 
-    renderGame();
+    renderGame(scores);
 
     printf("Ciao");
     return 0;
@@ -363,6 +363,8 @@ void handleUserInput() {
                                 setConfig();
                                 break;
                         }
+                      //  getScores(scores, 5);
+
                     }
                     break;
 
@@ -526,7 +528,6 @@ void handleUserInput() {
                                 currentPosition = MENU;
                                 break;
                         }
-                        getScores(scores, difficulty);
                     }
                     break;
                 case HELP:
@@ -549,7 +550,7 @@ void handleUserInput() {
 }
 
 
-void renderGame() {
+void renderGame(struct score *scores) {
     while (!exitTheGame) {
         clear_output();
         switch (currentPosition) {

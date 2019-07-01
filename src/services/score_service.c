@@ -77,14 +77,23 @@ int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
     return 0;
 }
 
+void deleteNode(score *node) {
+    score *temp = node->next;
+    node->userId = node->next->userId;
+    strcpy(node->name, node->next->name);
+    node->time = node->next->time;
+    node->next = temp->next;
+    free(temp);
+}
+
 void getScores(score *scores, int diff) {
-    delete_whole_list(scores);
-    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` WHERE `Score`.`difficulty` = %d ORDER BY `Score`.`time` DESC LIMIT 10;", diff);
+    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
     fflush(stdout);
     clear_output();
 
 
     int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
+    deleteNode(scores);
     if (rc == SQLITE_OK) {
         printf("OK\n");
     } else {
