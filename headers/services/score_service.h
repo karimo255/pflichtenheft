@@ -1,28 +1,25 @@
-//
-// Created by karim on 25.06.19.
-//
 #include "../../libs/sqlite3.h"
 
 
-struct score {
+struct sScore {
     char name[10];
     int userId;
     int time;
     int difficulty;
-    struct score *next;
+    struct sScore *next;
 };
-typedef struct score score;
+typedef struct sScore score;
 
 /**
  * \brief Inserts score in the database.
  *
  * @param username[]
- * @param score
+ * @param iScore
  * @param _time
- * @param difficulty
+ * @param iDifficulty
  * @return Returns the id of the last user if insered, otherwise -1.
  */
-int insertScore(int *userID, int score, int difficulty);
+int insertScore(int *piUserID, int iScore, int iDifficulty);
 
 
 /**
@@ -30,12 +27,12 @@ int insertScore(int *userID, int score, int difficulty);
  *
  * @param scores is an array of Score where the scores put into.
  */
-void getScores(score *scores, int diff);
+void getScores(sScore *scores, int iDiff);
 
 
-int getBestScoreByUserID(int userID);
+int getBestScoreByUserID(int iUserID);
 
-int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName);
+int bestScoreCallback(void *pcBestScore, int iArgc, char **ppcArgv, char **ppcAzColName);
 
 
-int getBestScore(int *bestScore, int difficulty);
+int getBestScore(int *piBestScore, int iDifficulty);

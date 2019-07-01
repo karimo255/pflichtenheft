@@ -3,17 +3,17 @@
 /**
  * \brief Inserts user in the database.
  *
- * @param username to insert.
+ * @param cUsername to insert.
  * @return Returns zero if insered, otherwise -1.
  */
 
-int registerUser(char username[], char password[], int *newUserId);
+int registerUser(char cUsername[], char cPassword[], int *piNewUserId);
 
-void loginUser(char username[], char password[], int*id);
+void loginUser(char cUsername[], char cPassword[], int*pId);
 int createUserTable();
 
 int createScoreTable();
 
-int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
+int getUserIdCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName);
 
-void getUserID(char username[30], int *userID);
+void getUserID(char cUsername[30], int *piUserID);

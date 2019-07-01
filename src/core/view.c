@@ -1,6 +1,11 @@
-//
-// Created by team on 24.06.19. (haben wir schon einen Teamnamen?)
-//
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: game.c
+ * Datum: 24.06.19
+ * Beschreibung: Hier werden alle "Screens" im Spiel erstellt bzw.
+ * gerendert.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,11 +22,6 @@
 #include <Windows.h>
 #endif
 
-int deletedCells[9][9];
-int userCells[9][9];
-int isGameActive;
-
-
 #ifdef __WIN32__
 HANDLE hConsole;
 #endif
@@ -32,7 +32,6 @@ void initColors() {
 #endif
 }
 
-
 #define KRED  "\x1B[31m" ///< color red
 #define KGRN  "\x1B[32m" ///< color green
 #define KYEL  "\x1B[33m" ///< color yellow
@@ -41,26 +40,54 @@ void initColors() {
 #define KCYN  "\x1B[36m" ///< color cay
 #define KWHT "\x1B[37m" ///< color white
 
+int iDeletedCells[9][9];
+int iUserCells[9][9];
+int iIsGameActive;
 
-void printColoredNumber(int number, char *color, int newLine) {
-    newLine ? printf("%s%d %s\n", color, number, KWHT) : printf("%s%d %s", color, number, KWHT);
+void printColoredNumber(int iNumber, char *pcColor, int iNewLine)
+/* Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
+ * 1. Parameter: Zahl, die gedruckt werden soll
+ * 2. Parameter: Farbe, in der die Zahl gedruckt werden soll
+ * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+ */
+{
+    iNewLine ? printf("%s%d %s\n", pcColor, iNumber, KWHT) : printf("%s%d %s", pcColor, iNumber, KWHT);
 }
 
-void printColoredString(char text[], char color[], int newLine) {
-    newLine ? printf("%s%s%s\n", color, text, KWHT) : printf("%s%s%s", color, text, KWHT);
+void printColoredString(char cText[], char cColor[], int iNewLine)
+/* Dient zur formatierten Ausgabe eines vorgegeben Strings
+ * 1. Parameter: String, der gedruckt werden soll
+ * 2. Parameter: Farbe, in der der String gedruckt werden soll
+ * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+ */
+{
+    iNewLine ? printf("%s%s%s\n", cColor, cText, KWHT) : printf("%s%s%s", cColor, cText, KWHT);
 }
 
-void setPrintingColor(char *color) {
-    printf("%s", color);
+void setPrintingColor(char *pcColor)
+/* Setzt die Farbe, in der ab sofort in die Konsole geschrieben werden soll
+ * 1. Parameter: Farbe
+ */
+{
+    printf("%s", pcColor);
 }
 
-void renderUsernameDialog(char *username) {
+void renderUsernameDialog(char *pcUsername)
+/* Gibt den Dialog, in dem der Spieler nach seinem Namen gefragt wird
+ * aus.
+ * 1. Parameter: bisheriger Benutzername (Zeichen werden einzeln
+ * entgegengenommen, um eine nutzerfreundliche Obfläche / Eingabe
+ * und das Nutzen der Löschen-Taste zu ermöglichen)
+ */
+{
     setPrintingColor(KCYN);
 
     printf(" ++============= Spieler Name ==============++\n");
-    char userNameRow[100];
-    sprintf(userNameRow, "Name: %s%*s ", username, 33 - strlen(username), "");
-    printTableLine(userNameRow);
+
+    char cUserNameRow[100];
+
+    sprintf(cUserNameRow, "Name: %s%*s ", pcUsername, 33 - strlen(pcUsername), "");
+    printTableLine(cUserNameRow);
     printEmptyTableLine();
     printTableLine("Sie koennen diesen Schritt              ");
     printTableLine("ueberspringen, druecken Sie             ");
@@ -69,47 +96,80 @@ void renderUsernameDialog(char *username) {
     printEndOfTable();
 }
 
-void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_coordinate) {
-    int padding = 5;
-    printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
+void renderCourt(int iGameData[][9], int iUserCells[][9], int iX_coordinate, int iY_coordinate)
+/* Gibt das "sichtbare" Spielfeld in der Konsole aus.
+ * 1. Parameter: sichtbares Spielfeld
+ * 2. Parameter: Array, in dem gespeichert ist, welche Zellen vom Nutzer befüllt werden
+ * müssen
+ * 3. Parameter: x-Koordinate, an der sich der Cursor des Spielers befindet
+ * 4. Parameter: y-Koordinate, an der sich der Cursor des Spielers befindet
+ */
+{
+    int iPadding = 5;
 
-            int number = gameData[i][j];
-            if (j % 3 == 0) {
-                if (j == 0) {
-                    printf("%s%*s| ", KCYN, padding, "");
-                } else {
+    printColoredString("     +---+---+---+---+---+---+---+---+---+", KCYN, 1);
+
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            int iNumber = iGameData[i][j];
+            if (j % 3 == 0)
+            {
+                if (j == 0)
+                {
+                    printf("%s%*s| ", KCYN, iPadding, "");
+                }
+                else
+                {
                     printf("%s| ", KCYN);
                 }
-            } else {
+            }
+            else
+            {
                 printColoredString("| ", KGRN, 0);
             }
 
-            if (i == x_coordinate && j == y_coordinate) {
-                if (number > 0) {
-                    printColoredNumber(number, KRED, 0);
-                } else {
+            if (i == iX_coordinate && j == iY_coordinate)
+            {
+                if (iNumber > 0)
+                {
+                    printColoredNumber(iNumber, KRED, 0);
+                }
+                else
+                {
                     printColoredString("| ", KRED, 0);
                 }
-            } else {
-                if (gameData[i][j] > 0) {
-                    if (userCells[i][j] == 1) {
-                        printColoredNumber(number, KMAG, 0);
-                    } else {
-                        printColoredNumber(number, KWHT, 0);
+            }
+            else
+            {
+                if (iGameData[i][j] > 0)
+                {
+                    if (iUserCells[i][j] == 1)
+                    {
+                        printColoredNumber(iNumber, KMAG, 0);
                     }
-                } else {
+                    else
+                    {
+                        printColoredNumber(iNumber, KWHT, 0);
+                    }
+                }
+                else
+                {
                     printf("%s  ", KGRN);
                 }
             }
         }
         printf("%s|\n", KCYN);
-        if ((i + 1) % 3 == 0) {
+        if ((i + 1) % 3 == 0)
+        {
             printf("%s     +---+---+---+---+---+---+---+---+---+\n", KCYN);
-        } else {
+        }
+        else
+        {
             printf("     ");
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 printf("%s+", KCYN);
                 printf("%s---+---+---", KGRN);
             }
@@ -117,21 +177,29 @@ void renderCourt(int gameData[][9], int userCells[][9], int x_coordinate, int y_
         }
     }
     printf("\n");
-    printf("        %s%s \n", KYEL, gameMessage);
+    printf("        %s%s \n", KYEL, cGameMessage);
     printf("\n");
 }
 
-void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
+void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemaining)
+/* Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet
+ * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
+ * enthält.
+ * 1. Parameter: Nutzernamen, des aktuell spielenden Spielers
+ * 2. Parameter: Highscore im aktuellen Schwierigkeitsgrad
+ * 3. Parameter: aktuell ausgewählter Schwierigkeitsgrad
+ * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
+ */
+{
+    int iDifficultyBoxWith = 8;
+    int iUserBoxWith = 10;
+    int iBestscoreWidth = 6;
+    int iRemainingBoxWith = 5;
+    int iHilfeWidth = 12;
+    int iTippWidth = 8;
+    char cUserStringTime[6];
 
-    int difficultyBoxWith = 8;
-    int userBoxWith = 10;
-    int bestscoreWidth = 6;
-    int remainingBoxWith = 5;
-    int hilfeWidth = 12;
-    int tippWidth = 8;
-    char userStringTime[6];
-
-    timeToString(timer(TIMER_STATE), userStringTime);
+    timeToString(timer(TIMER_STATE), cUserStringTime);
     printColoredString("  ++=================++=====================++", KCYN, 1);
 
     // first row
@@ -139,15 +207,15 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf("User: %s%*s", username, userBoxWith - strlen(username), "");
+    printf("User: %s%*s", pcUsername, iUserBoxWith - strlen(pcUsername), "");
 
     setPrintingColor(KCYN);
     printf("|| ");
 
     setPrintingColor(KWHT);
-    char us[6];
-    timeToString(*score,us);
-    printf("Bestscore: %s%*s", us, bestscoreWidth -( *score > 10 ? 2: 1), "");
+    char cUs[6];
+    timeToString(*piScore,cUs);
+    printf("Bestscore: %s%*s", cUs, iBestscoreWidth -( *piScore > 10 ? 2: 1), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -157,27 +225,28 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf("Time: %s     ", userStringTime);
+    printf("Time: %s     ", cUserStringTime);
 
     setPrintingColor(KCYN);
     printf("|| ");
 
-    char _difficultyText[40];
-    switch (_difficulty) {
+    char _cDifficultyText[40];
+    switch (_piDifficulty)
+    {
         case EASY:
-            strcpy(_difficultyText, "Einfach");
+            strcpy(_cDifficultyText, "Einfach");
             break;
         case MEDIUM:
-            strcpy(_difficultyText, "Mittel ");
+            strcpy(_cDifficultyText, "Mittel ");
             break;
         case HARD:
-            strcpy(_difficultyText, "Schwer ");
+            strcpy(_cDifficultyText, "Schwer ");
             break;
         default:
             break;
     }
     setPrintingColor(KWHT);
-    printf("Difficulty: %s%*s", _difficultyText, difficultyBoxWith - strlen(_difficultyText), "");
+    printf("Difficulty: %s%*s", _cDifficultyText, iDifficultyBoxWith - strlen(_cDifficultyText), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -187,14 +256,14 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf("Remaining: %d%*s", remaining, remainingBoxWith - lenHelper(remaining), "");
+    printf("Remaining: %d%*s", iRemaining, iRemainingBoxWith - lenHelper(iRemaining), "");
 
     setPrintingColor(KCYN);
     printf("|| ");
 
     setPrintingColor(KWHT);
-    printf("Hilfe: %d/%d%*s", anzahlDerHilfe, erlaubteAnzahlDerHilfe,
-           hilfeWidth - lenHelper(anzahlDerHilfe) - lenHelper(erlaubteAnzahlDerHilfe), "");
+    printf("Hilfe: %d/%d%*s", iAnzahlDerHilfe, iErlaubteAnzahlDerHilfe,
+           iHilfeWidth - lenHelper(iAnzahlDerHilfe) - lenHelper(iErlaubteAnzahlDerHilfe), "");
 
     setPrintingColor(KCYN);
     printf("||\n");
@@ -206,15 +275,19 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining) {
     printf("  || ");
 
     setPrintingColor(KWHT);
-    printf("Tipps: %d/%d%*s", anzahlDerTipps, erlaubteAnzahlDerTipps,
-           tippWidth - lenHelper(anzahlDerTipps) - lenHelper(erlaubteAnzahlDerTipps), "");
+    printf("Tipps: %d/%d%*s", iAnzahlDerTipps, iErlaubteAnzahlDerTipps,
+           iTippWidth - lenHelper(iAnzahlDerTipps) - lenHelper(iErlaubteAnzahlDerTipps), "");
 
     setPrintingColor(KCYN);
     printf("||                     ||\n");
     printf("  ++=================++=====================++\n\n");
 }
 
-void renderGameMenu() {
+void renderGameMenu()
+/* Gibt die Legende aus, die dem Spieler aufzeigt, welche Tasten er drücken kann, um
+ * mit dem Spiel zu interagieren.
+ */
+{
     setPrintingColor(KCYN);
     printf("    %s Navigation      Befehle\n\n", KCYN);
 
@@ -231,14 +304,20 @@ void renderGameMenu() {
     //printColoredString("c - Check\n", getGameStatus(arr) == FILLED ? KWHT : KRED,1);
 }
 
-void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe)
+void renderSolvedGame(int iSolvedAutomatic, int iAnzahlDerTipps, int iAnzahlDerHilfe)
+/* Gibt den "Winscreen" in der Konsole aus, wenn das Sudoku vollständig gelöst wurde.
+ * 1. Parameter: Wurde das Spiel aufgelöst oder hat der Spieler es selbst gelöst
+ * (1 = es wurde aufglöst, 0 = Spieler hat es gelöst)
+ * 2. Parameter: Anzahl der benutzten Tipps
+ * 3. Parameter: Anzahl der benutzten Zelllösugen
+ */
 {
-    char stringTime[5];
+    char cStringTime[5];
 
     printf("%s ++============== Spielende ================++%s\n",KCYN,KWHT);
     printEmptyTableLine();
 
-    if (solvedAutomatic == 1)
+    if (iSolvedAutomatic == 1)
     {
         printTableLine("Du hast das Sudoku leider nicht selbst- ");
         printTableLine("staendig gelöst. Mehr Erfolg beim       ");
@@ -246,15 +325,15 @@ void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilf
     }
     else
     {
-        timeToString(timer(TIMER_STATE), stringTime);
+        timeToString(timer(TIMER_STATE), cStringTime);
         printTableLine("Herzlichen Glueckwunsch!!!              ");
         printTableLine("Du hast das Sudoku in einer Zeit von    ");
         printStartOfLine();
         setPrintingColor(KWHT);
-        printf("%s geloest und hast dabei %d Tipps und", stringTime, anzahlDerTipps);
+        printf("%s geloest und hast dabei %d Tipps und", cStringTime, iAnzahlDerTipps);
         printEndOfLine();printStartOfLine();
         setPrintingColor(KWHT);
-        printf("%d Zellloesungen verwendet.              ", anzahlDerHilfe);
+        printf("%d Zellloesungen verwendet.              ", iAnzahlDerHilfe);
         printEndOfLine();
         printTableLine("Deine Zeit wird automatisch gespeichert.");
     }
@@ -266,7 +345,11 @@ void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilf
 
 }
 
-void renderSetPassword(){
+void renderSetPassword()
+/* Gibt den Dialog aus, in dem ein neuer Spieler sein Passwort
+ * setzen kann.
+ */
+{
     printf(" ++=========== Password setzen =============++\n");
     printEmptyTableLine();
     printTableLine(" Password setzen:                       ");
@@ -274,34 +357,45 @@ void renderSetPassword(){
     printEndOfTable();
 }
 
-void renderEnterPassword(){
+void renderEnterPassword()
+/* Gibt den Dialog aus, in dem ein bereits registrierter Spieler
+ * sein Passwort eingeben kann.
+ */
+{
     printf(" ++=========== Password eingeben ===========++\n");
     printEmptyTableLine();
     printTableLine(" Password eingeben:                     ");
     printEmptyTableLine();
 
-    char m[100];
-    sprintf(m, " %s%s                    %s", KRED, gameMessage, KWHT);
-    if(strlen(gameMessage) > 0 ){
-        printTableLine(m);
+    char cM[100];
+    sprintf(cM, " %s%s                    %s", KRED, cGameMessage, KWHT);
+    if (strlen(cGameMessage) > 0 ){
+        printTableLine(cM);
     }
     printEmptyTableLine();
     printEndOfTable();
 }
 
-void renderMenu() {
+void renderMenu()
+/* Druckt das Hauptmenü in die Konsole. Überprüft, ob Spiel noch läuft oder
+ * ob ein neues gestartet werden kann (nur visueller Einfluss).
+ */
+{
     setPrintingColor(KCYN);
     printf(" ++================== Menu =================++\n");
     printEmptyTableLine();
-    if (isGameActive > 0) {
+    if (iIsGameActive > 0)
+    {
         printTableLine("          r - Spiel fortsetzen          ");
 
-    } else {
+    }
+    else
+    {
         printTableLine("          s - Spiel starten             ");
     }
 
     printEmptyTableLine();
-    printTableLine("          b - Bestenliste               ");
+    printTableLine("          iB - Bestenliste               ");
     printEmptyTableLine();
     printTableLine("          k - Spielregeln               ");
     printEmptyTableLine();
@@ -310,25 +404,36 @@ void renderMenu() {
     printEndOfTable();
 }
 
-void print_list(struct score *head, int difficulty) {
-    struct score *current = head;
+void print_list(struct sScore *head, int iDifficulty)
+/* Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
+ * aus.
+ * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
+ */
+{
+    struct sScore *current = head;
     setPrintingColor(KCYN);
-    char screenTitle[100];
-    sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
-    printTableLine(screenTitle);
+    char cScreenTitle[100];
+    sprintf(cScreenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
+    printTableLine(cScreenTitle);
     printEmptyTableLine();
-    while (current != NULL) {
-        if(current->difficulty == difficulty) {
-            if (current->userId == 2) {
-                char scoreRow[100];
-                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
+    while (current != NULL)
+    {
+        if (current->difficulty == iDifficulty)
+        {
+            if (current->userId == 2)
+            {
+                char cScoreRow[100];
+                sprintf(cScoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
                         19 - lenHelper(current->time), "");
-                printTableLine(scoreRow);
-            } else {
-                char scoreRow[100];
-                sprintf(scoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
+                printTableLine(cScoreRow);
+            }
+            else
+            {
+                char cScoreRow[100];
+                sprintf(cScoreRow, "%s%*s | %d%*s", current->name, 18 - strlen(current->name), "", current->time,
                         19 - lenHelper(current->time), "");
-                printTableLine(scoreRow);
+                printTableLine(cScoreRow);
             }
         }
 
@@ -337,7 +442,11 @@ void print_list(struct score *head, int difficulty) {
     }
 }
 
-void renderDBestScoreDialog() {
+void renderDBestScoreDialog()
+/* Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad zum Anzeigen der
+ * Bestenliste auswählen kann
+ */
+{
     printf(" ++============= Bestenliste ===============++\n");
     printEmptyTableLine();
     printTableLine("             e - Einfach                ");
@@ -353,24 +462,31 @@ void renderDBestScoreDialog() {
     printEndOfTable();
 }
 
-void renderDetails(struct score *scores, int difficulty) {
-    char difficultyText[20];
-    switch (difficulty) {
+void renderDetails(struct sScore *scores, int iDifficulty)
+/* Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw.
+ * initialisiert diese Ausgabe
+ * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
+ * 2. Parameter: ausgewählter Schwierigkeitsgrad
+ */
+{
+    char cDifficultyText[20];
+    switch (iDifficulty)
+    {
         case EASY:
-            strcpy(difficultyText, "Einfach");
+            strcpy(cDifficultyText, "Einfach");
             break;
         case MEDIUM:
-            strcpy(difficultyText, "Mittel ");
+            strcpy(cDifficultyText, "Mittel ");
             break;
         case HARD:
-            strcpy(difficultyText, "Schwer ");
+            strcpy(cDifficultyText, "Schwer ");
             break;
     }
 
     setPrintingColor(KCYN);
-    printf(" ++======== Bestenliste ( %s) =========++\n", difficultyText);
+    printf(" ++======== Bestenliste ( %s) =========++\n", cDifficultyText);
 
-    print_list(scores, difficulty);
+    print_list(scores, iDifficulty);
 
     printEmptyTableLine();
     printEmptyTableLine();
@@ -380,7 +496,11 @@ void renderDetails(struct score *scores, int difficulty) {
     printEndOfTable();
 }
 
-void renderDifficultyDialog() {
+void renderDifficultyDialog()
+/* Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad
+ * für sein Spiel wählen kann.
+ */
+{
     setPrintingColor(KCYN);
 
     printf(" ++====== Schwierigkeitseinstellungen ======++\n");
@@ -390,7 +510,7 @@ void renderDifficultyDialog() {
     printTableLine("            a - Einfach                 ");
 
     printEmptyTableLine();
-    printTableLine("            b - Mittel                  ");
+    printTableLine("            iB - Mittel                  ");
 
 
     printEmptyTableLine();
@@ -408,8 +528,10 @@ void renderDifficultyDialog() {
 }
 
 
-void renderHelpDialog() {
-
+void renderHelpDialog()
+/* Gibt die Spielregeln in der Konsole aus.
+ */
+{
     printf("%s ++=========== Die Spielregeln =============++%s\n", KCYN, KWHT);
     printEmptyTableLine();
     printTableLine("Sudoku ist ein Zahlenpuzzle. Das        ");
@@ -434,16 +556,22 @@ void renderHelpDialog() {
     printTableLine("                                        ");
     printEmptyTableLine();
 
-    if (isGameActive > 0) {
+    if (iIsGameActive > 0)
+    {
         printTableLine("z - Zurueck zum Spiel                   ");
-    } else {
+    }
+    else
+    {
         printTableLine("z - Zurueck zum Menue                   ");
     }
 
     printEndOfTable();
 }
 
-void renderMarkModeMessage() {
+void renderMarkModeMessage()
+/* Ausgabe des Hinweises auf den "Markieren-Modus"
+ */
+{
     printf(" ++============= Markieren-Modus ============++\n");
     printTableLine("    Sie sind im Markieren-Modus!         ");
     printTableLine("    Nun koennen Sie moegliche            ");
@@ -453,85 +581,135 @@ void renderMarkModeMessage() {
     printEndOfTable();
 }
 
-int getRemainingCells(int array[][9]) {
-    int counter = 0;
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            if (array[i][j] == 0) {
-                counter++;
+int getRemainingCells(int iGameData[][9])
+/* Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+ * 1. Parameter: sichtbares Spielfeld
+ */
+{
+    int iCounter = 0;
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (iGameData[i][j] == 0)
+            {
+                iCounter++;
             }
         }
     }
-    return counter;
+    return iCounter;
 }
 
-int lenHelper(int x) {
-    if (x >= 50000) return 6;
-    if (x >= 5000) return 5;
-    if (x >= 500) return 4;
-    if (x >= 50) return 3;
-    if (x >= 10) return 2;
+int lenHelper(int iX)
+/*
+ */
+{
+    if (iX >= 50000) return 6;
+    if (iX >= 5000) return 5;
+    if (iX >= 500) return 4;
+    if (iX >= 50) return 3;
+    if (iX >= 10) return 2;
     return 1;
 }
 
-void printStartOfLine() {
+void printStartOfLine()
+/* Ausgabe des Starts einer Zeile, die zu einer Box mit Informationen
+ * gehört (Beispiel: Spielregeln).
+ */
+{
     setPrintingColor(KCYN);
     printf(" || ");
 }
 
-void printEndOfLine() {
+void printEndOfLine()
+/* Ausgabe des Endes einer Zeile, die zu einer Box mit Informationen
+ * gehört (Beispiel: Spielregeln).
+ */
+{
     setPrintingColor(KCYN);
     printf("||\n");
 }
 
-void printTableLine(char text[]) {
+void printTableLine(char cText[])
+/* Ausgabe einer Zeile, die zu einer Box mit Informationen gehört
+ * (Beispiel: Spielregeln).
+ * 1. Parameter: Text, der gedruckt werden sollen
+ */
+{
     printStartOfLine();
 
     setPrintingColor(KWHT);
-    printf(text);
+    printf(cText);
 
     printEndOfLine();
 }
 
-void renderNotesBox(int x, int y) {
+void renderNotesBox(int iX, int iY)
+/* Augabe - sofern vorhanden - der Notizen des Spielers (bzw. Tipps).
+ */
+{
     printf("     "); // padding-left
-    for (int j = 0; j < y_coordinate - y_coordinate % 3; ++j) {
+    for (int j = 0; j < iY_coordinate - iY_coordinate % 3; ++j)
+    {
         printf("    ");
     }
-    int shouldDisplay = 0;
-    for (int i = 0; i < MAX_MARKS; ++i) {
-        if (marks[x_coordinate][y_coordinate][i] != 0) {
-            shouldDisplay++;
+
+    int iShouldDisplay = 0;
+
+    for (int i = 0; i < MAX_MARKS; ++i)
+    {
+        if (iMarks[iX_coordinate][iY_coordinate][i] != 0)
+        {
+            iShouldDisplay++;
             break;
         }
     }
-    if (shouldDisplay) {
-        for (int i = 0; i < MAX_MARKS; ++i) {
-            if (marks[x_coordinate][y_coordinate][i] != 0) {
-                printf("| %d ", marks[x_coordinate][y_coordinate][i]);
-            } else {
-                printf("|   ", marks[x_coordinate][y_coordinate][i]);
+    if (iShouldDisplay)
+    {
+        for (int i = 0; i < MAX_MARKS; ++i)
+        {
+            if (iMarks[iX_coordinate][iY_coordinate][i] != 0)
+            {
+                printf("| %d ", iMarks[iX_coordinate][iY_coordinate][i]);
+            }
+            else
+            {
+                printf("|   ", iMarks[iX_coordinate][iY_coordinate][i]);
             }
         }
         printf("|\n");
-    } else {
+    }
+    else
+    {
         printf("\n");
     }
 
 }
 
-void printEndOfTable() {
+void printEndOfTable()
+/* Ausgabe der Zeile, die das Ende einer Box mit Informationen darstellt
+ * (Beispiel: Spielregeln).
+ */
+{
     setPrintingColor(KCYN);
     printf(" ++=========================================++\n");
 }
 
-void printEmptyTableLine() {
+void printEmptyTableLine()
+/* Ausgabe einer leeren Zeile.
+ */
+{
     printStartOfLine();
     printf("                                        ");
     printEndOfLine();
 }
 
-void clear_output() {
+void clear_output()
+/* Löscht den aktuellen Konsoleninhalt. Überprüft zunächst das
+ * laufende Betriebssystem, um einen ordnungsgemäßen Ablauf zu
+ * gewährleisten.
+ */
+{
 #ifdef __unix__
     system("clear");
 #endif

@@ -1,41 +1,56 @@
-//
-// Created by team-name on 25.06.19.
-//
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: game.c
+ * Datum: 25.06.19
+ * Beschreibung: In dieser Datei befinden sich alle Funktionen, die
+ * etwas mit den Abfragen an die Datenbank zu tun haben, wenn es
+ * um den Score bzw. die Zeit der Spieler geht.
+*/
 
 #include "../../headers/services/score_service.h"
 #include "../../headers/services/connection.h"
 #include "../../headers/shared/shared.h"
+#include "../../headers/core/view.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <headers/core/view.h>
 
+int iUser_id = 0;
+char cSql[200];
+char *cpZErrMsg;
 
-char sql[200];
-char *zErrMsg;
-sqlite3 *connection;
-int user_id = 0;
+sqlite3 *psqlConnection;
 
-
-int insertScore(int *userID, int score, int difficulty) {
-    sprintf(sql, "INSERT INTO `Score` (time, userId, difficulty) VALUES(\"%d\", \"%d\", \"%d\");", score,
-            *userID, difficulty);
+int insertScore(int *piUserID, int iScore, int iDifficulty)
+/* Fügt die benötigte Zeit des aktuellen Spielers für sein gerade
+ * beendetes Spiel in die Datenbank ein.
+ * 1. Parameter: UserID des Spielers
+ * 2. Parameter: benötigte Zeit
+ * 3. Parameter: Schwierigkeitsgrad des gelösten Sudokus
+ */
+{
+    sprintf(cSql, "INSERT INTO `Score` (time, userId, iDifficulty) VALUES(\"%d\", \"%d\", \"%d\");", iScore,
+            *piUserID, iDifficulty);
+    printf("%s\n", cSql);
 
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
-    printf("%s\n", sql);
-
-    if (!rc == SQLITE_OK) {
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &cpZErrMsg);
+    if (!rc == SQLITE_OK)
+    {
         return -1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
-delete_whole_list(struct score *scores) {
-    score *temp;
+delete_whole_list(struct sScore *scores)
+{
+    struct sScore *temp;
+
     while (scores->next != NULL) // skip first element
     {
         temp = scores->next;
@@ -45,102 +60,132 @@ delete_whole_list(struct score *scores) {
 }
 
 
-int getScoresCallback(void *scores, int argc, char **argv, char **azColName) {
-    score *a_head = (score *) scores;
+int getScoresCallback(void *pvScores, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    struct sScore *a_head = (struct sScore *) pvScores;
 
-    /**
-    * We go to end of the list
-    */
-    while (a_head->next != NULL) {
+    /* Zum Ende der Liste gehen */
+    while (a_head->next != NULL)
+    {
         a_head = a_head->next;
     }
 
-    /**
-    * now we can add a new item
-    */
-    a_head->next = malloc(sizeof(score));
+    /* Einfügen eines neuen Elements */
+    a_head->next = malloc(sizeof(struct sScore));
 
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "time") == 0) {
-            a_head->next->time = atoi(argv[i]);
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "time") == 0)
+        {
+            a_head->next->time = atoi(ppcArgv[i]);
         }
-        if (strcmp(azColName[i], "name") == 0) {
-            strcpy(a_head->next->name, argv[i]);
-        } else if (strcmp(azColName[i], "userId") == 0) {
-            a_head->next->userId = atoi(argv[i]);
-        } else if (strcmp(azColName[i], "difficulty") == 0) {
-            a_head->next->difficulty = atoi(argv[i]);
+        if (strcmp(ppcAzColName[i], "name") == 0)
+        {
+            strcpy(a_head->next->name, ppcArgv[i]);
+        } else if (strcmp(ppcAzColName[i], "userId") == 0)
+        {
+            a_head->next->userId = atoi(ppcArgv[i]);
+        } else if (strcmp(ppcAzColName[i], "iDifficulty") == 0)
+        {
+            a_head->next->difficulty = atoi(ppcArgv[i]);
         }
     }
 
     a_head->next->next = NULL;
+
     return 0;
 }
 
-void deleteNode(score *node) {
-    score *temp = node->next;
+void deleteNode(struct sScore *node)
+        {
+    struct sScore *temp = node->next;
+
     node->userId = node->next->userId;
     strcpy(node->name, node->next->name);
     node->time = node->next->time;
     node->next = temp->next;
+
     free(temp);
 }
 
-void getScores(score *scores, int diff) {
-    sprintf(sql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`difficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
+void getScores(struct sScore *scores, int iDiff)
+{
+    sprintf(cSql, "SELECT `Score`.`userId`, `User`.`name`, `Score`.`time`, `Score`.`iDifficulty` FROM `Score` INNER JOIN `User` ON `Score`.`userId` = `User`.`id` ORDER BY `Score`.`time` DESC LIMIT 10;");
+
     fflush(stdout);
     clear_output();
 
+    int rc = sqlite3_exec(psqlConnection, cSql, getScoresCallback, scores, &cpZErrMsg);
 
-    int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
     deleteNode(scores);
-    if (rc == SQLITE_OK) {
+
+    if (rc == SQLITE_OK)
+    {
         printf("OK\n");
-    } else {
+    }
+    else
+    {
         printf("NO\n");
     }
 }
 
-int bestScoresCallBack(void *scores, int argc, char **argv, char **azColName) {
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "time") == 0) {
-            user_id = atoi(argv[i]);
+int bestScoresCallBack(void *pvScores, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "time") == 0)
+        {
+            iUser_id = atoi(ppcArgv[i]);
         }
     }
+
     return 0;
 }
 
-int getBestScoreByUserID(int userID) {
-	sprintf(sql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", userID);
+int getBestScoreByUserID(int iUserID)
+{
+	sprintf(cSql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", iUserID);
+
     fflush(stdout);
     clear_output();
 
-	int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
-	printf("%s\n", sql);
-	return user_id;
+	int rc = sqlite3_exec(psqlConnection, cSql, bestScoresCallBack, NULL, &cpZErrMsg);
+	printf("%s\n", cSql);
+
+	return iUser_id;
 
 }
 
-int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName) {
-    int *tmp = (int *) bestScore;
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "time") == 0) {
-            *tmp = atoi(argv[i]);
+int bestScoreCallback(void *pcBestScore, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    int *piTmp = (int *) pcBestScore;
+
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "time") == 0)
+        {
+            *piTmp = atoi(ppcArgv[i]);
         }
     }
+
     return 0;
 }
 
 
-int getBestScore(int *bestScore,int difficulty) {
-    sprintf(sql, "SELECT time FROM `Score`  WHERE  difficulty=%d ORDER by time desc  LIMIT 1", difficulty);
+int getBestScore(int *piBestScore, int iDifficulty)
+{
+    sprintf(cSql, "SELECT time FROM `Score`  WHERE  iDifficulty=%d ORDER by time desc  LIMIT 1", iDifficulty);
+
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
-    if (!rc == SQLITE_OK) {
+    int rc = sqlite3_exec(psqlConnection, cSql, bestScoreCallback, piBestScore, &cpZErrMsg);
+    if (!rc == SQLITE_OK)
+    {
         return -1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }

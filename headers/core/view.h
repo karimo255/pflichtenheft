@@ -10,7 +10,7 @@
 #endif //SUDOKU_VIEW_H
 
 void renderMarkModeMessage();
-void renderUsernameDialog(char *username);
+void renderUsernameDialog(char *pcUsername);
 
 /**
  * \brief function to render menu
@@ -26,20 +26,20 @@ void renderDBestScoreDialog();
  *
  * It shows infos about users and scores
  */
-void renderDetails(struct score *scores, int difficulty);
+void renderDetails(struct sScore *scores, int iDifficulty);
 
 /**
  * \brief Function to render the game grid
  *
  * It shows the game grid
  */
-void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate);
+void renderCourt(int iGameData[][9],int iUserCells[][9], int iX_coordinate, int iY_coordinate);
 /**
  * \brief Function to render infos about current session
  *
  * It shows the current session information
  */
-void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
+void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemaining);
 
 /**
  * \brief Function to render the game menu
@@ -53,7 +53,7 @@ void renderGameMenu();
  *
  * It shows the game menu
  */
-void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe);
+void renderSolvedGame(int iSolvedAutomatic, int iAnzahlDerTipps, int iAnzahlDerHilfe);
 
 /**
  * \brief Function to render the difficult settings dialog
@@ -72,23 +72,23 @@ void renderHelpDialog();
 /**
  * \brief Function to get the length of integers (aka strlen for strings)
  *
- * @param input an integer to get length of
+ * @param iX an integer to get length of
  * @return the length of the given integer
  *
  * It return the length of integer number (for optimal printing)
  */
-int lenHelper(int input);
+int lenHelper(int iX);
 
 /**
 * \brief Get count of not filled cells
 *
-* \param array gameData
+* \param iGameData gameData
 * \return count of not filled cells
 */
 
-int getRemainingCells(int array[][9]);
+int getRemainingCells(int iGameData[][9]);
 
-void print_list(struct score *head,int difficulty);
+void print_list(struct sScore *head,int iDifficulty);
 
 
 void initColors();
@@ -97,9 +97,9 @@ void initColors();
 
 
 
-void printColoredString(char text[], char color[], int newLine);
-void printColoredNumber(int number, char *color, int newLine);
-void setPrintingColor(char *color);
+void printColoredString(char cText[], char cColor[], int iNewLine);
+void printColoredNumber(int iNumber, char *pcColor, int iNewLine);
+void setPrintingColor(char *pcColor);
 
 void printStartOfLine();
 void printEndOfLine();
@@ -112,7 +112,7 @@ void renderLoadingBar(int x);
 void clear_output();
 
 
-void renderNotesBox(int x,int y);
+void renderNotesBox(int iX,int iY);
 
 void renderSetPassword();
 

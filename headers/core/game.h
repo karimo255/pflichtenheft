@@ -1,7 +1,3 @@
-
-//
-// Created by karim on 24.06.19.
-//
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
 
@@ -9,100 +5,100 @@
 #include "../shared/shared.h"
 
 
-extern int marks[9][9][MAX_MARKS];
+extern int iMarks[9][9][MAX_MARKS];
 
-void fillNotesForCell(int x_coordinate, int y_coordinate);
+void fillNotesForCell(int iX_coordinate, int iY_coordinate);
 
 /// x-coordinate of the cursor.
-extern int x_coordinate;
+extern int iX_coordinate;
 
 /// y-coordinate of the cursor.
-extern int y_coordinate;
+extern int iY_coordinate;
 
 /// game difficulty.
-extern int difficulty;
+extern int iDifficulty;
 
 /// game message
-extern char gameMessage[200];
+extern char cGameMessage[200];
 
 /// is a session active.
-extern int isGameActive;
+extern int iIsGameActive;
 
 /// current active menu item.
-extern int currentPosition;
+extern int iCurrentPosition;
 
 /// array which holds the game data.
-extern int gameData[9][9];
+extern int iGameData[9][9];
 
 /// array which holds deleted cells to keep track of them.
-extern int deletedCells[9][9];
+extern int iDeletedCells[9][9];
 
 /// array which holds the coordinates of user cells (cells to solve) to keep track of theme.
-extern int userCells[9][9];
+extern int iUserCells[9][9];
 
-extern int anzahlDerTipps;
-extern int anzahlDerHilfe;
+extern int iAnzahlDerTipps;
+extern int iAnzahlDerHilfe;
 
 
-extern int erlaubteAnzahlDerTipps;
-extern int erlaubteAnzahlDerHilfe;
+extern int iErlaubteAnzahlDerTipps;
+extern int iErlaubteAnzahlDerHilfe;
 
-void fillNotesForCell(int x_coordinate, int y_coordinate);
+void fillNotesForCell(int iX_coordinate, int iY_coordinate);
 
 
 /**
- * @param array int array to search.
- * @param number is the integer to search for.
+ * @param iArray int array to search.
+ * @param iElement is the integer to search for.
  * @return Returns the index of the number if number is found in the array, -1 otherwise.
  *
  * Checks if a number exists in an array.
  */
-int isElementInArray(int array[], int number, int size);
+int isElementInArray(int iArray[], int iElement, int iSize);
 
 /**
- * @param array int array to clear.
+ * @param iArray int array to clear.
  *
  * Sets the value of array items to zero.
  */
-void resetArray(int array[], int size);
+void resetArray(int iArray[], int iSize);
 
 /**
  * \brief Function to generate the game data.
  *
- * @param array where we put the randomly generated data into.
+ * @param iGameData where we put the randomly generated data into.
  *
  * It generates a completed sudoku game.
  */
-void generateGameData(int array[][9]);
+void generateGameData(int iGameData[][9]);
 
 /**
  * \brief Function to delete grid cells randomly.
  *
- * @param array to keep track of deleted grid cells.
- * @param difficulty is an integer which defines how difficult the game should be.
+ * @param iGameData to keep track of deleted grid cells.
+ * @param iDifficulty is an integer which defines how difficult the game should be.
  *
  * It randomly deletes cells by difficulty level.
  */
-void deleteCells(int array[][9], int difficulty);
+void deleteCells(int iGameData[][9], int iDifficulty);
 
 /**
- * @param direction of where to navigate
+ * @param iPos of where to navigate
  *
  * Moves the cursor in the desired direction
  */
-void navigateTo(int direction);
+void navigateTo(int iPos);
 
-void makeNote(int x, int y, int suggestion);
+void makeNote(int iX, int iY, int iSuggestion);
 /**
- * @param array[][] which holds the game data.
- * @param box_start_row Where does the row start from.
- * @param box_start_col Where does the column start from.
- * @param number is the integer to search for.
+ * @param iGameData[][] which holds the game data.
+ * @param iBoxStartRow Where does the row start from.
+ * @param iBox_Start_Col Where does the column start from.
+ * @param iElement is the integer to search for.
  * @return Returns the x-coordinate of the number if number is found in the array, -1 otherwise.
  *
  * Checks if a number exists in an array
  */
-int isElementInBox(int array[][9], int box_start_row, int box_start_col, int number);
+int isElementInBox(int iGameData[][9], int iBoxStartRow, int iBox_Start_Col, int iElement);
 
 /**
  * @return randomly generated number between 0-9
@@ -118,24 +114,24 @@ void handleUserInput();
 
 /**
  *
- * @param array[][] which holds the game data.
+ * @param iGameData[][] which holds the game data.
  * @return Return 1 if the game successfully solved, otherwise 0.
  */
-int solveGame(int array[][9]);
+int solveGame(int iGameData[][9]);
 
 /**
- * @param array[][] which holds the game data.
+ * @param iGameData[][] which holds the game data.
  *
  * Sets the value of array items to zero.
  */
-void resetGameData(int array[][9]);
+void resetGameData(int iGameData[][9]);
 
 /**
  * @return Returns randomly generated number by interval
  *
  *  Generate randomly generated number by interval
  */
-int generateNumberByInterval(int x, int y);
+int generateNumberByInterval(int iX, int iY);
 
 /**
  * @param array[][] which holds the game data.
@@ -146,22 +142,22 @@ int generateNumberByInterval(int x, int y);
 int getGridStatus(int array[][9]);
 
 /**
- * @param array[][] which holds the game data.
- * @param x is the x-coordinate of the cell to solve.
- * @param y ist the y-coordinate of the cell to solve.
+ * @param iGameData[][] which holds the game data.
+ * @param iX is the x-coordinate of the cell to solve.
+ * @param iY ist the y-coordinate of the cell to solve.
  *
  *  Checks if the grid if filled complete.
  */
-void solveCell(int array[][9], int x, int y);
+void solveCell(int iGameData[][9], int iX, int iY);
 
-int getGameStatus(int array[][9]);
+int getGameStatus(int iGameData[][9]);
 
 
-void solveAll(int gameData[][9], int deletedCells[][9]);
+void solveAll(int iGameData[][9], int iDeletedCells[][9]);
 
-int timer(int action);
+int timer(int iAction);
 
-void timeToString(int userTime, char stringTime[]);
+void timeToString(int iUserTime, char cStringTime[]);
 
 int checkGameSolved();
 

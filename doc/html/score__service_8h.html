@@ -82,11 +82,11 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a485ea08ce2b3d0559f488663fd64ae5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a485ea08ce2b3d0559f488663fd64ae5a">insertScore</a> (char username[], int score, char *_time, int <a class="el" href="game_8h.html#a016a5d341f375d13639c75bf5987fb23">difficulty</a>)</td></tr>
-<tr class="memdesc:a485ea08ce2b3d0559f488663fd64ae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts score in the database.  <a href="#a485ea08ce2b3d0559f488663fd64ae5a">More...</a><br /></td></tr>
+<tr class="memitem:a485ea08ce2b3d0559f488663fd64ae5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a485ea08ce2b3d0559f488663fd64ae5a">insertScore</a> (char cUsername[], int sScore, char *_time, int <a class="el" href="game_8h.html#a016a5d341f375d13639c75bf5987fb23">iDifficulty</a>)</td></tr>
+<tr class="memdesc:a485ea08ce2b3d0559f488663fd64ae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts sScore in the database.  <a href="#a485ea08ce2b3d0559f488663fd64ae5a">More...</a><br /></td></tr>
 <tr class="separator:a485ea08ce2b3d0559f488663fd64ae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad8d3c95160a2ccec7b8c73345887cf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#aad8d3c95160a2ccec7b8c73345887cf1">getScores</a> (<a class="el" href="structScore.html">Score</a> scores[])</td></tr>
-<tr class="memdesc:aad8d3c95160a2ccec7b8c73345887cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves score from the database.  <a href="#aad8d3c95160a2ccec7b8c73345887cf1">More...</a><br /></td></tr>
+<tr class="memdesc:aad8d3c95160a2ccec7b8c73345887cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves sScore from the database.  <a href="#aad8d3c95160a2ccec7b8c73345887cf1">More...</a><br /></td></tr>
 <tr class="separator:aad8d3c95160a2ccec7b8c73345887cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -106,7 +106,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieves score from the database. </p>
+<p>Retrieves sScore from the database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scores</td><td>is an array of <a class="el" href="structScore.html">Score</a> where the scores put into. </td></tr>
@@ -126,13 +126,13 @@ Functions</h2></td></tr>
           <td class="memname">int insertScore </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[], </td>
+          <td class="paramname"><em>cUsername</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>score</em>, </td>
+          <td class="paramname"><em>sScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -144,7 +144,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>difficulty</em>&#160;</td>
+          <td class="paramname"><em>iDifficulty</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -154,13 +154,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inserts score in the database. </p>
+<p>Inserts sScore in the database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">username[]</td><td></td></tr>
-    <tr><td class="paramname">score</td><td></td></tr>
+    <tr><td class="paramname">cUsername[]</td><td></td></tr>
+    <tr><td class="paramname">sScore</td><td></td></tr>
     <tr><td class="paramname">_time</td><td></td></tr>
-    <tr><td class="paramname">difficulty</td><td></td></tr>
+    <tr><td class="paramname">iDifficulty</td><td></td></tr>
   </table>
   </dd>
 </dl>

@@ -1,7 +1,3 @@
-//
-// Created by karim on 24.06.19.
-//
-
 #ifndef SUDOKU_SHARED_H
 #define SUDOKU_SHARED_H
 #define MAX_MARKS 3

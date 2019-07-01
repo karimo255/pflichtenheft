@@ -1,3 +1,3 @@
 #include "../../libs/sqlite3.h"
 
-extern sqlite3 *connection;
+extern sqlite3 *psqlConnection;

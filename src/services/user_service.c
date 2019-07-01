@@ -1,114 +1,165 @@
-//
-// Created by karim on 25.06.19.
-//
+/* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
+ * Klasse: FA12
+ * Dateiname: game.c
+ * Datum: 25.06.19
+ * Beschreibung: In dieser Datei befinden sich alle Funktionen, die
+ * etwas mit den Abfragen an die Datenbank zu tun haben, wenn es
+ * um die Spieler und deren Daten geht.
+*/
+
 #include "../../headers/services/user_service.h"
 #include "../../headers/services/connection.h"
+#include "../../headers/core/view.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <headers/core/view.h>
 
 
-char sql[2000];
-char *zErrMsg;
-sqlite3 *connection;
+char cSql[2000];
+char *cpZErrMsg;
 
+sqlite3 *psqlConnection;
 
-int lastInsertIdCallBack(void *userID, int argc, char **argv, char **azColName) {
-    int *tmp = (int *) userID;
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "last_insert_rowid()") == 0) {
-            *tmp = atoi(argv[i]);
+int lastInsertIdCallBack(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    int *piTmp = (int *) pvUserID;
+
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "last_insert_rowid()") == 0)
+        {
+            *piTmp = atoi(ppcArgv[i]);
         }
     }
+
     return 0;
 }
 
 
-int getLastInsertId(int *newUserId) {
-	sprintf(sql, "SELECT last_insert_rowid()");
+int getLastInsertId(int *piNewUserId)
+{
+	sprintf(cSql, "SELECT last_insert_rowid()");
+
     fflush(stdout);
     clear_output();
-	int rc = sqlite3_exec(connection, sql, lastInsertIdCallBack, newUserId, &zErrMsg);
-	if (!rc == SQLITE_OK) {
+
+	int rc = sqlite3_exec(psqlConnection, cSql, lastInsertIdCallBack, piNewUserId, &cpZErrMsg);
+	if (!rc == SQLITE_OK)
+	{
         return -1;
-    } else {
+    }
+	else
+    {
         return 0;
     }
 }
 
-int registerUser(char username[], char password[6], int *newUserId) {
-    sprintf(sql, "INSERT INTO `User` (name, password) VALUES(\"%s\", \"%s\");", username, password);
-    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+int registerUser(char cUsername[], char cPassword[6], int *piNewUserId)
+{
+    sprintf(cSql, "INSERT INTO `User` (name, cPassword) VALUES(\"%s\", \"%s\");", cUsername, cPassword);
 
-    if (!rc == SQLITE_OK) {
-        return -1;
-    } else {
-        return getLastInsertId(newUserId);
-    }
-}
-
-int loginUserCallback(void *userID, int argc, char **argv, char **azColName) {
-    int *_id = (int *) userID;
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "id") == 0) {
-            *_id = atoi(argv[i]);
-            printf("ja\n");
-        }
-    }
-    return 0;
-}
-
-void loginUser(char username[], char password[], int *id) {
-    int returnValue;
-    sprintf(sql, "SELECT * FROM `User` WHERE name =\"%s\" AND password = \"%s\";", username, password);
-    printf("sql: %s\n",sql);
-    int rc = sqlite3_exec(connection, sql, loginUserCallback, id, &zErrMsg);
-}
-
-
-int getUserIdCallback(void *userID, int argc, char **argv, char **azColName) {
-    int *tmp = (int *) userID;
-    for (int i = 0; i < argc; i++) {
-        if (strcmp(azColName[i], "id") == 0) {
-            *tmp = atoi(argv[i]);
-            printf("ja\n");
-        }
-    }
-    return 0;
-}
-
-void getUserID(char username[30], int *userID) {
-    sprintf(sql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", username);
-    int rc = sqlite3_exec(connection, sql, getUserIdCallback, userID, &zErrMsg);
-}
-
-
-
-int createUserTable() {
-    sprintf(sql, "CREATE TABLE \"User\" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `password` TEXT )");
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
-    if (!rc == SQLITE_OK) {
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &cpZErrMsg);
+    if (!rc == SQLITE_OK)
+    {
+        return -1;
+    }
+    else
+    {
+        return getLastInsertId(piNewUserId);
+    }
+}
+
+int loginUserCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    int *_piDd = (int *) pvUserID;
+
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "id") == 0)
+        {
+            *_piDd = atoi(ppcArgv[i]);
+            printf("ja\n");
+        }
+    }
+
+    return 0;
+}
+
+void loginUser(char cUsername[], char cPassword[], int *pId)
+{
+    sprintf(cSql, "SELECT * FROM `User` WHERE name =\"%s\" AND cPassword = \"%s\";", cUsername, cPassword);
+    printf("cSql: %s\n",cSql);
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(psqlConnection, cSql, loginUserCallback, pId, &cpZErrMsg);
+}
+
+
+int getUserIdCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
+{
+    int *piTmp = (int *) pvUserID;
+
+    for (int i = 0; i < iArgc; i++)
+    {
+        if (strcmp(ppcAzColName[i], "id") == 0)
+        {
+            *piTmp = atoi(ppcArgv[i]);
+            printf("ja\n");
+        }
+    }
+
+    return 0;
+}
+
+void getUserID(char cUsername[30], int *piUserID)
+{
+    sprintf(cSql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", cUsername);
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(psqlConnection, cSql, getUserIdCallback, piUserID, &cpZErrMsg);
+}
+
+
+
+int createUserTable()
+{
+    sprintf(cSql, "CREATE TABLE \"User\" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `cPassword` TEXT )");
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &cpZErrMsg);
+    if (!rc == SQLITE_OK)
+    {
         return 1;
     }
-    else {
+    else
+    {
         return 0;
     }
 }
 
-int createScoreTable() {
-    sprintf(sql, "CREATE TABLE \"Score\" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) )");
+int createScoreTable()
+{
+    sprintf(cSql, "CREATE TABLE \"Score\" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `iDifficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) )");
+
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
-    if (!rc == SQLITE_OK) {
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &cpZErrMsg);
+    if (!rc == SQLITE_OK)
+    {
         return 1;
     }
-    else {
+    else
+    {
         return 0;
     }
 }
