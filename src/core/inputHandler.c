@@ -35,7 +35,7 @@
 
 int *isUserLoggedIn = 0;
 char password[6] = {0};
-char loginMessage[50];
+int iCurrentPosition;
 int b = 0;
 int *userID = 0;
 int iDifficulty;
@@ -309,7 +309,7 @@ void handleInGameInput(int userInput)
                 if (anzahlDerHilfe == erlaubteAnzahlDerHilfe)
                 {
                     strcpy(cGameMessage, "Anzahl der Hilfen verbraucht.");
-                    break;
+                   // break;
                 }
                 anzahlDerHilfe++;
                 solveCell(iGameData, iX_coordinate, iY_coordinate);
@@ -357,6 +357,7 @@ void handleInGameInput(int userInput)
         case 's':
             solveAll(iGameData, iDeletedCells);
             isSolvedAutomatic = 1;
+            iCurrentPosition = SOLVED_GAME;
             break;
         case 'm':
             if (iGameData[iX_coordinate][iY_coordinate] == 0)
@@ -492,25 +493,33 @@ void setConfig()
         break;
     }
 }
-
-void checkGameState()
-{
-    if (iIsGameActive && getGameStatus(iGameData) == FILLED && iDeletedCells[0][0] > 0)
-    {
-        int solveState = solveGame(iGameData);
-        if (solveState == 1)
-        {
-            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0)
-            {
-                int _score = timer(TIMER_STATE);
-                insertScore(userID, _score, iDifficulty);
-            }
-            iCurrentPosition = SOLVED_GAME;
-            iIsGameActive = 0;
-        }
-        else
-        {
-            strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
-        }
-    }
-}
+//
+//void checkGameState()
+//{
+//    printf("solved_game\n");
+//
+//    if (iIsGameActive && getGameStatus(iGameData) == FILLED)
+//    {
+//        int solveState = solveGame(iGameData);
+//        if (solveState)
+//        {
+//            printf("solved2\n");
+//            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0)
+//            {
+//                strcpy(cGameMessage, "insert.");
+//
+//                int _score = timer(TIMER_STATE);
+//                insertScore(userID, _score, iDifficulty);
+//            }
+//            iIsGameActive = 0;
+//            resetGameData(iGameData);
+//            printf("solved_game\n");
+//            iCurrentPosition = SOLVED_GAME;
+//
+//        }
+//        else
+//        {
+//           // strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
+//        }
+//    }
+//}

@@ -23,7 +23,6 @@ int iY_coordinate = 0;
 int iDifficulty = EASY;
 char cGameMessage[200] = {0};
 int iIsGameActive;
-int iCurrentPosition = 0;
 
 int iGameData[9][9] = {0};
 int iMarks[9][9][MAX_MARKS];
@@ -369,17 +368,4 @@ void timeToString(int userTime, char stringTime[])
     }
     sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds);
     stringTime[5] = '\0';
-}
-
-int checkGameSolved()
-{
-    if (getGameStatus(iGameData) == FILLED)
-    {
-        return solveGame(iGameData);
-    }
-    return 0;
-}
-
-int solveSudoku(int array[][9])
-{
 }

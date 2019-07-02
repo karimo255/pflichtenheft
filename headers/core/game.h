@@ -49,7 +49,7 @@ extern int *isUserLoggedIn;
 extern int exitTheGame;
 extern int isSolvedAutomatic;
 
-extern int *userId;
+extern int *userID;
 /// array which holds the game data.
 extern int iGameData[9][9];
 

@@ -269,7 +269,7 @@ void printGameMessage()
 
 void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe)
 {
-    char stringTime[5];
+    char stringTime[6];
 
     printf("%s ++============== Spielende ================++%s\n", KCYN, KWHT);
     printEmptyTableLine();

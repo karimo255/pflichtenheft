@@ -35,7 +35,7 @@
 #include <Windows.h>
 #include <conio.h>
 #endif
-
+int *userID;
 int exitTheGame = 0;
 int windows = 0;
 
@@ -123,7 +123,28 @@ int main()
         fflush(stdout);
         resetArray(cGameMessage, 200);
         handleInput();
-        checkGameState();
+        if (iIsGameActive && getGameStatus(iGameData) == FILLED)
+        {
+            int solveState = solveGame(iGameData);
+            if (solveState)
+            {
+                printf("solved2\n");
+                if (userID != NULL && isSolvedAutomatic == 0)
+                {
+                    strcpy(cGameMessage, "insert.");
+
+                    int _score = timer(TIMER_STATE);
+                    insertScore(userID, _score, iDifficulty);
+                }
+                iIsGameActive = 0;
+                printf("solved_game\n");
+                iCurrentPosition = SOLVED_GAME;
+            }
+            else
+            {
+              strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
+            }
+        }
     }
 
     sqlite3_close(connection);
