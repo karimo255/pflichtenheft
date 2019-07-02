@@ -1,13 +1,10 @@
 /* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
  * Klasse: FA12
- * Dateiname: game.c
- * Datum: 24.06.19
- * Beschreibung: Hier werden im Wesentlichen alle für das Spiel
- * nötigen Berechnungen durchgeführt. Z.B. das Generieren des Spiel-
- * feldes oder der Timer, wie lange ein Spieler für das Lösen
- * ein Spiel benötigt.
+ * Dateiname: getch.c
+ * Datum: 28.06.19
+ * Beschreibung: Stellt Funktionen für das Einlesen von Buchstaben durch eine
+ * Nutzereingabe unter Linux bereit.
 */
-
 #ifdef __unix__
 
 #include <termio.h>

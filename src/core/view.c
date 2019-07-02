@@ -1,6 +1,6 @@
 /* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
  * Klasse: FA12
- * Dateiname: game.c
+ * Dateiname: view.c
  * Datum: 24.06.19
  * Beschreibung: Hier werden alle "Screens" im Spiel erstellt bzw.
  * gerendert.
@@ -192,7 +192,6 @@ void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemai
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  */
 {
-
     int iDifficultyBoxWith = 8;
     int iUserBoxWith = 10;
     int iBestscoreWidth = 6;

@@ -24,12 +24,12 @@ typedef struct sScore score;
  * \brief Inserts score in the database.
  *
  * @param username[]
- * @param score
+ * @param iScore
  * @param _time
- * @param difficulty
+ * @param iDifficulty
  * @return Returns the id of the last user if insered, otherwise -1.
  */
-int insertScore(int *userID, int score, int difficulty);
+int insertScore(int *piUserID, int iScore, int iDifficulty);
 
 
 /** Abfrage der Highscores inklusive der zugehörigen Spielernamen / UserIDs
@@ -43,10 +43,10 @@ void getScores(struct sScore *scores);
  */
 int getBestScoreByUserID(int userID);
 
-int bestScoreCallback(void *bestScore, int argc, char **argv, char **azColName);
+int bestScoreCallback(void *pvBestScore, int iArgc, char **ppcArgv, char **ppcAzColName);
 
 /** Erfragt den Highscore aller Spieler im aktuellen Schwierigkeitsgrad aus der Datenbank.
  * 1. Parameter: Zeiger auf die Variable, in die der Highscore geschrieben werden soll
  * 2. Parameter: aktueller Schwierigkeitsgrad
  */
-int getBestScore(int *bestScore, int difficulty);
+int getBestScore(int *piBestScore, int iDifficulty);
