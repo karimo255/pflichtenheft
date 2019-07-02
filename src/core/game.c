@@ -23,7 +23,7 @@ int iY_coordinate = 0;
 int iDifficulty = EASY;
 char cGameMessage[200] = {0};
 int iIsGameActive;
-int iCurrentPosition = 0;
+//int iCurrentPosition = 0;
 
 int iGameData[9][9] = {0};
 int iMarks[9][9][MAX_MARKS];
@@ -362,6 +362,7 @@ void deleteCells(int iGameData[][9], int iDifficulty)
                     iDeletedCells[r][c] = iGameData[r][c];
                     iUserCells[r][c] = 1;
                     iGameData[r][c] = 0;
+                    iDelete--;
                 }
                 tmp--;
             }

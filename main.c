@@ -96,6 +96,29 @@ void initDb()
     createScoreTable();
 }
 
+void refresh(int iGameStatus) {
+#ifdef __WIN32__
+    if (iGameStatus == 1 && iWindows == 1)
+    {
+        int iEnde = 0;
+        time_t now, notNow;
+        now = time(NULL);
+
+        while ((time(&notNow) - now) == 0 && !iEnde)
+        {
+            if (kbhit())
+            {
+                handleInput();
+                iEnde = 1;
+            }
+            Sleep(1);
+        }
+    }
+#elif __unix__
+    handleInput();
+#endif
+}
+
 int main()
 /* Hauptfunktion. "Grundfunktionalitäten" werden bereitgestellt.
  * Hierzu zählen das Setzen der Fenstergröße, das Initialisieren der
@@ -118,7 +141,7 @@ int main()
     iCurrentPosition = MENU;
     iDifficulty = EASY;
 
-    /** Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
+    /* Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
      * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
      * Funktionen ausführt.
      * 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
@@ -130,28 +153,8 @@ int main()
         renderGame(scores);
         fflush(stdout);
         resetArray(cGameMessage, 200);
-        if (iCurrentPosition == IN_GAME && iWindows == 1)
-        {
-            int iEnde = 0;
-            time_t now, notNow;
-            now = time(NULL);
-
-            while ((time(&notNow) - now) == 0 && !iEnde)
-            {
-                if (kbhit())
-                {
-                    handleInput();
-                    checkGameState();
-                    iEnde = 1;
-                }
-                Sleep(1);
-            }
-        }
-        else
-        {
-            handleInput();
-            checkGameState();
-        }
+        handleInput();
+        checkGameState();
     }
 
     sqlite3_close(psqlConnection);
@@ -255,40 +258,42 @@ void handleInput()
     }
     else
     {
-        int userInput;
+        int iUserInput;
 
-        if ((userInput = getch()) == 224)
+        if ((iUserInput = getch()) == 224)
         {
-            navigateTo(getch()); // iWindows Navigation Tasten
+            /* Windows Navigationstasten */
+            navigateTo(getch());
         }
         else
         {
-            navigateTo(userInput); // linux Navigation Tasten
+            /* Linux Navigationstasten */
+            navigateTo(iUserInput);
             switch (iCurrentPosition)
             {
             case DIFFICULTY_DIALOG:
-                handleDifficultyDialogInput(userInput);
+                handleDifficultyDialogInput(iUserInput);
                 break;
             case MENU:
-                handleMenuInput(userInput);
+                handleMenuInput(iUserInput);
                 break;
             case IN_GAME:
-                handleInGameInput(userInput);
+                handleInGameInput(iUserInput);
                 break;
             case SOLVED_GAME:
-                handleSolvedGameInput(userInput);
+                handleSolvedGameInput(iUserInput);
                 break;
             case SET_MARK:
-                handleSetMarkInput(userInput);
+                handleSetMarkInput(iUserInput);
                 break;
             case DETAILS:
-                handleDetailsInput(userInput);
+                handleDetailsInput(iUserInput);
                 break;
             case DETAILS_DIALOG:
-                handleDetailsDialogInput(userInput);
+                handleDetailsDialogInput(iUserInput);
                 break;
             case HELP:
-                handleHelpInput(userInput);
+                handleHelpInput(iUserInput);
                 break;
             }
         }

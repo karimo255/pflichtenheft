@@ -380,7 +380,9 @@ void renderEnterPassword()
     printEmptyTableLine();
 
     char cM[100];
+
     sprintf(cM, " %s%s                    %s", KRED, cGameMessage, KWHT);
+
     if (strlen(cGameMessage) > 0)
     {
         printTableLine(cM);
@@ -390,10 +392,15 @@ void renderEnterPassword()
 }
 
 void renderMenu()
+/* Druckt das Hauptmenü in die Konsole. Überprüft, ob Spiel noch läuft oder
+ * ob ein neues gestartet werden kann (nur visueller Einfluss).
+ */
 {
     setPrintingColor(KCYN);
     printf(" ++================== Menu =================++\n");
+
     printEmptyTableLine();
+
     if (iIsGameActive > 0)
     {
         printTableLine("          r - Spiel fortsetzen          ");
@@ -414,36 +421,46 @@ void renderMenu()
 }
 
 void print_list(struct sScore *head, int iDifficulty)
+/* Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
+* aus.
+* 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+* 2. Parameter: ausgewählter Schwierigkeitsgrad
+*/
 {
     struct sScore *current = head;
     setPrintingColor(KCYN);
-    char screenTitle[100];
-    sprintf(screenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
-    printTableLine(screenTitle);
+
+    char cScreenTitle[100];
+
+    sprintf(cScreenTitle, "%s%*s| %s%*s ", "Spieler", 19 - strlen("Spieler"), "", "Score", 18 - strlen("Score"), "");
+    printTableLine(cScreenTitle);
     printEmptyTableLine();
+
     while (current != NULL)
     {
         if (current->difficulty == iDifficulty)
         {
             if (current->userId == 2)
             {
-                char scoreRow[100];
-                char us[10];
-                timeToString(current->time, us);
-                sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
-                        19 - strlen(us), "");
+                char cScoreRow[100];
+                char cUs[10];
+
+                timeToString(current->time, cUs);
+                sprintf(cScoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", cUs,
+                        19 - strlen(cUs), "");
                 setPrintingColor(KYEL);
-                printTableLine(scoreRow);
+                printTableLine(cScoreRow);
                 setPrintingColor(KWHT);
             }
             else
             {
-                char scoreRow[100];
-                char us[10];
-                timeToString(current->time, us);
-                sprintf(scoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", us,
-                        19 - strlen(us), "");
-                printTableLine(scoreRow);
+                char cScoreRow[100];
+                char cUs[10];
+
+                timeToString(current->time, cUs);
+                sprintf(cScoreRow, "%s%*s | %s%*s", current->name, 18 - strlen(current->name), "", cUs,
+                        19 - strlen(cUs), "");
+                printTableLine(cScoreRow);
             }
         }
 
@@ -452,6 +469,9 @@ void print_list(struct sScore *head, int iDifficulty)
 }
 
 void renderDBestScoreDialog()
+/* Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad zum Anzeigen der
+ * Bestenliste auswählen kann
+ */
 {
     printf(" ++============= Bestenliste ===============++\n");
     printEmptyTableLine();
@@ -468,26 +488,32 @@ void renderDBestScoreDialog()
     printEndOfTable();
 }
 
-void renderDetails(struct sScore *scores, int difficulty)
+void renderDetails(struct sScore *scores, int iDifficulty)
+/* Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw.
+* initialisiert diese Ausgabe
+* 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+* 2. Parameter: ausgewählter Schwierigkeitsgrad
+*/
 {
-    char difficultyText[20];
-    switch (difficulty)
+    char cDifficultyText[20];
+
+    switch (iDifficulty)
     {
     case EASY:
-        strcpy(difficultyText, "Einfach");
+        strcpy(cDifficultyText, "Einfach");
         break;
     case MEDIUM:
-        strcpy(difficultyText, "Mittel ");
+        strcpy(cDifficultyText, "Mittel ");
         break;
     case HARD:
-        strcpy(difficultyText, "Schwer ");
+        strcpy(cDifficultyText, "Schwer ");
         break;
     }
 
     setPrintingColor(KCYN);
-    printf(" ++======== Bestenliste ( %s) =========++\n", difficultyText);
+    printf(" ++======== Bestenliste ( %s) =========++\n", cDifficultyText);
 
-    print_list(scores, difficulty);
+    print_list(scores, iDifficulty);
 
     printEmptyTableLine();
     printEmptyTableLine();
@@ -498,6 +524,9 @@ void renderDetails(struct sScore *scores, int difficulty)
 }
 
 void renderDifficultyDialog()
+/* Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad
+ * für sein Spiel wählen kann.
+ */
 {
     setPrintingColor(KCYN);
 
@@ -562,6 +591,8 @@ void renderHelpDialog()
 }
 
 void renderMarkModeMessage()
+/* Ausgabe des Hinweises auf den "Markieren-Modus"
+ */
 {
     printf(" ++============= Markieren-Modus ============++\n");
     printTableLine("    Sie sind im Markieren-Modus!         ");
@@ -572,76 +603,95 @@ void renderMarkModeMessage()
     printEndOfTable();
 }
 
-int getRemainingCells(int iArray[][9])
+int getRemainingCells(int iGameData[][9])
+/* Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+ * 1. Parameter: sichtbares Spielfeld
+ */
 {
-    int counter = 0;
+    int iCounter = 0;
+
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
         {
-            if (iArray[i][j] == 0)
+            if (iGameData[i][j] == 0)
             {
-                counter++;
+                iCounter++;
             }
         }
     }
-    return counter;
+    return iCounter;
 }
 
-int lenHelper(int x)
+int lenHelper(int iX)
 {
-    if (x >= 50000)
+    if (iX >= 50000)
         return 6;
-    if (x >= 5000)
+    if (iX >= 5000)
         return 5;
-    if (x >= 500)
+    if (iX >= 500)
         return 4;
-    if (x >= 50)
+    if (iX >= 50)
         return 3;
-    if (x >= 10)
+    if (iX >= 10)
         return 2;
     return 1;
 }
 
 void printStartOfLine()
+/* Ausgabe des Starts einer Zeile, die zu einer Box mit Informationen
+ * gehört (Beispiel: Spielregeln).
+ */
 {
     setPrintingColor(KCYN);
     printf(" || ");
 }
 
 void printEndOfLine()
+/* Ausgabe des Endes einer Zeile, die zu einer Box mit Informationen
+ * gehört (Beispiel: Spielregeln).
+ */
 {
     setPrintingColor(KCYN);
     printf("||\n");
 }
 
-void printTableLine(char text[])
+void printTableLine(char cText[])
+/* Ausgabe einer Zeile, die zu einer Box mit Informationen gehört
+ * (Beispiel: Spielregeln).
+ * 1. Parameter: Text, der gedruckt werden sollen
+ */
 {
     printStartOfLine();
 
     setPrintingColor(KWHT);
-    printf(text);
+    printf(cText);
 
     printEndOfLine();
 }
 
-void renderNotesBox(int x, int y)
+void renderNotesBox(int iX, int iY)
+/* Augabe - sofern vorhanden - der Notizen des Spielers (bzw. Tipps).
+ */
 {
     printf("     "); // padding-left
     for (int j = 0; j < iY_coordinate - iY_coordinate % 3; ++j)
     {
         printf("    ");
     }
-    int shouldDisplay = 0;
+
+    int iShouldDisplay = 0;
+
     for (int i = 0; i < MAX_MARKS; ++i)
     {
         if (iMarks[iX_coordinate][iY_coordinate][i] != 0)
         {
-            shouldDisplay++;
+            iShouldDisplay++;
             break;
         }
     }
-    if (shouldDisplay)
+
+    if (iShouldDisplay)
     {
         for (int i = 0; i < MAX_MARKS; ++i)
         {
@@ -663,12 +713,17 @@ void renderNotesBox(int x, int y)
 }
 
 void printEndOfTable()
+/* Ausgabe der Zeile, die das Ende einer Box mit Informationen darstellt
+ * (Beispiel: Spielregeln).
+ */
 {
     setPrintingColor(KCYN);
     printf(" ++=========================================++\n");
 }
 
 void printEmptyTableLine()
+/* Ausgabe einer leeren Zeile.
+ */
 {
     printStartOfLine();
     printf("                                        ");
@@ -676,6 +731,10 @@ void printEmptyTableLine()
 }
 
 void clear_output()
+/* Löscht den aktuellen Konsoleninhalt. Überprüft zunächst das
+ * laufende Betriebssystem, um einen ordnungsgemäßen Ablauf zu
+ * gewährleisten.
+ */
 {
 #ifdef __unix__
     system("clear");

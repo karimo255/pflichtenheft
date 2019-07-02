@@ -57,7 +57,7 @@ void renderDBestScoreDialog();
  * 1. Parameter: Struktur, in der die Bestscores gespeichert sind
  * 2. Parameter: ausgewählter Schwierigkeitsgrad
  */
-void renderDetails(struct sScore *scores, int difficulty);
+void renderDetails(struct sScore *scores, int iDifficulty);
 
 /**
  * \brief Function to render the game grid
@@ -109,17 +109,17 @@ void renderHelpDialog();
 /**
  * \brief Function to get the length of integers (aka strlen for strings)
  *
- * @param input an integer to get length of
+ * @param iX an integer to get length of
  * @return the length of the given integer
  *
  * It return the length of integer number (for optimal printing)
  */
-int lenHelper(int input);
+int lenHelper(int iX);
 
 /** Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
  * 1. Parameter: sichtbares Spielfeld
  */
-int getRemainingCells(int iArray[][9]);
+int getRemainingCells(int iGameData[][9]);
 
 void print_list(struct sScore *head, int iDifficulty);
 
@@ -178,7 +178,7 @@ void renderLoadingBar(int x);
 void clear_output();
 
 /** Augabe - sofern vorhanden - der Notizen des Spielers (bzw. Tipps).*/
-void renderNotesBox(int x,int y);
+void renderNotesBox(int iX,int iY);
 
 void renderSetPassword();
 

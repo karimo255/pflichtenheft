@@ -1,4 +1,3 @@
-
 /* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
  * Klasse: FA12
  * Dateiname: game.c
@@ -16,29 +15,30 @@
 #include <string.h>
 #include <stdlib.h>
 
-char sql[2000];
-char *zErrMsg;
+char cSql[2000];
+char *pcZErrMsg;
+
 sqlite3 *psqlConnection;
 
-int lastInsertIdCallBack(void *userID, int argc, char **argv, char **azColName)
+int lastInsertIdCallBack(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
 {
-    int *tmp = (int *)userID;
-    for (int i = 0; i < argc; i++)
+    int *tmp = (int *)pvUserID;
+    for (int i = 0; i < iArgc; i++)
     {
-        if (strcmp(azColName[i], "last_insert_rowid()") == 0)
+        if (strcmp(ppcAzColName[i], "last_insert_rowid()") == 0)
         {
-            *tmp = atoi(argv[i]);
+            *tmp = atoi(ppcArgv[i]);
         }
     }
     return 0;
 }
 
-int getLastInsertId(int *newUserId)
+int getLastInsertId(int *piNewUserId)
 {
-    sprintf(sql, "SELECT last_insert_rowid()");
+    sprintf(cSql, "SELECT last_insert_rowid()");
     fflush(stdout);
     clear_output();
-    int rc = sqlite3_exec(psqlConnection, sql, lastInsertIdCallBack, newUserId, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, cSql, lastInsertIdCallBack, piNewUserId, &pcZErrMsg);
     if (!rc == SQLITE_OK)
     {
         return -1;
@@ -49,10 +49,16 @@ int getLastInsertId(int *newUserId)
     }
 }
 
-int registerUser(char username[], char password[6], int *newUserId)
+int registerUser(char cUsername[], char cPassword[6], int *piNewUserId)
+/* Registriert einen neuen Nutzer mit seinem von ihm gesetzten Passwort in
+ * der Datenbank.
+ * 1. Parameter: eingegebener Nutzername
+ * 2. Parameter: eingegebenes Passwort
+ * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
-    sprintf(sql, "INSERT INTO `User` (name, password) VALUES(\"%s\", \"%s\");", username, password);
-    int rc = sqlite3_exec(psqlConnection, sql, NULL, NULL, &zErrMsg);
+    sprintf(cSql, "INSERT INTO `User` (name, password) VALUES(\"%s\", \"%s\");", cUsername, cPassword);
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &pcZErrMsg);
 
     if (!rc == SQLITE_OK)
     {
@@ -60,61 +66,78 @@ int registerUser(char username[], char password[6], int *newUserId)
     }
     else
     {
-        return getLastInsertId(newUserId);
+        return getLastInsertId(piNewUserId);
     }
 }
 
-int loginUserCallback(void *userID, int argc, char **argv, char **azColName)
+int loginUserCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
 {
-    int *_id = (int *)userID;
-    if (argc <= 0)
+    int *_piId = (int *)pvUserID;
+
+    if (iArgc <= 0)
     {
-        *_id = 0;
+        *_piId = 0;
+
         return 0;
     }
-    for (int i = 0; i < argc; i++)
+    for (int i = 0; i < iArgc; i++)
     {
-        if (strcmp(azColName[i], "id") == 0)
+        if (strcmp(ppcAzColName[i], "id") == 0)
         {
-            *_id = atoi(argv[i]);
-            printf("ja\n");
+            *_piId = atoi(ppcArgv[i]);
         }
     }
+
     return 0;
 }
 
-void loginUser(char username[], char password[], int *id)
+void loginUser(char cUsername[], char cPassword[], int *piId)
+/* Überprüft mit Hilfe der Daten aus der Datenbank, ob das eingegebene
+ * Passwort richtig ist.
+ * 1. Parameter: eingegebener Nutzername
+ * 2. Parameter: eingegebenes Passwort
+ * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
-    sprintf(sql, "SELECT * FROM `User` WHERE name =\"%s\" AND password = \"%s\";", username, password);
-    printf("sql: %s\n", sql);
-    int rc = sqlite3_exec(psqlConnection, sql, loginUserCallback, id, &zErrMsg);
+    sprintf(cSql, "SELECT * FROM `User` WHERE name =\"%s\" AND password = \"%s\";", cUsername, cPassword);
+    printf("cSql: %s\n", cSql);
+
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(psqlConnection, cSql, loginUserCallback, piId, &pcZErrMsg);
 }
 
-int getUserIdCallback(void *userID, int argc, char **argv, char **azColName)
+int getUserIdCallback(void *pvUserID, int iArgc, char **ppcArgv, char **ppcAzColName)
 {
-    int *tmp = (int *)userID;
-    if (argc <= 0)
+    int *piTmp = (int *)pvUserID;
+
+    if (iArgc <= 0)
     {
-        *tmp = 0;
+        *piTmp = 0;
+
         return 0;
     }
-    for (int i = 0; i < argc; i++)
+
+    for (int i = 0; i < iArgc; i++)
     {
-        if (strcmp(azColName[i], "id") == 0)
+        if (strcmp(ppcAzColName[i], "id") == 0)
         {
-            *tmp = atoi(argv[i]);
-            char test[200] = {0};
-            sprintf(test, "test %d", *tmp);
-            strcpy(cGameMessage, test);
+            *piTmp = atoi(ppcArgv[i]);
         }
     }
+
     return 0;
 }
 
-void getUserID(char username[8], int *userID)
+void getUserID(char cUsername[8], int *piUserID)
+/* Erfragt die zugehörige UserID zu einem bestimmten Nutzernamen aus der Datenbank.
+ * 1. Parameter: Nutzername des Spielers, dessen UserID erfragt werden soll
+ * 2. Parameter: Zeiger auf die zu befüllende Variable UserID
+ */
 {
-    sprintf(sql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", username);
-    int rc = sqlite3_exec(psqlConnection, sql, getUserIdCallback, userID, &zErrMsg);
+    sprintf(cSql, "SELECT id FROM User WHERE name=\"%s\"  LIMIT 1", cUsername);
+    int rc = sqlite3_exec(psqlConnection, cSql, getUserIdCallback, piUserID, &pcZErrMsg);
     if (!rc == SQLITE_OK)
     {
         // strcpy(gameMessage, "Tabellen konnten nicht erstellt werden.");  // zum schnell debuggen
@@ -122,13 +145,16 @@ void getUserID(char username[8], int *userID)
 }
 
 int createUserTable()
+/* Erstellt die Tabelle für die Daten des Nutzers (NutzerID, Name und Passwort).
+ */
 {
-    sprintf(sql,
+    sprintf(cSql,
             "CREATE TABLE \"User\" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `password` TEXT )");
+
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(psqlConnection, sql, NULL, NULL, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &pcZErrMsg);
     if (!rc == SQLITE_OK)
     {
         // strcpy(gameMessage, "Tabellen konnten nicht erstellt werden."); // zum schnell debuggen
@@ -141,13 +167,17 @@ int createUserTable()
 }
 
 int createScoreTable()
+/* Erstellt die Tabelle für die Daten rund um die benötigten Zeiten
+ * der Spieler (NutzerID, benötigte Zeit und Schwierigkeitsgrad).
+ */
 {
-    sprintf(sql,
+    sprintf(cSql,
             "CREATE TABLE \"Score\" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `userId` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `time` INTEGER, FOREIGN KEY(`userId`) REFERENCES `User`(`id`) )");
+
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(psqlConnection, sql, NULL, NULL, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, cSql, NULL, NULL, &pcZErrMsg);
     if (!rc == SQLITE_OK)
     {
         // strcpy(gameMessage, "Datenbank existiert bereits."); // zum debuggen

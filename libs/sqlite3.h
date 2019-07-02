@@ -6601,11 +6601,11 @@ SQLITE_API int sqlite3_create_module_v2(
 ** common to all module implementations.
 **
 ** ^Virtual tables methods can set an error message by assigning a
-** string obtained from [sqlite3_mprintf()] to zErrMsg.  The method should
+** string obtained from [sqlite3_mprintf()] to pcZErrMsg.  The method should
 ** take care that any prior string is freed by a call to [sqlite3_free()]
-** prior to assigning a new string to zErrMsg.  ^After the error message
+** prior to assigning a new string to pcZErrMsg.  ^After the error message
 ** is delivered up to the client application, the string will be automatically
-** freed by sqlite3_free() and the zErrMsg field will be zeroed.
+** freed by sqlite3_free() and the pcZErrMsg field will be zeroed.
 */
 struct sqlite3_vtab {
   const sqlite3_module *pModule;  /* The module for this virtual table */

@@ -45,7 +45,7 @@ extern int iIsGameActive;
 extern int iCurrentPosition;
 
 extern char cUsername[8];
-extern int *isUserLoggedIn;
+extern int *piIsUserLoggedIn;
 extern int iExitTheGame;
 extern int isSolvedAutomatic;
 
