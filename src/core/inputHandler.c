@@ -134,7 +134,11 @@ void handleUserNameInput()
         else
         {
             userID = malloc(sizeof(int));
+            *userID = 0;
             getUserID(username, userID);
+            char test[200] = {0};
+            sprintf(test, "userID: %d", *userID);
+            strcpy(cGameMessage, test);
             if (*userID > 0)
             {
                 iCurrentPosition = ENTER_PASSWORD;
@@ -204,6 +208,7 @@ void handleEnterPasswordInput()
     else
     { // enter
         isUserLoggedIn = malloc(sizeof(int));
+        *isUserLoggedIn = 0;
 
         loginUser(username, password, isUserLoggedIn);
         if (*isUserLoggedIn > 0)

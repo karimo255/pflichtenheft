@@ -163,6 +163,7 @@ void renderGame(struct sScore *scores)
             isSolvedAutomatic = 0;
         }
         bestScore = malloc(sizeof(int));
+        *bestScore = 0;
         getBestScore(bestScore, iDifficulty);
         remaining = getRemainingCells(iGameData);
         renderInfoBox(username, bestScore, iDifficulty, remaining);

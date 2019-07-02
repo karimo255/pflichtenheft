@@ -103,6 +103,9 @@ int getUserIdCallback(void *userID, int argc, char **argv, char **azColName)
         if (strcmp(azColName[i], "id") == 0)
         {
             *tmp = atoi(argv[i]);
+            char test[200] = {0};
+            sprintf(test, "test %d", *tmp);
+            strcpy(cGameMessage, test);
         }
     }
     return 0;
