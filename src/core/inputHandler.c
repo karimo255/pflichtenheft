@@ -149,7 +149,6 @@ void handleUserNameInput()
             }
         }
     }
-    free(userID);
 }
 
 void handleSetPasswordInput()
@@ -493,33 +492,3 @@ void setConfig()
         break;
     }
 }
-//
-//void checkGameState()
-//{
-//    printf("solved_game\n");
-//
-//    if (iIsGameActive && getGameStatus(iGameData) == FILLED)
-//    {
-//        int solveState = solveGame(iGameData);
-//        if (solveState)
-//        {
-//            printf("solved2\n");
-//            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0)
-//            {
-//                strcpy(cGameMessage, "insert.");
-//
-//                int _score = timer(TIMER_STATE);
-//                insertScore(userID, _score, iDifficulty);
-//            }
-//            iIsGameActive = 0;
-//            resetGameData(iGameData);
-//            printf("solved_game\n");
-//            iCurrentPosition = SOLVED_GAME;
-//
-//        }
-//        else
-//        {
-//           // strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
-//        }
-//    }
-//}

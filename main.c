@@ -35,11 +35,10 @@
 #include <Windows.h>
 #include <conio.h>
 #endif
-int *userID;
-int exitTheGame = 0;
+
 int windows = 0;
 
-sqlite3 *connection;
+
 
 void resizeWindow()
 {
@@ -62,22 +61,23 @@ int iIsGameActive;
 int isSolvedAutomatic;
 int iCurrentPosition;
 char username[8] = {0};
+int exitTheGame = 0;
+int iMarks[9][9][MAX_MARKS];
+int anzahlDerTipps = 0;
+int anzahlDerHilfe = 0;
+int erlaubteAnzahlDerTipps = 0;
+int erlaubteAnzahlDerHilfe = 0;
+int remaining = 0;
 
 void renderGame(struct sScore *scores);
-
 void handleInput();
 
 // Speicher am Ende freigeben.
 int *bestScore = 0;
+sqlite3 *connection;
+int *userID;
+int *isUserLoggedIn;
 
-int remaining = 0;
-int iMarks[9][9][MAX_MARKS];
-
-int anzahlDerTipps = 0;
-int anzahlDerHilfe = 0;
-
-int erlaubteAnzahlDerTipps = 0;
-int erlaubteAnzahlDerHilfe = 0;
 
 void initDb()
 {
@@ -123,33 +123,14 @@ int main()
         fflush(stdout);
         resetArray(cGameMessage, 200);
         handleInput();
-        if (iIsGameActive && getGameStatus(iGameData) == FILLED)
-        {
-            int solveState = solveGame(iGameData);
-            if (solveState)
-            {
-                printf("solved2\n");
-                if (userID != NULL && isSolvedAutomatic == 0)
-                {
-                    strcpy(cGameMessage, "insert.");
-
-                    int _score = timer(TIMER_STATE);
-                    insertScore(userID, _score, iDifficulty);
-                }
-                iIsGameActive = 0;
-                printf("solved_game\n");
-                iCurrentPosition = SOLVED_GAME;
-            }
-            else
-            {
-              strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
-            }
-        }
+        checkGameState();
     }
 
     sqlite3_close(connection);
     free(scores);
     free(bestScore);
+    free(userID);
+    free(isUserLoggedIn);
     printf("Das Programm ist beendet\n");
     return 0;
 }

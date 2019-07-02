@@ -200,6 +200,6 @@ void timeToString(int userTime, char stringTime[]);
 /** Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig
  * und richtig gelöst wurde, ein.
  */
-int checkGameSolved();
+void checkGameState();
 
 #endif //SUDOKU_GAME_H

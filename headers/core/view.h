@@ -88,7 +88,6 @@ void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
  * It shows the game menu
  */
 void renderGameMenu();
-void checkGameState();
 
 /**
  * \brief Function to render the dialog after solved game

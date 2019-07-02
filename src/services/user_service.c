@@ -86,7 +86,6 @@ int loginUserCallback(void *userID, int argc, char **argv, char **azColName)
 void loginUser(char username[], char password[], int *id)
 {
     sprintf(sql, "SELECT * FROM `User` WHERE name =\"%s\" AND password = \"%s\";", username, password);
-    printf("sql: %s\n", sql);
     int rc = sqlite3_exec(connection, sql, loginUserCallback, id, &zErrMsg);
 }
 

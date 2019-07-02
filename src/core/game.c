@@ -17,6 +17,7 @@
 #include <string.h>
 
 #include <unistd.h>
+#include <headers/services/score_service.h>
 
 int iX_coordinate = 0;
 int iY_coordinate = 0;
@@ -368,4 +369,22 @@ void timeToString(int userTime, char stringTime[])
     }
     sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds);
     stringTime[5] = '\0';
+}
+
+void checkGameState() {
+    if (iIsGameActive && getGameStatus(iGameData) == FILLED) {
+        int solveState = solveGame(iGameData);
+        if (solveState) {
+            if (userID != NULL && isSolvedAutomatic == 0) {
+                strcpy(cGameMessage, "insert.");
+
+                int _score = timer(TIMER_STATE);
+                insertScore(userID, _score, iDifficulty);
+            }
+            iIsGameActive = 0;
+            iCurrentPosition = SOLVED_GAME;
+        } else {
+            strcpy(cGameMessage, "Das Spiel ist nicht korrekt geloest.");
+        }
+    }
 }
