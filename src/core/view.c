@@ -324,7 +324,6 @@ void renderSolvedGame(int iSolvedAutomatic, int iAnzahlDerTipps, int iAnzahlDerH
  * 3. Parameter: Anzahl der benutzten Zelllösugen
  */
 {
-    char cStringTime[5];
 
     printf("%s ++============== Spielende ================++%s\n", KCYN, KWHT);
     printEmptyTableLine();
@@ -337,6 +336,7 @@ void renderSolvedGame(int iSolvedAutomatic, int iAnzahlDerTipps, int iAnzahlDerH
     }
     else
     {
+        char cStringTime[6];
         timeToString(timer(TIMER_STATE), cStringTime);
         printTableLine("Herzlichen Glueckwunsch!!!              ");
         printTableLine("Du hast das Sudoku in einer Zeit von    ");
