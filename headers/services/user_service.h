@@ -16,7 +16,7 @@
  * 2. Parameter: eingegebenes Passwort
  * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
  */
-int registerUser(char username[], char password[], int *newUserId);
+int registerUser(char cUsername[], char cPassword[], int *piNewUserId);
 
 /** Überprüft mit Hilfe der Daten aus der Datenbank, ob das eingegebene
  * Passwort richtig ist.
@@ -24,7 +24,7 @@ int registerUser(char username[], char password[], int *newUserId);
  * 2. Parameter: eingegebenes Passwort
  * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
  */
-void loginUser(char username[], char password[], int*id);
+void loginUser(char cUsername[], char cPassword[], int*piId);
 int createUserTable();
 
 /** Erstellt die Tabelle für die Daten des Nutzers (NutzerID, Name und Passwort).
@@ -37,4 +37,4 @@ int getUserIdCallback(void *userID, int argc, char **argv, char **azColName);
  * 1. Parameter: Nutzername des Spielers, dessen UserID erfragt werden soll
  * 2. Parameter: Zeiger auf die zu befüllende Variable UserID
  */
-void getUserID(char username[8], int *userID);
+void getUserID(char cUsername[8], int *piUserID);

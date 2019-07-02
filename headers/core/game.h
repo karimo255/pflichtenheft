@@ -45,11 +45,11 @@ extern int iIsGameActive;
 extern int iCurrentPosition;
 
 extern char cUusername[8];
-extern int *isUserLoggedIn;
+extern int *piIsUserLoggedIn;
 extern int iExitTheGame;
 extern int isSolvedAutomatic;
 
-extern int *iPUserID;
+extern int *piUserID;
 /// array which holds the game data.
 extern int iGameData[9][9];
 
@@ -127,7 +127,7 @@ void makeNote(int iX, int iY, int iSuggestion);
  * 4. Parameter: Element, nach dem gesucht werden soll
  * Rückgabewert: Gefunden? 1 -> Ja, -1 -> Nein
  */
-int isElementInBox(int iArr[][9], int iBox_start_row, int iBox_start_col, int number);
+int isElementInBox(int iArr[][9], int iBox_start_row, int iBox_start_col, int iEle);
 
 /** Generiert eine Zufallszahl zwischen 1 und 9.
  * Rückgabewert: generierte Zufallszahl
