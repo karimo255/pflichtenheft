@@ -177,7 +177,7 @@ int getBestScore(int *piBestScore, int iDifficulty)
     int rc = sqlite3_exec(psqlConnection, cSql, bestScoreCallback, piBestScore, &pcZErrMsg);
     if (!rc == SQLITE_OK)
     {
-        printf(cSql);
+        // printf(cSql);
         strcpy(cGameMessage, "Bestscore Abfrage fehlgeschlagen"
                              ""
                              ""
