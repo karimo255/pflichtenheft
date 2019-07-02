@@ -44,12 +44,12 @@ extern int iIsGameActive;
 /// current active menu item.
 extern int iCurrentPosition;
 
-extern char username[8];
+extern char cUusername[8];
 extern int *isUserLoggedIn;
-extern int exitTheGame;
+extern int iExitTheGame;
 extern int isSolvedAutomatic;
 
-extern int *userID;
+extern int *iPUserID;
 /// array which holds the game data.
 extern int iGameData[9][9];
 
@@ -59,12 +59,12 @@ extern int iDeletedCells[9][9];
 /// array which holds the coordinates of user cells (cells to solve) to keep track of theme.
 extern int iUserCells[9][9];
 
-extern int anzahlDerTipps;
-extern int anzahlDerHilfe;
+extern int iAnzahlDerTipps;
+extern int iAnzahlDerHilfe;
 
 
-extern int erlaubteAnzahlDerTipps;
-extern int erlaubteAnzahlDerHilfe;
+extern int iErlaubteAnzahlDerHilfe;
+extern int iErlaubteAnzahlDerTipps;
 
 void fillNotesForCell(int iX_coordinate, int iY_coordinate);
 
@@ -100,14 +100,14 @@ void generateGameData(int iGameData[][9]);
  * 1. Parameter: Spielfeld
  * 2. Parameter: Schwierigkeitsgrad
  */
-void deleteCells(int array[][9], int difficulty);
+void deleteCells(int iArray[][9], int iDifficulty);
 
 /**
- * @param direction of where to navigate
+ * @param iPos of where to navigate
  *
  * Moves the cursor in the desired direction
  */
-void navigateTo(int direction);
+void navigateTo(int iPos);
 
 /** Wird nur aufgerufen, wenn sich der Spieler im "Makiere-Modus" befindet.
  * Es können bis zu drei Zahlen in eine Notiz eingetragen werden. Wenn
@@ -127,7 +127,7 @@ void makeNote(int iX, int iY, int iSuggestion);
  * 4. Parameter: Element, nach dem gesucht werden soll
  * Rückgabewert: Gefunden? 1 -> Ja, -1 -> Nein
  */
-int isElementInBox(int array[][9], int box_start_row, int box_start_col, int number);
+int isElementInBox(int iArr[][9], int iBox_start_row, int iBox_start_col, int number);
 
 /** Generiert eine Zufallszahl zwischen 1 und 9.
  * Rückgabewert: generierte Zufallszahl
@@ -142,11 +142,11 @@ int generateRandomNumber();
 int solveGame(int iGameData[][9]);
 
 /**
- * @param array[][] which holds the game data.
+ * @param iGmaeData[][] which holds the game data.
  *
  * Sets the value of array items to zero.
  */
-void resetGameData(int array[][9]);
+void resetGameData(int iGmaeData[][9]);
 
 /** Generiert eine Zufallszahl in einem definierbaren Intervall.
  * 1. Parameter: Intervall-Start
@@ -176,10 +176,10 @@ void solveCell(int iGameData[][9], int iX, int iY);
  * 1. Parameter: sichtbares Spielfeld
  * Rückgabewert: Vollständig (FILLED) oder unvollständig (NOT_FILLED)
  */
-int getGameStatus(int array[][9]);
+int getGameStatus(int iArray[][9]);
 
 
-void solveAll(int gameData[][9], int deletedCells[][9]);
+void solveAll(int iGameData[][9], int iDeletedCells[][9]);
 
 /** Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum
  * Lösen des Sudokus verwendet. Stoppuhr kann (neu-)gestartet, ge-
@@ -195,7 +195,7 @@ int timer(int iAction);
  * 2. Parameter: Char-Array, in den die formatierte Zeit geschrieben
  * werden soll
  */
-void timeToString(int userTime, char stringTime[]);
+void timeToString(int iUserTime, char cStringTime[]);
 
 /** Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig
  * und richtig gelöst wurde, ein.

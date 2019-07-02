@@ -60,13 +60,13 @@ int iDifficulty;
 int iIsGameActive;
 int isSolvedAutomatic;
 int iCurrentPosition;
-char username[8] = {0};
-int exitTheGame = 0;
+char cUusername[8] = {0};
+int iExitTheGame = 0;
 int iMarks[9][9][MAX_MARKS];
-int anzahlDerTipps = 0;
-int anzahlDerHilfe = 0;
-int erlaubteAnzahlDerTipps = 0;
-int erlaubteAnzahlDerHilfe = 0;
+int iAnzahlDerTipps = 0;
+int iAnzahlDerHilfe = 0;
+int iErlaubteAnzahlDerHilfe = 0;
+int iErlaubteAnzahlDerTipps = 0;
 int remaining = 0;
 
 void renderGame(struct sScore *scores);
@@ -75,7 +75,7 @@ void handleInput();
 // Speicher am Ende freigeben.
 int *bestScore = 0;
 sqlite3 *connection;
-int *userID;
+int *iPUserID;
 int *isUserLoggedIn;
 
 
@@ -116,7 +116,7 @@ int main()
      * (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
      */
 
-    while (!exitTheGame)
+    while (!iExitTheGame)
     {
         clear_output();
         renderGame(scores);
@@ -129,7 +129,7 @@ int main()
     sqlite3_close(connection);
     free(scores);
     free(bestScore);
-    free(userID);
+    free(iPUserID);
     free(isUserLoggedIn);
     printf("Das Programm ist beendet\n");
     return 0;
@@ -149,7 +149,7 @@ void renderGame(struct sScore *scores)
         renderMenu();
         break;
     case USER_NAME:
-        renderUsernameDialog(username);
+        renderUsernameDialog(cUusername);
         break;
     case IN_GAME:
         if (iIsGameActive == 0)
@@ -168,7 +168,7 @@ void renderGame(struct sScore *scores)
         *bestScore = 0;
         getBestScore(bestScore, iDifficulty);
         remaining = getRemainingCells(iGameData);
-        renderInfoBox(username, bestScore, iDifficulty, remaining);
+        renderInfoBox(cUusername, bestScore, iDifficulty, remaining);
         renderNotesBox(iX_coordinate, iY_coordinate);
         renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
         printGameMessage();
@@ -177,7 +177,7 @@ void renderGame(struct sScore *scores)
         break;
     case SET_MARK:
         remaining = getRemainingCells(iGameData);
-        renderInfoBox(username, bestScore, iDifficulty, remaining);
+        renderInfoBox(cUusername, bestScore, iDifficulty, remaining);
         renderMarkModeMessage();
         renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
         renderGameMenu();
@@ -196,7 +196,7 @@ void renderGame(struct sScore *scores)
         renderHelpDialog();
         break;
     case SOLVED_GAME:
-        renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
+        renderSolvedGame(isSolvedAutomatic, iAnzahlDerTipps, iAnzahlDerHilfe);
         renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
         break;
     }

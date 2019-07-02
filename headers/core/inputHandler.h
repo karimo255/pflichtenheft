@@ -19,21 +19,21 @@ void handleSetPasswordInput();
 
 void handleEnterPasswordInput();
 
-void handleDifficultyDialogInput(int userInput);
+void handleDifficultyDialogInput(int iUserInput);
 
-void handleMenuInput(int userInput);
+void handleMenuInput(int iUserInput);
 
-void handleInGameInput(int userInput);
+void handleInGameInput(int iUserInput);
 
-void handleSolvedGameInput(int userInput);
+void handleSolvedGameInput(int iUserInput);
 
-void handleSetMarkInput(int userInput);
+void handleSetMarkInput(int iUserInput);
 
-void handleDetailsInput(int userInput);
+void handleDetailsInput(int iUserInput);
 
-void handleDetailsDialogInput(int userInput);
+void handleDetailsDialogInput(int iUserInput);
 
-void handleHelpInput(int userInput);
+void handleHelpInput(int iUserInput);
 
 void setConfig();
 #endif //SUDOKU_INPUTHANDLER_H

@@ -82,15 +82,15 @@ void makeNote(int iX, int iY, int iSuggestion)
     }
 }
 
-void solveAll(int gameData[][9], int deletedCells[][9])
+void solveAll(int iGameData[][9], int iDeletedCells[][9])
 {
     for (int x = 0; x < 9; x++)
     {
         for (int y = 0; y < 9; y++)
         {
-            if (deletedCells[x][y] != 0)
+            if (iDeletedCells[x][y] != 0)
             {
-                gameData[x][y] = deletedCells[x][y];
+                iGameData[x][y] = iDeletedCells[x][y];
             }
         }
     }
@@ -102,11 +102,11 @@ int solveGame(int iGameData[][9])
     {
         for (int y = 0; y < 9; y++)
         {
-            int number = iGameData[x][y];
+            int iNumber = iGameData[x][y];
             iGameData[x][y] = 0;
-            if (isElementInArray(iGameData[x], number, 9) >= 0 || number == 0)
+            if (isElementInArray(iGameData[x], iNumber, 9) >= 0 || iNumber == 0)
             {
-                iGameData[x][y] = number;
+                iGameData[x][y] = iNumber;
                 return 0;
             }
 
@@ -116,13 +116,13 @@ int solveGame(int iGameData[][9])
                 iElementsInSomeColumn[l] = iGameData[l][y];
             }
 
-            if (isElementInArray(iElementsInSomeColumn, number, 9) >= 0 ||
-                isElementInBox(iGameData, x - x % 3, y - y % 3, number) >= 0)
+            if (isElementInArray(iElementsInSomeColumn, iNumber, 9) >= 0 ||
+                isElementInBox(iGameData, x - x % 3, y - y % 3, iNumber) >= 0)
             {
-                iGameData[x][y] = number;
+                iGameData[x][y] = iNumber;
                 return 0;
             }
-            iGameData[x][y] = number;
+            iGameData[x][y] = iNumber;
         }
     }
     return 1;
@@ -141,13 +141,13 @@ void resetArray(int iArray[], int iSize)
     }
 }
 
-void resetGameData(int array[][9])
+void resetGameData(int iGmaeData[][9])
 {
     for (int _x = 0; _x < 9; _x++)
     {
         for (int _y = 0; _y < 9; _y++)
         {
-            array[_x][_y] = 0;
+            iGmaeData[_x][_y] = 0;
         }
     }
 }
@@ -164,13 +164,13 @@ int isElementInArray(int iArray[], int iNumber, int iSize)
     return -1;
 }
 
-int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
+int isElementInBox(int iArr[][9], int iBox_start_row, int iBox_start_col, int ele)
 {
     for (int row = 0; row < 3; row++)
         for (int col = 0; col < 3; col++)
         {
 
-            if (arr[row + box_start_row][col + box_start_col] == ele && ele != 0)
+            if (iArr[row + iBox_start_row][col + iBox_start_col] == ele && ele != 0)
             {
                 return 1;
             }
@@ -232,27 +232,27 @@ void generateGameData(int iGameData[][9])
     clear_output();
 }
 
-int generateNumberByInterval(int x, int y)
+int generateNumberByInterval(int iX, int iY)
 {
-    return x + rand() % (y - x + 1);
+    return iX + rand() % (iY - iX + 1);
 }
 
-void deleteCells(int array[][9], int difficulty)
+void deleteCells(int iArray[][9], int iDifficulty)
 {
     for (int x = 1; x <= 3; x++)
     {
         for (int y = 1; y <= 3; y++)
         {
-            int tmp = difficulty;
+            int tmp = iDifficulty;
             while (tmp > 0)
             {
                 int r = generateNumberByInterval(3 * (x - 1), 3 * x - 1);
                 int c = generateNumberByInterval(3 * (y - 1), 3 * y - 1);
-                if (array[r][c] > 0)
+                if (iArray[r][c] > 0)
                 { // not already deleted
-                    iDeletedCells[r][c] = array[r][c];
+                    iDeletedCells[r][c] = iArray[r][c];
                     iUserCells[r][c] = 1;
-                    array[r][c] = 0;
+                    iArray[r][c] = 0;
                 }
                 tmp--;
             }
@@ -260,13 +260,13 @@ void deleteCells(int array[][9], int difficulty)
     }
 }
 
-int getGameStatus(int array[][9])
+int getGameStatus(int iArray[][9])
 {
     for (int x = 0; x < 9; x++)
     {
         for (int y = 0; y < 9; y++)
         {
-            if (array[x][y] == 0)
+            if (iArray[x][y] == 0)
             {
                 return NOT_FILLED;
             }
@@ -278,7 +278,7 @@ int getGameStatus(int array[][9])
 int timer(int iAction)
 {
 
-    static int iFirst = 0, paused = 0;
+    static int iFirst = 0, iPaused = 0;
     static int iTimer = 0, zwErg = 0;
 
     switch (iAction)
@@ -292,16 +292,16 @@ int timer(int iAction)
      * Zeitstempel genommen, beim zweiten Durchlauf, wird die
      * pausierte Zeit zum Zwischenergebnis aufaddiert */
     case TIMER_PAUSE:
-        if (paused == 0)
+        if (iPaused == 0)
         {
             _pause = time(NULL);
-            paused++;
+            iPaused++;
         }
         else
         {
             end = time(NULL);
             zwErg += (end - _pause);
-            paused--;
+            iPaused--;
         }
         break;
 
@@ -309,14 +309,14 @@ int timer(int iAction)
     case TIMER_START:
         iFirst = 1;
         zwErg = 0;
-        paused = 0;
+        iPaused = 0;
         break;
 
         /** Stoppuhr bzw. alle zugehörigen Werte zurücksetzen. */
     case RESET_TIMER:
         iFirst = 1;
         zwErg = 0;
-        paused = 0;
+        iPaused = 0;
         iTimer = 0;
         break;
 
@@ -348,38 +348,38 @@ int timer(int iAction)
     return iTimer;
 }
 
-void timeToString(int userTime, char stringTime[])
+void timeToString(int iUserTime, char cStringTime[])
 {
-    int seconds = userTime % 60;
-    int minutes = userTime / 60;
+    int seconds = iUserTime % 60;
+    int minutes = iUserTime / 60;
 
-    char s[2] = {0};
-    char m[2] = {0};
+    char cS[2] = {0};
+    char cM[2] = {0};
 
     if (seconds < 10)
     {
-        s[0] = '0';
-        s[1] = '\0';
+        cS[0] = '0';
+        cS[1] = '\0';
     }
 
     if (minutes < 10)
     {
-        m[0] = '0';
-        m[1] = '\0';
+        cM[0] = '0';
+        cM[1] = '\0';
     }
-    sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds);
-    stringTime[5] = '\0';
+    sprintf(cStringTime, "%s%d:%s%d", cM, minutes, cS, seconds);
+    cStringTime[5] = '\0';
 }
 
 void checkGameState() {
     if (iIsGameActive && getGameStatus(iGameData) == FILLED) {
         int solveState = solveGame(iGameData);
         if (solveState) {
-            if (userID != NULL && isSolvedAutomatic == 0) {
+            if (iPUserID != NULL && isSolvedAutomatic == 0) {
                 strcpy(cGameMessage, "insert.");
 
                 int _score = timer(TIMER_STATE);
-                insertScore(userID, _score, iDifficulty);
+                insertScore(iPUserID, _score, iDifficulty);
             }
             iIsGameActive = 0;
             iCurrentPosition = SOLVED_GAME;
