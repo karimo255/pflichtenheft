@@ -308,7 +308,7 @@ void handleInGameInput(int userInput)
                 if (anzahlDerHilfe == erlaubteAnzahlDerHilfe)
                 {
                     strcpy(cGameMessage, "Anzahl der Hilfen verbraucht.");
-                   // break;
+                    break;
                 }
                 anzahlDerHilfe++;
                 solveCell(iGameData, iX_coordinate, iY_coordinate);
