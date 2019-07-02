@@ -95,9 +95,9 @@ Functions</h2></td></tr>
 <tr class="separator:a63ae95ce5a1c0b15c48c72e177ad57b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50854f2511946640b8587f4a8f135bea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a50854f2511946640b8587f4a8f135bea">getBestScoreByUserID</a> (int userID)</td></tr>
 <tr class="separator:a50854f2511946640b8587f4a8f135bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f8d2221161b95a2f9c640392de914b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a05f8d2221161b95a2f9c640392de914b">bestScoreCallback</a> (void *bestScore, int argc, char **argv, char **azColName)</td></tr>
+<tr class="memitem:a05f8d2221161b95a2f9c640392de914b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a05f8d2221161b95a2f9c640392de914b">bestScoreCallback</a> (void *piBestScore, int argc, char **argv, char **azColName)</td></tr>
 <tr class="separator:a05f8d2221161b95a2f9c640392de914b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a984548eb9736aa3c6e0f72a51844dfcf">getBestScore</a> (int *bestScore, int difficulty)</td></tr>
+<tr class="memitem:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a984548eb9736aa3c6e0f72a51844dfcf">getBestScore</a> (int *piBestScore, int difficulty)</td></tr>
 <tr class="separator:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -126,7 +126,7 @@ Functions</h2></td></tr>
           <td class="memname">int bestScoreCallback </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>bestScore</em>, </td>
+          <td class="paramname"><em>piBestScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -166,7 +166,7 @@ Functions</h2></td></tr>
           <td class="memname">int getBestScore </td>
           <td>(</td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>bestScore</em>, </td>
+          <td class="paramname"><em>piBestScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -265,7 +265,7 @@ Functions</h2></td></tr>
 <p>Inserts score in the database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">username[]</td><td></td></tr>
+    <tr><td class="paramname">cUsername[]</td><td></td></tr>
     <tr><td class="paramname">score</td><td></td></tr>
     <tr><td class="paramname">_time</td><td></td></tr>
     <tr><td class="paramname">difficulty</td><td></td></tr>

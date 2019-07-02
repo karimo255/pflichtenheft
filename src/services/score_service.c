@@ -14,7 +14,7 @@
 
 char sql[200];
 char *zErrMsg;
-sqlite3 *connection;
+sqlite3 *psqlConnection;
 int user_id = 0;
 
 int insertScore(int *userID, int score, int difficulty)
@@ -25,7 +25,7 @@ int insertScore(int *userID, int score, int difficulty)
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, NULL, NULL, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, sql, NULL, NULL, &zErrMsg);
     printf("%s\n", sql);
 
     if (!rc == SQLITE_OK)
@@ -91,7 +91,7 @@ void getScores(struct sScore *scores)
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, getScoresCallback, scores, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, sql, getScoresCallback, scores, &zErrMsg);
 
     if (scores->next != NULL)
     {
@@ -121,7 +121,7 @@ int getBestScoreByUserID(int userID)
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, bestScoresCallBack, NULL, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, sql, bestScoresCallBack, NULL, &zErrMsg);
     return user_id;
 }
 
@@ -149,7 +149,7 @@ int getBestScore(int *bestScore, int difficulty)
     fflush(stdout);
     clear_output();
 
-    int rc = sqlite3_exec(connection, sql, bestScoreCallback, bestScore, &zErrMsg);
+    int rc = sqlite3_exec(psqlConnection, sql, bestScoreCallback, bestScore, &zErrMsg);
 
     if (!rc == SQLITE_OK)
     {

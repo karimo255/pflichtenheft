@@ -89,14 +89,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a59ee9565b726df9cf12690e17df3170f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#a59ee9565b726df9cf12690e17df3170f">renderCourt</a> (int gameData[][9], int userCells[][9], int x_coordinate, int y_coordinate)</td></tr>
 <tr class="memdesc:a59ee9565b726df9cf12690e17df3170f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to render the game grid.  <a href="#a59ee9565b726df9cf12690e17df3170f">More...</a><br /></td></tr>
 <tr class="separator:a59ee9565b726df9cf12690e17df3170f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefebd76cb79365ed497c0164498c7d6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#aefebd76cb79365ed497c0164498c7d6c">renderInfoBox</a> (char *<a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>, int *<a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a>, int _difficulty, int remaining)</td></tr>
+<tr class="memitem:aefebd76cb79365ed497c0164498c7d6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#aefebd76cb79365ed497c0164498c7d6c">renderInfoBox</a> (char *<a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">cUsername</a>, int *<a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a>, int _difficulty, int iRemaining)</td></tr>
 <tr class="separator:aefebd76cb79365ed497c0164498c7d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9426471cc4df5ed76c3feb13d52e7a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#ac9426471cc4df5ed76c3feb13d52e7a4">renderGameMenu</a> ()</td></tr>
 <tr class="memdesc:ac9426471cc4df5ed76c3feb13d52e7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to render the game menu.  <a href="#ac9426471cc4df5ed76c3feb13d52e7a4">More...</a><br /></td></tr>
 <tr class="separator:ac9426471cc4df5ed76c3feb13d52e7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b8086c17b948486da00732e709362cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#a2b8086c17b948486da00732e709362cb">checkGameState</a> ()</td></tr>
 <tr class="separator:a2b8086c17b948486da00732e709362cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008ec4df25b278b5956d0092c8e87f81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#a008ec4df25b278b5956d0092c8e87f81">renderSolvedGame</a> (int solvedAutomatic, int <a class="el" href="game_8h.html#a4b31e6ec1f5aff9e1e04dc93f9b947d4">anzahlDerTipps</a>, int <a class="el" href="game_8h.html#a0748f7a4a9faacbc57901b616e827186">anzahlDerHilfe</a>)</td></tr>
+<tr class="memitem:a008ec4df25b278b5956d0092c8e87f81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#a008ec4df25b278b5956d0092c8e87f81">renderSolvedGame</a> (int solvedAutomatic, int <a class="el" href="game_8h.html#a4b31e6ec1f5aff9e1e04dc93f9b947d4">iAnzahlDerTipps</a>, int <a class="el" href="game_8h.html#a0748f7a4a9faacbc57901b616e827186">iAnzahlDerHilfe</a>)</td></tr>
 <tr class="memdesc:a008ec4df25b278b5956d0092c8e87f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to render the dialog after solved game.  <a href="#a008ec4df25b278b5956d0092c8e87f81">More...</a><br /></td></tr>
 <tr class="separator:a008ec4df25b278b5956d0092c8e87f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f7a1223459077cd5d74ac3cd7ab4ca5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="view_8h.html#a3f7a1223459077cd5d74ac3cd7ab4ca5">renderDifficultyDialog</a> ()</td></tr>
@@ -648,7 +648,7 @@ Functions</h2></td></tr>
           <td class="memname">void renderInfoBox </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>username</em>, </td>
+          <td class="paramname"><em>cUsername</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -666,7 +666,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>remaining</em>&#160;</td>
+          <td class="paramname"><em>iRemaining</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -820,13 +820,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>anzahlDerTipps</em>, </td>
+          <td class="paramname"><em>iAnzahlDerTipps</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>anzahlDerHilfe</em>&#160;</td>
+          <td class="paramname"><em>iAnzahlDerHilfe</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

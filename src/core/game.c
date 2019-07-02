@@ -35,14 +35,23 @@ int iElementsInSomeColumn[9] = {0};
 time_t start, end, _pause;
 
 void fillNotesForCell(int iX_coordinate, int iY_coordinate)
+/* Wird aufgerufen, wenn der Spieler einen Tipp haben möchte. Befüllt
+ * die Notiz in der entsprechenden Zelle mit drei Zahlen, von denen
+ * eine die richtige im Kontext des Sudokus darstellt.
+ * 1. Parameter: x-Koordinate, an der sich der Spieler befindet
+ * 2. Parameter: y-Koordinate, an der sich der Spieler befindet
+ */
 {
     int iRandomIndexForSolution = rand() % 2;
+
     iMarks[iX_coordinate][iY_coordinate][iRandomIndexForSolution] = iDeletedCells[iX_coordinate][iY_coordinate];
+
     for (int i = 0; i < MAX_MARKS; i++)
     {
         if (iMarks[iX_coordinate][iY_coordinate][i] == 0)
         {
             int iNumber = generateRandomNumber();
+
             if (isElementInArray(iMarks[iX_coordinate][iY_coordinate], iNumber, MAX_MARKS) > 0)
             {
                 i--;
@@ -54,6 +63,13 @@ void fillNotesForCell(int iX_coordinate, int iY_coordinate)
 }
 
 void solveCell(int iGameData[][9], int iX, int iY)
+/* Wird aufgerufen, wenn der Spieler die Hilfefunktion nutzt. Aus dem
+ * zweidimensionalen Array, in dem die gelöschten Zellen gespeichert sind,
+ * wird der Lösungswert in das aktuelle Spielfeld eingetragen.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: x-Koordinate, an der der Spieler sich befindet
+ * 3. Parameter: y-Koordinate, an der der Spieler sich befindet
+ */
 {
     if (iDeletedCells[iX][iY] > 0)
     {
@@ -63,6 +79,14 @@ void solveCell(int iGameData[][9], int iX, int iY)
 }
 
 void makeNote(int iX, int iY, int iSuggestion)
+/* Wird nur aufgerufen, wenn sich der Spieler im "Makiere-Modus" befindet.
+ * Es können bis zu drei Zahlen in eine Notiz eingetragen werden. Wenn
+ * die Notiz voll ist und eine weitere Zahl eingetragen wird, wird die Notiz
+ * gelöscht und die weitere Zahl eingetragen.
+ * 1. Parameter: x-Koordinate, an der der Spieler sich befindet
+ * 2. Parameter: y-Koordinate, an der der Spieler sich befindet
+ * 3. Parameter: Zahl, die der Spiele in die Notiz schreiben möchte
+ */
 {
     for (int i = 0; i <= MAX_MARKS; i++)
     {
@@ -74,6 +98,7 @@ void makeNote(int iX, int iY, int iSuggestion)
         else if (i == MAX_MARKS)
         {
             iMarks[iX][iY][0] = iSuggestion;
+
             for (int j = 1; j < MAX_MARKS; j++)
             {
                 iMarks[iX][iY][j] = 0;
@@ -83,6 +108,13 @@ void makeNote(int iX, int iY, int iSuggestion)
 }
 
 void solveAll(int gameData[][9], int deletedCells[][9])
+/* Wird aufgerufen, wenn der Spieler aufgibt und das Sudoku auflösen lassen
+ * möchte. Alle Felder, die durch den Nutzer hätten gefüllt werden sollen,
+ * werden von dem Array der gelöschten Zellen in das Spielfeld über-
+ * tragen.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: Array mit den gelöschten Zellen (Lösung)
+ */
 {
     for (int x = 0; x < 9; x++)
     {
@@ -97,16 +129,24 @@ void solveAll(int gameData[][9], int deletedCells[][9])
 }
 
 int solveGame(int iGameData[][9])
+/* Wird aufgerufen, wenn die keine Zellen mehr ausgefüllt werden müssen.
+ * Überprüft, ob der Spieler das Spielfeld richtig gelöst hat.
+ * 1. Parameter: aktuelles Spielfeld
+ * Rückgabewert: Richtig gelöst (1) oder es existiert mindestens ein Fehler (0)
+ */
 {
     for (int x = 0; x < 9; x++)
     {
         for (int y = 0; y < 9; y++)
         {
-            int number = iGameData[x][y];
+            int iNumber = iGameData[x][y];
+
             iGameData[x][y] = 0;
-            if (isElementInArray(iGameData[x], number, 9) >= 0 || number == 0)
+
+            if (isElementInArray(iGameData[x], iNumber, 9) >= 0 || iNumber == 0)
             {
-                iGameData[x][y] = number;
+                iGameData[x][y] = iNumber;
+
                 return 0;
             }
 
@@ -116,43 +156,65 @@ int solveGame(int iGameData[][9])
                 iElementsInSomeColumn[l] = iGameData[l][y];
             }
 
-            if (isElementInArray(iElementsInSomeColumn, number, 9) >= 0 ||
-                isElementInBox(iGameData, x - x % 3, y - y % 3, number) >= 0)
+            if (isElementInArray(iElementsInSomeColumn, iNumber, 9) >= 0 ||
+                isElementInBox(iGameData, x - x % 3, y - y % 3, iNumber) >= 0)
             {
-                iGameData[x][y] = number;
+                iGameData[x][y] = iNumber;
+
                 return 0;
             }
-            iGameData[x][y] = number;
+            iGameData[x][y] = iNumber;
         }
     }
+
     return 1;
 }
 
 int generateRandomNumber()
+/* Generiert eine Zufallszahl zwischen 1 und 9.
+ * Rückgabewert: generierte Zufallszahl
+ */
 {
     return 1 + rand() % 9;
 }
 
 void resetArray(int iArray[], int iSize)
+/* Setzt einen Array auf den Ursprungszustand zurück, indem alle Werte
+ * auf Null gesetzt werden.
+ * 1. Parameter: der zurückzusetzende Array
+ * 2. Parameter: Länge des Arrays
+ */
 {
-    for (int l = 0; l < 9; l++)
+    for (int l = 0; l < iSize; l++)
     {
         iArray[l] = 0;
     }
 }
 
-void resetGameData(int array[][9])
+void resetGameData(int iGameData[][9])
+/* Setzt das sichtbare Spielfeld in seinen Ursprungszustand zurück, indem
+ * alle Werte auf Null gesetzt werden.
+ * 1. Parameter: aktuelles Spielfeld
+ */
 {
     for (int _x = 0; _x < 9; _x++)
     {
         for (int _y = 0; _y < 9; _y++)
         {
-            array[_x][_y] = 0;
+            iGameData[_x][_y] = 0;
         }
     }
 }
 
 int isElementInArray(int iArray[], int iNumber, int iSize)
+/* Überpüft, ob sich ein bestimmtes Element in einen bestimmten Array
+ * befindet.
+ * 1. Parameter: zu überprüfender Array
+ * 2. Parameter: Element, nach dem gesucht werden soll
+ * 3. Parameter: Länge des Arrays
+ * Rückgabewert: Stelle, an der das Element gefunden wurde oder -1, falls
+ * es nicht im Array ist
+ */
 {
     for (int x = 0; x < iSize; x++)
     {
@@ -161,32 +223,48 @@ int isElementInArray(int iArray[], int iNumber, int iSize)
             return x;
         }
     }
+
     return -1;
 }
 
-int isElementInBox(int arr[][9], int box_start_row, int box_start_col, int ele)
+int isElementInBox(int iGameData[][9], int iBoxStartRow, int iBoxStartCol, int iElement)
+/* Dient zur Überprüfung, ob eine bestimmte Zahl in einer bestimmten der
+ * neun Unterquadrate des Sudokus vorhanden ist.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: y-Koordinate der oberen, linken Ecke der Box
+ * 3. Parameter: x-Koordinate der obenen, linken Ecke der Box
+ * 4. Parameter: Element, nach dem gesucht werden soll
+ * Rückgabewert: Gefunden? 1 -> Ja, -1 -> Nein
+ */
 {
     for (int row = 0; row < 3; row++)
         for (int col = 0; col < 3; col++)
         {
-
-            if (arr[row + box_start_row][col + box_start_col] == ele && ele != 0)
+            if (iGameData[row + iBoxStartRow][col + iBoxStartCol] == iElement && iElement != 0)
             {
                 return 1;
             }
         }
+
     return -1;
 }
 
 void generateGameData(int iGameData[][9])
+/* Generiert vor jedem neuen Spiel ein neues gelöstet Spielfeld. Sorgt
+ * damit dafür, dass das Sudoku lösbar ist. Der Vorgang wird nach zwei
+ * Sekunden neu gestartet, fall die Funktion zu keiner Lösung gekommen
+ * ist, um eine Endlossschleife zu vermeiden.
+ * 1. Parameter: leeres Spielfeld
+ */
 {
     time_t start_t, end_t;
     double iDiff_t;
     time(&start_t);
+
     resetGameData(iGameData);
     srand(time(NULL));
     clear_output();
-    printf("          Generieren von Spieldaten....\n");
+    printf("        Generieren von Spieldaten ...\n");
     fflush(stdout);
     usleep(500000);
 
@@ -201,10 +279,11 @@ void generateGameData(int iGameData[][9])
                 generateGameData(iGameData);
                 break; // das ist der fix;
             }
-            int number = generateRandomNumber();
 
-            if (isElementInArray(iGameData[_x], number, 9) >= 0)
-            { // number darf nur einmal in row vorkommen.
+            int iNumber = generateRandomNumber();
+
+            if (isElementInArray(iGameData[_x], iNumber, 9) >= 0)
+            { // iNumber darf nur einmal in row vorkommen.
                 _y--;
                 resetArray(iElementsInSomeColumn, 9);
                 continue;
@@ -216,51 +295,101 @@ void generateGameData(int iGameData[][9])
                 iElementsInSomeColumn[l] = iGameData[l][_y];
             }
 
-            // number darf nur einmal in column und box vorkommen.
-            if (isElementInArray(iElementsInSomeColumn, number, 9) >= 0 ||
-                isElementInBox(iGameData, _x - _x % 3, _y - _y % 3, number) >= 0)
+            // iNumber darf nur einmal in column und box vorkommen.
+            if (isElementInArray(iElementsInSomeColumn, iNumber, 9) >= 0 ||
+                isElementInBox(iGameData, _x - _x % 3, _y - _y % 3, iNumber) >= 0)
             {
                 resetArray(iGameData[_x], 9);
                 _x--;
                 break;
             }
-            iGameData[_x][_y] = number;
+            iGameData[_x][_y] = iNumber;
         }
     }
     printf("\n");
+
     fflush(stdout);
     clear_output();
 }
 
-int generateNumberByInterval(int x, int y)
+int generateNumberByInterval(int iX, int iY)
+/* Generiert eine Zufallszahl in einem definierbaren Intervall.
+ * 1. Parameter: Intervall-Start
+ * 2. Parameter: Intervall-Ende
+ * Rückgabewert: generierte Zufallszahl
+ */
 {
-    return x + rand() % (y - x + 1);
+    return iX + rand() % (iY - iX + 1);
 }
 
-void deleteCells(int array[][9], int difficulty)
+void deleteCells(int iGameData[][9], int iDifficulty)
+/* Löscht je nach Schwierigkeitsgrad mehr oder weniger zufällige Zellen
+ * aus dem sichtbaren Spielfeld und speichert die gelöschten Zellen im
+ * Array iDeletedCells;
+ * 1. Parameter: Spielfeld
+ * 2. Parameter: Schwierigkeitsgrad
+ */
 {
+    int iDelete;
+
+    /* Bestimmung der zu löschenden Zellen in Abhängigkeit vom Schwierigkeitsgrad */
+    switch(iDifficulty)
+    {
+        case 5:
+            iDelete = 42;
+            break;
+        case 7:
+            iDelete = 49;
+            break;
+        case 8:
+            iDelete = 56;
+            break;
+    }
+
     for (int x = 1; x <= 3; x++)
     {
         for (int y = 1; y <= 3; y++)
         {
-            int tmp = difficulty;
+            int tmp = iDifficulty;
             while (tmp > 0)
             {
                 int r = generateNumberByInterval(3 * (x - 1), 3 * x - 1);
                 int c = generateNumberByInterval(3 * (y - 1), 3 * y - 1);
-                if (array[r][c] > 0)
-                { // not already deleted
-                    iDeletedCells[r][c] = array[r][c];
+
+                /* Überprüfung, ob Zelle nicht bereits gelöscht wurde */
+                if (iGameData[r][c] > 0)
+                {
+                    iDeletedCells[r][c] = iGameData[r][c];
                     iUserCells[r][c] = 1;
-                    array[r][c] = 0;
+                    iGameData[r][c] = 0;
                 }
                 tmp--;
             }
         }
     }
+
+    while (iDelete > 0)
+    {
+        int iX = rand() % 9;
+        int iY = rand() % 9;
+
+        /* Überprüfung, ob Zelle nicht bereits gelöscht wurde */
+        if (iGameData[iX][iY] > 0)
+        {
+            iDeletedCells[iX][iY] = iGameData[iX][iY];
+            iUserCells[iX][iY] = 1;
+            iGameData[iX][iY] = 0;
+            iDelete--;
+        }
+    }
 }
 
 int getGameStatus(int array[][9])
+/* Überprüft, ob alle Felder des sichtbaren Spielfeldes aufgefüllt
+ * wurden.
+ * 1. Parameter: sichtbares Spielfeld
+ * Rückgabewert: Vollständig (FILLED) oder unvollständig (NOT_FILLED)
+ */
 {
     for (int x = 0; x < 9; x++)
     {
@@ -272,66 +401,73 @@ int getGameStatus(int array[][9])
             }
         }
     }
+
     return FILLED;
 }
 
 int timer(int iAction)
+/* Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum
+ * Lösen des Sudokus verwendet. Stoppuhr kann (neu-)gestartet, ge-
+ * stopped und pausiert werden.
+ * 1. Parameter: Aktion für die Stoppuhr (Zeit abfragen, Zurück-
+ * setzen, Starten, Stoppen)
+ */
 {
 
-    static int iFirst = 0, paused = 0;
-    static int iTimer = 0, zwErg = 0;
+    static int iFirst = 0, iPaused = 0;
+    static int iTimer = 0, iZwErg = 0;
 
     switch (iAction)
     {
 
-    /** Keine Aktion, da nur aktuelle Zeit ausgegeben werden soll */
-    case TIMER_STATE:
-        break;
+        /* Keine Aktion, da nur aktuelle Zeit ausgegeben werden soll */
+        case TIMER_STATE:
+            break;
 
-    /** Stoppuhr pausieren. Beim ersten Durchlauf, wird ein aktueller
-     * Zeitstempel genommen, beim zweiten Durchlauf, wird die
-     * pausierte Zeit zum Zwischenergebnis aufaddiert */
-    case TIMER_PAUSE:
-        if (paused == 0)
-        {
-            _pause = time(NULL);
-            paused++;
-        }
-        else
-        {
-            end = time(NULL);
-            zwErg += (end - _pause);
-            paused--;
-        }
-        break;
+        /* Stoppuhr pausieren. Beim ersten Durchlauf, wird ein aktueller
+         * Zeitstempel genommen, beim zweiten Durchlauf, wird die
+         * pausierte Zeit zum Zwischenergebnis aufaddiert */
+        case TIMER_PAUSE:
+            if (iPaused == 0)
+            {
+                _pause = time(NULL);
+                iPaused++;
+            }
+            else
+            {
+                end = time(NULL);
+                iZwErg += (end - _pause);
+                iPaused--;
+            }
+            break;
 
-        /** iFirst auf 1 setzen, um Timer zu starten (erster Duchlauf) */
-    case TIMER_START:
-        iFirst = 1;
-        zwErg = 0;
-        paused = 0;
-        break;
+        /* iFirst auf 1 setzen, um Timer zu starten (erster Duchlauf) */
+        case TIMER_START:
+            iFirst = 1;
+            iZwErg = 0;
+            iPaused = 0;
+            break;
 
-        /** Stoppuhr bzw. alle zugehörigen Werte zurücksetzen. */
-    case RESET_TIMER:
-        iFirst = 1;
-        zwErg = 0;
-        paused = 0;
-        iTimer = 0;
-        break;
+        /* Stoppuhr bzw. alle zugehörigen Werte zurücksetzen. */
+        case RESET_TIMER:
+            iFirst = 1;
+            iZwErg = 0;
+            iPaused = 0;
+            iTimer = 0;
+            break;
 
-        /** Vom Startzeitstempel 15 Sekunden abziehen, die als zusätzliche
+        /* Vom Startzeitstempel 15 Sekunden abziehen, die als zusätzliche
          * 15 Strafsekungen gerechnet werden. */
-    case TIPP_USED:
-        start -= 15;
-        break;
+        case TIPP_USED:
+            start -= 15;
+            break;
 
-        /** Vom Startzeitstempel 30 Sekunden abziehen, die als zusätzliche
+        /* Vom Startzeitstempel 30 Sekunden abziehen, die als zusätzliche
          * 30 Strafsekungen gerechnet werden. */
-    case HELP_USED:
-        start -= 30;
-    default:
-        break;
+        case HELP_USED:
+            start -= 30;
+        default:
+            break;
     }
 
     if (iFirst)
@@ -343,15 +479,20 @@ int timer(int iAction)
     end = time(NULL);
 
     iTimer = end - start;
-    iTimer -= zwErg;
+    iTimer -= iZwErg;
 
     return iTimer;
 }
 
-void timeToString(int userTime, char stringTime[])
+void timeToString(int iUserTime, char cStringTime[])
+/* Wandelt eine Zeitangabe in Sekunden in das "00:00"-Format um.
+ * 1. Parameter: Zeitangabe in Sekunden
+ * 2. Parameter: Char-Array, in den die formatierte Zeit geschrieben
+ * werden soll
+ */
 {
-    int seconds = userTime % 60;
-    int minutes = userTime / 60;
+    int seconds = iUserTime % 60;
+    int minutes = iUserTime / 60;
 
     char s[2] = {0};
     char m[2] = {0};
@@ -367,19 +508,26 @@ void timeToString(int userTime, char stringTime[])
         m[0] = '0';
         m[1] = '\0';
     }
-    sprintf(stringTime, "%s%d:%s%d", m, minutes, s, seconds);
-    stringTime[5] = '\0';
+    sprintf(cStringTime, "%s%d:%s%d", m, minutes, s, seconds);
+    cStringTime[5] = '\0';
 }
 
 int checkGameSolved()
+/* Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig
+ * und richtig gelöst wurde, ein.
+ */
 {
     if (getGameStatus(iGameData) == FILLED)
     {
         return solveGame(iGameData);
     }
+
     return 0;
 }
 
 int solveSudoku(int array[][9])
+/* no use yet
+ */
 {
+
 }

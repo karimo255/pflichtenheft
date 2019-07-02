@@ -45,7 +45,7 @@
     <ClCompile Include="src\core\view.c">
       <Filter>Quelldateien\src\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\services\connection.c">
+    <ClCompile Include="src\services\psqlConnection.c">
       <Filter>Quelldateien\src\services</Filter>
     </ClCompile>
     <ClCompile Include="src\services\score_service.c">
@@ -68,7 +68,7 @@
     <ClInclude Include="view.h">
       <Filter>Headerdateien\core</Filter>
     </ClInclude>
-    <ClInclude Include="headers\services\connection.h">
+    <ClInclude Include="headers\services\psqlConnection.h">
       <Filter>Headerdateien\services</Filter>
     </ClInclude>
     <ClInclude Include="headers\services\score_service.h">

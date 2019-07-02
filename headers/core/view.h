@@ -64,7 +64,7 @@ void renderDetails(struct sScore *scores, int difficulty);
  *
  * It shows the game grid
  */
-void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate);
+void renderCourt(int iGameData[][9],int iUserCells[][9], int iX_coordinate, int iY_coordinate);
 
 /** Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet
  * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
@@ -80,7 +80,7 @@ void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_c
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  */
-void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
+void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemaining);
 
 /**
  * \brief Function to render the game menu
@@ -95,7 +95,7 @@ void checkGameState();
  *
  * It shows the game menu
  */
-void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe);
+void renderSolvedGame(int iSolvedAutomatic, int iAnzahlDerTipps, int iAnzahlDerHilfe);
 
 /** Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad
  * für sein Spiel wählen kann.
@@ -128,7 +128,7 @@ void initColors();
 
 void printGameMessage();
 
-void printColoredString(char text[], char color[], int newLine);
+void printColoredString(char cText[], char cColor[], int iNewLine);
 
 /** Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
  * 1. Parameter: Zahl, die gedruckt werden soll
@@ -139,13 +139,13 @@ void printColoredString(char text[], char color[], int newLine);
  * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
  * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
  */
-void printColoredNumber(int number, char *color, int newLine);
+void printColoredNumber(int iNumber, char *pcColor, int iNewLine);
 
 /** Setzt die Farbe, in der ab sofort in die Konsole geschrieben werden soll
  * 1. Parameter: Farbe
  * 1. Parameter: Zeiger auf die Variable mit dem Wert für die Farbe
  */
-void setPrintingColor(char *color);
+void setPrintingColor(char *pcColor);
 
 /** Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
  * 1. Parameter: sichtbares Spielfeld

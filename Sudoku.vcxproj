@@ -154,13 +154,13 @@
     </ClCompile>
     <ClCompile Include="src\core\game.c" />
     <ClCompile Include="src\core\view.c" />
-    <ClCompile Include="src\services\connection.c" />
+    <ClCompile Include="src\services\psqlConnection.c" />
     <ClCompile Include="src\services\score_service.c" />
     <ClCompile Include="src\services\user_service.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="headers\services\connection.h" />
+    <ClInclude Include="headers\services\psqlConnection.h" />
     <ClInclude Include="headers\services\score_service.h" />
     <ClInclude Include="headers\services\user_service.h" />
     <ClInclude Include="libs\sqlite3.h" />

@@ -1,7 +1,10 @@
 /* Autoren: Karim Echchennouf, Mohammad Kadoura, Florian Kry, Jonathan Trute
  * Klasse: FA12
  * Dateiname: main.c
- * Datum:
+ * Datum: 24.06.19
+ * Beschreibung: Das ist das Hauptprogramm. Von hier aus wird der Mainloop ausgeführt,
+ * der das Spiel kontrolliert. Es wird überprüft, in welchem "Screen" sich der Nutzer
+ * gerade befindet und ob er Eingaben tätigt.
 */
 
 #include <stdio.h>
@@ -30,16 +33,13 @@
 #include "headers/getch.h"
 
 #elif __WIN32__
-#define HEIGHT 805
-#define WIDTH 370
+#define HEIGHT 825
+#define WIDTH 420
 #include <Windows.h>
 #include <conio.h>
 #endif
 
-int exitTheGame = 0;
-int windows = 0;
-
-sqlite3 *connection;
+int iWindows = 0;
 
 void resizeWindow()
 {
@@ -49,11 +49,15 @@ void resizeWindow()
 
 #ifdef __WIN32__
     HWND hwnd = FindWindow("ConsoleWindowClass", NULL);
-    MoveWindow(hwnd, 550, 15, WIDTH, HEIGHT, TRUE);
+    MoveWindow(hwnd, 550, 5, WIDTH, HEIGHT, TRUE);
     setvbuf(stdout, NULL, _IOFBF, 10000);
+    iWindows = 1;
 #endif
 }
 
+sqlite3 *psqlConnection;
+
+int iExitTheGame = 0;
 int iGameData[9][9];
 int iDeletedCells[9][9];
 int iUserCells[9][9];
@@ -61,27 +65,28 @@ int iDifficulty;
 int iIsGameActive;
 int isSolvedAutomatic;
 int iCurrentPosition;
-char username[8] = {0};
+char cUsername[8] = {0};
+
+/* Speicher am Ende freigeben. */
+int *piBestScore = 0;
+
+int iRemaining = 0;
+int iMarks[9][9][MAX_MARKS];
+int iAnzahlDerTipps = 0;
+int iAnzahlDerHilfe = 0;
+int iErlaubteAnzahlDerTipps = 0;
+int iErlaubteAnzahlDerHilfe = 0;
 
 void renderGame(struct sScore *scores);
 
 void handleInput();
 
-// Speicher am Ende freigeben.
-int *bestScore = 0;
-
-int remaining = 0;
-int iMarks[9][9][MAX_MARKS];
-
-int anzahlDerTipps = 0;
-int anzahlDerHilfe = 0;
-
-int erlaubteAnzahlDerTipps = 0;
-int erlaubteAnzahlDerHilfe = 0;
-
 void initDb()
+/* Baut Verbindung zur Datenbank auf und erstellt bei Bedarf
+ * eine neue Datenbank mit entsprechenden Tabellen.
+ */
 {
-    int rc = sqlite3_open("./sudoku.db", &connection);
+    int rc = sqlite3_open("./sudoku.db", &psqlConnection);
 
     if (rc != SQLITE_OK)
     {
@@ -92,12 +97,18 @@ void initDb()
 }
 
 int main()
+/* Hauptfunktion. "Grundfunktionalitäten" werden bereitgestellt.
+ * Hierzu zählen das Setzen der Fenstergröße, das Initialisieren der
+ * Farben, die Herstellung einer Verbindung zur Datenbank ( + eventuelles
+ * Erstellen dieser) und das Starten des Hauptspielzykluses.
+ */
 {
     initDb();
     resizeWindow();
     initColors();
 
     fflush(stdout);
+
     srand(time(NULL));
 
     struct sScore *scores;
@@ -109,98 +120,126 @@ int main()
 
     /** Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
      * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
-     * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
-     * Funktionen ausführt.
      * Funktionen ausführt.
      * 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
      * (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
      */
-
-    while (!exitTheGame)
+    while (!iExitTheGame)
     {
         clear_output();
         renderGame(scores);
         fflush(stdout);
         resetArray(cGameMessage, 200);
-        handleInput();
-        checkGameState();
+        if (iCurrentPosition == IN_GAME && iWindows == 1)
+        {
+            int iEnde = 0;
+            time_t now, notNow;
+            now = time(NULL);
+
+            while ((time(&notNow) - now) == 0 && !iEnde)
+            {
+                if (kbhit())
+                {
+                    handleInput();
+                    checkGameState();
+                    iEnde = 1;
+                }
+                Sleep(1);
+            }
+        }
+        else
+        {
+            handleInput();
+            checkGameState();
+        }
     }
 
-    sqlite3_close(connection);
+    sqlite3_close(psqlConnection);
+
     free(scores);
-    free(bestScore);
+    free(piBestScore);
+
     printf("Das Programm ist beendet\n");
+
     return 0;
 }
 
 void renderGame(struct sScore *scores)
+/* Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
+* welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
+* Funktionen ausführt.
+* 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
+* (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
+*/
 {
     switch (iCurrentPosition)
     {
-    case SET_PASSWORD:
-        renderSetPassword();
-        break;
-    case ENTER_PASSWORD:
-        renderEnterPassword();
-        break;
-    case MENU:
-        renderMenu();
-        break;
-    case USER_NAME:
-        renderUsernameDialog(username);
-        break;
-    case IN_GAME:
-        if (iIsGameActive == 0)
-        {
-            resetGameData(iGameData);
-            resetGameData(iDeletedCells);
-            resetGameData(iUserCells);
-            generateGameData(iGameData);
-            deleteCells(iGameData, iDifficulty);
-            resetArray(iMarks[iX_coordinate][iY_coordinate], MAX_MARKS);
-            iIsGameActive = 1;
-            timer(TIMER_START);
-            isSolvedAutomatic = 0;
-        }
-        bestScore = malloc(sizeof(int));
-        *bestScore = 0;
-        getBestScore(bestScore, iDifficulty);
-        remaining = getRemainingCells(iGameData);
-        renderInfoBox(username, bestScore, iDifficulty, remaining);
-        renderNotesBox(iX_coordinate, iY_coordinate);
-        renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
-        printGameMessage();
-        renderGameMenu();
-        sprintf(cGameMessage, "%s", "");
-        break;
-    case SET_MARK:
-        remaining = getRemainingCells(iGameData);
-        renderInfoBox(username, bestScore, iDifficulty, remaining);
-        renderMarkModeMessage();
-        renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
-        renderGameMenu();
-        sprintf(cGameMessage, "%s", "");
-        break;
-    case DIFFICULTY_DIALOG:
-        renderDifficultyDialog();
-        break;
-    case DETAILS_DIALOG:
-        renderDBestScoreDialog();
-        break;
-    case DETAILS:
-        renderDetails(scores, iDifficulty);
-        break;
-    case HELP:
-        renderHelpDialog();
-        break;
-    case SOLVED_GAME:
-        renderSolvedGame(isSolvedAutomatic, anzahlDerTipps, anzahlDerHilfe);
-        renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
-        break;
+        case SET_PASSWORD:
+            renderSetPassword();
+            break;
+        case ENTER_PASSWORD:
+            renderEnterPassword();
+            break;
+        case MENU:
+            renderMenu();
+            break;
+        case USER_NAME:
+            renderUsernameDialog(cUsername);
+            break;
+        case IN_GAME:
+            if (iIsGameActive == 0)
+            {
+                resetGameData(iGameData);
+                resetGameData(iDeletedCells);
+                resetGameData(iUserCells);
+                generateGameData(iGameData);
+                deleteCells(iGameData, iDifficulty);
+                resetArray(iMarks[iX_coordinate][iY_coordinate], MAX_MARKS);
+                iIsGameActive = 1;
+                timer(TIMER_START);
+                isSolvedAutomatic = 0;
+            }
+            piBestScore = malloc(sizeof(int));
+            *piBestScore = 0;
+            getBestScore(piBestScore, iDifficulty);
+            iRemaining = getRemainingCells(iGameData);
+            renderInfoBox(cUsername, piBestScore, iDifficulty, iRemaining);
+            renderNotesBox(iX_coordinate, iY_coordinate);
+            renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
+            printGameMessage();
+            renderGameMenu();
+            sprintf(cGameMessage, "%s", "");
+            break;
+        case SET_MARK:
+            iRemaining = getRemainingCells(iGameData);
+            renderInfoBox(cUsername, piBestScore, iDifficulty, iRemaining);
+            renderMarkModeMessage();
+            renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
+            renderGameMenu();
+            sprintf(cGameMessage, "%s", "");
+            break;
+        case DIFFICULTY_DIALOG:
+            renderDifficultyDialog();
+            break;
+        case DETAILS_DIALOG:
+            renderDBestScoreDialog();
+            break;
+        case DETAILS:
+            renderDetails(scores, iDifficulty);
+            break;
+        case HELP:
+            renderHelpDialog();
+            break;
+        case SOLVED_GAME:
+            renderSolvedGame(isSolvedAutomatic, iAnzahlDerTipps, iAnzahlDerHilfe);
+            renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
+            break;
     }
 }
 
 void handleInput()
+/* Ruft die nötigen Funktionen für die Verarbeitung der Nutzereingabe auf.
+ */
 {
     if (iCurrentPosition == USER_NAME)
     {
@@ -220,7 +259,7 @@ void handleInput()
 
         if ((userInput = getch()) == 224)
         {
-            navigateTo(getch()); // windows Navigation Tasten
+            navigateTo(getch()); // iWindows Navigation Tasten
         }
         else
         {

@@ -76,9 +76,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af149c82cca14bfe0fe1543362d1af5d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#af149c82cca14bfe0fe1543362d1af5d0">registerUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[], char password[], int *newUserId)</td></tr>
+<tr class="memitem:af149c82cca14bfe0fe1543362d1af5d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#af149c82cca14bfe0fe1543362d1af5d0">registerUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">cUsername</a>[], char password[], int *newUserId)</td></tr>
 <tr class="separator:af149c82cca14bfe0fe1543362d1af5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64b1cab6db949b8b663dce996da7d211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a64b1cab6db949b8b663dce996da7d211">loginUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[], char password[], int *id)</td></tr>
+<tr class="memitem:a64b1cab6db949b8b663dce996da7d211"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a64b1cab6db949b8b663dce996da7d211">loginUser</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">cUsername</a>[], char password[], int *id)</td></tr>
 <tr class="separator:a64b1cab6db949b8b663dce996da7d211"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7f9ae4eb4fb46f6282f7a7ec3231e76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#ad7f9ae4eb4fb46f6282f7a7ec3231e76">createUserTable</a> ()</td></tr>
 <tr class="separator:ad7f9ae4eb4fb46f6282f7a7ec3231e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -86,7 +86,7 @@ Functions</h2></td></tr>
 <tr class="separator:a8b55604795f8a341c2da9bdaa2790f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab228de1589563c63b624a1db58f1cc73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#ab228de1589563c63b624a1db58f1cc73">getUserIdCallback</a> (void *userID, int argc, char **argv, char **azColName)</td></tr>
 <tr class="separator:ab228de1589563c63b624a1db58f1cc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f67288bbdbf4366e83e5998e86bd49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a2f67288bbdbf4366e83e5998e86bd49b">getUserID</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">username</a>[8], int *userID)</td></tr>
+<tr class="memitem:a2f67288bbdbf4366e83e5998e86bd49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__service_8h.html#a2f67288bbdbf4366e83e5998e86bd49b">getUserID</a> (char <a class="el" href="game_8h.html#a77db05ea214ffd8085ef1d065654c8e0">cUsername</a>[8], int *userID)</td></tr>
 <tr class="separator:a2f67288bbdbf4366e83e5998e86bd49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -135,7 +135,7 @@ Functions</h2></td></tr>
           <td class="memname">void getUserID </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[8], </td>
+          <td class="paramname"><em>cUsername</em>[8], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -207,7 +207,7 @@ Functions</h2></td></tr>
           <td class="memname">void loginUser </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[], </td>
+          <td class="paramname"><em>cUsername</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -246,7 +246,7 @@ Functions</h2></td></tr>
           <td class="memname">int registerUser </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>username</em>[], </td>
+          <td class="paramname"><em>cUsername</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

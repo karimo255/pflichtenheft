@@ -104,7 +104,7 @@ void handleUserNameInput()
     { // no enter
         if (ch == 27)
         { // escape
-            strcpy(username, "anonym");
+            strcpy(cUsername, "anonym");
             iCurrentPosition = DIFFICULTY_DIALOG;
         }
         else if (ch == 127 || ch == 8)
@@ -114,28 +114,28 @@ void handleUserNameInput()
             {
                 b = 0;
             }
-            username[b] = 0;
+            cUsername[b] = 0;
         }
         else if (b < 8)
         {
-            username[b] = ch;
+            cUsername[b] = ch;
             b++;
         }
     }
-    else if (strlen(username) > 0)
+    else if (strlen(cUsername) > 0)
     { // enter
-        username[b] = '\0';
+        cUsername[b] = '\0';
 
         b = 0;
-        if (username[0] == 0)
+        if (cUsername[0] == 0)
         {
-            strcpy(username, "anonym");
+            strcpy(cUsername, "anonym");
         }
         else
         {
             userID = malloc(sizeof(int));
             *userID = 0;
-            getUserID(username, userID);
+            getUserID(cUsername, userID);
             char test[200] = {0};
             sprintf(test, "userID: %d", *userID);
             strcpy(cGameMessage, test);
@@ -177,7 +177,7 @@ void handleSetPasswordInput()
     }
     else
     { // enter
-        registerUser(username, password, userID);
+        registerUser(cUsername, password, userID);
         clear_output();
         fflush(stdout);
         iCurrentPosition = DIFFICULTY_DIALOG;
@@ -210,7 +210,7 @@ void handleEnterPasswordInput()
         isUserLoggedIn = malloc(sizeof(int));
         *isUserLoggedIn = 0;
 
-        loginUser(username, password, isUserLoggedIn);
+        loginUser(cUsername, password, isUserLoggedIn);
         if (*isUserLoggedIn > 0)
         {
             iCurrentPosition = DIFFICULTY_DIALOG;
@@ -262,7 +262,7 @@ void handleMenuInput(int userInput)
             {
                 break;
             }
-            b = strlen(username);
+            b = strlen(cUsername);
             iCurrentPosition = USER_NAME;
             break;
 
@@ -284,7 +284,7 @@ void handleMenuInput(int userInput)
             break;
 
         case 'q':
-            exitTheGame = 1;
+            iExitTheGame = 1;
             break;
         }
     }
@@ -306,12 +306,12 @@ void handleInGameInput(int userInput)
         case 'h':
             if (iDeletedCells[iX_coordinate][iY_coordinate] > 0)
             {
-                if (anzahlDerHilfe == erlaubteAnzahlDerHilfe)
+                if (iAnzahlDerHilfe == iErlaubteAnzahlDerHilfe)
                 {
                     strcpy(cGameMessage, "Anzahl der Hilfen verbraucht.");
                     break;
                 }
-                anzahlDerHilfe++;
+                iAnzahlDerHilfe++;
                 solveCell(iGameData, iX_coordinate, iY_coordinate);
                 timer(HELP_USED);
             }
@@ -323,12 +323,12 @@ void handleInGameInput(int userInput)
         case 't':
             if (iDeletedCells[iX_coordinate][iY_coordinate] > 0)
             {
-                if (anzahlDerTipps == erlaubteAnzahlDerTipps)
+                if (iAnzahlDerTipps == iErlaubteAnzahlDerTipps)
                 {
                     strcpy(cGameMessage, "Anzahl der Tipps verbraucht.");
                     break;
                 }
-                anzahlDerTipps++;
+                iAnzahlDerTipps++;
                 fillNotesForCell(iX_coordinate, iY_coordinate);
                 timer(TIPP_USED);
             }
@@ -339,11 +339,11 @@ void handleInGameInput(int userInput)
 
             break;
         case 'q':
-            exitTheGame = 1;
+            iExitTheGame = 1;
         case 'a':
             resetGameData(iGameData);
             iIsGameActive = 0;
-            resetArray(username, 8);
+            resetArray(cUsername, 8);
             timer(RESET_TIMER);
 
         case 'p':
@@ -357,6 +357,7 @@ void handleInGameInput(int userInput)
         case 's':
             solveAll(iGameData, iDeletedCells);
             isSolvedAutomatic = 1;
+            iCurrentPosition = SOLVED_GAME;
             break;
         case 'm':
             if (iGameData[iX_coordinate][iY_coordinate] == 0)
@@ -382,7 +383,7 @@ void handleSolvedGameInput(int userInput)
             iCurrentPosition = MENU;
             break;
         case 'q':
-            exitTheGame = 1;
+            iExitTheGame = 1;
             break;
         }
     }
@@ -408,7 +409,7 @@ void handleSetMarkInput(int userInput)
             iCurrentPosition = IN_GAME;
             break;
         case 'q':
-            exitTheGame = 1;
+            iExitTheGame = 1;
         }
     }
 }
@@ -474,21 +475,21 @@ void handleHelpInput(int userInput)
 
 void setConfig()
 {
-    anzahlDerTipps = 0;
-    anzahlDerHilfe = 0;
+    iAnzahlDerTipps = 0;
+    iAnzahlDerHilfe = 0;
     switch (iDifficulty)
     {
     case EASY:
-        erlaubteAnzahlDerHilfe = 5;
-        erlaubteAnzahlDerTipps = 8;
+        iErlaubteAnzahlDerHilfe = 5;
+        iErlaubteAnzahlDerTipps = 8;
         break;
     case MEDIUM:
-        erlaubteAnzahlDerHilfe = 4;
-        erlaubteAnzahlDerTipps = 6;
+        iErlaubteAnzahlDerHilfe = 4;
+        iErlaubteAnzahlDerTipps = 6;
         break;
     case HARD:
-        erlaubteAnzahlDerHilfe = 3;
-        erlaubteAnzahlDerTipps = 4;
+        iErlaubteAnzahlDerHilfe = 3;
+        iErlaubteAnzahlDerTipps = 4;
         break;
     }
 }
@@ -500,7 +501,7 @@ void checkGameState()
         int solveState = solveGame(iGameData);
         if (solveState == 1)
         {
-            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(username, "anonym") != 0)
+            if (*userID != 0 && isSolvedAutomatic == 0 && strcmp(cUsername, "anonym") != 0)
             {
                 int _score = timer(TIMER_STATE);
                 insertScore(userID, _score, iDifficulty);
