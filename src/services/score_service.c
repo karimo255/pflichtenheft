@@ -166,7 +166,7 @@ int getBestScore(int *piBestScore, int iDifficulty)
  * 2. Parameter: aktueller Schwierigkeitsgrad
  */
 {
-    sprintf(cSql, "SELECT time FROM `Score`  WHERE  difficulty=%d ORDER by time desc  LIMIT 1", iDifficulty);
+    sprintf(cSql, "SELECT time FROM `Score`  WHERE  difficulty=%d ORDER by time ASC  LIMIT 1", iDifficulty);
 
     fflush(stdout);
     clear_output();

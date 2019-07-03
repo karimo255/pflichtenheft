@@ -70,6 +70,8 @@ int iErlaubteAnzahlDerHilfe = 0;
 int iErlaubteAnzahlDerTipps = 0;
 int remaining = 0;
 
+struct sScore *scores;
+
 void renderGame(struct sScore *scores);
 void handleInput();
 
@@ -111,10 +113,7 @@ int main()
 
     srand(time(NULL));
 
-    struct sScore *scores;
-    scores = malloc(sizeof(struct sScore));
-    scores->next = NULL;
-    getScores(scores);
+
     iCurrentPosition = MENU;
     iDifficulty = EASY;
 
@@ -128,6 +127,9 @@ int main()
      */
     while (!iExitTheGame)
     {
+        scores = malloc(sizeof(struct sScore));
+        scores->next = NULL;
+        getScores(scores);
         clear_output();
         renderGame(scores);
         fflush(stdout);
@@ -176,7 +178,9 @@ void renderGame(struct sScore *scores)
                 resetGameData(iDeletedCells);
                 resetGameData(iUserCells);
                 generateGameData(iGameData);
-                deleteCells(iGameData, iDifficulty);
+              //  deleteCells(iGameData, iDifficulty);
+              iDeletedCells[0][0] = iGameData[0][0];
+              iGameData[0][0] = 0;
                 resetArray(iMarks[iX_coordinate][iY_coordinate], MAX_MARKS);
                 iIsGameActive = 1;
                 timer(TIMER_START);
