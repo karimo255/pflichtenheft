@@ -10,4 +10,5 @@
 
 #include "../../libs/sqlite3.h"
 
+/// Verbindung zur Datenbank
 extern sqlite3 *psqlConnection;

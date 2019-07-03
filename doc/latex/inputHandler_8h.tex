@@ -37,43 +37,58 @@ void \hyperlink{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}{set\+Config} 
 \subsubsection{\texorpdfstring{handle\+Details\+Dialog\+Input()}{handleDetailsDialogInput()}}
 {\footnotesize\ttfamily void handle\+Details\+Dialog\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a4ec9ac5e6961f968dd5d2b27d04ea2b3}\label{inputHandler_8h_a4ec9ac5e6961f968dd5d2b27d04ea2b3}} 
+Wenn der Spieler eine Eingabe im Dialog, in dem er den Schwierigkeitsgrad für die Bestenliste auswählen soll, tätigt, wird diese Funktion aufgerufen und seine Eingabe wird verarbeitet.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_a4ec9ac5e6961f968dd5d2b27d04ea2b3}\label{inputHandler_8h_a4ec9ac5e6961f968dd5d2b27d04ea2b3}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Details\+Input@{handle\+Details\+Input}}
 \index{handle\+Details\+Input@{handle\+Details\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Details\+Input()}{handleDetailsInput()}}
 {\footnotesize\ttfamily void handle\+Details\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a087607f5612e734aeac54a34c471fe35}\label{inputHandler_8h_a087607f5612e734aeac54a34c471fe35}} 
+Wird aufgerufen, sobald der Nutzer versucht etwas einzugeben, während er sich in der Bestenliste befindet. \char`\"{}z\char`\"{} bringt den Spieler zurück zum Menü.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_a087607f5612e734aeac54a34c471fe35}\label{inputHandler_8h_a087607f5612e734aeac54a34c471fe35}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Difficulty\+Dialog\+Input@{handle\+Difficulty\+Dialog\+Input}}
 \index{handle\+Difficulty\+Dialog\+Input@{handle\+Difficulty\+Dialog\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Difficulty\+Dialog\+Input()}{handleDifficultyDialogInput()}}
 {\footnotesize\ttfamily void handle\+Difficulty\+Dialog\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_aa13458d891fe78321cec1a75a1e2a22b}\label{inputHandler_8h_aa13458d891fe78321cec1a75a1e2a22b}} 
+Wird aufgerufen, wenn sich ein bereits registrierter Nutzer anmelden möchte. Dieser kann nun sein Passwort eingeben. Das eingegebene Passwort wird dem in der Datenbank hinterlegtem Passwort verglichen und auf Übereinstimmung geprüft. Es werden einzelne Buchstaben eingelesen, um den Dialog dynamisch zu gestalten und das nutzen der Löschen-\/\+Taste zu ermöglichen, um einzelne Buchstaben löschen zu können. So wird ein möglichst nutzerfreundliches Erlebnis garantiert. \mbox{\Hypertarget{inputHandler_8h_aa13458d891fe78321cec1a75a1e2a22b}\label{inputHandler_8h_aa13458d891fe78321cec1a75a1e2a22b}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Enter\+Password\+Input@{handle\+Enter\+Password\+Input}}
 \index{handle\+Enter\+Password\+Input@{handle\+Enter\+Password\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Enter\+Password\+Input()}{handleEnterPasswordInput()}}
 {\footnotesize\ttfamily void handle\+Enter\+Password\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a2abec912160a51d5f50566e11b4f5450}\label{inputHandler_8h_a2abec912160a51d5f50566e11b4f5450}} 
+Wird aufgerufen, wenn sich ein bereits registrierter Nutzer anmelden möchte. Dieser kann nun sein Passwort eingeben. Das eingegebene Passwort wird dem in der Datenbank hinterlegtem Passwort verglichen und auf Übereinstimmung geprüft. Es werden einzelne Buchstaben eingelesen, um den Dialog dynamisch zu gestalten und das nutzen der Löschen-\/\+Taste zu ermöglichen, um einzelne Buchstaben löschen zu können. So wird ein möglichst nutzerfreundliches Erlebnis garantiert. \mbox{\Hypertarget{inputHandler_8h_a2abec912160a51d5f50566e11b4f5450}\label{inputHandler_8h_a2abec912160a51d5f50566e11b4f5450}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Help\+Input@{handle\+Help\+Input}}
 \index{handle\+Help\+Input@{handle\+Help\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Help\+Input()}{handleHelpInput()}}
 {\footnotesize\ttfamily void handle\+Help\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_ae178d6db772be8f58b5a0b4dea1fa801}\label{inputHandler_8h_ae178d6db772be8f58b5a0b4dea1fa801}} 
+Wird aufgerufen, sobald der Nutzer versucht etwas einzugeben, während er sich in den Spielregeln befindet. \char`\"{}z\char`\"{} bringt den Spieler zurück zum Menü oder zum laufenden Spiel; ausgehend davon, ob es noch ein ungelöstes Sudokufeld gibt.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_ae178d6db772be8f58b5a0b4dea1fa801}\label{inputHandler_8h_ae178d6db772be8f58b5a0b4dea1fa801}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+In\+Game\+Input@{handle\+In\+Game\+Input}}
 \index{handle\+In\+Game\+Input@{handle\+In\+Game\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+In\+Game\+Input()}{handleInGameInput()}}
 {\footnotesize\ttfamily void handle\+In\+Game\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a0ddb24f55f0db6ad9816ce71a6834f89}\label{inputHandler_8h_a0ddb24f55f0db6ad9816ce71a6834f89}} 
+Wird aufgerufen, wenn der Nutzer eine Eingabe tätigt, wenn er sich gerade im laufenden Spiel befindet. Ruft nötige Funktionen auf, um die Eingabe des Nutzers der Legende entsprechend zu verarbeiten.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_a0ddb24f55f0db6ad9816ce71a6834f89}\label{inputHandler_8h_a0ddb24f55f0db6ad9816ce71a6834f89}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Menu\+Input@{handle\+Menu\+Input}}
 \index{handle\+Menu\+Input@{handle\+Menu\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Menu\+Input()}{handleMenuInput()}}
 {\footnotesize\ttfamily void handle\+Menu\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a7c1bdb67f1d0d8433e89c13b5d9f9ae9}\label{inputHandler_8h_a7c1bdb67f1d0d8433e89c13b5d9f9ae9}} 
+Wird aufgerufen, wenn der Spieler eine Eingabe im Hauptmenü tätigt. Verarbeiet die Eingabe des Nutzers und ruft die nötigen Funtkionen auf, um den Nutzer zu den nächsten \char`\"{}\+Screens\char`\"{} weiterzuleiten.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_a7c1bdb67f1d0d8433e89c13b5d9f9ae9}\label{inputHandler_8h_a7c1bdb67f1d0d8433e89c13b5d9f9ae9}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Set\+Mark\+Input@{handle\+Set\+Mark\+Input}}
 \index{handle\+Set\+Mark\+Input@{handle\+Set\+Mark\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Set\+Mark\+Input()}{handleSetMarkInput()}}
@@ -85,21 +100,28 @@ void \hyperlink{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}{set\+Config} 
 \subsubsection{\texorpdfstring{handle\+Set\+Password\+Input()}{handleSetPasswordInput()}}
 {\footnotesize\ttfamily void handle\+Set\+Password\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_a612173bda95297a06d9000a3f07af920}\label{inputHandler_8h_a612173bda95297a06d9000a3f07af920}} 
+Wird aufgerufen, wenn sich ein neuer Nutzer anmeldet und ein Passwort setzen möchte. Dieses wird nach einer Bestätigung durch das Drücken der Entertaste mit dem Nutzernamen und der User\+ID in der Datenbank hinterlegt (bzw. die Funktion, die dies erledigt wird aufgerufen). Es werden einzelne Buchstaben eingelesen, um den Dialog dynamisch zu gestalten und das nutzen der Löschen-\/\+Taste zu ermöglichen, um einzelne Buchstaben löschen zu können. So wird ein möglichst nutzerfreundliches Erlebnis garantiert. \mbox{\Hypertarget{inputHandler_8h_a612173bda95297a06d9000a3f07af920}\label{inputHandler_8h_a612173bda95297a06d9000a3f07af920}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+Solved\+Game\+Input@{handle\+Solved\+Game\+Input}}
 \index{handle\+Solved\+Game\+Input@{handle\+Solved\+Game\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+Solved\+Game\+Input()}{handleSolvedGameInput()}}
 {\footnotesize\ttfamily void handle\+Solved\+Game\+Input (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Input }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_ad8b879810916540736427f01d75ecf02}\label{inputHandler_8h_ad8b879810916540736427f01d75ecf02}} 
+Wird aufgerufen, wenn der Nutzer eine Eingabe im \char`\"{}\+Winscreen\char`\"{} tätigt. Eingabe wird sachgerecht behandelt.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{inputHandler_8h_ad8b879810916540736427f01d75ecf02}\label{inputHandler_8h_ad8b879810916540736427f01d75ecf02}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!handle\+User\+Name\+Input@{handle\+User\+Name\+Input}}
 \index{handle\+User\+Name\+Input@{handle\+User\+Name\+Input}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{handle\+User\+Name\+Input()}{handleUserNameInput()}}
 {\footnotesize\ttfamily void handle\+User\+Name\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}\label{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}} 
+Wird aufgerufen, wenn der Nutzer sich im Dialog befindet, in dem er seinen Namen angeben soll. Ermöglicht zudem das Überspringen dieses Schrittes. Der Spieler ist dann unter \char`\"{}anonym\char`\"{} angemeldet. Es werden einzelne Buchstaben eingelesen, um den Dialog dynamisch zu gestalten und das nutzen der Löschen-\/\+Taste zu ermöglichen, um einzelne Buchstaben löschen zu können. So wird ein möglichst nutzerfreundliches Erlebnis garantiert. \mbox{\Hypertarget{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}\label{inputHandler_8h_ae86dafa0e6d7fa16d51397d23b4720bb}} 
 \index{input\+Handler.\+h@{input\+Handler.\+h}!set\+Config@{set\+Config}}
 \index{set\+Config@{set\+Config}!input\+Handler.\+h@{input\+Handler.\+h}}
 \subsubsection{\texorpdfstring{set\+Config()}{setConfig()}}
 {\footnotesize\ttfamily void set\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Wird aufgerufen, sobald der Nutzer versucht etwas einzugeben, während er sich in den Spielregeln befindet. \char`\"{}z\char`\"{} bringt den Spieler zurück zum Menü oder zum laufenden Spiel; ausgehend davon, ob es noch ein ungelöstes Sudokufeld gibt.
+\begin{DoxyEnumerate}
+\item Parameter\+: Eingabe des Nutzers Setzt bzw. initialisiert die erlaubte Anzahl, wie oft der Spieler die Tipp-\/ und Hilfefunktion nutzen darf. Setzt ausßerdem die bereits genutzten Funktionen zurück. 
+\end{DoxyEnumerate}

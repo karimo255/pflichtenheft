@@ -15,6 +15,8 @@
 
 #endif //SUDOKU_VIEW_H
 
+/** Ausgabe des Hinweises auf den "Markieren-Modus"
+ */
 void renderMarkModeMessage();
 
 /** Gibt den Dialog, in dem der Spieler nach seinem Namen gefragt wird
@@ -59,10 +61,12 @@ void renderDBestScoreDialog();
  */
 void renderDetails(struct sScore *scores, int difficulty);
 
-/**
- * \brief Function to render the game grid
- *
- * It shows the game grid
+/** Gibt das "sichtbare" Spielfeld in der Konsole aus.
+ * 1. Parameter: sichtbares Spielfeld
+ * 2. Parameter: Array, in dem gespeichert ist, welche Zellen vom Nutzer befüllt werden
+ * müssen
+ * 3. Parameter: x-Koordinate, an der sich der Cursor des Spielers befindet
+ * 4. Parameter: y-Koordinate, an der sich der Cursor des Spielers befindet
  */
 void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_coordinate);
 
@@ -82,17 +86,16 @@ void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_c
  */
 void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
 
-/**
- * \brief Function to render the game menu
- *
- * It shows the game menu
+/** Gibt die Legende aus, die dem Spieler aufzeigt, welche Tasten er drücken kann, um
+ * mit dem Spiel zu interagieren.
  */
 void renderGameMenu();
 
-/**
- * \brief Function to render the dialog after solved game
- *
- * It shows the game menu
+/** Gibt den "Winscreen" in der Konsole aus, wenn das Sudoku vollständig gelöst wurde.
+ * 1. Parameter: Wurde das Spiel aufgelöst oder hat der Spieler es selbst gelöst
+ * (1 = es wurde aufglöst, 0 = Spieler hat es gelöst)
+ * 2. Parameter: Anzahl der benutzten Tipps
+ * 3. Parameter: Anzahl der benutzten Zelllösugen
  */
 void renderSolvedGame(int solvedAutomatic, int anzahlDerTipps, int anzahlDerHilfe);
 
@@ -120,13 +123,25 @@ int lenHelper(int input);
  */
 int getRemainingCells(int iArray[][9]);
 
+/** Gibt die Bestenliste (TOP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad
+* aus.
+* 1. Parameter: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+* 2. Parameter: ausgewählter Schwierigkeitsgrad
+*/
 void print_list(struct sScore *head, int iDifficulty);
 
 
 void initColors();
 
+/** Gibt die kontextbezogene Nachricht an den Spieler aus (z.B. "Passwort falsch")
+ */
 void printGameMessage();
 
+/** Dient zur formatierten Ausgabe eines vorgegeben Strings
+ * 1. Parameter: String, der gedruckt werden soll
+ * 2. Parameter: Farbe, in der der String gedruckt werden soll
+ * 3. Parameter: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+ */
 void printColoredString(char text[], char color[], int newLine);
 
 /** Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
@@ -179,6 +194,12 @@ void clear_output();
 /** Augabe - sofern vorhanden - der Notizen des Spielers (bzw. Tipps).*/
 void renderNotesBox(int x,int y);
 
+/** Gibt den Dialog aus, in dem ein neuer Spieler sein Passwort
+ * setzen kann.
+ */
 void renderSetPassword();
 
+/** Gibt den Dialog aus, in dem ein bereits registrierter Spieler
+ * sein Passwort eingeben kann.
+ */
 void renderEnterPassword();

@@ -12,4 +12,9 @@ cmake-build-debug/*
 sudoku.db-journal
 Sudoku.exe
 
+Debug
+
+
+.vscode
+
 

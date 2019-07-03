@@ -79,16 +79,18 @@ void handleInput();
 int *iBestScore = 0;
 
 int *piUserID;
+
 int *piIsUserLoggedIn;
+
 
 sqlite3 *psqlConnection;
 
 void initDb()
-/* Baut Verbindung zur Datenbank auf und erstellt bei Bedarf
+/** Baut Verbindung zur Datenbank auf und erstellt bei Bedarf
  * eine neue Datenbank mit entsprechenden Tabellen.
  */
 {
-    int rc = sqlite3_open("./sudoku.db", &psqlConnection);
+    int rc = sqlite3_open("./db/sudoku.db", &psqlConnection);
 
     if (rc != SQLITE_OK)
     {
@@ -99,7 +101,7 @@ void initDb()
 }
 
 int main()
-/* Hauptfunktion. "Grundfunktionalitäten" werden bereitgestellt.
+/** Hauptfunktion. "Grundfunktionalitäten" werden bereitgestellt.
  * Hierzu zählen das Setzen der Fenstergröße, das Initialisieren der
  * Farben, die Herstellung einer Verbindung zur Datenbank ( + eventuelles
  * Erstellen dieser) und das Starten des Hauptspielzykluses.
@@ -117,7 +119,7 @@ int main()
     iCurrentPosition = MENU;
     iDifficulty = EASY;
 
-    /* Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
+    /** Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
      * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
      * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
      * Funktionen ausführt.
@@ -150,7 +152,7 @@ int main()
 }
 
 void renderGame(struct sScore *scores)
-/* Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
+/** Hauptspielzyklus. Er hält das Spiel am laufen, indem er überpüft, in
 * welchem "Screen" sich der Spieler befindet und je nachdem die entsprechenden
 * Funktionen ausführt.
 * 1. Parameter: Zeiger auf die Struktur zum eintragen aller wichtigen Daten
@@ -178,9 +180,7 @@ void renderGame(struct sScore *scores)
                 resetGameData(iDeletedCells);
                 resetGameData(iUserCells);
                 generateGameData(iGameData);
-              //  deleteCells(iGameData, iDifficulty);
-              iDeletedCells[0][0] = iGameData[0][0];
-              iGameData[0][0] = 0;
+                deleteCells(iGameData, iDifficulty);
                 resetArray(iMarks[iX_coordinate][iY_coordinate], MAX_MARKS);
                 iIsGameActive = 1;
                 timer(TIMER_START);
@@ -225,7 +225,7 @@ void renderGame(struct sScore *scores)
 }
 
 void handleInput()
-/* Ruft die nötigen Funktionen für die Verarbeitung der Nutzereingabe auf.
+/** Ruft die nötigen Funktionen für die Verarbeitung der Nutzereingabe auf.
  */
 {
     if (iCurrentPosition == USER_NAME)

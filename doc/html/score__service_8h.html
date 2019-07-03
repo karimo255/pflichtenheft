@@ -88,17 +88,17 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac14bcef3d3c49224abdc4a4401f23c35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#ac14bcef3d3c49224abdc4a4401f23c35">insertScore</a> (int *userID, int <a class="el" href="score__service_8h.html#afbf9f2e3c24dbf9966e5b859416d0bf4">score</a>, int difficulty)</td></tr>
-<tr class="memdesc:ac14bcef3d3c49224abdc4a4401f23c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts score in the database.  <a href="#ac14bcef3d3c49224abdc4a4401f23c35">More...</a><br /></td></tr>
-<tr class="separator:ac14bcef3d3c49224abdc4a4401f23c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae36460b6c071281b10a892bf3eed58"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a5ae36460b6c071281b10a892bf3eed58">insertScore</a> (int *<a class="el" href="game_8h.html#ac175ea9a7175c73a1802fa87058da0d1">piUserID</a>, int iScore, int <a class="el" href="game_8h.html#ac2f91d4431416753676b0837dc182c82">iDifficulty</a>)</td></tr>
+<tr class="memdesc:a5ae36460b6c071281b10a892bf3eed58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts score in the database.  <a href="#a5ae36460b6c071281b10a892bf3eed58">More...</a><br /></td></tr>
+<tr class="separator:a5ae36460b6c071281b10a892bf3eed58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63ae95ce5a1c0b15c48c72e177ad57b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a63ae95ce5a1c0b15c48c72e177ad57b7">getScores</a> (struct <a class="el" href="structsScore.html">sScore</a> *scores)</td></tr>
 <tr class="separator:a63ae95ce5a1c0b15c48c72e177ad57b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50854f2511946640b8587f4a8f135bea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a50854f2511946640b8587f4a8f135bea">getBestScoreByUserID</a> (int userID)</td></tr>
 <tr class="separator:a50854f2511946640b8587f4a8f135bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f8d2221161b95a2f9c640392de914b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a05f8d2221161b95a2f9c640392de914b">bestScoreCallback</a> (void *bestScore, int argc, char **argv, char **azColName)</td></tr>
-<tr class="separator:a05f8d2221161b95a2f9c640392de914b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a984548eb9736aa3c6e0f72a51844dfcf">getBestScore</a> (int *bestScore, int difficulty)</td></tr>
-<tr class="separator:a984548eb9736aa3c6e0f72a51844dfcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024d1d93b84912b3106c9c0ad8445276"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a024d1d93b84912b3106c9c0ad8445276">bestScoreCallback</a> (void *pvBestScore, int iArgc, char **ppcArgv, char **ppcAzColName)</td></tr>
+<tr class="separator:a024d1d93b84912b3106c9c0ad8445276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12d51fcbb54e569f19053e56d6cd942f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="score__service_8h.html#a12d51fcbb54e569f19053e56d6cd942f">getBestScore</a> (int *piBestScore, int <a class="el" href="game_8h.html#ac2f91d4431416753676b0837dc182c82">iDifficulty</a>)</td></tr>
+<tr class="separator:a12d51fcbb54e569f19053e56d6cd942f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="afbf9f2e3c24dbf9966e5b859416d0bf4"></a>
@@ -116,8 +116,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a05f8d2221161b95a2f9c640392de914b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05f8d2221161b95a2f9c640392de914b">&#9670;&nbsp;</a></span>bestScoreCallback()</h2>
+<a id="a024d1d93b84912b3106c9c0ad8445276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a024d1d93b84912b3106c9c0ad8445276">&#9670;&nbsp;</a></span>bestScoreCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -126,25 +126,25 @@ Functions</h2></td></tr>
           <td class="memname">int bestScoreCallback </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>bestScore</em>, </td>
+          <td class="paramname"><em>pvBestScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
+          <td class="paramname"><em>iArgc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>argv</em>, </td>
+          <td class="paramname"><em>ppcArgv</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>azColName</em>&#160;</td>
+          <td class="paramname"><em>ppcAzColName</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -156,8 +156,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a984548eb9736aa3c6e0f72a51844dfcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a984548eb9736aa3c6e0f72a51844dfcf">&#9670;&nbsp;</a></span>getBestScore()</h2>
+<a id="a12d51fcbb54e569f19053e56d6cd942f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d51fcbb54e569f19053e56d6cd942f">&#9670;&nbsp;</a></span>getBestScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,13 +166,13 @@ Functions</h2></td></tr>
           <td class="memname">int getBestScore </td>
           <td>(</td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>bestScore</em>, </td>
+          <td class="paramname"><em>piBestScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>difficulty</em>&#160;</td>
+          <td class="paramname"><em>iDifficulty</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -230,8 +230,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac14bcef3d3c49224abdc4a4401f23c35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac14bcef3d3c49224abdc4a4401f23c35">&#9670;&nbsp;</a></span>insertScore()</h2>
+<a id="a5ae36460b6c071281b10a892bf3eed58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ae36460b6c071281b10a892bf3eed58">&#9670;&nbsp;</a></span>insertScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,19 +240,19 @@ Functions</h2></td></tr>
           <td class="memname">int insertScore </td>
           <td>(</td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>userID</em>, </td>
+          <td class="paramname"><em>piUserID</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>score</em>, </td>
+          <td class="paramname"><em>iScore</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>difficulty</em>&#160;</td>
+          <td class="paramname"><em>iDifficulty</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -266,9 +266,9 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">username[]</td><td></td></tr>
-    <tr><td class="paramname">score</td><td></td></tr>
+    <tr><td class="paramname">iScore</td><td></td></tr>
     <tr><td class="paramname">_time</td><td></td></tr>
-    <tr><td class="paramname">difficulty</td><td></td></tr>
+    <tr><td class="paramname">iDifficulty</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -279,7 +279,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 2 2019 01:17:47 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 3 2019 14:47:55 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

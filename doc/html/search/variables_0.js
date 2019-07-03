@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['anzahlderhilfe',['anzahlDerHilfe',['../game_8h.html#a0748f7a4a9faacbc57901b616e827186',1,'game.h']]],
-  ['anzahldertipps',['anzahlDerTipps',['../game_8h.html#a4b31e6ec1f5aff9e1e04dc93f9b947d4',1,'game.h']]]
+  ['cgamemessage',['cGameMessage',['../game_8h.html#a6584d70bac774360df7abdb36e45b18f',1,'game.h']]],
+  ['cuusername',['cUusername',['../game_8h.html#a110c6b1e611af235f800234db4e4f4de',1,'game.h']]]
 ];

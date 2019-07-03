@@ -7,7 +7,7 @@ var searchData=
   ['setconfig',['setConfig',['../inputHandler_8h.html#ae86dafa0e6d7fa16d51397d23b4720bb',1,'inputHandler.h']]],
   ['setprintingcolor',['setPrintingColor',['../view_8h.html#a429a75ab154b549418db53976709933f',1,'view.h']]],
   ['shared_2eh',['shared.h',['../shared_8h.html',1,'']]],
-  ['solveall',['solveAll',['../game_8h.html#a492a807d53c38f7a587f5031f2b40839',1,'game.h']]],
+  ['solveall',['solveAll',['../game_8h.html#af2580a235b29b36e50115c9484daa747',1,'game.h']]],
   ['solvecell',['solveCell',['../game_8h.html#a6117d5344e3a3ebe2611da4b88a0f13d',1,'game.h']]],
   ['solved_5fgame',['SOLVED_GAME',['../shared_8h.html#a6f846a4971a81f40033539a021c34cf9a1e00a173b2be06f8d82411dc334be910',1,'shared.h']]],
   ['solvegame',['solveGame',['../game_8h.html#ab05f7c2782449793f37837bf291d6983',1,'game.h']]],

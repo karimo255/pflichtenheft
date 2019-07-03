@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['erlaubteanzahlderhilfe',['erlaubteAnzahlDerHilfe',['../game_8h.html#a5ca2d2e3dde8cb8e4d2c79e276f6c487',1,'game.h']]],
-  ['erlaubteanzahldertipps',['erlaubteAnzahlDerTipps',['../game_8h.html#a5522e7b836cc4cb5c2664712b344ef7d',1,'game.h']]],
-  ['exitthegame',['exitTheGame',['../game_8h.html#adef7771c03a2349e18a18c6ca58257e1',1,'game.h']]]
+  ['name',['name',['../structsScore.html#ad6c94e9942b0838c3b8c3ce5795a6528',1,'sScore']]],
+  ['next',['next',['../structsScore.html#a0749a4e6f784bc84f1beb249b61fee2c',1,'sScore']]]
 ];

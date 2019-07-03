@@ -1,0 +1,384 @@
+\begin{theindex}
+
+  \item {A\+C\+T\+I\+O\+NS}
+    \subitem {shared.\+h}, \hyperpage{32}
+  \item {A\+R\+R\+O\+WS}
+    \subitem {shared.\+h}, \hyperpage{33}
+
+  \indexspace
+
+  \item {best\+Score\+Callback}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{29}
+
+  \indexspace
+
+  \item {c\+Game\+Message}
+    \subitem {game.\+h}, \hyperpage{13}
+  \item {c\+Uusername}
+    \subitem {game.\+h}, \hyperpage{13}
+  \item {cbreak}
+    \subitem {getch.\+h}, \hyperpage{27}
+  \item {check\+Game\+State}
+    \subitem {game.\+h}, \hyperpage{8}
+  \item {clear\+\_\+output}
+    \subitem {view.\+h}, \hyperpage{20}
+  \item {connection.\+h}
+    \subitem {psql\+Connection}, \hyperpage{28}
+  \item {create\+Score\+Table}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{30}
+  \item {create\+User\+Table}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{31}
+
+  \indexspace
+
+  \item {D\+I\+F\+F\+I\+C\+U\+L\+TY}
+    \subitem {shared.\+h}, \hyperpage{33}
+  \item {delete\+Cells}
+    \subitem {game.\+h}, \hyperpage{8}
+  \item {difficulty}
+    \subitem {s\+Score}, \hyperpage{5}
+
+  \indexspace
+
+  \item {fill\+Notes\+For\+Cell}
+    \subitem {game.\+h}, \hyperpage{9}
+
+  \indexspace
+
+  \item {G\+R\+I\+D\+\_\+\+S\+T\+A\+T\+US}
+    \subitem {shared.\+h}, \hyperpage{33}
+  \item {game.\+h}
+    \subitem {c\+Game\+Message}, \hyperpage{13}
+    \subitem {c\+Uusername}, \hyperpage{13}
+    \subitem {check\+Game\+State}, \hyperpage{8}
+    \subitem {delete\+Cells}, \hyperpage{8}
+    \subitem {fill\+Notes\+For\+Cell}, \hyperpage{9}
+    \subitem {generate\+Game\+Data}, \hyperpage{9}
+    \subitem {generate\+Number\+By\+Interval}, \hyperpage{9}
+    \subitem {generate\+Random\+Number}, \hyperpage{9}
+    \subitem {get\+Game\+Status}, \hyperpage{10}
+    \subitem {get\+Grid\+Status}, \hyperpage{10}
+    \subitem {i\+Anzahl\+Der\+Hilfe}, \hyperpage{14}
+    \subitem {i\+Anzahl\+Der\+Tipps}, \hyperpage{14}
+    \subitem {i\+Current\+Position}, \hyperpage{14}
+    \subitem {i\+Deleted\+Cells}, \hyperpage{14}
+    \subitem {i\+Difficulty}, \hyperpage{14}
+    \subitem {i\+Erlaubte\+Anzahl\+Der\+Hilfe}, \hyperpage{14}
+    \subitem {i\+Erlaubte\+Anzahl\+Der\+Tipps}, \hyperpage{14}
+    \subitem {i\+Exit\+The\+Game}, \hyperpage{15}
+    \subitem {i\+Game\+Data}, \hyperpage{15}
+    \subitem {i\+Is\+Game\+Active}, \hyperpage{15}
+    \subitem {i\+Marks}, \hyperpage{15}
+    \subitem {i\+User\+Cells}, \hyperpage{15}
+    \subitem {i\+X\+\_\+coordinate}, \hyperpage{15}
+    \subitem {i\+Y\+\_\+coordinate}, \hyperpage{16}
+    \subitem {is\+Element\+In\+Array}, \hyperpage{10}
+    \subitem {is\+Element\+In\+Box}, \hyperpage{10}
+    \subitem {is\+Solved\+Automatic}, \hyperpage{15}
+    \subitem {make\+Note}, \hyperpage{11}
+    \subitem {navigate\+To}, \hyperpage{11}
+    \subitem {pi\+Is\+User\+Logged\+In}, \hyperpage{16}
+    \subitem {pi\+User\+ID}, \hyperpage{16}
+    \subitem {reset\+Array}, \hyperpage{11}
+    \subitem {reset\+Game\+Data}, \hyperpage{12}
+    \subitem {solve\+All}, \hyperpage{12}
+    \subitem {solve\+Cell}, \hyperpage{12}
+    \subitem {solve\+Game}, \hyperpage{12}
+    \subitem {time\+To\+String}, \hyperpage{13}
+    \subitem {timer}, \hyperpage{13}
+  \item {generate\+Game\+Data}
+    \subitem {game.\+h}, \hyperpage{9}
+  \item {generate\+Number\+By\+Interval}
+    \subitem {game.\+h}, \hyperpage{9}
+  \item {generate\+Random\+Number}
+    \subitem {game.\+h}, \hyperpage{9}
+  \item {get\+Best\+Score}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{29}
+  \item {get\+Best\+Score\+By\+User\+ID}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{29}
+  \item {get\+Game\+Status}
+    \subitem {game.\+h}, \hyperpage{10}
+  \item {get\+Grid\+Status}
+    \subitem {game.\+h}, \hyperpage{10}
+  \item {get\+Remaining\+Cells}
+    \subitem {view.\+h}, \hyperpage{20}
+  \item {get\+Scores}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{29}
+  \item {get\+User\+ID}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{31}
+  \item {get\+User\+Id\+Callback}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{31}
+  \item {getch}
+    \subitem {getch.\+h}, \hyperpage{27}
+  \item {getch.\+h}
+    \subitem {cbreak}, \hyperpage{27}
+    \subitem {getch}, \hyperpage{27}
+
+  \indexspace
+
+  \item {handle\+Details\+Dialog\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{17}
+  \item {handle\+Details\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{17}
+  \item {handle\+Difficulty\+Dialog\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{17}
+  \item {handle\+Enter\+Password\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{17}
+  \item {handle\+Help\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{17}
+  \item {handle\+In\+Game\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{18}
+  \item {handle\+Menu\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{18}
+  \item {handle\+Set\+Mark\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{18}
+  \item {handle\+Set\+Password\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{18}
+  \item {handle\+Solved\+Game\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{19}
+  \item {handle\+User\+Name\+Input}
+    \subitem {input\+Handler.\+h}, \hyperpage{19}
+  \item {headers/core/game.\+h}, \hyperpage{7}
+  \item {headers/core/input\+Handler.\+h}, \hyperpage{16}
+  \item {headers/core/view.\+h}, \hyperpage{19}
+  \item {headers/getch.\+h}, \hyperpage{27}
+  \item {headers/services/connection.\+h}, \hyperpage{28}
+  \item {headers/services/score\+\_\+service.\+h}, \hyperpage{28}
+  \item {headers/services/user\+\_\+service.\+h}, \hyperpage{30}
+  \item {headers/shared/shared.\+h}, \hyperpage{32}
+
+  \indexspace
+
+  \item {i\+Anzahl\+Der\+Hilfe}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Anzahl\+Der\+Tipps}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Current\+Position}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Deleted\+Cells}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Difficulty}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Erlaubte\+Anzahl\+Der\+Hilfe}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Erlaubte\+Anzahl\+Der\+Tipps}
+    \subitem {game.\+h}, \hyperpage{14}
+  \item {i\+Exit\+The\+Game}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+Game\+Data}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+Is\+Game\+Active}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+Marks}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+User\+Cells}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+X\+\_\+coordinate}
+    \subitem {game.\+h}, \hyperpage{15}
+  \item {i\+Y\+\_\+coordinate}
+    \subitem {game.\+h}, \hyperpage{16}
+  \item {init\+Colors}
+    \subitem {view.\+h}, \hyperpage{20}
+  \item {input\+Handler.\+h}
+    \subitem {handle\+Details\+Dialog\+Input}, \hyperpage{17}
+    \subitem {handle\+Details\+Input}, \hyperpage{17}
+    \subitem {handle\+Difficulty\+Dialog\+Input}, \hyperpage{17}
+    \subitem {handle\+Enter\+Password\+Input}, \hyperpage{17}
+    \subitem {handle\+Help\+Input}, \hyperpage{17}
+    \subitem {handle\+In\+Game\+Input}, \hyperpage{18}
+    \subitem {handle\+Menu\+Input}, \hyperpage{18}
+    \subitem {handle\+Set\+Mark\+Input}, \hyperpage{18}
+    \subitem {handle\+Set\+Password\+Input}, \hyperpage{18}
+    \subitem {handle\+Solved\+Game\+Input}, \hyperpage{19}
+    \subitem {handle\+User\+Name\+Input}, \hyperpage{19}
+    \subitem {set\+Config}, \hyperpage{19}
+  \item {insert\+Score}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{30}
+  \item {is\+Element\+In\+Array}
+    \subitem {game.\+h}, \hyperpage{10}
+  \item {is\+Element\+In\+Box}
+    \subitem {game.\+h}, \hyperpage{10}
+  \item {is\+Solved\+Automatic}
+    \subitem {game.\+h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {len\+Helper}
+    \subitem {view.\+h}, \hyperpage{21}
+  \item {login\+User}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{31}
+
+  \indexspace
+
+  \item {M\+A\+X\+\_\+\+M\+A\+R\+KS}
+    \subitem {shared.\+h}, \hyperpage{32}
+  \item {make\+Note}
+    \subitem {game.\+h}, \hyperpage{11}
+
+  \indexspace
+
+  \item {name}
+    \subitem {s\+Score}, \hyperpage{5}
+  \item {navigate\+To}
+    \subitem {game.\+h}, \hyperpage{11}
+  \item {next}
+    \subitem {s\+Score}, \hyperpage{5}
+
+  \indexspace
+
+  \item {P\+O\+S\+I\+T\+I\+O\+NS}
+    \subitem {shared.\+h}, \hyperpage{34}
+  \item {pi\+Is\+User\+Logged\+In}
+    \subitem {game.\+h}, \hyperpage{16}
+  \item {pi\+User\+ID}
+    \subitem {game.\+h}, \hyperpage{16}
+  \item {print\+\_\+list}
+    \subitem {view.\+h}, \hyperpage{21}
+  \item {print\+Colored\+Number}
+    \subitem {view.\+h}, \hyperpage{21}
+  \item {print\+Colored\+String}
+    \subitem {view.\+h}, \hyperpage{21}
+  \item {print\+Empty\+Table\+Line}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {print\+End\+Of\+Line}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {print\+End\+Of\+Table}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {print\+Game\+Message}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {print\+Start\+Of\+Line}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {print\+Table\+Line}
+    \subitem {view.\+h}, \hyperpage{22}
+  \item {psql\+Connection}
+    \subitem {connection.\+h}, \hyperpage{28}
+
+  \indexspace
+
+  \item {register\+User}
+    \subitem {user\+\_\+service.\+h}, \hyperpage{31}
+  \item {render\+Court}
+    \subitem {view.\+h}, \hyperpage{23}
+  \item {render\+D\+Best\+Score\+Dialog}
+    \subitem {view.\+h}, \hyperpage{23}
+  \item {render\+Details}
+    \subitem {view.\+h}, \hyperpage{23}
+  \item {render\+Difficulty\+Dialog}
+    \subitem {view.\+h}, \hyperpage{24}
+  \item {render\+Enter\+Password}
+    \subitem {view.\+h}, \hyperpage{24}
+  \item {render\+Game\+Menu}
+    \subitem {view.\+h}, \hyperpage{24}
+  \item {render\+Help\+Dialog}
+    \subitem {view.\+h}, \hyperpage{24}
+  \item {render\+Info\+Box}
+    \subitem {view.\+h}, \hyperpage{24}
+  \item {render\+Loading\+Bar}
+    \subitem {view.\+h}, \hyperpage{25}
+  \item {render\+Mark\+Mode\+Message}
+    \subitem {view.\+h}, \hyperpage{25}
+  \item {render\+Menu}
+    \subitem {view.\+h}, \hyperpage{25}
+  \item {render\+Notes\+Box}
+    \subitem {view.\+h}, \hyperpage{26}
+  \item {render\+Set\+Password}
+    \subitem {view.\+h}, \hyperpage{26}
+  \item {render\+Solved\+Game}
+    \subitem {view.\+h}, \hyperpage{26}
+  \item {render\+Username\+Dialog}
+    \subitem {view.\+h}, \hyperpage{26}
+  \item {reset\+Array}
+    \subitem {game.\+h}, \hyperpage{11}
+  \item {reset\+Game\+Data}
+    \subitem {game.\+h}, \hyperpage{12}
+
+  \indexspace
+
+  \item {s\+Score}, \hyperpage{5}
+    \subitem {difficulty}, \hyperpage{5}
+    \subitem {name}, \hyperpage{5}
+    \subitem {next}, \hyperpage{5}
+    \subitem {time}, \hyperpage{5}
+    \subitem {user\+Id}, \hyperpage{6}
+  \item {score}
+    \subitem {score\+\_\+service.\+h}, \hyperpage{29}
+  \item {score\+\_\+service.\+h}
+    \subitem {best\+Score\+Callback}, \hyperpage{29}
+    \subitem {get\+Best\+Score}, \hyperpage{29}
+    \subitem {get\+Best\+Score\+By\+User\+ID}, \hyperpage{29}
+    \subitem {get\+Scores}, \hyperpage{29}
+    \subitem {insert\+Score}, \hyperpage{30}
+    \subitem {score}, \hyperpage{29}
+  \item {set\+Config}
+    \subitem {input\+Handler.\+h}, \hyperpage{19}
+  \item {set\+Printing\+Color}
+    \subitem {view.\+h}, \hyperpage{27}
+  \item {shared.\+h}
+    \subitem {A\+C\+T\+I\+O\+NS}, \hyperpage{32}
+    \subitem {A\+R\+R\+O\+WS}, \hyperpage{33}
+    \subitem {D\+I\+F\+F\+I\+C\+U\+L\+TY}, \hyperpage{33}
+    \subitem {G\+R\+I\+D\+\_\+\+S\+T\+A\+T\+US}, \hyperpage{33}
+    \subitem {M\+A\+X\+\_\+\+M\+A\+R\+KS}, \hyperpage{32}
+    \subitem {P\+O\+S\+I\+T\+I\+O\+NS}, \hyperpage{34}
+  \item {solve\+All}
+    \subitem {game.\+h}, \hyperpage{12}
+  \item {solve\+Cell}
+    \subitem {game.\+h}, \hyperpage{12}
+  \item {solve\+Game}
+    \subitem {game.\+h}, \hyperpage{12}
+
+  \indexspace
+
+  \item {time}
+    \subitem {s\+Score}, \hyperpage{5}
+  \item {time\+To\+String}
+    \subitem {game.\+h}, \hyperpage{13}
+  \item {timer}
+    \subitem {game.\+h}, \hyperpage{13}
+
+  \indexspace
+
+  \item {user\+\_\+service.\+h}
+    \subitem {create\+Score\+Table}, \hyperpage{30}
+    \subitem {create\+User\+Table}, \hyperpage{31}
+    \subitem {get\+User\+ID}, \hyperpage{31}
+    \subitem {get\+User\+Id\+Callback}, \hyperpage{31}
+    \subitem {login\+User}, \hyperpage{31}
+    \subitem {register\+User}, \hyperpage{31}
+  \item {user\+Id}
+    \subitem {s\+Score}, \hyperpage{6}
+
+  \indexspace
+
+  \item {view.\+h}
+    \subitem {clear\+\_\+output}, \hyperpage{20}
+    \subitem {get\+Remaining\+Cells}, \hyperpage{20}
+    \subitem {init\+Colors}, \hyperpage{20}
+    \subitem {len\+Helper}, \hyperpage{21}
+    \subitem {print\+\_\+list}, \hyperpage{21}
+    \subitem {print\+Colored\+Number}, \hyperpage{21}
+    \subitem {print\+Colored\+String}, \hyperpage{21}
+    \subitem {print\+Empty\+Table\+Line}, \hyperpage{22}
+    \subitem {print\+End\+Of\+Line}, \hyperpage{22}
+    \subitem {print\+End\+Of\+Table}, \hyperpage{22}
+    \subitem {print\+Game\+Message}, \hyperpage{22}
+    \subitem {print\+Start\+Of\+Line}, \hyperpage{22}
+    \subitem {print\+Table\+Line}, \hyperpage{22}
+    \subitem {render\+Court}, \hyperpage{23}
+    \subitem {render\+D\+Best\+Score\+Dialog}, \hyperpage{23}
+    \subitem {render\+Details}, \hyperpage{23}
+    \subitem {render\+Difficulty\+Dialog}, \hyperpage{24}
+    \subitem {render\+Enter\+Password}, \hyperpage{24}
+    \subitem {render\+Game\+Menu}, \hyperpage{24}
+    \subitem {render\+Help\+Dialog}, \hyperpage{24}
+    \subitem {render\+Info\+Box}, \hyperpage{24}
+    \subitem {render\+Loading\+Bar}, \hyperpage{25}
+    \subitem {render\+Mark\+Mode\+Message}, \hyperpage{25}
+    \subitem {render\+Menu}, \hyperpage{25}
+    \subitem {render\+Notes\+Box}, \hyperpage{26}
+    \subitem {render\+Set\+Password}, \hyperpage{26}
+    \subitem {render\+Solved\+Game}, \hyperpage{26}
+    \subitem {render\+Username\+Dialog}, \hyperpage{26}
+    \subitem {set\+Printing\+Color}, \hyperpage{27}
+
+\end{theindex}

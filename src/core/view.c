@@ -35,7 +35,6 @@ void initColors()
 #define KRED "\x1B[31m" ///< color red
 #define KGRN "\x1B[32m" ///< color green
 #define KYEL "\x1B[33m" ///< color yellow
-#define KBLU "\x1B[34m" ///< color blue
 #define KMAG "\x1B[35m" ///< color magenta
 #define KCYN "\x1B[36m" ///< color cay
 #define KWHT "\x1B[37m" ///< color white

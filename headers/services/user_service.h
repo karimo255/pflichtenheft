@@ -25,6 +25,9 @@ int registerUser(char cUsername[], char cPassword[], int *piNewUserId);
  * 3. Parameter: Zeiger auf die zu befüllende Variable UserID
  */
 void loginUser(char cUsername[], char cPassword[], int*piId);
+
+/** Erstellt die Tabelle für die Daten des Scores (id, time, userId, difficulty).
+ */
 int createUserTable();
 
 /** Erstellt die Tabelle für die Daten des Nutzers (NutzerID, Name und Passwort).

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['registeruser',['registerUser',['../user__service_8h.html#af149c82cca14bfe0fe1543362d1af5d0',1,'user_service.h']]],
+  ['registeruser',['registerUser',['../user__service_8h.html#a322cf565c4fb73b36ab7ac900d9f9cc5',1,'user_service.h']]],
   ['rendercourt',['renderCourt',['../view_8h.html#a59ee9565b726df9cf12690e17df3170f',1,'view.h']]],
   ['renderdbestscoredialog',['renderDBestScoreDialog',['../view_8h.html#ade3a0cbdb43635debe53b0e5d92b0e54',1,'view.h']]],
   ['renderdetails',['renderDetails',['../view_8h.html#a63c9c340970068d9ec7f07c861d2badc',1,'view.h']]],
@@ -18,7 +18,7 @@ var searchData=
   ['renderusernamedialog',['renderUsernameDialog',['../view_8h.html#adb4ba2caf581760f90d6e46a870cf700',1,'view.h']]],
   ['reset_5ftimer',['RESET_TIMER',['../shared_8h.html#abd505ece4ed03e704c3c8674188adeeca2d70780ac48d7b31b1e9f49b7b6aedc0',1,'shared.h']]],
   ['resetarray',['resetArray',['../game_8h.html#a5bce53e6b508a6ca5261035641e6e0c3',1,'game.h']]],
-  ['resetgamedata',['resetGameData',['../game_8h.html#ac1a99d723999c92f94ed93e8f660383e',1,'game.h']]],
+  ['resetgamedata',['resetGameData',['../game_8h.html#a0694f97727152f51fe628440a522930a',1,'game.h']]],
   ['right',['RIGHT',['../shared_8h.html#a19aa33589879aa74ba5116ff56fe316caec8379af7490bb9eaaf579cf17876f38',1,'shared.h']]],
   ['right_5flinux',['RIGHT_LINUX',['../shared_8h.html#a19aa33589879aa74ba5116ff56fe316cac6941cf2ba3a0aad9a10ac646ed975b0',1,'shared.h']]]
 ];

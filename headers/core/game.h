@@ -12,40 +12,36 @@
 #ifndef SUDOKU_GAME_H
 #define SUDOKU_GAME_H
 
-
 #include "../shared/shared.h"
 
-
+/// Array wo die Notizen gespeicht werden.
 extern int iMarks[9][9][MAX_MARKS];
 
-/* Wird aufgerufen, wenn der Spieler einen Tipp haben möchte. Befüllt
- * die Notiz in der entsprechenden Zelle mit drei Zahlen, von denen
- * eine die richtige im Kontext des Sudokus darstellt.
- * 1. Parameter: x-Koordinate, an der sich der Spieler befindet
- * 2. Parameter: y-Koordinate, an der sich der Spieler befindet
- */
-void fillNotesForCell(int iX_coordinate, int iY_coordinate);
-
-/// x-coordinate of the cursor.
+/// Cursor X-Koordinate.
 extern int iX_coordinate;
 
-/// y-coordinate of the cursor.
+/// Cursor Y-Koordinate.
 extern int iY_coordinate;
 
-/// game difficulty.
+/// Enthält die aktuelle Schwierigkeinsstufe.
 extern int iDifficulty;
 
-/// game message
+/// Hier werden Spiel Mitteilungen gespeichert. Sie wird nach jeder Iteration zurückgesetzt.
 extern char cGameMessage[200];
 
-/// is a session active.
+/// Schalter ob das Spiel weiter oder beendet werden soll.
 extern int iIsGameActive;
 
-/// current active menu item.
+/// Aktiver Spiel-Screen
 extern int iCurrentPosition;
 
+/// Hier wird der Name des gerade angemeldeten Users gespeichert.
 extern char cUusername[8];
+
+/// Hier wird nach jedem Login versuch den Status abgespeichert. 1 => Erfolgreich, 0 => Fehlgeschlagen
 extern int *piIsUserLoggedIn;
+
+
 extern int iExitTheGame;
 extern int isSolvedAutomatic;
 
@@ -66,8 +62,13 @@ extern int iAnzahlDerHilfe;
 extern int iErlaubteAnzahlDerHilfe;
 extern int iErlaubteAnzahlDerTipps;
 
+/** Wird aufgerufen, wenn der Spieler einen Tipp haben möchte. Befüllt
+ * die Notiz in der entsprechenden Zelle mit drei Zahlen, von denen
+ * eine die richtige im Kontext des Sudokus darstellt.
+ * 1. Parameter: x-Koordinate, an der sich der Spieler befindet
+ * 2. Parameter: y-Koordinate, an der sich der Spieler befindet
+ */
 void fillNotesForCell(int iX_coordinate, int iY_coordinate);
-
 
 /** Überpüft, ob sich ein bestimmtes Element in einen bestimmten Array
  * befindet.
@@ -141,10 +142,9 @@ int generateRandomNumber();
  */
 int solveGame(int iGameData[][9]);
 
-/**
- * @param iGmaeData[][] which holds the game data.
- *
- * Sets the value of array items to zero.
+/** Setzt das sichtbare Spielfeld in seinen Ursprungszustand zurück, indem
+ * alle Werte auf Null gesetzt werden.
+ * 1. Parameter: aktuelles Spielfeld
  */
 void resetGameData(int iGmaeData[][9]);
 
@@ -152,6 +152,7 @@ void resetGameData(int iGmaeData[][9]);
  * 1. Parameter: Intervall-Start
  * 2. Parameter: Intervall-Ende
  * Rückgabewert: generierte Zufallszahl
+ */
 int generateNumberByInterval(int x, int y);
 
 /**
@@ -178,7 +179,13 @@ void solveCell(int iGameData[][9], int iX, int iY);
  */
 int getGameStatus(int iArray[][9]);
 
-
+/** Wird aufgerufen, wenn der Spieler aufgibt und das Sudoku auflösen lassen
+ * möchte. Alle Felder, die durch den Nutzer hätten gefüllt werden sollen,
+ * werden von dem Array der gelöschten Zellen in das Spielfeld über-
+ * tragen.
+ * 1. Parameter: aktuelles Spielfeld
+ * 2. Parameter: Array mit den gelöschten Zellen (Lösung)
+ */
 void solveAll(int iGameData[][9], int iDeletedCells[][9]);
 
 /** Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum

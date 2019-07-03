@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['piisuserloggedin',['piIsUserLoggedIn',['../game_8h.html#af3725ec587193d16d9ed2fae4e4b4e89',1,'game.h']]],
+  ['piuserid',['piUserID',['../game_8h.html#ac175ea9a7175c73a1802fa87058da0d1',1,'game.h']]],
   ['positions',['POSITIONS',['../shared_8h.html#a6f846a4971a81f40033539a021c34cf9',1,'shared.h']]],
   ['print_5flist',['print_list',['../view_8h.html#afe9bb72b8ca791c4035d23d3717ffea4',1,'view.h']]],
   ['printcolorednumber',['printColoredNumber',['../view_8h.html#a9d1d20e68288ccefcdfedc3520d31193',1,'view.h']]],
@@ -9,5 +11,6 @@ var searchData=
   ['printendoftable',['printEndOfTable',['../view_8h.html#a2a5ade78e38e17c67898695f154e26fe',1,'view.h']]],
   ['printgamemessage',['printGameMessage',['../view_8h.html#a85ad290acb7660ec0966649c1827e395',1,'view.h']]],
   ['printstartofline',['printStartOfLine',['../view_8h.html#a8d755aedf46f29d74d7e03999ee856cd',1,'view.h']]],
-  ['printtableline',['printTableLine',['../view_8h.html#a0eace8b7e45abc09ee40c0a0a1423a93',1,'view.h']]]
+  ['printtableline',['printTableLine',['../view_8h.html#a0eace8b7e45abc09ee40c0a0a1423a93',1,'view.h']]],
+  ['psqlconnection',['psqlConnection',['../connection_8h.html#a187385f4ceed7feaf682efec24b779ce',1,'connection.h']]]
 ];

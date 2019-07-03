@@ -15,13 +15,13 @@ void \hyperlink{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}{render\+D\+Best\+Scor
 void \hyperlink{view_8h_a63c9c340970068d9ec7f07c861d2badc}{render\+Details} (struct \hyperlink{structsScore}{s\+Score} $\ast$scores, int difficulty)
 \item 
 void \hyperlink{view_8h_a59ee9565b726df9cf12690e17df3170f}{render\+Court} (int game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int user\+Cells\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int x\+\_\+coordinate, int y\+\_\+coordinate)
-\begin{DoxyCompactList}\small\item\em Function to render the game grid. \end{DoxyCompactList}\item 
+\item 
 void \hyperlink{view_8h_aefebd76cb79365ed497c0164498c7d6c}{render\+Info\+Box} (char $\ast$username, int $\ast$\hyperlink{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}{score}, int \+\_\+difficulty, int remaining)
 \item 
 void \hyperlink{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}{render\+Game\+Menu} ()
-\begin{DoxyCompactList}\small\item\em Function to render the game menu. \end{DoxyCompactList}\item 
+\item 
 void \hyperlink{view_8h_a008ec4df25b278b5956d0092c8e87f81}{render\+Solved\+Game} (int solved\+Automatic, int anzahl\+Der\+Tipps, int anzahl\+Der\+Hilfe)
-\begin{DoxyCompactList}\small\item\em Function to render the dialog after solved game. \end{DoxyCompactList}\item 
+\item 
 void \hyperlink{view_8h_a3f7a1223459077cd5d74ac3cd7ab4ca5}{render\+Difficulty\+Dialog} ()
 \item 
 void \hyperlink{view_8h_a108fd7ab9648dd730a7941d87079f87f}{render\+Help\+Dialog} ()
@@ -110,7 +110,11 @@ It return the length of integer number (for optimal printing) \mbox{\Hypertarget
 \subsubsection{\texorpdfstring{print\+\_\+list()}{print\_list()}}
 {\footnotesize\ttfamily void print\+\_\+list (\begin{DoxyParamCaption}\item[{struct \hyperlink{structsScore}{s\+Score} $\ast$}]{head,  }\item[{int}]{i\+Difficulty }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_a9d1d20e68288ccefcdfedc3520d31193}\label{view_8h_a9d1d20e68288ccefcdfedc3520d31193}} 
+Gibt die Bestenliste (T\+OP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad aus.
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+\item Parameter\+: ausgewählter Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a9d1d20e68288ccefcdfedc3520d31193}\label{view_8h_a9d1d20e68288ccefcdfedc3520d31193}} 
 \index{view.\+h@{view.\+h}!print\+Colored\+Number@{print\+Colored\+Number}}
 \index{print\+Colored\+Number@{print\+Colored\+Number}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{print\+Colored\+Number()}{printColoredNumber()}}
@@ -136,7 +140,12 @@ Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
 \subsubsection{\texorpdfstring{print\+Colored\+String()}{printColoredString()}}
 {\footnotesize\ttfamily void print\+Colored\+String (\begin{DoxyParamCaption}\item[{char}]{text\mbox{[}$\,$\mbox{]},  }\item[{char}]{color\mbox{[}$\,$\mbox{]},  }\item[{int}]{new\+Line }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_af5d936899954836293ebd3d39445fb78}\label{view_8h_af5d936899954836293ebd3d39445fb78}} 
+Dient zur formatierten Ausgabe eines vorgegeben Strings
+\begin{DoxyEnumerate}
+\item Parameter\+: String, der gedruckt werden soll
+\item Parameter\+: Farbe, in der der String gedruckt werden soll
+\item Parameter\+: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_af5d936899954836293ebd3d39445fb78}\label{view_8h_af5d936899954836293ebd3d39445fb78}} 
 \index{view.\+h@{view.\+h}!print\+Empty\+Table\+Line@{print\+Empty\+Table\+Line}}
 \index{print\+Empty\+Table\+Line@{print\+Empty\+Table\+Line}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{print\+Empty\+Table\+Line()}{printEmptyTableLine()}}
@@ -160,7 +169,7 @@ Ausgabe der Zeile, die das Ende einer Box mit Informationen darstellt (Beispiel\
 \subsubsection{\texorpdfstring{print\+Game\+Message()}{printGameMessage()}}
 {\footnotesize\ttfamily void print\+Game\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_a8d755aedf46f29d74d7e03999ee856cd}\label{view_8h_a8d755aedf46f29d74d7e03999ee856cd}} 
+Gibt die kontextbezogene Nachricht an den Spieler aus (z.\+B. \char`\"{}\+Passwort falsch\char`\"{}) \mbox{\Hypertarget{view_8h_a8d755aedf46f29d74d7e03999ee856cd}\label{view_8h_a8d755aedf46f29d74d7e03999ee856cd}} 
 \index{view.\+h@{view.\+h}!print\+Start\+Of\+Line@{print\+Start\+Of\+Line}}
 \index{print\+Start\+Of\+Line@{print\+Start\+Of\+Line}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{print\+Start\+Of\+Line()}{printStartOfLine()}}
@@ -184,11 +193,13 @@ Ausgabe einer Zeile, die zu einer Box mit Informationen gehört (Beispiel\+: Spi
 \subsubsection{\texorpdfstring{render\+Court()}{renderCourt()}}
 {\footnotesize\ttfamily void render\+Court (\begin{DoxyParamCaption}\item[{int}]{game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{user\+Cells\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{x\+\_\+coordinate,  }\item[{int}]{y\+\_\+coordinate }\end{DoxyParamCaption})}
 
-
-
-Function to render the game grid. 
-
-It shows the game grid \mbox{\Hypertarget{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}\label{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}} 
+Gibt das \char`\"{}sichtbare\char`\"{} Spielfeld in der Konsole aus.
+\begin{DoxyEnumerate}
+\item Parameter\+: sichtbares Spielfeld
+\item Parameter\+: Array, in dem gespeichert ist, welche Zellen vom Nutzer befüllt werden müssen
+\item Parameter\+: x-\/\+Koordinate, an der sich der Cursor des Spielers befindet
+\item Parameter\+: y-\/\+Koordinate, an der sich der Cursor des Spielers befindet 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}\label{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}} 
 \index{view.\+h@{view.\+h}!render\+D\+Best\+Score\+Dialog@{render\+D\+Best\+Score\+Dialog}}
 \index{render\+D\+Best\+Score\+Dialog@{render\+D\+Best\+Score\+Dialog}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+D\+Best\+Score\+Dialog()}{renderDBestScoreDialog()}}
@@ -226,17 +237,13 @@ Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad für sein Spiel 
 \subsubsection{\texorpdfstring{render\+Enter\+Password()}{renderEnterPassword()}}
 {\footnotesize\ttfamily void render\+Enter\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}\label{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}} 
+Gibt den Dialog aus, in dem ein bereits registrierter Spieler sein Passwort eingeben kann. \mbox{\Hypertarget{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}\label{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}} 
 \index{view.\+h@{view.\+h}!render\+Game\+Menu@{render\+Game\+Menu}}
 \index{render\+Game\+Menu@{render\+Game\+Menu}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+Game\+Menu()}{renderGameMenu()}}
 {\footnotesize\ttfamily void render\+Game\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
-
-Function to render the game menu. 
-
-It shows the game menu \mbox{\Hypertarget{view_8h_a108fd7ab9648dd730a7941d87079f87f}\label{view_8h_a108fd7ab9648dd730a7941d87079f87f}} 
+Gibt die Legende aus, die dem Spieler aufzeigt, welche Tasten er drücken kann, um mit dem Spiel zu interagieren. \mbox{\Hypertarget{view_8h_a108fd7ab9648dd730a7941d87079f87f}\label{view_8h_a108fd7ab9648dd730a7941d87079f87f}} 
 \index{view.\+h@{view.\+h}!render\+Help\+Dialog@{render\+Help\+Dialog}}
 \index{render\+Help\+Dialog@{render\+Help\+Dialog}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+Help\+Dialog()}{renderHelpDialog()}}
@@ -278,7 +285,7 @@ Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet und al
 \subsubsection{\texorpdfstring{render\+Mark\+Mode\+Message()}{renderMarkModeMessage()}}
 {\footnotesize\ttfamily void render\+Mark\+Mode\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_a78e361735746351cb5af84496b98373f}\label{view_8h_a78e361735746351cb5af84496b98373f}} 
+Ausgabe des Hinweises auf den \char`\"{}\+Markieren-\/\+Modus\char`\"{} \mbox{\Hypertarget{view_8h_a78e361735746351cb5af84496b98373f}\label{view_8h_a78e361735746351cb5af84496b98373f}} 
 \index{view.\+h@{view.\+h}!render\+Menu@{render\+Menu}}
 \index{render\+Menu@{render\+Menu}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+Menu()}{renderMenu()}}
@@ -306,17 +313,18 @@ Augabe -\/ sofern vorhanden -\/ der Notizen des Spielers (bzw. Tipps). \mbox{\Hy
 \subsubsection{\texorpdfstring{render\+Set\+Password()}{renderSetPassword()}}
 {\footnotesize\ttfamily void render\+Set\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{view_8h_a008ec4df25b278b5956d0092c8e87f81}\label{view_8h_a008ec4df25b278b5956d0092c8e87f81}} 
+Gibt den Dialog aus, in dem ein neuer Spieler sein Passwort setzen kann. \mbox{\Hypertarget{view_8h_a008ec4df25b278b5956d0092c8e87f81}\label{view_8h_a008ec4df25b278b5956d0092c8e87f81}} 
 \index{view.\+h@{view.\+h}!render\+Solved\+Game@{render\+Solved\+Game}}
 \index{render\+Solved\+Game@{render\+Solved\+Game}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+Solved\+Game()}{renderSolvedGame()}}
 {\footnotesize\ttfamily void render\+Solved\+Game (\begin{DoxyParamCaption}\item[{int}]{solved\+Automatic,  }\item[{int}]{anzahl\+Der\+Tipps,  }\item[{int}]{anzahl\+Der\+Hilfe }\end{DoxyParamCaption})}
 
-
-
-Function to render the dialog after solved game. 
-
-It shows the game menu \mbox{\Hypertarget{view_8h_adb4ba2caf581760f90d6e46a870cf700}\label{view_8h_adb4ba2caf581760f90d6e46a870cf700}} 
+Gibt den \char`\"{}\+Winscreen\char`\"{} in der Konsole aus, wenn das Sudoku vollständig gelöst wurde.
+\begin{DoxyEnumerate}
+\item Parameter\+: Wurde das Spiel aufgelöst oder hat der Spieler es selbst gelöst (1 = es wurde aufglöst, 0 = Spieler hat es gelöst)
+\item Parameter\+: Anzahl der benutzten Tipps
+\item Parameter\+: Anzahl der benutzten Zelllösugen 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_adb4ba2caf581760f90d6e46a870cf700}\label{view_8h_adb4ba2caf581760f90d6e46a870cf700}} 
 \index{view.\+h@{view.\+h}!render\+Username\+Dialog@{render\+Username\+Dialog}}
 \index{render\+Username\+Dialog@{render\+Username\+Dialog}!view.\+h@{view.\+h}}
 \subsubsection{\texorpdfstring{render\+Username\+Dialog()}{renderUsernameDialog()}}
