@@ -1,0 +1,96 @@
+\hypertarget{score__service_8h}{}\section{headers/services/score\+\_\+service.h File Reference}
+\label{score__service_8h}\index{headers/services/score\+\_\+service.\+h@{headers/services/score\+\_\+service.\+h}}
+{\ttfamily \#include \char`\"{}../../libs/sqlite3.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsScore}{s\+Score}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structsScore}{s\+Score} \hyperlink{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}{score}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{score__service_8h_a5ae36460b6c071281b10a892bf3eed58}{insert\+Score} (int $\ast$\hyperlink{game_8h_ac175ea9a7175c73a1802fa87058da0d1}{pi\+User\+ID}, int i\+Score, int \hyperlink{game_8h_ac2f91d4431416753676b0837dc182c82}{i\+Difficulty})
+\begin{DoxyCompactList}\small\item\em Inserts score in the database. \end{DoxyCompactList}\item 
+void \hyperlink{score__service_8h_a63ae95ce5a1c0b15c48c72e177ad57b7}{get\+Scores} (struct \hyperlink{structsScore}{s\+Score} $\ast$scores)
+\item 
+int \hyperlink{score__service_8h_a50854f2511946640b8587f4a8f135bea}{get\+Best\+Score\+By\+User\+ID} (int user\+ID)
+\item 
+int \hyperlink{score__service_8h_a024d1d93b84912b3106c9c0ad8445276}{best\+Score\+Callback} (void $\ast$pv\+Best\+Score, int i\+Argc, char $\ast$$\ast$ppc\+Argv, char $\ast$$\ast$ppc\+Az\+Col\+Name)
+\item 
+int \hyperlink{score__service_8h_a12d51fcbb54e569f19053e56d6cd942f}{get\+Best\+Score} (int $\ast$pi\+Best\+Score, int \hyperlink{game_8h_ac2f91d4431416753676b0837dc182c82}{i\+Difficulty})
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}\label{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!score@{score}}
+\index{score@{score}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structsScore}{s\+Score} \hyperlink{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}{score}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{score__service_8h_a024d1d93b84912b3106c9c0ad8445276}\label{score__service_8h_a024d1d93b84912b3106c9c0ad8445276}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!best\+Score\+Callback@{best\+Score\+Callback}}
+\index{best\+Score\+Callback@{best\+Score\+Callback}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{best\+Score\+Callback()}{bestScoreCallback()}}
+{\footnotesize\ttfamily int best\+Score\+Callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Best\+Score,  }\item[{int}]{i\+Argc,  }\item[{char $\ast$$\ast$}]{ppc\+Argv,  }\item[{char $\ast$$\ast$}]{ppc\+Az\+Col\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{score__service_8h_a12d51fcbb54e569f19053e56d6cd942f}\label{score__service_8h_a12d51fcbb54e569f19053e56d6cd942f}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!get\+Best\+Score@{get\+Best\+Score}}
+\index{get\+Best\+Score@{get\+Best\+Score}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{get\+Best\+Score()}{getBestScore()}}
+{\footnotesize\ttfamily int get\+Best\+Score (\begin{DoxyParamCaption}\item[{int $\ast$}]{pi\+Best\+Score,  }\item[{int}]{i\+Difficulty }\end{DoxyParamCaption})}
+
+Erfragt den Highscore aller Spieler im aktuellen Schwierigkeitsgrad aus der Datenbank.
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable, in die der Highscore geschrieben werden soll
+\item Parameter\+: aktueller Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{score__service_8h_a50854f2511946640b8587f4a8f135bea}\label{score__service_8h_a50854f2511946640b8587f4a8f135bea}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!get\+Best\+Score\+By\+User\+ID@{get\+Best\+Score\+By\+User\+ID}}
+\index{get\+Best\+Score\+By\+User\+ID@{get\+Best\+Score\+By\+User\+ID}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{get\+Best\+Score\+By\+User\+I\+D()}{getBestScoreByUserID()}}
+{\footnotesize\ttfamily int get\+Best\+Score\+By\+User\+ID (\begin{DoxyParamCaption}\item[{int}]{user\+ID }\end{DoxyParamCaption})}
+
+Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.
+\begin{DoxyEnumerate}
+\item Parameter\+: User\+ID des aktuellen Nutzers 
+\end{DoxyEnumerate}\mbox{\Hypertarget{score__service_8h_a63ae95ce5a1c0b15c48c72e177ad57b7}\label{score__service_8h_a63ae95ce5a1c0b15c48c72e177ad57b7}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!get\+Scores@{get\+Scores}}
+\index{get\+Scores@{get\+Scores}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{get\+Scores()}{getScores()}}
+{\footnotesize\ttfamily void get\+Scores (\begin{DoxyParamCaption}\item[{struct \hyperlink{structsScore}{s\+Score} $\ast$}]{scores }\end{DoxyParamCaption})}
+
+Abfrage der Highscores inklusive der zugehörigen Spielernamen / User\+I\+Ds
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Struktur, in der die abgefragten Daten ge-\/ speichert werden sollen 
+\end{DoxyEnumerate}\mbox{\Hypertarget{score__service_8h_a5ae36460b6c071281b10a892bf3eed58}\label{score__service_8h_a5ae36460b6c071281b10a892bf3eed58}} 
+\index{score\+\_\+service.\+h@{score\+\_\+service.\+h}!insert\+Score@{insert\+Score}}
+\index{insert\+Score@{insert\+Score}!score\+\_\+service.\+h@{score\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{insert\+Score()}{insertScore()}}
+{\footnotesize\ttfamily int insert\+Score (\begin{DoxyParamCaption}\item[{int $\ast$}]{pi\+User\+ID,  }\item[{int}]{i\+Score,  }\item[{int}]{i\+Difficulty }\end{DoxyParamCaption})}
+
+
+
+Inserts score in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username\mbox{[}$\,$\mbox{]}} & \\
+\hline
+{\em i\+Score} & \\
+\hline
+{\em \+\_\+time} & \\
+\hline
+{\em i\+Difficulty} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the id of the last user if insered, otherwise -\/1. 
+\end{DoxyReturn}

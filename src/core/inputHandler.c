@@ -35,7 +35,7 @@ int *piIsUserLoggedIn = 0;
 char cPassword[6] = {0};
 int iCurrentPosition;
 int iB = 0;
-int *piUserID = 0;
+int *piUserID;
 int iDifficulty;
 
 void navigateTo(int iPos)
@@ -184,6 +184,11 @@ void handleSetPasswordInput()
     printf("%d\n", cCh);
     if (cCh != 13 && cCh != '\n' && cCh != EOF)
     { // not enter
+        if (cCh == 27)
+        { // escape
+            resetArray(cPassword, 8);
+            iCurrentPosition = USER_NAME;
+        }
         //   if (password[0] == 0) resetArray(password, 8);
         if (cCh == 127 || cCh == 8)
         { // delete backspace
@@ -227,7 +232,12 @@ void handleEnterPasswordInput()
 
     if (cCh != 13 && cCh != '\n' && cCh != EOF)
     { // not enter
-        if (cCh == 127 || cCh == 8)
+        if (cCh == 27)
+        { // escape
+            resetArray(cPassword, 8);
+            iCurrentPosition = USER_NAME;
+        }
+        else if (cCh == 127 || cCh == 8)
         { // delete backspace
             iB--;
             if (iB < 0)
@@ -362,7 +372,7 @@ void handleInGameInput(int iUserInput)
                     if (iAnzahlDerHilfe == iErlaubteAnzahlDerHilfe)
                     {
                         strcpy(cGameMessage, "Anzahl der Hilfen verbraucht.");
-                        break;
+                      //  break;
                     }
                     iAnzahlDerHilfe++;
                     solveCell(iGameData, iX_coordinate, iY_coordinate);

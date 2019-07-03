@@ -1,0 +1,72 @@
+\hypertarget{user__service_8h}{}\section{headers/services/user\+\_\+service.h File Reference}
+\label{user__service_8h}\index{headers/services/user\+\_\+service.\+h@{headers/services/user\+\_\+service.\+h}}
+{\ttfamily \#include \char`\"{}../../libs/sqlite3.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{user__service_8h_a322cf565c4fb73b36ab7ac900d9f9cc5}{register\+User} (char c\+Username\mbox{[}$\,$\mbox{]}, char c\+Password\mbox{[}$\,$\mbox{]}, int $\ast$pi\+New\+User\+Id)
+\item 
+void \hyperlink{user__service_8h_ad83cd7421b2ee16060ea01efbeda5475}{login\+User} (char c\+Username\mbox{[}$\,$\mbox{]}, char c\+Password\mbox{[}$\,$\mbox{]}, int $\ast$pi\+Id)
+\item 
+int \hyperlink{user__service_8h_ad7f9ae4eb4fb46f6282f7a7ec3231e76}{create\+User\+Table} ()
+\item 
+int \hyperlink{user__service_8h_a8b55604795f8a341c2da9bdaa2790f14}{create\+Score\+Table} ()
+\item 
+int \hyperlink{user__service_8h_ab228de1589563c63b624a1db58f1cc73}{get\+User\+Id\+Callback} (void $\ast$user\+ID, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$az\+Col\+Name)
+\item 
+void \hyperlink{user__service_8h_a8290af036697c84b6f36006b5d328f1e}{get\+User\+ID} (char c\+Username\mbox{[}8\mbox{]}, int $\ast$\hyperlink{game_8h_ac175ea9a7175c73a1802fa87058da0d1}{pi\+User\+ID})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{user__service_8h_a8b55604795f8a341c2da9bdaa2790f14}\label{user__service_8h_a8b55604795f8a341c2da9bdaa2790f14}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!create\+Score\+Table@{create\+Score\+Table}}
+\index{create\+Score\+Table@{create\+Score\+Table}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{create\+Score\+Table()}{createScoreTable()}}
+{\footnotesize\ttfamily int create\+Score\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Erstellt die Tabelle für die Daten des Nutzers (Nutzer\+ID, Name und Passwort). \mbox{\Hypertarget{user__service_8h_ad7f9ae4eb4fb46f6282f7a7ec3231e76}\label{user__service_8h_ad7f9ae4eb4fb46f6282f7a7ec3231e76}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!create\+User\+Table@{create\+User\+Table}}
+\index{create\+User\+Table@{create\+User\+Table}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{create\+User\+Table()}{createUserTable()}}
+{\footnotesize\ttfamily int create\+User\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{user__service_8h_a8290af036697c84b6f36006b5d328f1e}\label{user__service_8h_a8290af036697c84b6f36006b5d328f1e}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!get\+User\+ID@{get\+User\+ID}}
+\index{get\+User\+ID@{get\+User\+ID}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{get\+User\+I\+D()}{getUserID()}}
+{\footnotesize\ttfamily void get\+User\+ID (\begin{DoxyParamCaption}\item[{char}]{c\+Username\mbox{[}8\mbox{]},  }\item[{int $\ast$}]{pi\+User\+ID }\end{DoxyParamCaption})}
+
+Erfragt die zugehörige User\+ID zu einem bestimmten Nutzernamen aus der Datenbank.
+\begin{DoxyEnumerate}
+\item Parameter\+: Nutzername des Spielers, dessen User\+ID erfragt werden soll
+\item Parameter\+: Zeiger auf die zu befüllende Variable User\+ID 
+\end{DoxyEnumerate}\mbox{\Hypertarget{user__service_8h_ab228de1589563c63b624a1db58f1cc73}\label{user__service_8h_ab228de1589563c63b624a1db58f1cc73}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!get\+User\+Id\+Callback@{get\+User\+Id\+Callback}}
+\index{get\+User\+Id\+Callback@{get\+User\+Id\+Callback}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{get\+User\+Id\+Callback()}{getUserIdCallback()}}
+{\footnotesize\ttfamily int get\+User\+Id\+Callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+ID,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{char $\ast$$\ast$}]{az\+Col\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{user__service_8h_ad83cd7421b2ee16060ea01efbeda5475}\label{user__service_8h_ad83cd7421b2ee16060ea01efbeda5475}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!login\+User@{login\+User}}
+\index{login\+User@{login\+User}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{login\+User()}{loginUser()}}
+{\footnotesize\ttfamily void login\+User (\begin{DoxyParamCaption}\item[{char}]{c\+Username\mbox{[}$\,$\mbox{]},  }\item[{char}]{c\+Password\mbox{[}$\,$\mbox{]},  }\item[{int $\ast$}]{pi\+Id }\end{DoxyParamCaption})}
+
+Überprüft mit Hilfe der Daten aus der Datenbank, ob das eingegebene Passwort richtig ist.
+\begin{DoxyEnumerate}
+\item Parameter\+: eingegebener Nutzername
+\item Parameter\+: eingegebenes Passwort
+\item Parameter\+: Zeiger auf die zu befüllende Variable User\+ID 
+\end{DoxyEnumerate}\mbox{\Hypertarget{user__service_8h_a322cf565c4fb73b36ab7ac900d9f9cc5}\label{user__service_8h_a322cf565c4fb73b36ab7ac900d9f9cc5}} 
+\index{user\+\_\+service.\+h@{user\+\_\+service.\+h}!register\+User@{register\+User}}
+\index{register\+User@{register\+User}!user\+\_\+service.\+h@{user\+\_\+service.\+h}}
+\subsubsection{\texorpdfstring{register\+User()}{registerUser()}}
+{\footnotesize\ttfamily int register\+User (\begin{DoxyParamCaption}\item[{char}]{c\+Username\mbox{[}$\,$\mbox{]},  }\item[{char}]{c\+Password\mbox{[}$\,$\mbox{]},  }\item[{int $\ast$}]{pi\+New\+User\+Id }\end{DoxyParamCaption})}
+
+Registriert einen neuen Nutzer mit seinem von ihm gesetzten Passwort in der Datenbank.
+\begin{DoxyEnumerate}
+\item Parameter\+: eingegebener Nutzername
+\item Parameter\+: eingegebenes Passwort
+\item Parameter\+: Zeiger auf die zu befüllende Variable User\+ID 
+\end{DoxyEnumerate}

@@ -364,6 +364,9 @@ void renderSetPassword()
     printf(" ++=========== Password setzen =============++\n");
     printEmptyTableLine();
     printTableLine(" Password setzen:                       ");
+    printf(" || --------------------------------------  ||\n");
+    printEmptyTableLine();
+    printTableLine(" Druecken Sie ESC um zurueckzukehren.   ");
     printEmptyTableLine();
     printEndOfTable();
 }
@@ -376,7 +379,9 @@ void renderEnterPassword()
     printf(" ++=========== Password eingeben ===========++\n");
     printEmptyTableLine();
     printTableLine(" Password eingeben:                     ");
+    printf(" || --------------------------------------  ||\n");
     printEmptyTableLine();
+    printTableLine(" Druecken Sie ESC um zurueckzukehren.   ");
 
     char cM[100];
 
@@ -386,7 +391,6 @@ void renderEnterPassword()
     {
         printTableLine(cM);
     }
-    printEmptyTableLine();
     printEndOfTable();
 }
 
@@ -593,13 +597,13 @@ void renderMarkModeMessage()
 /* Ausgabe des Hinweises auf den "Markieren-Modus"
  */
 {
-    printf(" ++============= Markieren-Modus ============++\n");
+    printf(" ++============ Markieren-Modus =============++\n");
     printTableLine("    Sie sind im Markieren-Modus!         ");
     printTableLine("    Nun koennen Sie moegliche            ");
     printTableLine("    Zahlen setzen. Druecken Sie < m >,   ");
     printTableLine("    um diesen Modus zu verlassen.        ");
     printTableLine("    < d > um Notizen zu loeschen.        ");
-    printEndOfTable();
+    printf(" ++==========================================++\n");
 }
 
 int getRemainingCells(int iGameData[][9])

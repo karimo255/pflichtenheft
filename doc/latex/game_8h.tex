@@ -1,0 +1,416 @@
+\hypertarget{game_8h}{}\section{headers/core/game.h File Reference}
+\label{game_8h}\index{headers/core/game.\+h@{headers/core/game.\+h}}
+{\ttfamily \#include \char`\"{}../shared/shared.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{game_8h_a373977092430043a8fd79dd44d5ec679}{fill\+Notes\+For\+Cell} (int \hyperlink{game_8h_a3698d706bfeb3de61dfb1489abe995ba}{i\+X\+\_\+coordinate}, int \hyperlink{game_8h_a5d0cacf417c6d4647c97c377165789d2}{i\+Y\+\_\+coordinate})
+\item 
+int \hyperlink{game_8h_a23d5baf8fb30cfde69dcaa370dc59203}{is\+Element\+In\+Array} (int i\+Array\mbox{[}$\,$\mbox{]}, int i\+Number, int i\+Size)
+\item 
+void \hyperlink{game_8h_a5bce53e6b508a6ca5261035641e6e0c3}{reset\+Array} (int i\+Array\mbox{[}$\,$\mbox{]}, int i\+Size)
+\item 
+void \hyperlink{game_8h_ac112d0da928064037f94db4069622195}{generate\+Game\+Data} (int \hyperlink{game_8h_af013409455ca9ab915c88cb6127d62df}{i\+Game\+Data}\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+void \hyperlink{game_8h_afdab63d9f70e4ab8360cea6ab4c98186}{delete\+Cells} (int i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int \hyperlink{game_8h_ac2f91d4431416753676b0837dc182c82}{i\+Difficulty})
+\item 
+void \hyperlink{game_8h_a9b1ff46407447ff4ab35dde49b5f7e43}{navigate\+To} (int i\+Pos)
+\item 
+void \hyperlink{game_8h_a365826d933111b6ccf3f91f6175484d1}{make\+Note} (int iX, int iY, int i\+Suggestion)
+\item 
+int \hyperlink{game_8h_ac4bbe50986945dccd2a9940b693cd7fa}{is\+Element\+In\+Box} (int i\+Arr\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int i\+Box\+\_\+start\+\_\+row, int i\+Box\+\_\+start\+\_\+col, int i\+Ele)
+\item 
+int \hyperlink{game_8h_a9fb6ddc78d0d0c1f79b3c67f7238f12b}{generate\+Random\+Number} ()
+\item 
+int \hyperlink{game_8h_ab05f7c2782449793f37837bf291d6983}{solve\+Game} (int \hyperlink{game_8h_af013409455ca9ab915c88cb6127d62df}{i\+Game\+Data}\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+void \hyperlink{game_8h_a0694f97727152f51fe628440a522930a}{reset\+Game\+Data} (int i\+Gmae\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+int \hyperlink{game_8h_a3f0fc7a20da8a9b27d9399244abf5342}{get\+Grid\+Status} (int array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+void \hyperlink{game_8h_a6117d5344e3a3ebe2611da4b88a0f13d}{solve\+Cell} (int \hyperlink{game_8h_af013409455ca9ab915c88cb6127d62df}{i\+Game\+Data}\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int iX, int iY)
+\item 
+int \hyperlink{game_8h_ab1c6594db959cb5a05794625c82a2cc1}{get\+Game\+Status} (int i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+void \hyperlink{game_8h_af2580a235b29b36e50115c9484daa747}{solve\+All} (int \hyperlink{game_8h_af013409455ca9ab915c88cb6127d62df}{i\+Game\+Data}\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int \hyperlink{game_8h_a658ac20e5270f0e15b0c6463628e9d10}{i\+Deleted\+Cells}\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+int \hyperlink{game_8h_a1ffd5a6a84b97defba5632f635847f1f}{timer} (int i\+Action)
+\item 
+void \hyperlink{game_8h_a726067213fe68bf6678981bdd8ad6094}{time\+To\+String} (int i\+User\+Time, char c\+String\+Time\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{game_8h_a2b8086c17b948486da00732e709362cb}{check\+Game\+State} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{game_8h_a3d5f89092c234524bf659135c2f2c7b7}{i\+Marks} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}\mbox{[}\hyperlink{shared_8h_a16d1b4d48bc3ed775d299e10f884d027}{M\+A\+X\+\_\+\+M\+A\+R\+KS}\mbox{]}
+\item 
+int \hyperlink{game_8h_a3698d706bfeb3de61dfb1489abe995ba}{i\+X\+\_\+coordinate}
+\begin{DoxyCompactList}\small\item\em x-\/coordinate of the cursor. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_a5d0cacf417c6d4647c97c377165789d2}{i\+Y\+\_\+coordinate}
+\begin{DoxyCompactList}\small\item\em y-\/coordinate of the cursor. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_ac2f91d4431416753676b0837dc182c82}{i\+Difficulty}
+\begin{DoxyCompactList}\small\item\em game difficulty. \end{DoxyCompactList}\item 
+char \hyperlink{game_8h_a6584d70bac774360df7abdb36e45b18f}{c\+Game\+Message} \mbox{[}200\mbox{]}
+\begin{DoxyCompactList}\small\item\em game message \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_a12f4de108aac350f1f1484d9dd4fcef5}{i\+Is\+Game\+Active}
+\begin{DoxyCompactList}\small\item\em is a session active. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_a37ab0aabf3f257e564d47d8a8ff15157}{i\+Current\+Position}
+\begin{DoxyCompactList}\small\item\em current active menu item. \end{DoxyCompactList}\item 
+char \hyperlink{game_8h_a110c6b1e611af235f800234db4e4f4de}{c\+Uusername} \mbox{[}8\mbox{]}
+\item 
+int $\ast$ \hyperlink{game_8h_af3725ec587193d16d9ed2fae4e4b4e89}{pi\+Is\+User\+Logged\+In}
+\item 
+int \hyperlink{game_8h_af5b04a9420f2492a1ff2d147b55b5a23}{i\+Exit\+The\+Game}
+\item 
+int \hyperlink{game_8h_a6d2be05e20e3fcd0b9a662bb1b577bae}{is\+Solved\+Automatic}
+\item 
+int $\ast$ \hyperlink{game_8h_ac175ea9a7175c73a1802fa87058da0d1}{pi\+User\+ID}
+\item 
+int \hyperlink{game_8h_af013409455ca9ab915c88cb6127d62df}{i\+Game\+Data} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em array which holds the game data. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_a658ac20e5270f0e15b0c6463628e9d10}{i\+Deleted\+Cells} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em array which holds deleted cells to keep track of them. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_acefd22c20fd787749039a5d47cf86274}{i\+User\+Cells} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em array which holds the coordinates of user cells (cells to solve) to keep track of theme. \end{DoxyCompactList}\item 
+int \hyperlink{game_8h_aa54ad96b1edf0fc2914117f940f71af7}{i\+Anzahl\+Der\+Tipps}
+\item 
+int \hyperlink{game_8h_a2a2327fd8d4aeec8e6e939ff8f0b78af}{i\+Anzahl\+Der\+Hilfe}
+\item 
+int \hyperlink{game_8h_a9d72dcd3590a9744e463fd54a1f46ebc}{i\+Erlaubte\+Anzahl\+Der\+Hilfe}
+\item 
+int \hyperlink{game_8h_a61c934cb5650640b94686617c8455b8a}{i\+Erlaubte\+Anzahl\+Der\+Tipps}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{game_8h_a2b8086c17b948486da00732e709362cb}\label{game_8h_a2b8086c17b948486da00732e709362cb}} 
+\index{game.\+h@{game.\+h}!check\+Game\+State@{check\+Game\+State}}
+\index{check\+Game\+State@{check\+Game\+State}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{check\+Game\+State()}{checkGameState()}}
+{\footnotesize\ttfamily void check\+Game\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Leitet nötige Schritte zur Überprüfung, ob das Sudoku vollständig und richtig gelöst wurde, ein. \mbox{\Hypertarget{game_8h_afdab63d9f70e4ab8360cea6ab4c98186}\label{game_8h_afdab63d9f70e4ab8360cea6ab4c98186}} 
+\index{game.\+h@{game.\+h}!delete\+Cells@{delete\+Cells}}
+\index{delete\+Cells@{delete\+Cells}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{delete\+Cells()}{deleteCells()}}
+{\footnotesize\ttfamily void delete\+Cells (\begin{DoxyParamCaption}\item[{int}]{i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{i\+Difficulty }\end{DoxyParamCaption})}
+
+Löscht je nach Schwierigkeitsgrad mehr oder weniger zufällige Zellen aus dem sichtbaren Spielfeld und speichert die gelöschten Zellen im Array i\+Deleted\+Cells;
+\begin{DoxyEnumerate}
+\item Parameter\+: Spielfeld
+\item Parameter\+: Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a373977092430043a8fd79dd44d5ec679}\label{game_8h_a373977092430043a8fd79dd44d5ec679}} 
+\index{game.\+h@{game.\+h}!fill\+Notes\+For\+Cell@{fill\+Notes\+For\+Cell}}
+\index{fill\+Notes\+For\+Cell@{fill\+Notes\+For\+Cell}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{fill\+Notes\+For\+Cell()}{fillNotesForCell()}}
+{\footnotesize\ttfamily void fill\+Notes\+For\+Cell (\begin{DoxyParamCaption}\item[{int}]{i\+X\+\_\+coordinate,  }\item[{int}]{i\+Y\+\_\+coordinate }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8h_ac112d0da928064037f94db4069622195}\label{game_8h_ac112d0da928064037f94db4069622195}} 
+\index{game.\+h@{game.\+h}!generate\+Game\+Data@{generate\+Game\+Data}}
+\index{generate\+Game\+Data@{generate\+Game\+Data}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{generate\+Game\+Data()}{generateGameData()}}
+{\footnotesize\ttfamily void generate\+Game\+Data (\begin{DoxyParamCaption}\item[{int}]{i\+Game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+Generiert vor jedem neuen Spiel ein neues gelöstet Spielfeld. Sorgt damit dafür, dass das Sudoku lösbar ist. Der Vorgang wird nach zwei Sekunden neu gestartet, fall die Funktion zu keiner Lösung gekommen ist, um eine Endlossschleife zu vermeiden.
+\begin{DoxyEnumerate}
+\item Parameter\+: leeres Spielfeld 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a9fb6ddc78d0d0c1f79b3c67f7238f12b}\label{game_8h_a9fb6ddc78d0d0c1f79b3c67f7238f12b}} 
+\index{game.\+h@{game.\+h}!generate\+Random\+Number@{generate\+Random\+Number}}
+\index{generate\+Random\+Number@{generate\+Random\+Number}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{generate\+Random\+Number()}{generateRandomNumber()}}
+{\footnotesize\ttfamily int generate\+Random\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Generiert eine Zufallszahl zwischen 1 und 9. Rückgabewert\+: generierte Zufallszahl \mbox{\Hypertarget{game_8h_ab1c6594db959cb5a05794625c82a2cc1}\label{game_8h_ab1c6594db959cb5a05794625c82a2cc1}} 
+\index{game.\+h@{game.\+h}!get\+Game\+Status@{get\+Game\+Status}}
+\index{get\+Game\+Status@{get\+Game\+Status}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{get\+Game\+Status()}{getGameStatus()}}
+{\footnotesize\ttfamily int get\+Game\+Status (\begin{DoxyParamCaption}\item[{int}]{i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+Überprüft, ob alle Felder des sichtbaren Spielfeldes aufgefüllt wurden.
+\begin{DoxyEnumerate}
+\item Parameter\+: sichtbares Spielfeld Rückgabewert\+: Vollständig (F\+I\+L\+L\+ED) oder unvollständig (N\+O\+T\+\_\+\+F\+I\+L\+L\+ED) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a3f0fc7a20da8a9b27d9399244abf5342}\label{game_8h_a3f0fc7a20da8a9b27d9399244abf5342}} 
+\index{game.\+h@{game.\+h}!get\+Grid\+Status@{get\+Grid\+Status}}
+\index{get\+Grid\+Status@{get\+Grid\+Status}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{get\+Grid\+Status()}{getGridStatus()}}
+{\footnotesize\ttfamily int get\+Grid\+Status (\begin{DoxyParamCaption}\item[{int}]{array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+Generiert eine Zufallszahl in einem definierbaren Intervall.
+\begin{DoxyEnumerate}
+\item Parameter\+: Intervall-\/\+Start
+\item Parameter\+: Intervall-\/\+Ende Rückgabewert\+: generierte Zufallszahl int generate\+Number\+By\+Interval(int x, int y);
+\end{DoxyEnumerate}
+
+/$\ast$$\ast$ 
+\begin{DoxyParams}{Parameters}
+{\em array\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & which holds the game data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a integer which indicates if the grid if filled complete.
+\end{DoxyReturn}
+Checks if the grid if filled complete. \mbox{\Hypertarget{game_8h_a23d5baf8fb30cfde69dcaa370dc59203}\label{game_8h_a23d5baf8fb30cfde69dcaa370dc59203}} 
+\index{game.\+h@{game.\+h}!is\+Element\+In\+Array@{is\+Element\+In\+Array}}
+\index{is\+Element\+In\+Array@{is\+Element\+In\+Array}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{is\+Element\+In\+Array()}{isElementInArray()}}
+{\footnotesize\ttfamily int is\+Element\+In\+Array (\begin{DoxyParamCaption}\item[{int}]{i\+Array\mbox{[}$\,$\mbox{]},  }\item[{int}]{i\+Number,  }\item[{int}]{i\+Size }\end{DoxyParamCaption})}
+
+Überpüft, ob sich ein bestimmtes Element in einen bestimmten Array befindet.
+\begin{DoxyEnumerate}
+\item Parameter\+: zu überprüfender Array
+\item Parameter\+: Element, nach dem gesucht werden soll
+\item Parameter\+: Länge des Arrays Rückgabewert\+: Stelle, an der das Element gefunden wurde oder -\/1, falls es nicht im Array ist 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_ac4bbe50986945dccd2a9940b693cd7fa}\label{game_8h_ac4bbe50986945dccd2a9940b693cd7fa}} 
+\index{game.\+h@{game.\+h}!is\+Element\+In\+Box@{is\+Element\+In\+Box}}
+\index{is\+Element\+In\+Box@{is\+Element\+In\+Box}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{is\+Element\+In\+Box()}{isElementInBox()}}
+{\footnotesize\ttfamily int is\+Element\+In\+Box (\begin{DoxyParamCaption}\item[{int}]{i\+Arr\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{i\+Box\+\_\+start\+\_\+row,  }\item[{int}]{i\+Box\+\_\+start\+\_\+col,  }\item[{int}]{i\+Ele }\end{DoxyParamCaption})}
+
+Dient zur Überprüfung, ob eine bestimmte Zahl in einer bestimmten der neun Unterquadrate des Sudokus vorhanden ist.
+\begin{DoxyEnumerate}
+\item Parameter\+: aktuelles Spielfeld
+\item Parameter\+: y-\/\+Koordinate der oberen, linken Ecke der Box
+\item Parameter\+: x-\/\+Koordinate der obenen, linken Ecke der Box
+\item Parameter\+: Element, nach dem gesucht werden soll Rückgabewert\+: Gefunden? 1 -\/$>$ Ja, -\/1 -\/$>$ Nein 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a365826d933111b6ccf3f91f6175484d1}\label{game_8h_a365826d933111b6ccf3f91f6175484d1}} 
+\index{game.\+h@{game.\+h}!make\+Note@{make\+Note}}
+\index{make\+Note@{make\+Note}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{make\+Note()}{makeNote()}}
+{\footnotesize\ttfamily void make\+Note (\begin{DoxyParamCaption}\item[{int}]{iX,  }\item[{int}]{iY,  }\item[{int}]{i\+Suggestion }\end{DoxyParamCaption})}
+
+Wird nur aufgerufen, wenn sich der Spieler im \char`\"{}\+Makiere-\/\+Modus\char`\"{} befindet. Es können bis zu drei Zahlen in eine Notiz eingetragen werden. Wenn die Notiz voll ist und eine weitere Zahl eingetragen wird, wird die Notiz gelöscht und die weitere Zahl eingetragen.
+\begin{DoxyEnumerate}
+\item Parameter\+: x-\/\+Koordinate, an der der Spieler sich befindet
+\item Parameter\+: y-\/\+Koordinate, an der der Spieler sich befindet
+\item Parameter\+: Zahl, die der Spiele in die Notiz schreiben möchte 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a9b1ff46407447ff4ab35dde49b5f7e43}\label{game_8h_a9b1ff46407447ff4ab35dde49b5f7e43}} 
+\index{game.\+h@{game.\+h}!navigate\+To@{navigate\+To}}
+\index{navigate\+To@{navigate\+To}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{navigate\+To()}{navigateTo()}}
+{\footnotesize\ttfamily void navigate\+To (\begin{DoxyParamCaption}\item[{int}]{i\+Pos }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+Pos} & of where to navigate\\
+\hline
+\end{DoxyParams}
+Moves the cursor in the desired direction \mbox{\Hypertarget{game_8h_a5bce53e6b508a6ca5261035641e6e0c3}\label{game_8h_a5bce53e6b508a6ca5261035641e6e0c3}} 
+\index{game.\+h@{game.\+h}!reset\+Array@{reset\+Array}}
+\index{reset\+Array@{reset\+Array}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{reset\+Array()}{resetArray()}}
+{\footnotesize\ttfamily void reset\+Array (\begin{DoxyParamCaption}\item[{int}]{i\+Array\mbox{[}$\,$\mbox{]},  }\item[{int}]{i\+Size }\end{DoxyParamCaption})}
+
+Setzt einen Array auf den Ursprungszustand zurück, indem alle Werte auf Null gesetzt werden.
+\begin{DoxyEnumerate}
+\item Parameter\+: der zurückzusetzende Array
+\item Parameter\+: Länge des Arrays 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a0694f97727152f51fe628440a522930a}\label{game_8h_a0694f97727152f51fe628440a522930a}} 
+\index{game.\+h@{game.\+h}!reset\+Game\+Data@{reset\+Game\+Data}}
+\index{reset\+Game\+Data@{reset\+Game\+Data}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{reset\+Game\+Data()}{resetGameData()}}
+{\footnotesize\ttfamily void reset\+Game\+Data (\begin{DoxyParamCaption}\item[{int}]{i\+Gmae\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+Gmae\+Data\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & which holds the game data.\\
+\hline
+\end{DoxyParams}
+Sets the value of array items to zero. \mbox{\Hypertarget{game_8h_af2580a235b29b36e50115c9484daa747}\label{game_8h_af2580a235b29b36e50115c9484daa747}} 
+\index{game.\+h@{game.\+h}!solve\+All@{solve\+All}}
+\index{solve\+All@{solve\+All}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{solve\+All()}{solveAll()}}
+{\footnotesize\ttfamily void solve\+All (\begin{DoxyParamCaption}\item[{int}]{i\+Game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{i\+Deleted\+Cells\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8h_a6117d5344e3a3ebe2611da4b88a0f13d}\label{game_8h_a6117d5344e3a3ebe2611da4b88a0f13d}} 
+\index{game.\+h@{game.\+h}!solve\+Cell@{solve\+Cell}}
+\index{solve\+Cell@{solve\+Cell}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{solve\+Cell()}{solveCell()}}
+{\footnotesize\ttfamily void solve\+Cell (\begin{DoxyParamCaption}\item[{int}]{i\+Game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{iX,  }\item[{int}]{iY }\end{DoxyParamCaption})}
+
+Wird aufgerufen, wenn der Spieler die Hilfefunktion nutzt. Aus dem zweidimensionalen Array, in dem die gelöschten Zellen gespeichert sind, wird der Lösungswert in das aktuelle Spielfeld eingetragen.
+\begin{DoxyEnumerate}
+\item Parameter\+: aktuelles Spielfeld
+\item Parameter\+: x-\/\+Koordinate, an der der Spieler sich befindet
+\item Parameter\+: y-\/\+Koordinate, an der der Spieler sich befindet 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_ab05f7c2782449793f37837bf291d6983}\label{game_8h_ab05f7c2782449793f37837bf291d6983}} 
+\index{game.\+h@{game.\+h}!solve\+Game@{solve\+Game}}
+\index{solve\+Game@{solve\+Game}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{solve\+Game()}{solveGame()}}
+{\footnotesize\ttfamily int solve\+Game (\begin{DoxyParamCaption}\item[{int}]{i\+Game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+Wird aufgerufen, wenn die keine Zellen mehr ausgefüllt werden müssen. Überprüft, ob der Spieler das Spielfeld richtig gelöst hat.
+\begin{DoxyEnumerate}
+\item Parameter\+: aktuelles Spielfeld Rückgabewert\+: Richtig gelöst (1) oder es existiert mindestens ein Fehler (0) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a1ffd5a6a84b97defba5632f635847f1f}\label{game_8h_a1ffd5a6a84b97defba5632f635847f1f}} 
+\index{game.\+h@{game.\+h}!timer@{timer}}
+\index{timer@{timer}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{timer()}{timer()}}
+{\footnotesize\ttfamily int timer (\begin{DoxyParamCaption}\item[{int}]{i\+Action }\end{DoxyParamCaption})}
+
+Stoppuhr für das Spiel. Wird zur Messung der benötigten Zeit zum Lösen des Sudokus verwendet. Stoppuhr kann (neu-\/)gestartet, ge-\/ stopped und pausiert werden.
+\begin{DoxyEnumerate}
+\item Parameter\+: Aktion für die Stoppuhr (Zeit abfragen, Zurück-\/ setzen, Starten, Stoppen) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{game_8h_a726067213fe68bf6678981bdd8ad6094}\label{game_8h_a726067213fe68bf6678981bdd8ad6094}} 
+\index{game.\+h@{game.\+h}!time\+To\+String@{time\+To\+String}}
+\index{time\+To\+String@{time\+To\+String}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{time\+To\+String()}{timeToString()}}
+{\footnotesize\ttfamily void time\+To\+String (\begin{DoxyParamCaption}\item[{int}]{i\+User\+Time,  }\item[{char}]{c\+String\+Time\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Wandelt eine Zeitangabe in Sekunden in das \char`\"{}00\+:00\char`\"{}-\/\+Format um.
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeitangabe in Sekunden
+\item Parameter\+: Char-\/\+Array, in den die formatierte Zeit geschrieben werden soll 
+\end{DoxyEnumerate}
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{game_8h_a6584d70bac774360df7abdb36e45b18f}\label{game_8h_a6584d70bac774360df7abdb36e45b18f}} 
+\index{game.\+h@{game.\+h}!c\+Game\+Message@{c\+Game\+Message}}
+\index{c\+Game\+Message@{c\+Game\+Message}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{c\+Game\+Message}{cGameMessage}}
+{\footnotesize\ttfamily char c\+Game\+Message\mbox{[}200\mbox{]}}
+
+
+
+game message 
+
+\mbox{\Hypertarget{game_8h_a110c6b1e611af235f800234db4e4f4de}\label{game_8h_a110c6b1e611af235f800234db4e4f4de}} 
+\index{game.\+h@{game.\+h}!c\+Uusername@{c\+Uusername}}
+\index{c\+Uusername@{c\+Uusername}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{c\+Uusername}{cUusername}}
+{\footnotesize\ttfamily char c\+Uusername\mbox{[}8\mbox{]}}
+
+\mbox{\Hypertarget{game_8h_a2a2327fd8d4aeec8e6e939ff8f0b78af}\label{game_8h_a2a2327fd8d4aeec8e6e939ff8f0b78af}} 
+\index{game.\+h@{game.\+h}!i\+Anzahl\+Der\+Hilfe@{i\+Anzahl\+Der\+Hilfe}}
+\index{i\+Anzahl\+Der\+Hilfe@{i\+Anzahl\+Der\+Hilfe}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Anzahl\+Der\+Hilfe}{iAnzahlDerHilfe}}
+{\footnotesize\ttfamily int i\+Anzahl\+Der\+Hilfe}
+
+\mbox{\Hypertarget{game_8h_aa54ad96b1edf0fc2914117f940f71af7}\label{game_8h_aa54ad96b1edf0fc2914117f940f71af7}} 
+\index{game.\+h@{game.\+h}!i\+Anzahl\+Der\+Tipps@{i\+Anzahl\+Der\+Tipps}}
+\index{i\+Anzahl\+Der\+Tipps@{i\+Anzahl\+Der\+Tipps}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Anzahl\+Der\+Tipps}{iAnzahlDerTipps}}
+{\footnotesize\ttfamily int i\+Anzahl\+Der\+Tipps}
+
+\mbox{\Hypertarget{game_8h_a37ab0aabf3f257e564d47d8a8ff15157}\label{game_8h_a37ab0aabf3f257e564d47d8a8ff15157}} 
+\index{game.\+h@{game.\+h}!i\+Current\+Position@{i\+Current\+Position}}
+\index{i\+Current\+Position@{i\+Current\+Position}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Current\+Position}{iCurrentPosition}}
+{\footnotesize\ttfamily int i\+Current\+Position}
+
+
+
+current active menu item. 
+
+\mbox{\Hypertarget{game_8h_a658ac20e5270f0e15b0c6463628e9d10}\label{game_8h_a658ac20e5270f0e15b0c6463628e9d10}} 
+\index{game.\+h@{game.\+h}!i\+Deleted\+Cells@{i\+Deleted\+Cells}}
+\index{i\+Deleted\+Cells@{i\+Deleted\+Cells}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Deleted\+Cells}{iDeletedCells}}
+{\footnotesize\ttfamily int i\+Deleted\+Cells\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}
+
+
+
+array which holds deleted cells to keep track of them. 
+
+\mbox{\Hypertarget{game_8h_ac2f91d4431416753676b0837dc182c82}\label{game_8h_ac2f91d4431416753676b0837dc182c82}} 
+\index{game.\+h@{game.\+h}!i\+Difficulty@{i\+Difficulty}}
+\index{i\+Difficulty@{i\+Difficulty}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Difficulty}{iDifficulty}}
+{\footnotesize\ttfamily int i\+Difficulty}
+
+
+
+game difficulty. 
+
+\mbox{\Hypertarget{game_8h_a9d72dcd3590a9744e463fd54a1f46ebc}\label{game_8h_a9d72dcd3590a9744e463fd54a1f46ebc}} 
+\index{game.\+h@{game.\+h}!i\+Erlaubte\+Anzahl\+Der\+Hilfe@{i\+Erlaubte\+Anzahl\+Der\+Hilfe}}
+\index{i\+Erlaubte\+Anzahl\+Der\+Hilfe@{i\+Erlaubte\+Anzahl\+Der\+Hilfe}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Erlaubte\+Anzahl\+Der\+Hilfe}{iErlaubteAnzahlDerHilfe}}
+{\footnotesize\ttfamily int i\+Erlaubte\+Anzahl\+Der\+Hilfe}
+
+\mbox{\Hypertarget{game_8h_a61c934cb5650640b94686617c8455b8a}\label{game_8h_a61c934cb5650640b94686617c8455b8a}} 
+\index{game.\+h@{game.\+h}!i\+Erlaubte\+Anzahl\+Der\+Tipps@{i\+Erlaubte\+Anzahl\+Der\+Tipps}}
+\index{i\+Erlaubte\+Anzahl\+Der\+Tipps@{i\+Erlaubte\+Anzahl\+Der\+Tipps}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Erlaubte\+Anzahl\+Der\+Tipps}{iErlaubteAnzahlDerTipps}}
+{\footnotesize\ttfamily int i\+Erlaubte\+Anzahl\+Der\+Tipps}
+
+\mbox{\Hypertarget{game_8h_af5b04a9420f2492a1ff2d147b55b5a23}\label{game_8h_af5b04a9420f2492a1ff2d147b55b5a23}} 
+\index{game.\+h@{game.\+h}!i\+Exit\+The\+Game@{i\+Exit\+The\+Game}}
+\index{i\+Exit\+The\+Game@{i\+Exit\+The\+Game}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Exit\+The\+Game}{iExitTheGame}}
+{\footnotesize\ttfamily int i\+Exit\+The\+Game}
+
+\mbox{\Hypertarget{game_8h_af013409455ca9ab915c88cb6127d62df}\label{game_8h_af013409455ca9ab915c88cb6127d62df}} 
+\index{game.\+h@{game.\+h}!i\+Game\+Data@{i\+Game\+Data}}
+\index{i\+Game\+Data@{i\+Game\+Data}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Game\+Data}{iGameData}}
+{\footnotesize\ttfamily int i\+Game\+Data\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}
+
+
+
+array which holds the game data. 
+
+\mbox{\Hypertarget{game_8h_a12f4de108aac350f1f1484d9dd4fcef5}\label{game_8h_a12f4de108aac350f1f1484d9dd4fcef5}} 
+\index{game.\+h@{game.\+h}!i\+Is\+Game\+Active@{i\+Is\+Game\+Active}}
+\index{i\+Is\+Game\+Active@{i\+Is\+Game\+Active}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Is\+Game\+Active}{iIsGameActive}}
+{\footnotesize\ttfamily int i\+Is\+Game\+Active}
+
+
+
+is a session active. 
+
+\mbox{\Hypertarget{game_8h_a3d5f89092c234524bf659135c2f2c7b7}\label{game_8h_a3d5f89092c234524bf659135c2f2c7b7}} 
+\index{game.\+h@{game.\+h}!i\+Marks@{i\+Marks}}
+\index{i\+Marks@{i\+Marks}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Marks}{iMarks}}
+{\footnotesize\ttfamily int i\+Marks\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}\mbox{[}\hyperlink{shared_8h_a16d1b4d48bc3ed775d299e10f884d027}{M\+A\+X\+\_\+\+M\+A\+R\+KS}\mbox{]}}
+
+\mbox{\Hypertarget{game_8h_a6d2be05e20e3fcd0b9a662bb1b577bae}\label{game_8h_a6d2be05e20e3fcd0b9a662bb1b577bae}} 
+\index{game.\+h@{game.\+h}!is\+Solved\+Automatic@{is\+Solved\+Automatic}}
+\index{is\+Solved\+Automatic@{is\+Solved\+Automatic}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{is\+Solved\+Automatic}{isSolvedAutomatic}}
+{\footnotesize\ttfamily int is\+Solved\+Automatic}
+
+\mbox{\Hypertarget{game_8h_acefd22c20fd787749039a5d47cf86274}\label{game_8h_acefd22c20fd787749039a5d47cf86274}} 
+\index{game.\+h@{game.\+h}!i\+User\+Cells@{i\+User\+Cells}}
+\index{i\+User\+Cells@{i\+User\+Cells}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+User\+Cells}{iUserCells}}
+{\footnotesize\ttfamily int i\+User\+Cells\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}
+
+
+
+array which holds the coordinates of user cells (cells to solve) to keep track of theme. 
+
+\mbox{\Hypertarget{game_8h_a3698d706bfeb3de61dfb1489abe995ba}\label{game_8h_a3698d706bfeb3de61dfb1489abe995ba}} 
+\index{game.\+h@{game.\+h}!i\+X\+\_\+coordinate@{i\+X\+\_\+coordinate}}
+\index{i\+X\+\_\+coordinate@{i\+X\+\_\+coordinate}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+X\+\_\+coordinate}{iX\_coordinate}}
+{\footnotesize\ttfamily int i\+X\+\_\+coordinate}
+
+
+
+x-\/coordinate of the cursor. 
+
+\mbox{\Hypertarget{game_8h_a5d0cacf417c6d4647c97c377165789d2}\label{game_8h_a5d0cacf417c6d4647c97c377165789d2}} 
+\index{game.\+h@{game.\+h}!i\+Y\+\_\+coordinate@{i\+Y\+\_\+coordinate}}
+\index{i\+Y\+\_\+coordinate@{i\+Y\+\_\+coordinate}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{i\+Y\+\_\+coordinate}{iY\_coordinate}}
+{\footnotesize\ttfamily int i\+Y\+\_\+coordinate}
+
+
+
+y-\/coordinate of the cursor. 
+
+\mbox{\Hypertarget{game_8h_af3725ec587193d16d9ed2fae4e4b4e89}\label{game_8h_af3725ec587193d16d9ed2fae4e4b4e89}} 
+\index{game.\+h@{game.\+h}!pi\+Is\+User\+Logged\+In@{pi\+Is\+User\+Logged\+In}}
+\index{pi\+Is\+User\+Logged\+In@{pi\+Is\+User\+Logged\+In}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{pi\+Is\+User\+Logged\+In}{piIsUserLoggedIn}}
+{\footnotesize\ttfamily int$\ast$ pi\+Is\+User\+Logged\+In}
+
+\mbox{\Hypertarget{game_8h_ac175ea9a7175c73a1802fa87058da0d1}\label{game_8h_ac175ea9a7175c73a1802fa87058da0d1}} 
+\index{game.\+h@{game.\+h}!pi\+User\+ID@{pi\+User\+ID}}
+\index{pi\+User\+ID@{pi\+User\+ID}!game.\+h@{game.\+h}}
+\subsubsection{\texorpdfstring{pi\+User\+ID}{piUserID}}
+{\footnotesize\ttfamily int$\ast$ pi\+User\+ID}
+

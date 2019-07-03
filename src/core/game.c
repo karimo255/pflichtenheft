@@ -29,6 +29,7 @@ int iGameData[9][9] = {0};
 int iMarks[9][9][MAX_MARKS];
 int iDeletedCells[9][9] = {0};
 int iUserCells[9][9] = {0};
+int *piUserID;
 
 int iElementsInSomeColumn[9] = {0};
 
@@ -516,12 +517,16 @@ void checkGameState()
     if (iIsGameActive && getGameStatus(iGameData) == FILLED) {
         int solveState = solveGame(iGameData);
         if (solveState) {
-            if (piUserID != NULL && isSolvedAutomatic == 0) {
+
+            if (piUserID != 0 && isSolvedAutomatic == 0) {
                 strcpy(cGameMessage, "insert.");
+                printf("Drin.\n");
 
                 int _score = timer(TIMER_STATE);
                 insertScore(piUserID, _score, iDifficulty);
             }
+            printf("Raus.\n");
+
             iIsGameActive = 0;
             iCurrentPosition = SOLVED_GAME;
         } else {

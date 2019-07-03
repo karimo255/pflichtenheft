@@ -1,0 +1,343 @@
+\hypertarget{view_8h}{}\section{headers/core/view.h File Reference}
+\label{view_8h}\index{headers/core/view.\+h@{headers/core/view.\+h}}
+{\ttfamily \#include \char`\"{}../shared/shared.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{view_8h_acd6361cb5d599345fc756af3d1cb8791}{render\+Mark\+Mode\+Message} ()
+\item 
+void \hyperlink{view_8h_adb4ba2caf581760f90d6e46a870cf700}{render\+Username\+Dialog} (char $\ast$pc\+Username)
+\item 
+void \hyperlink{view_8h_a78e361735746351cb5af84496b98373f}{render\+Menu} ()
+\item 
+void \hyperlink{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}{render\+D\+Best\+Score\+Dialog} ()
+\item 
+void \hyperlink{view_8h_a63c9c340970068d9ec7f07c861d2badc}{render\+Details} (struct \hyperlink{structsScore}{s\+Score} $\ast$scores, int difficulty)
+\item 
+void \hyperlink{view_8h_a59ee9565b726df9cf12690e17df3170f}{render\+Court} (int game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int user\+Cells\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]}, int x\+\_\+coordinate, int y\+\_\+coordinate)
+\begin{DoxyCompactList}\small\item\em Function to render the game grid. \end{DoxyCompactList}\item 
+void \hyperlink{view_8h_aefebd76cb79365ed497c0164498c7d6c}{render\+Info\+Box} (char $\ast$username, int $\ast$\hyperlink{score__service_8h_afbf9f2e3c24dbf9966e5b859416d0bf4}{score}, int \+\_\+difficulty, int remaining)
+\item 
+void \hyperlink{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}{render\+Game\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Function to render the game menu. \end{DoxyCompactList}\item 
+void \hyperlink{view_8h_a008ec4df25b278b5956d0092c8e87f81}{render\+Solved\+Game} (int solved\+Automatic, int anzahl\+Der\+Tipps, int anzahl\+Der\+Hilfe)
+\begin{DoxyCompactList}\small\item\em Function to render the dialog after solved game. \end{DoxyCompactList}\item 
+void \hyperlink{view_8h_a3f7a1223459077cd5d74ac3cd7ab4ca5}{render\+Difficulty\+Dialog} ()
+\item 
+void \hyperlink{view_8h_a108fd7ab9648dd730a7941d87079f87f}{render\+Help\+Dialog} ()
+\item 
+int \hyperlink{view_8h_a7e4bdfffa41d8f5d318eca3e71040d65}{len\+Helper} (int input)
+\begin{DoxyCompactList}\small\item\em Function to get the length of integers (aka strlen for strings) \end{DoxyCompactList}\item 
+int \hyperlink{view_8h_aec7eedb382e0f722e1f070170a77f22b}{get\+Remaining\+Cells} (int i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]})
+\item 
+void \hyperlink{view_8h_afe9bb72b8ca791c4035d23d3717ffea4}{print\+\_\+list} (struct \hyperlink{structsScore}{s\+Score} $\ast$head, int \hyperlink{game_8h_ac2f91d4431416753676b0837dc182c82}{i\+Difficulty})
+\item 
+void \hyperlink{view_8h_abd1f8c83fcebf1f40bc3fec0f96fb2bb}{init\+Colors} ()
+\item 
+void \hyperlink{view_8h_a85ad290acb7660ec0966649c1827e395}{print\+Game\+Message} ()
+\item 
+void \hyperlink{view_8h_a9f9bf4eec1ec015f9d877dbf8cf06ebc}{print\+Colored\+String} (char text\mbox{[}$\,$\mbox{]}, char color\mbox{[}$\,$\mbox{]}, int new\+Line)
+\item 
+void \hyperlink{view_8h_a9d1d20e68288ccefcdfedc3520d31193}{print\+Colored\+Number} (int number, char $\ast$color, int new\+Line)
+\item 
+void \hyperlink{view_8h_a429a75ab154b549418db53976709933f}{set\+Printing\+Color} (char $\ast$color)
+\item 
+void \hyperlink{view_8h_a8d755aedf46f29d74d7e03999ee856cd}{print\+Start\+Of\+Line} ()
+\item 
+void \hyperlink{view_8h_ad253403e07ca61a784192ca63383fdb3}{print\+End\+Of\+Line} ()
+\item 
+void \hyperlink{view_8h_a0eace8b7e45abc09ee40c0a0a1423a93}{print\+Table\+Line} ()
+\item 
+void \hyperlink{view_8h_a2a5ade78e38e17c67898695f154e26fe}{print\+End\+Of\+Table} ()
+\item 
+void \hyperlink{view_8h_af5d936899954836293ebd3d39445fb78}{print\+Empty\+Table\+Line} ()
+\item 
+void \hyperlink{view_8h_a1606bef806751dc18633f6f90e61ab7b}{render\+Loading\+Bar} (int x)
+\item 
+void \hyperlink{view_8h_aa7da83ed703c21222cb74f6e846e33fb}{clear\+\_\+output} ()
+\item 
+void \hyperlink{view_8h_a7e51d29f5df27b0e034cab6dbc112065}{render\+Notes\+Box} (int x, int y)
+\item 
+void \hyperlink{view_8h_a80ae602a7ab1d6edead0e6185fb5a509}{render\+Set\+Password} ()
+\item 
+void \hyperlink{view_8h_a4c6092f6718d38d025e17b7ea81299a2}{render\+Enter\+Password} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{view_8h_aa7da83ed703c21222cb74f6e846e33fb}\label{view_8h_aa7da83ed703c21222cb74f6e846e33fb}} 
+\index{view.\+h@{view.\+h}!clear\+\_\+output@{clear\+\_\+output}}
+\index{clear\+\_\+output@{clear\+\_\+output}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{clear\+\_\+output()}{clear\_output()}}
+{\footnotesize\ttfamily void clear\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Löscht den aktuellen Konsoleninhalt. Überprüft zunächst das laufende Betriebssystem, um einen ordnungsgemäßen Ablauf zu gewährleisten. \mbox{\Hypertarget{view_8h_aec7eedb382e0f722e1f070170a77f22b}\label{view_8h_aec7eedb382e0f722e1f070170a77f22b}} 
+\index{view.\+h@{view.\+h}!get\+Remaining\+Cells@{get\+Remaining\+Cells}}
+\index{get\+Remaining\+Cells@{get\+Remaining\+Cells}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{get\+Remaining\+Cells()}{getRemainingCells()}}
+{\footnotesize\ttfamily int get\+Remaining\+Cells (\begin{DoxyParamCaption}\item[{int}]{i\+Array\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]} }\end{DoxyParamCaption})}
+
+Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+\begin{DoxyEnumerate}
+\item Parameter\+: sichtbares Spielfeld 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_abd1f8c83fcebf1f40bc3fec0f96fb2bb}\label{view_8h_abd1f8c83fcebf1f40bc3fec0f96fb2bb}} 
+\index{view.\+h@{view.\+h}!init\+Colors@{init\+Colors}}
+\index{init\+Colors@{init\+Colors}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{init\+Colors()}{initColors()}}
+{\footnotesize\ttfamily void init\+Colors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_a7e4bdfffa41d8f5d318eca3e71040d65}\label{view_8h_a7e4bdfffa41d8f5d318eca3e71040d65}} 
+\index{view.\+h@{view.\+h}!len\+Helper@{len\+Helper}}
+\index{len\+Helper@{len\+Helper}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{len\+Helper()}{lenHelper()}}
+{\footnotesize\ttfamily int len\+Helper (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Function to get the length of integers (aka strlen for strings) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & an integer to get length of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the length of the given integer
+\end{DoxyReturn}
+It return the length of integer number (for optimal printing) \mbox{\Hypertarget{view_8h_afe9bb72b8ca791c4035d23d3717ffea4}\label{view_8h_afe9bb72b8ca791c4035d23d3717ffea4}} 
+\index{view.\+h@{view.\+h}!print\+\_\+list@{print\+\_\+list}}
+\index{print\+\_\+list@{print\+\_\+list}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+\_\+list()}{print\_list()}}
+{\footnotesize\ttfamily void print\+\_\+list (\begin{DoxyParamCaption}\item[{struct \hyperlink{structsScore}{s\+Score} $\ast$}]{head,  }\item[{int}]{i\+Difficulty }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_a9d1d20e68288ccefcdfedc3520d31193}\label{view_8h_a9d1d20e68288ccefcdfedc3520d31193}} 
+\index{view.\+h@{view.\+h}!print\+Colored\+Number@{print\+Colored\+Number}}
+\index{print\+Colored\+Number@{print\+Colored\+Number}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Colored\+Number()}{printColoredNumber()}}
+{\footnotesize\ttfamily void print\+Colored\+Number (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{char $\ast$}]{color,  }\item[{int}]{new\+Line }\end{DoxyParamCaption})}
+
+Dient zur formatierten Ausgabe einer farbigen Zahl im Spielfeld
+\begin{DoxyEnumerate}
+\item Parameter\+: Zahl, die gedruckt werden soll
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zahl, die gedruckt werden soll
+\item Parameter\+: Farbe, in der die Zahl gedruckt werden soll
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable mit dem Wert für die Farbe, in der die Zahl gedruckt werden soll
+\item Parameter\+: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein)
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Soll danach eine neue Zeile folgen? (1 = Ja, 0 = Nein) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a9f9bf4eec1ec015f9d877dbf8cf06ebc}\label{view_8h_a9f9bf4eec1ec015f9d877dbf8cf06ebc}} 
+\index{view.\+h@{view.\+h}!print\+Colored\+String@{print\+Colored\+String}}
+\index{print\+Colored\+String@{print\+Colored\+String}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Colored\+String()}{printColoredString()}}
+{\footnotesize\ttfamily void print\+Colored\+String (\begin{DoxyParamCaption}\item[{char}]{text\mbox{[}$\,$\mbox{]},  }\item[{char}]{color\mbox{[}$\,$\mbox{]},  }\item[{int}]{new\+Line }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_af5d936899954836293ebd3d39445fb78}\label{view_8h_af5d936899954836293ebd3d39445fb78}} 
+\index{view.\+h@{view.\+h}!print\+Empty\+Table\+Line@{print\+Empty\+Table\+Line}}
+\index{print\+Empty\+Table\+Line@{print\+Empty\+Table\+Line}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Empty\+Table\+Line()}{printEmptyTableLine()}}
+{\footnotesize\ttfamily void print\+Empty\+Table\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_ad253403e07ca61a784192ca63383fdb3}\label{view_8h_ad253403e07ca61a784192ca63383fdb3}} 
+\index{view.\+h@{view.\+h}!print\+End\+Of\+Line@{print\+End\+Of\+Line}}
+\index{print\+End\+Of\+Line@{print\+End\+Of\+Line}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+End\+Of\+Line()}{printEndOfLine()}}
+{\footnotesize\ttfamily void print\+End\+Of\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ausgabe des Endes einer Zeile, die zu einer Box mit Informationen gehört (Beispiel\+: Spielregeln). \mbox{\Hypertarget{view_8h_a2a5ade78e38e17c67898695f154e26fe}\label{view_8h_a2a5ade78e38e17c67898695f154e26fe}} 
+\index{view.\+h@{view.\+h}!print\+End\+Of\+Table@{print\+End\+Of\+Table}}
+\index{print\+End\+Of\+Table@{print\+End\+Of\+Table}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+End\+Of\+Table()}{printEndOfTable()}}
+{\footnotesize\ttfamily void print\+End\+Of\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ausgabe der Zeile, die das Ende einer Box mit Informationen darstellt (Beispiel\+: Spielregeln). \mbox{\Hypertarget{view_8h_a85ad290acb7660ec0966649c1827e395}\label{view_8h_a85ad290acb7660ec0966649c1827e395}} 
+\index{view.\+h@{view.\+h}!print\+Game\+Message@{print\+Game\+Message}}
+\index{print\+Game\+Message@{print\+Game\+Message}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Game\+Message()}{printGameMessage()}}
+{\footnotesize\ttfamily void print\+Game\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_a8d755aedf46f29d74d7e03999ee856cd}\label{view_8h_a8d755aedf46f29d74d7e03999ee856cd}} 
+\index{view.\+h@{view.\+h}!print\+Start\+Of\+Line@{print\+Start\+Of\+Line}}
+\index{print\+Start\+Of\+Line@{print\+Start\+Of\+Line}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Start\+Of\+Line()}{printStartOfLine()}}
+{\footnotesize\ttfamily void print\+Start\+Of\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ermittelt die Anzahl der Zellen, die noch befüllt werden müssen.
+\begin{DoxyEnumerate}
+\item Parameter\+: sichtbares Spielfeld 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a0eace8b7e45abc09ee40c0a0a1423a93}\label{view_8h_a0eace8b7e45abc09ee40c0a0a1423a93}} 
+\index{view.\+h@{view.\+h}!print\+Table\+Line@{print\+Table\+Line}}
+\index{print\+Table\+Line@{print\+Table\+Line}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{print\+Table\+Line()}{printTableLine()}}
+{\footnotesize\ttfamily void print\+Table\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ausgabe einer Zeile, die zu einer Box mit Informationen gehört (Beispiel\+: Spielregeln).
+\begin{DoxyEnumerate}
+\item Parameter\+: Text, der gedruckt werden sollen 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a59ee9565b726df9cf12690e17df3170f}\label{view_8h_a59ee9565b726df9cf12690e17df3170f}} 
+\index{view.\+h@{view.\+h}!render\+Court@{render\+Court}}
+\index{render\+Court@{render\+Court}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Court()}{renderCourt()}}
+{\footnotesize\ttfamily void render\+Court (\begin{DoxyParamCaption}\item[{int}]{game\+Data\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{user\+Cells\mbox{[}$\,$\mbox{]}\mbox{[}9\mbox{]},  }\item[{int}]{x\+\_\+coordinate,  }\item[{int}]{y\+\_\+coordinate }\end{DoxyParamCaption})}
+
+
+
+Function to render the game grid. 
+
+It shows the game grid \mbox{\Hypertarget{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}\label{view_8h_ade3a0cbdb43635debe53b0e5d92b0e54}} 
+\index{view.\+h@{view.\+h}!render\+D\+Best\+Score\+Dialog@{render\+D\+Best\+Score\+Dialog}}
+\index{render\+D\+Best\+Score\+Dialog@{render\+D\+Best\+Score\+Dialog}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+D\+Best\+Score\+Dialog()}{renderDBestScoreDialog()}}
+{\footnotesize\ttfamily void render\+D\+Best\+Score\+Dialog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw. initialisiert diese Ausgabe initialisiert diese Ausgabe
+\begin{DoxyEnumerate}
+\item Parameter\+: Struktur, in der die Bestscores gespeichert sind
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+\item Parameter\+: ausgewählter Schwierigkeitsgrad
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: ausgewählter Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a63c9c340970068d9ec7f07c861d2badc}\label{view_8h_a63c9c340970068d9ec7f07c861d2badc}} 
+\index{view.\+h@{view.\+h}!render\+Details@{render\+Details}}
+\index{render\+Details@{render\+Details}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Details()}{renderDetails()}}
+{\footnotesize\ttfamily void render\+Details (\begin{DoxyParamCaption}\item[{struct \hyperlink{structsScore}{s\+Score} $\ast$}]{scores,  }\item[{int}]{difficulty }\end{DoxyParamCaption})}
+
+Stellt das Grundgerüst für die Ausgabe der Bestenliste bereit bzw. initialisiert diese Ausgabe
+\begin{DoxyEnumerate}
+\item Parameter\+: Struktur, in der die Bestscores gespeichert sind
+\item Parameter\+: ausgewählter Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a3f7a1223459077cd5d74ac3cd7ab4ca5}\label{view_8h_a3f7a1223459077cd5d74ac3cd7ab4ca5}} 
+\index{view.\+h@{view.\+h}!render\+Difficulty\+Dialog@{render\+Difficulty\+Dialog}}
+\index{render\+Difficulty\+Dialog@{render\+Difficulty\+Dialog}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Difficulty\+Dialog()}{renderDifficultyDialog()}}
+{\footnotesize\ttfamily void render\+Difficulty\+Dialog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ausgabe des Dialoges, in dem der Spieler den Schwierigkeitsgrad für sein Spiel wählen kann. \mbox{\Hypertarget{view_8h_a4c6092f6718d38d025e17b7ea81299a2}\label{view_8h_a4c6092f6718d38d025e17b7ea81299a2}} 
+\index{view.\+h@{view.\+h}!render\+Enter\+Password@{render\+Enter\+Password}}
+\index{render\+Enter\+Password@{render\+Enter\+Password}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Enter\+Password()}{renderEnterPassword()}}
+{\footnotesize\ttfamily void render\+Enter\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}\label{view_8h_ac9426471cc4df5ed76c3feb13d52e7a4}} 
+\index{view.\+h@{view.\+h}!render\+Game\+Menu@{render\+Game\+Menu}}
+\index{render\+Game\+Menu@{render\+Game\+Menu}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Game\+Menu()}{renderGameMenu()}}
+{\footnotesize\ttfamily void render\+Game\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to render the game menu. 
+
+It shows the game menu \mbox{\Hypertarget{view_8h_a108fd7ab9648dd730a7941d87079f87f}\label{view_8h_a108fd7ab9648dd730a7941d87079f87f}} 
+\index{view.\+h@{view.\+h}!render\+Help\+Dialog@{render\+Help\+Dialog}}
+\index{render\+Help\+Dialog@{render\+Help\+Dialog}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Help\+Dialog()}{renderHelpDialog()}}
+{\footnotesize\ttfamily void render\+Help\+Dialog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gibt die Spielregeln in der Konsole aus. \mbox{\Hypertarget{view_8h_aefebd76cb79365ed497c0164498c7d6c}\label{view_8h_aefebd76cb79365ed497c0164498c7d6c}} 
+\index{view.\+h@{view.\+h}!render\+Info\+Box@{render\+Info\+Box}}
+\index{render\+Info\+Box@{render\+Info\+Box}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Info\+Box()}{renderInfoBox()}}
+{\footnotesize\ttfamily void render\+Info\+Box (\begin{DoxyParamCaption}\item[{char $\ast$}]{username,  }\item[{int $\ast$}]{score,  }\item[{int}]{\+\_\+difficulty,  }\item[{int}]{remaining }\end{DoxyParamCaption})}
+
+Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit, und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit, enthält. enthält.
+\begin{DoxyEnumerate}
+\item Parameter\+: Nutzernamen, des aktuell spielenden Spielers
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable, die den Nutzernamen des aktuell spielenden Spielers enthält
+\item Parameter\+: Highscore im aktuellen Schwierigkeitsgrad
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable, die den Highscore im aktuellen Schwierigkeitsgrad enthält
+\item Parameter\+: aktuell ausgewählter Schwierigkeitsgrad
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: aktuell ausgewählter Schwierigkeitsgrad
+\item Parameter\+: Anzahl der Zellen, die der Spieler noch ausfüllen muss
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Anzahl der Zellen, die der Spieler noch ausfüllen muss 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a1606bef806751dc18633f6f90e61ab7b}\label{view_8h_a1606bef806751dc18633f6f90e61ab7b}} 
+\index{view.\+h@{view.\+h}!render\+Loading\+Bar@{render\+Loading\+Bar}}
+\index{render\+Loading\+Bar@{render\+Loading\+Bar}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Loading\+Bar()}{renderLoadingBar()}}
+{\footnotesize\ttfamily void render\+Loading\+Bar (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_acd6361cb5d599345fc756af3d1cb8791}\label{view_8h_acd6361cb5d599345fc756af3d1cb8791}} 
+\index{view.\+h@{view.\+h}!render\+Mark\+Mode\+Message@{render\+Mark\+Mode\+Message}}
+\index{render\+Mark\+Mode\+Message@{render\+Mark\+Mode\+Message}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Mark\+Mode\+Message()}{renderMarkModeMessage()}}
+{\footnotesize\ttfamily void render\+Mark\+Mode\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_a78e361735746351cb5af84496b98373f}\label{view_8h_a78e361735746351cb5af84496b98373f}} 
+\index{view.\+h@{view.\+h}!render\+Menu@{render\+Menu}}
+\index{render\+Menu@{render\+Menu}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Menu()}{renderMenu()}}
+{\footnotesize\ttfamily void render\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gibt die Bestenliste (T\+OP 10) in Abhängigkeit von der Zeit und dem ausgewählten Schwierigkeitsgrad aus. aus.
+\begin{DoxyEnumerate}
+\item Parameter\+: Struktur, in der die Bestscores gespeichert sind
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf Struktur, in der die Bestscores gespeichert sind
+\item Parameter\+: ausgewählter Schwierigkeitsgrad
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: ausgewählter Schwierigkeitsgrad 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a7e51d29f5df27b0e034cab6dbc112065}\label{view_8h_a7e51d29f5df27b0e034cab6dbc112065}} 
+\index{view.\+h@{view.\+h}!render\+Notes\+Box@{render\+Notes\+Box}}
+\index{render\+Notes\+Box@{render\+Notes\+Box}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Notes\+Box()}{renderNotesBox()}}
+{\footnotesize\ttfamily void render\+Notes\+Box (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Augabe -\/ sofern vorhanden -\/ der Notizen des Spielers (bzw. Tipps). \mbox{\Hypertarget{view_8h_a80ae602a7ab1d6edead0e6185fb5a509}\label{view_8h_a80ae602a7ab1d6edead0e6185fb5a509}} 
+\index{view.\+h@{view.\+h}!render\+Set\+Password@{render\+Set\+Password}}
+\index{render\+Set\+Password@{render\+Set\+Password}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Set\+Password()}{renderSetPassword()}}
+{\footnotesize\ttfamily void render\+Set\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{view_8h_a008ec4df25b278b5956d0092c8e87f81}\label{view_8h_a008ec4df25b278b5956d0092c8e87f81}} 
+\index{view.\+h@{view.\+h}!render\+Solved\+Game@{render\+Solved\+Game}}
+\index{render\+Solved\+Game@{render\+Solved\+Game}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Solved\+Game()}{renderSolvedGame()}}
+{\footnotesize\ttfamily void render\+Solved\+Game (\begin{DoxyParamCaption}\item[{int}]{solved\+Automatic,  }\item[{int}]{anzahl\+Der\+Tipps,  }\item[{int}]{anzahl\+Der\+Hilfe }\end{DoxyParamCaption})}
+
+
+
+Function to render the dialog after solved game. 
+
+It shows the game menu \mbox{\Hypertarget{view_8h_adb4ba2caf581760f90d6e46a870cf700}\label{view_8h_adb4ba2caf581760f90d6e46a870cf700}} 
+\index{view.\+h@{view.\+h}!render\+Username\+Dialog@{render\+Username\+Dialog}}
+\index{render\+Username\+Dialog@{render\+Username\+Dialog}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{render\+Username\+Dialog()}{renderUsernameDialog()}}
+{\footnotesize\ttfamily void render\+Username\+Dialog (\begin{DoxyParamCaption}\item[{char $\ast$}]{pc\+Username }\end{DoxyParamCaption})}
+
+Gibt den Dialog, in dem der Spieler nach seinem Namen gefragt wird aus. aus.
+\begin{DoxyEnumerate}
+\item Parameter\+: bisheriger Benutzername (Zeichen werden einzeln
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable mit dem Wert des bisherigern entgegengenommen, um eine nutzerfreundliche Obfläche / Eingabe Benutzernamens (Zeichen werden einzeln entgegengenommen, um eine nutzerfreundliche Obfläche / Eingabe und das Nutzen der Löschen-\/\+Taste zu ermöglichen) und das Nutzen der Löschen-\/\+Taste zu ermöglichen) 
+\end{DoxyEnumerate}\mbox{\Hypertarget{view_8h_a429a75ab154b549418db53976709933f}\label{view_8h_a429a75ab154b549418db53976709933f}} 
+\index{view.\+h@{view.\+h}!set\+Printing\+Color@{set\+Printing\+Color}}
+\index{set\+Printing\+Color@{set\+Printing\+Color}!view.\+h@{view.\+h}}
+\subsubsection{\texorpdfstring{set\+Printing\+Color()}{setPrintingColor()}}
+{\footnotesize\ttfamily void set\+Printing\+Color (\begin{DoxyParamCaption}\item[{char $\ast$}]{color }\end{DoxyParamCaption})}
+
+Setzt die Farbe, in der ab sofort in die Konsole geschrieben werden soll
+\begin{DoxyEnumerate}
+\item Parameter\+: Farbe
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Parameter\+: Zeiger auf die Variable mit dem Wert für die Farbe 
+\end{DoxyEnumerate}
