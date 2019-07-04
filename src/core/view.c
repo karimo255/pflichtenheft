@@ -92,7 +92,7 @@ void renderUsernameDialog(char *pcUsername)
     printEmptyTableLine();
     printTableLine("Sie koennen diesen Schritt              ");
     printTableLine("ueberspringen, druecken Sie             ");
-    printTableLine("dafuer einfach Enter.                   ");
+    printTableLine("dafuer einfach Escape.                  ");
     printTableLine("                                        ");
     printEndOfTable();
 }
