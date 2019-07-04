@@ -19,18 +19,18 @@
 /// Difficulty enum
 extern enum DIFFICULTY ///< max. deleted cells per box
 {
-    EASY = 5, ///< EASY
-    MEDIUM = 7, ///< MEDIUM
-    HARD = 8 ///< HARD
+    EASY = 5, ///< Repräsentiert Schwierigkeitsstufe einfach
+    MEDIUM = 7, ///< Repräsentiert Schwierigkeitsstufe mittel
+    HARD = 8 ///< Repräsentiert Schwierigkeitsstufe schwer
 };
 
 extern enum ACTIONS {
-    TIMER_STATE = 0,
-    TIMER_START = 1,
-    TIMER_PAUSE = 2,
-    TIPP_USED = 3,
-    HELP_USED,
-    RESET_TIMER,
+    TIMER_STATE = 0,  /// ///< Aktion um Timer Status zu holen
+    TIMER_START = 1, ///< Aktion um Timer zu starten
+    TIMER_PAUSE = 2,  ///< Aktion um Timer zu pausieren
+    TIPP_USED = 3,  ///< Aktion wenn  Tipp benutzt wird
+    HELP_USED, ///< Aktion wenn  Hilfe benutzt wird
+    RESET_TIMER, ///< Aktion um den Timmer zurückzusetzen
 };
 
 /// Positions enum
@@ -39,19 +39,19 @@ extern enum POSITIONS {
     IN_GAME = 1, ///< IN_GAME
     DIFFICULTY_DIALOG = 2, ///< DIFFICULTY_DIALOG
     DETAILS = 3, ///< DETAILS
-    HELP = 4, ///< DETAILS
-    USER_NAME = 5,
-    DETAILS_DIALOG = 6,
+    HELP = 4, ///< HELP
+    USER_NAME = 5, ///< USER_NAME
+    DETAILS_DIALOG = 6, ///< DETAILS_DIALOG
     SOLVED_GAME = 7, ///< SOLVED_GAME
-    SET_MARK = 8,
-    SET_PASSWORD = 9,
-    ENTER_PASSWORD = 10,
+    SET_MARK = 8, ///< SET_MARK
+    SET_PASSWORD = 9, ///< SET_PASSWORD
+    ENTER_PASSWORD = 10, ///< ENTER_PASSWORD
 };
 
 /// Grid-Status enum
 enum GRID_STATUS {
-    FILLED = 1, ///< DETAILS
-    NOT_FILLED = 0 ///< DETAILS
+    FILLED = 1, ///< Beschreibt den Staus von Sudoku
+    NOT_FILLED = 0 ///< Beschreibt den Staus von Sudoku
 };
 
 /// Arrows enum

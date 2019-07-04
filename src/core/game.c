@@ -19,19 +19,19 @@
 
 #include <unistd.h>
 
-int iX_coordinate = 0;
-int iY_coordinate = 0;
-int iDifficulty = EASY;
-char cGameMessage[200] = {0};
-int iIsGameActive;
+int iX_coordinate = 0; ///< Cursor X Koordinate
+int iY_coordinate = 0; ///< Cursor Y Koordinate
+int iDifficulty = EASY; ///< Schwierigkeitsstufe
+char cGameMessage[200] = {0}; ///< Hier werden Spiel Mitteilungen gespeichert
+int iIsGameActive; ///< Beschreibt ob das Spiel aktiv ist.
 
-int iGameData[9][9] = {0};
-int iMarks[9][9][MAX_MARKS];
-int iDeletedCells[9][9] = {0};
-int iUserCells[9][9] = {0};
-int *piUserID;
+int iGameData[9][9] = {0}; ///< Hier werden die spieldaten gespeichert
+int iMarks[9][9][MAX_MARKS]; ///< Hier werden user User Notizen gespeichert
+int iDeletedCells[9][9] = {0}; ///< Hier werden die gelöschten Zellen gespeichert
+int iUserCells[9][9] = {0}; ///< Hier werden die Zellen, die vom User gefüllt sind gespeichert.
+int *piUserID;  ///< Pointer zeigt auf die id des gerade angemelteden User.
 
-int iElementsInSomeColumn[9] = {0};
+int iElementsInSomeColumn[9] = {0}; ///< Repräsentiert die gesamte Spalten des Y Koordinate des Cursor.
 
 time_t start, end, _pause;
 

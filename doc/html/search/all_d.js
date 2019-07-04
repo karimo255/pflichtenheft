@@ -8,7 +8,7 @@ var searchData=
   ['renderenterpassword',['renderEnterPassword',['../view_8h.html#a4c6092f6718d38d025e17b7ea81299a2',1,'view.h']]],
   ['rendergamemenu',['renderGameMenu',['../view_8h.html#ac9426471cc4df5ed76c3feb13d52e7a4',1,'view.h']]],
   ['renderhelpdialog',['renderHelpDialog',['../view_8h.html#a108fd7ab9648dd730a7941d87079f87f',1,'view.h']]],
-  ['renderinfobox',['renderInfoBox',['../view_8h.html#aefebd76cb79365ed497c0164498c7d6c',1,'view.h']]],
+  ['renderinfobox',['renderInfoBox',['../view_8h.html#a5502b801671c92d9262bb4c6b1d9dab5',1,'view.h']]],
   ['renderloadingbar',['renderLoadingBar',['../view_8h.html#a1606bef806751dc18633f6f90e61ab7b',1,'view.h']]],
   ['rendermarkmodemessage',['renderMarkModeMessage',['../view_8h.html#acd6361cb5d599345fc756af3d1cb8791',1,'view.h']]],
   ['rendermenu',['renderMenu',['../view_8h.html#a78e361735746351cb5af84496b98373f',1,'view.h']]],

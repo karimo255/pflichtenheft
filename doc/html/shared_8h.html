@@ -165,11 +165,17 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca5c51553606dc48acb370c3b60ca12035"></a>TIMER_STATE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeecab64e562a51298f4a9eabc1f74d263217"></a>TIMER_START&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca2fc9fdb3e346a94262fa0e143f8fcb79"></a>TIMER_PAUSE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca31b7a44cc8a26026d784c1aa4668f4d1"></a>TIPP_USED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeecae2c8861a8a9ac8056976ee6dad5141c9"></a>HELP_USED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca2d70780ac48d7b31b1e9f49b7b6aedc0"></a>RESET_TIMER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeecab64e562a51298f4a9eabc1f74d263217"></a>TIMER_START&#160;</td><td class="fielddoc"><p>///&lt; Aktion um Timer Status zu holen </p>
+<p>Aktion um Timer zu starten </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca2fc9fdb3e346a94262fa0e143f8fcb79"></a>TIMER_PAUSE&#160;</td><td class="fielddoc"><p>Aktion um Timer zu pausieren. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca31b7a44cc8a26026d784c1aa4668f4d1"></a>TIPP_USED&#160;</td><td class="fielddoc"><p>Aktion wenn Tipp benutzt wird. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeecae2c8861a8a9ac8056976ee6dad5141c9"></a>HELP_USED&#160;</td><td class="fielddoc"><p>Aktion wenn Hilfe benutzt wird. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abd505ece4ed03e704c3c8674188adeeca2d70780ac48d7b31b1e9f49b7b6aedc0"></a>RESET_TIMER&#160;</td><td class="fielddoc"><p>Aktion um den Timmer zurückzusetzen. </p>
+</td></tr>
 </table>
 
 </div>
@@ -223,11 +229,11 @@ Enumerations</h2></td></tr>
 <p>Difficulty enum. </p>
 <p>&lt; max. deleted cells per box </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a26d394b5caf2853dbcef5884f0f068dd"></a>EASY&#160;</td><td class="fielddoc"><p>EASY. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a26d394b5caf2853dbcef5884f0f068dd"></a>EASY&#160;</td><td class="fielddoc"><p>Repräsentiert Schwierigkeitsstufe einfach. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a5340ec7ecef6cc3886684a3bd3450d64"></a>MEDIUM&#160;</td><td class="fielddoc"><p>MEDIUM. </p>
+<tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a5340ec7ecef6cc3886684a3bd3450d64"></a>MEDIUM&#160;</td><td class="fielddoc"><p>Repräsentiert Schwierigkeitsstufe mittel. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a712b8eb9268f114b4afc567f24bc536f"></a>HARD&#160;</td><td class="fielddoc"><p>HARD. </p>
+<tr><td class="fieldname"><a id="abad2be49a3ac120910f7f8a1355167a4a712b8eb9268f114b4afc567f24bc536f"></a>HARD&#160;</td><td class="fielddoc"><p>Repräsentiert Schwierigkeitsstufe schwer. </p>
 </td></tr>
 </table>
 
@@ -247,9 +253,9 @@ Enumerations</h2></td></tr>
 
 <p>Grid-Status enum. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9e2281aad7f22c21214c1c0179468c68a535cbdd94e9f2a4c67f6c5a7a7b16311"></a>FILLED&#160;</td><td class="fielddoc"><p>DETAILS. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9e2281aad7f22c21214c1c0179468c68a535cbdd94e9f2a4c67f6c5a7a7b16311"></a>FILLED&#160;</td><td class="fielddoc"><p>Beschreibt den Staus von Sudoku. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a9e2281aad7f22c21214c1c0179468c68ab99715d474758345b9d4201073f8f451"></a>NOT_FILLED&#160;</td><td class="fielddoc"><p>DETAILS. </p>
+<tr><td class="fieldname"><a id="a9e2281aad7f22c21214c1c0179468c68ab99715d474758345b9d4201073f8f451"></a>NOT_FILLED&#160;</td><td class="fielddoc"><p>Beschreibt den Staus von Sudoku. </p>
 </td></tr>
 </table>
 
@@ -277,15 +283,20 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9ac798da18a4385ee11bbd525fd4afd8ee"></a>DETAILS&#160;</td><td class="fielddoc"><p>DETAILS. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a9f5cb747b2e1f0ea781d2b1f2a5b4824"></a>HELP&#160;</td><td class="fielddoc"><p>DETAILS. </p>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a9f5cb747b2e1f0ea781d2b1f2a5b4824"></a>HELP&#160;</td><td class="fielddoc"><p>HELP. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a1cb155c0e3b2460a7021710a043abbeb"></a>USER_NAME&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a53f3058922c5362f283b195616ec9d90"></a>DETAILS_DIALOG&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a1cb155c0e3b2460a7021710a043abbeb"></a>USER_NAME&#160;</td><td class="fielddoc"><p>USER_NAME. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a53f3058922c5362f283b195616ec9d90"></a>DETAILS_DIALOG&#160;</td><td class="fielddoc"><p>DETAILS_DIALOG. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a1e00a173b2be06f8d82411dc334be910"></a>SOLVED_GAME&#160;</td><td class="fielddoc"><p>SOLVED_GAME. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9ac924eabfb95dd4266e23f8041291addc"></a>SET_MARK&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9ab29f0a8f9e64de886fa3eb42272c1407"></a>SET_PASSWORD&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a86dac16a1eefdaec3c04326947f29aeb"></a>ENTER_PASSWORD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9ac924eabfb95dd4266e23f8041291addc"></a>SET_MARK&#160;</td><td class="fielddoc"><p>SET_MARK. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9ab29f0a8f9e64de886fa3eb42272c1407"></a>SET_PASSWORD&#160;</td><td class="fielddoc"><p>SET_PASSWORD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a6f846a4971a81f40033539a021c34cf9a86dac16a1eefdaec3c04326947f29aeb"></a>ENTER_PASSWORD&#160;</td><td class="fielddoc"><p>ENTER_PASSWORD. </p>
+</td></tr>
 </table>
 
 </div>
@@ -293,7 +304,7 @@ Enumerations</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 3 2019 22:55:35 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 4 2019 10:57:24 for sudoku by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
