@@ -125,20 +125,7 @@ int bestScoresCallBack(void *pvScores, int iArgc, char **ppcArgv, char **ppcAzCo
     return 0;
 }
 
-int getBestScoreByUserID(int userID)
-/* Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.
- * 1. Parameter: UserID des aktuellen Nutzers
- */
-{
-    sprintf(cSql, "SELECT time FROM `Score` where userId = %d limit 1 sort by time;", userID);
 
-    fflush(stdout);
-    clear_output();
-
-    int rc = sqlite3_exec(psqlConnection, cSql, bestScoresCallBack, NULL, &pcZErrMsg);
-
-    return iUser_id;
-}
 
 int bestScoreCallback(void *pvBestScore, int iArgc, char **ppcArgv, char **ppcAzColName)
 {
@@ -160,6 +147,26 @@ int bestScoreCallback(void *pvBestScore, int iArgc, char **ppcArgv, char **ppcAz
     return 0;
 }
 
+int getBestScoreByUserID(int userID)
+/* Erfragt den Highscore des aktuellen Nutzers aus der Datenbank.
+ * 1. Parameter: UserID des aktuellen Nutzers
+ */
+{
+    sprintf(cSql, "SELECT time FROM `Score` where userId = %d  order by time limit 1;", userID);
+    int *iCurrentUserBestScore = malloc(sizeof(int));
+    *iCurrentUserBestScore = 0;
+    fflush(stdout);
+    clear_output();
+
+    int rc = sqlite3_exec(psqlConnection, cSql, bestScoreCallback, iCurrentUserBestScore, &pcZErrMsg);
+    if(!rc == SQLITE_OK){
+        strcpy(cGameMessage, "Bestscore Abfrage fehlgeschlagen.");
+    }
+    int iResult = *iCurrentUserBestScore;
+    free(iCurrentUserBestScore);
+    return iResult;
+}
+
 int getBestScore(int *piBestScore, int iDifficulty)
 /* Erfragt den Highscore aller Spieler im aktuellen Schwierigkeitsgrad aus der Datenbank.
  * 1. Parameter: Zeiger auf die Variable, in die der Highscore geschrieben werden soll
@@ -175,7 +182,7 @@ int getBestScore(int *piBestScore, int iDifficulty)
     if (!rc == SQLITE_OK)
     {
         printf(cSql);
-        strcpy(cGameMessage, "Bestscore Abfrage fehlgeschlagen2.");
+        strcpy(cGameMessage, "Bestscore Abfrage fehlgeschlagen.");
         return 1;
     }
     else

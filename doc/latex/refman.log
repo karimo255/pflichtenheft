@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.7.2)  3 JUL 2019 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.7.2)  3 JUL 2019 22:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**refman
+**refman.tex
 (./refman.tex
 LaTeX2e <2017/01/01> patch level 3
 Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
@@ -1322,6 +1322,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 [28] [29]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.4 on input line 93.
+
+
 Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
@@ -1331,31 +1336,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[30] [31]) (./shared_8h.tex [32] [33]) [34] (./refman.ind [35
+[30] [31]) (./shared_8h.tex [32]
 
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.5 on input line 101.
 
+[33]) [34]
+No file refman.ind.
 
-] [36] [37]
-[38
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
 
-])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
- (./refman.aux)
+(./refman.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 85999679068C0D0671BA3EF02ECBBF46;26687.
+(rerunfilecheck)             Checksum: 01AABB27FBAC8AD6C6EE384A9342D448;26615.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
  ) 
 Here is how much of TeX's memory you used:
- 15597 strings out of 494945
- 230874 string characters out of 6181033
- 331247 words of memory out of 5000000
- 18184 multiletter control sequences out of 15000+600000
+ 15589 strings out of 494945
+ 230800 string characters out of 6181033
+ 331246 words of memory out of 5000000
+ 18183 multiletter control sequences out of 15000+600000
  67481 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,16n,92p,1270b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,1274b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/
@@ -1366,10 +1373,10 @@ rro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (46 pages, 196066 bytes).
+Output written on refman.pdf (42 pages, 184978 bytes).
 PDF statistics:
- 1668 PDF objects out of 1728 (max. 8388607)
- 1594 compressed objects within 16 object streams
- 431 named destinations out of 1000 (max. 500000)
- 1065 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1424 PDF objects out of 1440 (max. 8388607)
+ 1356 compressed objects within 14 object streams
+ 426 named destinations out of 1000 (max. 500000)
+ 1057 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -181,7 +181,7 @@ void renderCourt(int iGameData[][9], int iUserCells[][9], int iX_coordinate, int
     }
 }
 
-void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemaining)
+void renderInfoBox(char *pcUsername, int *piScore, int iCurrentUserBestScore, int _piDifficulty, int iRemaining)
 /* Gibt die Infobox aus, die sich über dem Spielfeld zur Spielzeit befindet
  * und alle wichtigen Informationen, wie die aktuell schon benötigte Zeit,
  * enthält.
@@ -195,8 +195,9 @@ void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemai
     int iUserBoxWith = 10;
     int iBestscoreWidth = 6;
     int iRemainingBoxWith = 5;
+    int meinBestScoreWidth = 10;
     int iHilfeWidth = 12;
-    int iTippWidth = 8;
+    int iTippWidth = 12;
     char cUserStringTime[6];
 
     timeToString(timer(TIMER_STATE), cUserStringTime);
@@ -215,7 +216,6 @@ void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemai
     setPrintingColor(KWHT);
 
     char cUs[6];
-
     timeToString(*piScore, cUs);
     printf("Bestscore: %s%*s", cUs, iBestscoreWidth - (*piScore > 10 ? 2 : 1), "");
 
@@ -276,11 +276,21 @@ void renderInfoBox(char *pcUsername, int *piScore, int _piDifficulty, int iRemai
     printf("  || ");
 
     setPrintingColor(KWHT);
+    timeToString(iCurrentUserBestScore, cUs);
+    printf("Best: %s     ", cUs);
+
+
+    setPrintingColor(KCYN);
+    printf("|| ");
+
+    setPrintingColor(KWHT);
     printf("Tipps: %d/%d%*s", iAnzahlDerTipps, iErlaubteAnzahlDerTipps,
            iTippWidth - lenHelper(iAnzahlDerTipps) - lenHelper(iErlaubteAnzahlDerTipps), "");
 
     setPrintingColor(KCYN);
-    printf("||                     ||\n");
+    printf("||\n");
+
+
     printf("  ++=================++=====================++\n\n");
 }
 

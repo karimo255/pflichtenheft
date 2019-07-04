@@ -189,8 +189,12 @@ void renderGame(struct sScore *scores)
             iBestScore = malloc(sizeof(int));
             *iBestScore = 0;
             getBestScore(iBestScore, iDifficulty);
+            int iCurrentUserBestScore = 0;
+            if (piUserID!= 0 && *piUserID > 0){
+                iCurrentUserBestScore = getBestScoreByUserID(*piUserID);
+            }
             remaining = getRemainingCells(iGameData);
-            renderInfoBox(cUusername, iBestScore, iDifficulty, remaining);
+            renderInfoBox(cUusername, iBestScore, iCurrentUserBestScore, iDifficulty, remaining);
             renderNotesBox(iX_coordinate, iY_coordinate);
             renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
             printGameMessage();
@@ -199,7 +203,8 @@ void renderGame(struct sScore *scores)
             break;
         case SET_MARK:
             remaining = getRemainingCells(iGameData);
-            renderInfoBox(cUusername, iBestScore, iDifficulty, remaining);
+            iCurrentUserBestScore = getBestScoreByUserID(*piUserID);
+            renderInfoBox(cUusername, iBestScore, iCurrentUserBestScore, iDifficulty, remaining);
             renderMarkModeMessage();
             renderCourt(iGameData, iUserCells, iX_coordinate, iY_coordinate);
             renderGameMenu();

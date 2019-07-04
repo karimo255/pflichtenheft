@@ -520,12 +520,10 @@ void checkGameState()
 
             if (piUserID != 0 && isSolvedAutomatic == 0) {
                 strcpy(cGameMessage, "insert.");
-                printf("Drin.\n");
 
                 int _score = timer(TIMER_STATE);
                 insertScore(piUserID, _score, iDifficulty);
             }
-            printf("Raus.\n");
 
             iIsGameActive = 0;
             iCurrentPosition = SOLVED_GAME;

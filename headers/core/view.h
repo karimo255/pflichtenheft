@@ -84,7 +84,7 @@ void renderCourt(int gameData[][9],int userCells[][9], int x_coordinate, int y_c
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  * 4. Parameter: Anzahl der Zellen, die der Spieler noch ausfüllen muss
  */
-void renderInfoBox(char *username, int *score, int _difficulty, int remaining);
+void renderInfoBox(char *username, int *score, int iCurrentUserBestScore, int _difficulty, int remaining);
 
 /** Gibt die Legende aus, die dem Spieler aufzeigt, welche Tasten er drücken kann, um
  * mit dem Spiel zu interagieren.
