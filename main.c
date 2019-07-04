@@ -159,6 +159,8 @@ void renderGame(struct sScore *scores)
 * (Nutzername, UserID, benötigte Zeit und Schwierigkeitsgrad)
 */
 {
+    iBestScore = malloc(sizeof(int));
+
     switch (iCurrentPosition)
     {
         case SET_PASSWORD:
@@ -186,7 +188,6 @@ void renderGame(struct sScore *scores)
                 timer(TIMER_START);
                 isSolvedAutomatic = 0;
             }
-            iBestScore = malloc(sizeof(int));
             *iBestScore = 0;
             getBestScore(iBestScore, iDifficulty);
             int iCurrentUserBestScore = 0;
