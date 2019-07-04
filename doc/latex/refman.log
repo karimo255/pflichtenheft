@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.7.2)  4 JUL 2019 10:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.7.2)  4 JUL 2019 19:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1164,8 +1164,6 @@ Package hyperref Info: Option `unicode' set `true' on input line 123.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 12.9599pt on input line 128.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 128.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 128.
 LaTeX Font Info:    Try loading font information for U+wasy on input line 128.
 
@@ -1181,7 +1179,10 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 128.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 128.
+ [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
@@ -1331,25 +1332,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[30] [31]) (./shared_8h.tex [32]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.5 on input line 101.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.7 on input line 169.
-
-[33]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.8 on input line 189.
-
-) [34]
+[30] [31]) (./shared_8h.tex [32] [33]) [34]
 No file refman.ind.
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
 (./refman.aux)
@@ -1357,17 +1341,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
 Package rerunfilecheck Info: File `refman.out' has not changed.
 (rerunfilecheck)             Checksum: 01AABB27FBAC8AD6C6EE384A9342D448;26615.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
  ) 
 Here is how much of TeX's memory you used:
- 15590 strings out of 494945
- 230843 string characters out of 6181033
- 330335 words of memory out of 5000000
- 18184 multiletter control sequences out of 15000+600000
+ 15589 strings out of 494945
+ 230800 string characters out of 6181033
+ 330351 words of memory out of 5000000
+ 18183 multiletter control sequences out of 15000+600000
  67481 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  53i,16n,92p,1274b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1381,7 +1361,7 @@ rro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (42 pages, 185328 bytes).
+Output written on refman.pdf (42 pages, 185316 bytes).
 PDF statistics:
  1424 PDF objects out of 1440 (max. 8388607)
  1356 compressed objects within 14 object streams

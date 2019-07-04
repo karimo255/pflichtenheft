@@ -45,8 +45,7 @@ void navigateTo(int iPos)
  * bewegen möchte
  */
 {
-    switch (iPos)
-    { // the real value
+    switch (iPos) { // the real value
         /* Code für Pfeil nach oben */
         case UP:
             iX_coordinate--;
@@ -88,20 +87,16 @@ void navigateTo(int iPos)
             break;
     }
 
-    if (iX_coordinate > 8)
-    {
+    if (iX_coordinate > 8) {
         iX_coordinate = 0;
     }
-    if (iX_coordinate < 0)
-    {
+    if (iX_coordinate < 0) {
         iX_coordinate = 8;
     }
-    if (iY_coordinate > 8)
-    {
+    if (iY_coordinate > 8) {
         iY_coordinate = 0;
     }
-    if (iY_coordinate < 0)
-    {
+    if (iY_coordinate < 0) {
         iY_coordinate = 8;
     }
 }
@@ -118,49 +113,36 @@ void handleUserNameInput()
 {
     char cCh = getch();
 
-    if (cCh != 13 && cCh != '\n' && cCh != EOF)
-    { // no enter
-        if (cCh == 27)
-        { // escape
+    if (cCh != 13 && cCh != '\n' && cCh != EOF) { // no enter
+        if (cCh == 27) { // escape
             strcpy(cUusername, "anonym");
             iCurrentPosition = DIFFICULTY_DIALOG;
-        }
-        else if (cCh == 127 || cCh == 8)
-        {
+        } else if (cCh == 127 || cCh == 8) {
             iB--;
-            if (iB < 0)
-            {
+            if (iB < 0) {
                 iB = 0;
             }
             cUusername[iB] = 0;
+        } else if (iB < 8) {
+            if (isalpha(cCh) || isdigit(cCh)) {
+                cUusername[iB] = cCh;
+                iB++;
+            }
         }
-        else if (iB < 8)
-        {
-            cUusername[iB] = cCh;
-            iB++;
-        }
-    }
-    else if (strlen(cUusername) > 0)
-    { // enter
+    } else if (strlen(cUusername) > 0) { // enter
         cUusername[iB] = '\0';
 
         iB = 0;
-        if (cUusername[0] == 0)
-        {
+        if (cUusername[0] == 0) {
             strcpy(cUusername, "anonym");
-        }
-        else
-        {
+        } else {
             piUserID = malloc(sizeof(int));
             *piUserID = 0;
             getUserID(cUusername, piUserID);
 
-            if (*piUserID > 0)
-            {
+            if (*piUserID > 0) {
                 iCurrentPosition = ENTER_PASSWORD;
-            }
-            else
-            {
+            } else {
                 iCurrentPosition = SET_PASSWORD;
             }
         }
@@ -182,32 +164,27 @@ void handleSetPasswordInput()
     char cCh = getch();
 
     printf("%d\n", cCh);
-    if (cCh != 13 && cCh != '\n' && cCh != EOF)
-    { // not enter
-        if (cCh == 27)
-        { // escape
+    if (cCh != 13 && cCh != '\n' && cCh != EOF) { // not enter
+        if (cCh == 27) { // escape
             resetArray(cPassword, 8);
             iCurrentPosition = USER_NAME;
         }
         //   if (password[0] == 0) resetArray(password, 8);
-        if (cCh == 127 || cCh == 8)
-        { // delete backspace
+        if (cCh == 127 || cCh == 8) { // delete backspace
             iB--;
-            if (iB < 0)
-            {
+            if (iB < 0) {
                 iB = 0;
             }
             cPassword[iB] = 0;
-        }
-        else if (iB < 6)
-        {
-            cPassword[iB] = cCh;
-            iB++;
+        } else if (iB < 6) {
+            if (isalpha(cCh) || isdigit(cCh)) {
+                cPassword[iB] = cCh;
+                iB++;
+            }
         }
     }
-    /* Enter */
-    else
-    {
+        /* Enter */
+    else {
         registerUser(cUusername, cPassword, piUserID);
 
         clear_output();
@@ -230,41 +207,32 @@ void handleEnterPasswordInput()
 {
     char cCh = getch();
 
-    if (cCh != 13 && cCh != '\n' && cCh != EOF)
-    { // not enter
-        if (cCh == 27)
-        { // escape
+    if (cCh != 13 && cCh != '\n' && cCh != EOF) { // not enter
+        if (cCh == 27) { // escape
             resetArray(cPassword, 8);
             iCurrentPosition = USER_NAME;
-        }
-        else if (cCh == 127 || cCh == 8)
-        { // delete backspace
+        } else if (cCh == 127 || cCh == 8) { // delete backspace
             iB--;
-            if (iB < 0)
-            {
+            if (iB < 0) {
                 iB = 0;
             }
             cPassword[iB] = 0;
-        }
-        else if (iB < 6)
-        {
-            cPassword[iB] = cCh;
-            iB++;
+        } else if (iB < 6) {
+            if (isalpha(cCh) || isdigit(cCh)) {
+                cPassword[iB] = cCh;
+                iB++;
+            }
         }
     }
-    /* Enter */
-    else
-    {
+        /* Enter */
+    else {
         piIsUserLoggedIn = malloc(sizeof(int));
         *piIsUserLoggedIn = 0;
 
         loginUser(cUusername, cPassword, piIsUserLoggedIn);
-        if (*piIsUserLoggedIn > 0)
-        {
+        if (*piIsUserLoggedIn > 0) {
             iCurrentPosition = DIFFICULTY_DIALOG;
-        }
-        else
-        {
+        } else {
             strcpy(cGameMessage, "Passwort ist falsch");
             resetArray(cPassword, 6);
             iB = 0;
@@ -279,10 +247,8 @@ void handleDifficultyDialogInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'a':
                 iDifficulty = EASY;
                 iCurrentPosition = IN_GAME;
@@ -311,13 +277,10 @@ void handleMenuInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 's':
-                if (iIsGameActive > 0)
-                {
+                if (iIsGameActive > 0) {
                     break;
                 }
                 iB = strlen(cUusername);
@@ -325,8 +288,7 @@ void handleMenuInput(int iUserInput)
                 break;
 
             case 'r':
-                if (iIsGameActive == 0)
-                {
+                if (iIsGameActive == 0) {
                     break;
                 }
                 timer(TIMER_PAUSE);
@@ -355,48 +317,35 @@ void handleInGameInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isdigit(iUserInput))
-    {
-        if (iUserCells[iX_coordinate][iY_coordinate] == 1)
-        {
+    if (isdigit(iUserInput)) {
+        if (iUserCells[iX_coordinate][iY_coordinate] == 1) {
             iGameData[iX_coordinate][iY_coordinate] = iUserInput - '0';
         }
-    }
-    else if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    } else if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'h':
-                if (iDeletedCells[iX_coordinate][iY_coordinate] > 0)
-                {
-                    if (iAnzahlDerHilfe == iErlaubteAnzahlDerHilfe)
-                    {
+                if (iDeletedCells[iX_coordinate][iY_coordinate] > 0) {
+                    if (iAnzahlDerHilfe == iErlaubteAnzahlDerHilfe) {
                         strcpy(cGameMessage, "Anzahl der Hilfen verbraucht.");
                         break;
                     }
                     iAnzahlDerHilfe++;
                     solveCell(iGameData, iX_coordinate, iY_coordinate);
                     timer(HELP_USED);
-                }
-                else
-                {
+                } else {
                     strcpy(cGameMessage, "Zelle ist nicht leer.");
                 }
                 break;
             case 't':
-                if (iDeletedCells[iX_coordinate][iY_coordinate] > 0)
-                {
-                    if (iAnzahlDerTipps == iErlaubteAnzahlDerTipps)
-                    {
+                if (iDeletedCells[iX_coordinate][iY_coordinate] > 0) {
+                    if (iAnzahlDerTipps == iErlaubteAnzahlDerTipps) {
                         strcpy(cGameMessage, "Anzahl der Tipps verbraucht.");
                         break;
                     }
                     iAnzahlDerTipps++;
                     fillNotesForCell(iX_coordinate, iY_coordinate);
                     timer(TIPP_USED);
-                }
-                else
-                {
+                } else {
                     strcpy(cGameMessage, "Tipp ist nicht verfuegbar");
                 }
 
@@ -423,12 +372,9 @@ void handleInGameInput(int iUserInput)
                 iCurrentPosition = SOLVED_GAME;
                 break;
             case 'm':
-                if (iGameData[iX_coordinate][iY_coordinate] == 0)
-                {
+                if (iGameData[iX_coordinate][iY_coordinate] == 0) {
                     iCurrentPosition = SET_MARK;
-                }
-                else
-                {
+                } else {
                     strcpy(cGameMessage, "Markiere-Mous nicht verfuegbar.");
                 }
                 break;
@@ -442,10 +388,8 @@ void handleSolvedGameInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'z':
                 iCurrentPosition = MENU;
                 break;
@@ -465,14 +409,11 @@ void handleSetMarkInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isdigit(iUserInput))
-    {
+    if (isdigit(iUserInput)) {
         makeNote(iX_coordinate, iY_coordinate, iUserInput - '0');
     }
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'm':
                 strcpy(cGameMessage, "Notizen erstellt");
                 iCurrentPosition = IN_GAME;
@@ -495,10 +436,8 @@ void handleDetailsInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'z':
                 iCurrentPosition = MENU;
                 break;
@@ -513,10 +452,8 @@ void handleDetailsDialogInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'e':
                 iDifficulty = EASY;
                 iCurrentPosition = DETAILS;
@@ -544,18 +481,13 @@ void handleHelpInput(int iUserInput)
  * 1. Parameter: Eingabe des Nutzers
  */
 {
-    if (isalpha(iUserInput))
-    {
-        switch (iUserInput)
-        {
+    if (isalpha(iUserInput)) {
+        switch (iUserInput) {
             case 'z':
-                if (iIsGameActive > 0)
-                {
+                if (iIsGameActive > 0) {
                     timer(TIMER_PAUSE);
                     iCurrentPosition = IN_GAME;
-                }
-                else
-                {
+                } else {
                     iCurrentPosition = MENU;
                 }
                 break;
@@ -572,19 +504,18 @@ void setConfig()
     iAnzahlDerTipps = 0;
     iAnzahlDerHilfe = 0;
 
-    switch (iDifficulty)
-    {
-    case EASY:
-        iErlaubteAnzahlDerTipps = 8;
-        iErlaubteAnzahlDerHilfe = 5;
-        break;
-    case MEDIUM:
-        iErlaubteAnzahlDerTipps = 6;
-        iErlaubteAnzahlDerHilfe = 4;
-        break;
-    case HARD:
-        iErlaubteAnzahlDerTipps = 4;
-        iErlaubteAnzahlDerHilfe = 3;
-        break;
+    switch (iDifficulty) {
+        case EASY:
+            iErlaubteAnzahlDerTipps = 8;
+            iErlaubteAnzahlDerHilfe = 5;
+            break;
+        case MEDIUM:
+            iErlaubteAnzahlDerTipps = 6;
+            iErlaubteAnzahlDerHilfe = 4;
+            break;
+        case HARD:
+            iErlaubteAnzahlDerTipps = 4;
+            iErlaubteAnzahlDerHilfe = 3;
+            break;
     }
 }

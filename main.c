@@ -191,7 +191,7 @@ void renderGame(struct sScore *scores)
             *iBestScore = 0;
             getBestScore(iBestScore, iDifficulty);
             int iCurrentUserBestScore = 0;
-            if (piUserID!= 0 && *piUserID > 0){
+            if (piUserID!= 0){
                 iCurrentUserBestScore = getBestScoreByUserID(*piUserID);
             }
             remaining = getRemainingCells(iGameData);

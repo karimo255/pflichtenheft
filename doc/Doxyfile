@@ -1,7 +1,7 @@
 DOXYFILE_ENCODING      = UTF-8
 
-PROJECT_NAME           = "sudoku"
-PROJECT_NUMBER         = "2.1.4"
+PROJECT_NAME           = "SUDOKU"
+PROJECT_NUMBER         = "1.0.0"
 PROJECT_BRIEF          = "Fast ssdeep comparison library"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = doc
